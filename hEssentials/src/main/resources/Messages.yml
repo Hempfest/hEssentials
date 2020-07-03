@@ -1,0 +1,35 @@
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+# O]===============================================[O #
+# |                Hempfest Essentials              | #
+# O]===============================================[O #
+# O]===============================================[O #
+# |                      v1.0.0                     | #
+# O]===============================================[O #
+#  
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#  
+Messages:  
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#  
+# Change the prefix used for the plugin.  
+  Prefix: '&2hEssentials &a:&r'
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#  
+# Change player response messages.   
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+# Variables: 
+#   *  %players% = online players by name
+#   *  %online% = current amount of online players
+#   *  %max% = max playercount of your server
+#   *  %prefix% = current plugin prefix
+#   *  %next% = goto the next line
+#   *  %target% = target player being messaged
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+  Player-Responses:
+    Online-List: '%prefix%\n&7Online Players &8[&7&l%online%&8/&7&l%max%&8]&7: &f%players%'
+    Player-Message-Send: '%player% --> %target%'
+    Player-Message-Revieve: '%target% --> %player%'
+    Player-Reply-Send: '%player% --> %target%'
+    Player-Reply-Recieve: '%target% --> %player%'
+    Social-Spy-Activated: 'SP is on!'
+    Social-Spy-Deactivated: 'SP is off!'
+    No-Permission: 'You have no perm!'
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#  
+

@@ -1,0 +1,6 @@
+name: HempfestEssentials
+version: 1.0.0
+api-version: 1.16
+author: Hempfest
+description: A lightweight alternative to EssentialsX
+main: org.spigotmc.hessentials.HempfestEssentials
