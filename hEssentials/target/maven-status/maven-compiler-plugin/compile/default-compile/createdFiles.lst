@@ -1,3 +1,5 @@
+org\spigotmc\hessentials\commands\staff\FlyCommand.class
+org\spigotmc\hessentials\commands\staff\InventorySeeCommand.class
 org\spigotmc\hessentials\commands\MessageCommand.class
 org\spigotmc\hessentials\util\Lists.class
 org\spigotmc\hessentials\commands\staff\SocialSpyCommand.class
@@ -6,10 +8,12 @@ org\spigotmc\hessentials\configuration\Config.class
 org\spigotmc\hessentials\commands\staff\ReloadCommand.class
 org\spigotmc\hessentials\commands\ReplyCommand.class
 org\spigotmc\hessentials\commands\staff\StaffHelpCommand.class
+org\spigotmc\hessentials\configuration\PlayerData.class
 org\spigotmc\hessentials\events\PlayerListener.class
 org\spigotmc\hessentials\commands\staff\CFUpdateCommand.class
 org\spigotmc\hessentials\commands\HelpCommand.class
 org\spigotmc\hessentials\HempfestEssentials.class
+org\spigotmc\hessentials\commands\staff\GamemodeCommand.class
 org\spigotmc\hessentials\util\Strings.class
 org\spigotmc\hessentials\util\Message.class
 org\spigotmc\hessentials\util\Utils.class

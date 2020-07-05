@@ -1,7 +1,9 @@
 package org.spigotmc.hessentials.util;
 
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
+import org.spigotmc.hessentials.HempfestEssentials;
 import org.spigotmc.hessentials.configuration.Config;
 
 import net.md_5.bungee.api.ChatColor;
@@ -14,13 +16,43 @@ public class Strings {
 	}
 	
 	public static void sendNoPermission(Player p) {
-		p.sendMessage(getPrefix() + color("&4You do not have permission."));
+		Config messages = new Config("Messages");
+		FileConfiguration mess = messages.getConfig();	
+		p.sendMessage(getPrefix() + color(mess.getString("Messages.Player-Responses.No-Permission")));
 	}
 	
 	public static String getPrefix() { 
 		Config messages = new Config("Messages");
 		FileConfiguration mess = messages.getConfig();	
 		return color(mess.getString("Messages.Prefix") + " ");
+	}
+	
+	public static String getMOTD(Player player) {
+		Config motd = new Config("MOTD");
+		Config messages = new Config("Messages");
+		FileConfiguration m = motd.getConfig();
+		String section = m.getString("Message-of-the-day").replaceAll("%online%",
+				String.valueOf(Bukkit.getOnlinePlayers().size()));
+		String players = section.replaceAll("%player%", player.getName());
+		String prefix = players.replaceAll("%prefix%", messages.getConfig().getString("Messages.Prefix"));
+		String max = prefix.replaceAll("%max%",
+				String.valueOf(HempfestEssentials.getInstance().getServer().getMaxPlayers()));
+		String message = max.replaceAll("%next%", "\n");
+		return message;
+	}
+	
+	public static String getNPB_MOTD(Player player) {
+		Config motd = new Config("MOTD");
+		Config messages = new Config("Messages");
+		FileConfiguration m = motd.getConfig();
+		String section = m.getString("MOTD-First-Join").replaceAll("%online%",
+				String.valueOf(Bukkit.getOnlinePlayers().size()));
+		String players = section.replaceAll("%player%", player.getName());
+		String prefix = players.replaceAll("%prefix%", messages.getConfig().getString("Messages.Prefix"));
+		String max = prefix.replaceAll("%max%",
+				String.valueOf(HempfestEssentials.getInstance().getServer().getMaxPlayers()));
+		String message = max.replaceAll("%next%", "\n");
+		return message;
 	}
 	
 	public static String messageSentMSG(Player player, Player target) {

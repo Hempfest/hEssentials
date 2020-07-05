@@ -6,6 +6,7 @@ import org.spigotmc.hessentials.commands.MessageCommand;
 import org.spigotmc.hessentials.commands.OnlineListCommand;
 import org.spigotmc.hessentials.commands.ReplyCommand;
 import org.spigotmc.hessentials.commands.staff.CFUpdateCommand;
+import org.spigotmc.hessentials.commands.staff.GamemodeCommand;
 import org.spigotmc.hessentials.commands.staff.ReloadCommand;
 import org.spigotmc.hessentials.commands.staff.StaffHelpCommand;
 import org.spigotmc.hessentials.events.PlayerListener;
@@ -39,6 +40,7 @@ public class HempfestEssentials extends JavaPlugin {
 
 	public void registerEvents() {
 		getServer().getPluginManager().registerEvents(new PlayerListener(), getInstance());
+		
 	}
 
 	public void registerCommands() {
@@ -49,6 +51,7 @@ public class HempfestEssentials extends JavaPlugin {
 		Utils.registerCommand(new ReloadCommand());
 		Utils.registerCommand(new CFUpdateCommand());
 		Utils.registerCommand(new StaffHelpCommand());
+		Utils.registerCommand(new GamemodeCommand());
 	}
 
 }

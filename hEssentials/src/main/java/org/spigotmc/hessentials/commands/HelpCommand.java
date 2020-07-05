@@ -39,12 +39,10 @@ public class HelpCommand extends BukkitCommand {
 				int pgcount = 3;
 				sendMessage(p, Lists.sendHelpMenu(p));
 				Message.textRunnable(p, "&fCurrently on page [1/" + pgcount + "]", " | &lPAGE 2 >>", "Click to goto the next page.", "help 2");
-				return true;
 			} else if (Utils.twoPagesActive()) {
 				int pgcount = 2;
 				sendMessage(p, Lists.sendHelpMenu(p));
 				Message.textRunnable(p, "&fCurrently on page [1/" + pgcount + "]", " | &lPAGE 2 >>", "Click to goto the next page.", "help 2");
-				return true;
 			} else if (Utils.onePageActive()) {
 				int pgcount = 1;
 			sendMessage(p, Lists.sendHelpMenu(p));
@@ -100,7 +98,6 @@ public class HelpCommand extends BukkitCommand {
 					Message.textHoverable(p, "&fCurrently on page [1/" + pgcount + "]", " | [O]", "There is only one help page." );
 					return true;
 				}
-				return true;
 			}
 			return true;
 		}
