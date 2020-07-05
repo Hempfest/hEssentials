@@ -31,6 +31,10 @@ public class SocialSpyCommand extends BukkitCommand {
 		}
 
 		Player p = (Player) sender;
+		if (!p.hasPermission("hessentials.staff.socialspy")) {
+			Strings.sendNoPermission(p);
+			return true;
+		}
 		        if (Utils.socialspy.get(p) == null) {
 		          Utils.socialspy.put(p, "enabled");
 		          p.sendMessage(ChatColor.GRAY + "SocialSpy Enabled!");

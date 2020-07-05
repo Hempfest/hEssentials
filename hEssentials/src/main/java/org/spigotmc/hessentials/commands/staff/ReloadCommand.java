@@ -32,6 +32,10 @@ public class ReloadCommand extends BukkitCommand {
 		}
 
 		Player p = (Player) sender;
+		if (!p.hasPermission("hessentials.staff.reload")) {
+			Strings.sendNoPermission(p);
+			return true;
+		}
 		int length = args.length;
 		PluginDescriptionFile pdf = HempfestEssentials.instance.getDescription();
 		if (length == 0) {

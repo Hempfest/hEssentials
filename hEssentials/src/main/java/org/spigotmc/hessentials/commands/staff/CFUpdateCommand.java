@@ -14,7 +14,7 @@ public class CFUpdateCommand extends BukkitCommand {
 		super("hload");
 		setDescription("Primary command for hEssentials.");
 		setAliases(Arrays.asList("hc", "hessentialsconf", "hconf"));
-		setPermission("hessentials.staff.reload");
+		setPermission("hessentials.staff.updateconfig");
 	}
 
 	public static void sendMessage(CommandSender player, String message) {
@@ -30,6 +30,10 @@ public class CFUpdateCommand extends BukkitCommand {
 		}
 
 		Player p = (Player) sender;
+		if (!p.hasPermission("hessentials.staff.updateconfig")) {
+			Strings.sendNoPermission(p);
+			return true;
+		}
 		int length = args.length;
 		if (length == 0) {
 			Utils.defaultConfiguration();

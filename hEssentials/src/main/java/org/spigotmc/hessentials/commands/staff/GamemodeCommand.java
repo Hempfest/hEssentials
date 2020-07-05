@@ -35,8 +35,11 @@ public class GamemodeCommand extends BukkitCommand implements TabCompleter {
 			sendMessage(sender, Strings.getPrefix() + "This is a player only command.");
 			return true;
 		}
-
 		Player p = (Player) sender;
+		if (!p.hasPermission("hessentials.staff.gamemode")) {
+			Strings.sendNoPermission(p);
+			return true;
+		}
 		int length = args.length;
 		if (length == 0) {
 			sendMessage(p, Strings.getPrefix() + "Invalid usage: /" + commandLabel
