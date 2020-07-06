@@ -34,6 +34,7 @@ public class PlayerListener implements Listener{
 		Utils.matchIP(p);
 		Utils.matchUsername(p);
 		Utils.matchLTP(p);
+		Utils.createScoreboard(p);
 		return;
 	}
 	

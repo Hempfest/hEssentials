@@ -8,6 +8,8 @@ import org.spigotmc.hessentials.commands.CommandReply;
 import org.spigotmc.hessentials.commands.staff.CommandBan;
 import org.spigotmc.hessentials.commands.staff.CommandCFUpdate;
 import org.spigotmc.hessentials.commands.staff.CommandFly;
+import org.spigotmc.hessentials.commands.staff.CommandGMC;
+import org.spigotmc.hessentials.commands.staff.CommandGMS;
 import org.spigotmc.hessentials.commands.staff.CommandGamemode;
 import org.spigotmc.hessentials.commands.staff.CommandInvsee;
 import org.spigotmc.hessentials.commands.staff.CommandKick;
@@ -25,8 +27,8 @@ public class HempfestEssentials extends JavaPlugin {
 
 	//Instance
 	public static HempfestEssentials instance;
-
-
+	
+	
 	//Start server
 	public void onEnable() {
 		setInstance(this);
@@ -52,6 +54,8 @@ public class HempfestEssentials extends JavaPlugin {
 
 	public void registerCommands() {
 		Utils.registerCommand(new CommandHelp());
+		Utils.registerCommand(new CommandGMS());
+		Utils.registerCommand(new CommandGMC());
 		Utils.registerCommand(new CommandOnlineList());
 		Utils.registerCommand(new CommandMessage());
 		Utils.registerCommand(new CommandReply());
@@ -61,7 +65,9 @@ public class HempfestEssentials extends JavaPlugin {
 		Utils.registerCommand(new CommandSocialSpy());
 		Utils.registerCommand(new CommandFly());
 		Utils.registerCommand(new CommandInvsee());
-		Utils.registerCommand(new CommandGamemode());
+		//Utils.registerCommand(new CommandGamemode());
+		getCommand("gamemode").setExecutor(new CommandGamemode());
+		getCommand("gamemode").setTabCompleter(new CommandGamemode());
 		Utils.registerCommand(new CommandWhois());
 		Utils.registerCommand(new CommandKick());
 		Utils.registerCommand(new CommandBan());

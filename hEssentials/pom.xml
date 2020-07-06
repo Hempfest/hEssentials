@@ -31,5 +31,12 @@
 			<version>1.16.1-R0.1-SNAPSHOT</version>
 			<scope>provided</scope>
 		</dependency>
+		<dependency>
+			<groupId>Clans</groupId>
+			<artifactId>Spawn</artifactId>
+			<version>1.5.1</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/src/main/resources/Clans.jar</systemPath>
+		</dependency>
 	</dependencies>
 </project>

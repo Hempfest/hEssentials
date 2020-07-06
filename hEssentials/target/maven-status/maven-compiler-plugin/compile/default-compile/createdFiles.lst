@@ -2,14 +2,17 @@ org\spigotmc\hessentials\commands\CommandOnlineList.class
 org\spigotmc\hessentials\commands\CommandMessage.class
 org\spigotmc\hessentials\commands\staff\CommandReload.class
 org\spigotmc\hessentials\commands\staff\CommandCFUpdate.class
+org\spigotmc\hessentials\commands\staff\CommandGMC.class
 org\spigotmc\hessentials\commands\CommandReply.class
 org\spigotmc\hessentials\configuration\PlayerData.class
 org\spigotmc\hessentials\events\PlayerListener.class
 org\spigotmc\hessentials\HempfestEssentials.class
 org\spigotmc\hessentials\commands\staff\CommandKick.class
+org\spigotmc\hessentials\util\ScoreboardTask.class
 org\spigotmc\hessentials\util\Strings.class
 org\spigotmc\hessentials\commands\staff\CommandKickAll.class
 org\spigotmc\hessentials\util\Message.class
+org\spigotmc\hessentials\commands\staff\CommandGMS.class
 org\spigotmc\hessentials\util\Lists.class
 org\spigotmc\hessentials\commands\staff\CommandGamemode.class
 org\spigotmc\hessentials\commands\staff\CommandUnban.class

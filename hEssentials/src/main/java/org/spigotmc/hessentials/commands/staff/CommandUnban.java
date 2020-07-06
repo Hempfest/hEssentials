@@ -36,21 +36,21 @@ public class CommandUnban extends BukkitCommand {
 		Player p = (Player) sender;
 		int length = args.length;
 		 if (!p.hasPermission("hessentials.staff.unban")) {
-   		  p.sendMessage(Strings.getPrefix() + " You are not authorized!");
+   		  sendMessage(p, Strings.getPrefix() + " You are not authorized!");
    		  return true;
    	  }
    	  if (length == 0) {
-   		  p.sendMessage(Strings.getPrefix() + " /unban <player>");
-   		  p.sendMessage(Bukkit.getBanList(Type.NAME).getBanEntries().toString());
+   		  sendMessage(p, Strings.getPrefix() + " /unban <player>");
+   		  sendMessage(p, "&cBan-List: &7" + Bukkit.getBanList(Type.NAME).getBanEntries().toString());
    		  return true;
    	  }
    	  if (length == 1) {
    		  OfflinePlayer target = Bukkit.getOfflinePlayer(args[0]);
    		  if (!Bukkit.getBanList(Type.NAME).isBanned(target.getName())) {
-   			  p.sendMessage(Strings.getPrefix() + " Player ban entry not found!");
+   			  sendMessage(p, Strings.getPrefix() + " Player ban entry not found!");
    			  return true;
    		  }
-   		  p.sendMessage(Strings.getPrefix() + " Player '§c" + target.getName() + "§7' unbanned.");
+   		  sendMessage(p, Strings.getPrefix() + " Player '§c" + target.getName() + "§7' unbanned.");
    		  Bukkit.getBanList(Type.NAME).pardon(target.getName());
    		  return true;
    	  }

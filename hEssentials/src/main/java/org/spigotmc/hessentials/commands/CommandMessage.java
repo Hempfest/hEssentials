@@ -18,7 +18,7 @@ public class CommandMessage extends BukkitCommand {
 		setDescription("Primary command for hEssentials.");
 		setAliases(Arrays.asList("hmessage", "msg", "hmsg"));
 	}
-
+	
 	public static void sendMessage(CommandSender player, String message) {
 		player.sendMessage(Strings.color(message));
 		return;

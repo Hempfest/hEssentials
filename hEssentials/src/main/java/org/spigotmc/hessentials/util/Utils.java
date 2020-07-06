@@ -2,14 +2,19 @@ package org.spigotmc.hessentials.util;
 
 import java.io.InputStream;
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
+import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandMap;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabCompleter;
 import org.bukkit.command.defaults.BukkitCommand;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -17,8 +22,16 @@ import org.spigotmc.hessentials.HempfestEssentials;
 import org.spigotmc.hessentials.configuration.Config;
 import org.spigotmc.hessentials.configuration.PlayerData;
 
+import m.h.clans.util.ClanAPI;
+
 public class Utils {
-	
+		
+		public static ClanAPI api;
+		
+		public Utils (ClanAPI api) {
+			Utils.api = api;
+		}
+		
 		//Reply hashmap	
 		public static HashMap<Player, Player> reply = new HashMap<Player, Player>();
 		//Socialspy hashmap  
@@ -26,6 +39,15 @@ public class Utils {
 	
 	public static void msg(Player player, String s) {
 		sendMessage(player, s);
+	}
+	
+	public static void registerTabCommand(String cmdName, TabCompleter completer, CommandExecutor executor) {
+		try {
+		HempfestEssentials.instance.getCommand(cmdName).setExecutor(executor);
+		HempfestEssentials.instance.getCommand(cmdName).setTabCompleter(completer);
+		} catch (final Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public static void registerCommand(BukkitCommand command) {
@@ -67,7 +89,26 @@ public class Utils {
 		sendMessage(player, "&f&oUUID &7&l| &2&o" + target.getUniqueId().toString());
 		sendMessage(player, "&f&oLast Played &7&l| &2&o" + date);
 		sendMessage(player, "&f&oFirst Joined &7&l| &2&o" + date2);
+		sendMessage(player, "&f&oGamemode &7&l| &2&o" + target.getGameMode());
 		return;
+	}
+	
+	public static void createScoreboard(Player p) {
+		Map<Integer, List<String>> scoreboardData = new HashMap<Integer, List<String>>();
+		List<String> title = new ArrayList<String>();
+		title.add("&4Hello :)");
+		title.add("&3Hello :)");
+		title.add("&5Hello :)");
+		title.add("&bHello :)");
+		List<String> lineOne = new ArrayList<String>();
+		lineOne.add("&f<");
+		lineOne.add("&f<3");
+		lineOne.add("&d<3");
+		lineOne.add("&d&l<3");
+
+		scoreboardData.put(1, lineOne);
+
+		new ScoreboardTask(HempfestEssentials.instance, title, scoreboardData, lineOne.size()).runTaskTimer(HempfestEssentials.instance, 0, 8);
 	}
 	
 	public static void sendOfflinePlayerInfo(Player player, OfflinePlayer target) {
