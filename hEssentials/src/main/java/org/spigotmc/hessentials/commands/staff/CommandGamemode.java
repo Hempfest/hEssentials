@@ -13,11 +13,11 @@ import org.bukkit.command.defaults.BukkitCommand;
 import org.bukkit.entity.Player;
 import org.spigotmc.hessentials.util.Strings;
 
-public class GamemodeCommand extends BukkitCommand implements TabCompleter {
+public class CommandGamemode extends BukkitCommand implements TabCompleter {
 
 	List<String> arguments = new ArrayList<String>();
 	
-	public GamemodeCommand() {
+	public CommandGamemode() {
 		super("gamemode");
 		setDescription("Primary staff command for hEssentials.");
 		setAliases(Arrays.asList("gm", "hgm", "hgamemode"));
@@ -43,29 +43,28 @@ public class GamemodeCommand extends BukkitCommand implements TabCompleter {
 		int length = args.length;
 		if (length == 0) {
 			sendMessage(p, Strings.getPrefix() + "Invalid usage: /" + commandLabel
-					+ " survival/creative/adventure <playerName>");
+					+ " <&csurvival/creative/adventure&f> <&7playerName&f>");
 			return true;
 		}
 
 		if (length == 1) {
 			if (args[0].equalsIgnoreCase("creative")) {
 				p.setGameMode(GameMode.CREATIVE);
-				p.sendMessage(Strings.getPrefix() + "Now in game-mode creative.");
+				sendMessage(p, Strings.getPrefix() + "Now in game-mode creative.");
 				return true;
 			}
 			if (args[0].equalsIgnoreCase("survival")) {
 				p.setGameMode(GameMode.SURVIVAL);
-				p.sendMessage(Strings.getPrefix() + "Now in game-mode survival.");
+				sendMessage(p, Strings.getPrefix() + "Now in game-mode survival.");
 				return true;
 			}
 			if (args[0].equalsIgnoreCase("adventure")) {
 				p.setGameMode(GameMode.CREATIVE);
-				p.sendMessage(Strings.getPrefix() + "Now in game-mode creative.");
+				sendMessage(p, Strings.getPrefix() + "Now in game-mode creative.");
 				return true;
 			}
-			sendMessage(p, Strings.getPrefix() + "&4Unknown gamemode type");
-			sendMessage(p, Strings.getPrefix() + "Invalid usage: /" + commandLabel
-					+ " survival/creative/adventure <playerName>");
+			sendMessage(p, Strings.getPrefix() + "&4Unknown gamemode type " + '"' + args[0] + '"' + ".");
+			sendMessage(p, Strings.getPrefix() + "Gamemodes: &7Survival, Creative, Adventure");
 			return true;
 		}
 
@@ -75,27 +74,29 @@ public class GamemodeCommand extends BukkitCommand implements TabCompleter {
 			if (target != null) {
 				if (args[0].equalsIgnoreCase("creative") && p.hasPermission("hessentials.staff.gamemode.other")) {
 					target.setGameMode(GameMode.CREATIVE);
-					target.sendMessage(Strings.getPrefix() + "Now in game-mode creative.");
-					p.sendMessage(Strings.getPrefix() + target.getName() + "'s now in game-mode creative.");
+					sendMessage(target, Strings.getPrefix() + "Now in game-mode creative.");
+					sendMessage(p, Strings.getPrefix() + target.getName() + "'s now in game-mode creative.");
 					return true;
 				}else
 				if (args[0].equalsIgnoreCase("survival") && p.hasPermission("hessentials.staff.gamemode.other")) {
 					target.setGameMode(GameMode.SURVIVAL);
-					target.sendMessage(Strings.getPrefix() + "Now in game-mode survival.");
-					p.sendMessage(Strings.getPrefix() + target.getName() + "'s now in game-mode survival.");
+					sendMessage(target, Strings.getPrefix() + "Now in game-mode survival.");
+					sendMessage(p, Strings.getPrefix() + target.getName() + "'s now in game-mode survival.");
 					return true;
 				}else
 				if (args[0].equalsIgnoreCase("adventure") && p.hasPermission("hessentials.staff.gamemode.other")) {
 					target.setGameMode(GameMode.ADVENTURE);
-					target.sendMessage(Strings.getPrefix() + "Now in game-mode adventure.");
-					p.sendMessage(Strings.getPrefix() + target.getName() + "'s now in game-mode adventure.");
+					sendMessage(target, Strings.getPrefix() + "Now in game-mode adventure.");
+					sendMessage(p, Strings.getPrefix() + target.getName() + "'s now in game-mode adventure.");
 					return true;
 				}else if (!p.hasPermission("hessentials.staff.gamemode.other")) {
 					Strings.sendNoPermission(p);
 					return true;
 				}
+				sendMessage(p, Strings.getPrefix() + "&4Unknown gamemode type " + '"' + args[0] + '"' + ".");
+				sendMessage(p, Strings.getPrefix() + "Gamemodes: &7Survival, Creative, Adventure");
 			} else {
-				// player doesnt exist
+				sendMessage(p, Strings.getPrefix() + "&4Player " + '"' + args[1] + '"' + " not found.");
 				return true;
 			}
 			return true;

@@ -27,6 +27,27 @@ public class Strings {
 		return color(mess.getString("Messages.Prefix") + " ");
 	}
 	
+	public static String getFirstJoinMSG(Player player) {
+		Config messages = new Config("Messages");
+		FileConfiguration m = messages.getConfig();
+		String MSG = m.getString("Messages.Player-Responses.First-Player-Join").replaceAll("%player%", player.getName());
+		return color(MSG);
+	}
+	
+	public static String getJoinMSG(Player player) {
+		Config messages = new Config("Messages");
+		FileConfiguration m = messages.getConfig();
+		String MSG = m.getString("Messages.Player-Responses.Player-Join").replaceAll("%player%", player.getName());
+		return color(MSG);
+	}
+	
+	public static String getLeaveMSG(Player player) {
+		Config messages = new Config("Messages");
+		FileConfiguration m = messages.getConfig();
+		String MSG = m.getString("Messages.Player-Responses.Player-Leave").replaceAll("%player%", player.getName());
+		return color(MSG);
+	}
+	
 	public static String getMOTD(Player player) {
 		Config motd = new Config("MOTD");
 		Config messages = new Config("Messages");
@@ -88,7 +109,7 @@ public class Strings {
 	public static String replyRecievedMSG(Player player, Player target) {
 		Config messages = new Config("Messages");
 		FileConfiguration mess = messages.getConfig();	
-		String start = mess.getString("Messages.Player-Responses.Player-Reply-Revieve").replaceAll("%target%", target.getName());
+		String start = mess.getString("Messages.Player-Responses.Player-Reply-Recieve").replaceAll("%target%", target.getName());
 		String next = start.replaceAll("%player%", player.getName());
 		String middle = next.replaceAll("%next%", "\n");
 		String last = middle.replaceAll("%prefix%", getPrefix());

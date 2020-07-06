@@ -2,10 +2,12 @@ package org.spigotmc.hessentials.util;
 
 import java.io.InputStream;
 import java.lang.reflect.Field;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandMap;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.defaults.BukkitCommand;
@@ -25,7 +27,7 @@ public class Utils {
 	public static void msg(Player player, String s) {
 		sendMessage(player, s);
 	}
-
+	
 	public static void registerCommand(BukkitCommand command) {
 		try {
 
@@ -56,6 +58,33 @@ public class Utils {
 		return;
 	}
 	
+	public static void sendPlayerInfo(Player player, Player target) {
+		Date date = new Date(target.getLastPlayed());
+		Date date2 = new Date(target.getFirstPlayed());
+		sendMessage(player, Strings.getPrefix() + "&a&n" + target.getName() + "'s player information.");
+		sendMessage(player, "");
+		sendMessage(player, "&f&oIP &7&l| &2&o" + target.getAddress().toString().replace("/", ""));
+		sendMessage(player, "&f&oUUID &7&l| &2&o" + target.getUniqueId().toString());
+		sendMessage(player, "&f&oLast Played &7&l| &2&o" + date);
+		sendMessage(player, "&f&oFirst Joined &7&l| &2&o" + date2);
+		return;
+	}
+	
+	public static void sendOfflinePlayerInfo(Player player, OfflinePlayer target) {
+		PlayerData data = new PlayerData(target.getUniqueId());
+		String IP = data.getConfig().getString("IP-ADDRESS");
+		String UUID = target.getUniqueId().toString();
+		Date date = new Date(target.getLastPlayed());
+		Date date2 = new Date(target.getFirstPlayed());
+		sendMessage(player, Strings.getPrefix() + "&a&n" + target.getName() + "'s player information.");
+		sendMessage(player, "");
+		sendMessage(player, "&f&oIP &7&l| &2&o" + IP);
+		sendMessage(player, "&f&oUUID &7&l| &2&o" + UUID);
+		sendMessage(player, "&f&oLast Played &7&l| &2&o" + date);
+		sendMessage(player, "&f&oFirst Joined &7&l| &2&o" + date2);
+		return;
+	}
+	
 	public static void npbMOTD(Player player) {
 		Config motd = new Config("MOTD");
 		InputStream in3 = HempfestEssentials.instance.getResource("MOTD.yml");
@@ -69,6 +98,10 @@ public class Utils {
 	
 	public static void reloadConfiguration() {
 		Config messages = new Config("Messages");
+		Config help = new Config("Help");
+		Config motd = new Config("MOTD");
+		help.reload();
+		motd.reload();
 		messages.reload();
 	}
 	
@@ -78,6 +111,7 @@ public class Utils {
 		FileConfiguration f = pd.getConfig();
 			f.set("USERNAME", (Object)player.getName());
 			f.set("IP-ADDRESS", (Object)player.getAddress().toString().replace("/", ""));
+			f.set("Last-Time-Played", 0);
 			pd.saveConfig();
 		
 	}
@@ -88,6 +122,16 @@ public class Utils {
 		FileConfiguration f = pd.getConfig();
 		if (!f.getString("USERNAME").matches(player.getName())) {
 			f.set("USERNAME", (Object)player.getName());
+			pd.saveConfig();
+		}
+	}
+	
+	public static void matchLTP(Player player) {
+		UUID uuid = player.getUniqueId();
+		PlayerData pd = new PlayerData(uuid);
+		FileConfiguration f = pd.getConfig();
+		if (!f.get("Last-Time-Played").equals(player.getLastPlayed())) {
+			f.set("USERNAME", (Object)player.getLastPlayed());
 			pd.saveConfig();
 		}
 	}

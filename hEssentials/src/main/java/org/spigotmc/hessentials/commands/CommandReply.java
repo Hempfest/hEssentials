@@ -11,9 +11,9 @@ import org.bukkit.entity.Player;
 import org.spigotmc.hessentials.util.Strings;
 import org.spigotmc.hessentials.util.Utils;
 
-public class ReplyCommand extends BukkitCommand {
+public class CommandReply extends BukkitCommand {
 
-	public ReplyCommand() {
+	public CommandReply() {
 		super("reply");
 		setDescription("Primary command for hEssentials.");
 		setAliases(Arrays.asList("hreply", "r"));
@@ -34,16 +34,20 @@ public class ReplyCommand extends BukkitCommand {
 		Player p = (Player) sender;
 		int length = args.length;
 		 if (length == 0) {
-		        p.sendMessage(ChatColor.GRAY + "Error: /" + commandLabel + " <msg>.\nPlease type a message reply.");
+			 sendMessage(p, Strings.getPrefix() + "Invalid usage: /" + commandLabel
+						+ " <&cmessage&f> ");
 		        return true;
 		      } 
-		      Player target = (Player)Utils.reply.get(p);
-		      StringBuilder reply = new StringBuilder();
-		      for (int i = 0; i < args.length; i++)
-		        reply.append(String.valueOf(args[i]) + " "); 
-		      if (target == null) {
-		        sendMessage(p, ChatColor.RED + "You have nobody to reply to!");
-		      } else {
+		      if (length > 0) {
+		    	  Player target = (Player)Utils.reply.get(p);
+			      StringBuilder reply = new StringBuilder();
+			      for (int i = 0; i < args.length; i++) {
+			        reply.append(String.valueOf(args[i]) + " ");
+			      }
+			      if (target == null) {
+			        sendMessage(p, ChatColor.RED + "You have nobody to reply to!");
+			        return true;
+			      }
 		        Utils.reply.put(target, p);
 		        Utils.reply.put(p, target);
 		        	for (Player pl : Bukkit.getOnlinePlayers()) {

@@ -5,18 +5,15 @@ import java.util.Arrays;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.defaults.BukkitCommand;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.PluginDescriptionFile;
-import org.spigotmc.hessentials.HempfestEssentials;
-import org.spigotmc.hessentials.util.Message;
 import org.spigotmc.hessentials.util.Strings;
 
-public class ReloadCommand extends BukkitCommand {
+public class CommandInvsee extends BukkitCommand {
 
-	public ReloadCommand() {
-		super("hessentials");
-		setDescription("Primary command for hEssentials.");
-		setAliases(Arrays.asList("hess", "he", "hesse", "hessversion"));
-		setPermission("hessentials.staff.reload");
+	public CommandInvsee() {
+		super("inventorysee");
+		setDescription("Primary staff command for hEssentials.");
+		setAliases(Arrays.asList("invsee"));
+		setPermission("hessentials.staff.invsee");
 	}
 
 	public static void sendMessage(CommandSender player, String message) {
@@ -32,15 +29,9 @@ public class ReloadCommand extends BukkitCommand {
 		}
 
 		Player p = (Player) sender;
-		if (!p.hasPermission("hessentials.staff.reload")) {
-			Strings.sendNoPermission(p);
-			return true;
-		}
 		int length = args.length;
-		PluginDescriptionFile pdf = HempfestEssentials.instance.getDescription();
 		if (length == 0) {
-			Message.textHoverable(p, Strings.getPrefix() + "&2&oCurrently running ", "&av" + pdf.getVersion() , "&3&oPlugin by &b&oHempfest");
-			sendMessage(p, "&fAll configs are reloaded.");
+			sendMessage(p, Strings.getPrefix() + "This is a command.");
 			return true;
 		}
 

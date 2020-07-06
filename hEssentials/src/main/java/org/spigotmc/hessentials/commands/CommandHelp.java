@@ -10,9 +10,9 @@ import org.spigotmc.hessentials.util.Message;
 import org.spigotmc.hessentials.util.Strings;
 import org.spigotmc.hessentials.util.Utils;
 
-public class HelpCommand extends BukkitCommand {
+public class CommandHelp extends BukkitCommand {
 
-	public HelpCommand() {
+	public CommandHelp() {
 		super("help");
 		setDescription("Primary command for hEssentials.");
 		setAliases(Arrays.asList("hhelp"));

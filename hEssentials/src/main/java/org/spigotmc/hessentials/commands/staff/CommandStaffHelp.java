@@ -7,9 +7,9 @@ import org.bukkit.command.defaults.BukkitCommand;
 import org.bukkit.entity.Player;
 import org.spigotmc.hessentials.util.Strings;
 
-public class StaffHelpCommand extends BukkitCommand {
+public class CommandStaffHelp extends BukkitCommand {
 
-	public StaffHelpCommand() {
+	public CommandStaffHelp() {
 		super("staffhelp");
 		setDescription("Primary staff command for hEssentials.");
 		setAliases(Arrays.asList("staff"));

@@ -31,5 +31,8 @@ Messages:
     Social-Spy-Activated: 'SP is on!'
     Social-Spy-Deactivated: 'SP is off!'
     No-Permission: 'You have no perm!'
+    First-Player-Join: '&d&l%player% &ais joining for the first time.'
+    Player-Join: '&f%player% &2has joined the game.'
+    Player-Leave: '&f%player% &chas left the game.'
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#  
 

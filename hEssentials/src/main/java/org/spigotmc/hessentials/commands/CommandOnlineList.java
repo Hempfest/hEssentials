@@ -1,20 +1,19 @@
-package org.spigotmc.hessentials.commands.staff;
+package org.spigotmc.hessentials.commands;
 
 import java.util.Arrays;
 
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.defaults.BukkitCommand;
 import org.bukkit.entity.Player;
+import org.spigotmc.hessentials.util.Lists;
 import org.spigotmc.hessentials.util.Strings;
-import org.spigotmc.hessentials.util.Utils;
 
-public class CFUpdateCommand extends BukkitCommand {
+public class CommandOnlineList extends BukkitCommand {
 
-	public CFUpdateCommand() {
-		super("hload");
+	public CommandOnlineList() {
+		super("who");
 		setDescription("Primary command for hEssentials.");
-		setAliases(Arrays.asList("hc", "hessentialsconf", "hconf"));
-		setPermission("hessentials.staff.updateconfig");
+		setAliases(Arrays.asList("list", "online", "hwho", "hlist"));
 	}
 
 	public static void sendMessage(CommandSender player, String message) {
@@ -30,18 +29,15 @@ public class CFUpdateCommand extends BukkitCommand {
 		}
 
 		Player p = (Player) sender;
-		if (!p.hasPermission("hessentials.staff.updateconfig")) {
-			Strings.sendNoPermission(p);
-			return true;
-		}
 		int length = args.length;
-		if (length == 0) {
-			Utils.defaultConfiguration();
-			sendMessage(p, Strings.getPrefix() + "&fAll configs are now up to date.");
-			return true;
-		}
+				if (length == 0) {
+					sendMessage(p, Lists.sendOnlineList());
+					return true;
+				}
 
-		sendMessage(p, Strings.getPrefix() + "You entered the command wrong.");
+			
+
+		sendMessage(p, Strings.getPrefix() + Strings.color("Try " + '"' + "/hhelp" + '"' + " for help - Unknown sub-command."));
 		return true;
 	}
 

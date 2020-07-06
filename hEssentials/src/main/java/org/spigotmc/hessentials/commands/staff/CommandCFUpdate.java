@@ -6,14 +6,15 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.defaults.BukkitCommand;
 import org.bukkit.entity.Player;
 import org.spigotmc.hessentials.util.Strings;
+import org.spigotmc.hessentials.util.Utils;
 
-public class InventorySeeCommand extends BukkitCommand {
+public class CommandCFUpdate extends BukkitCommand {
 
-	public InventorySeeCommand() {
-		super("staffhelp");
-		setDescription("Primary staff command for hEssentials.");
-		setAliases(Arrays.asList("staff"));
-		setPermission("hessentials.staff.helpmenu");
+	public CommandCFUpdate() {
+		super("hload");
+		setDescription("Primary command for hEssentials.");
+		setAliases(Arrays.asList("hc", "hessentialsconf", "hconf"));
+		setPermission("hessentials.staff.updateconfig");
 	}
 
 	public static void sendMessage(CommandSender player, String message) {
@@ -29,9 +30,14 @@ public class InventorySeeCommand extends BukkitCommand {
 		}
 
 		Player p = (Player) sender;
+		if (!p.hasPermission("hessentials.staff.updateconfig")) {
+			Strings.sendNoPermission(p);
+			return true;
+		}
 		int length = args.length;
 		if (length == 0) {
-			sendMessage(p, Strings.getPrefix() + "This is a command.");
+			Utils.defaultConfiguration();
+			sendMessage(p, Strings.getPrefix() + "&fAll configs are now up to date.");
 			return true;
 		}
 
