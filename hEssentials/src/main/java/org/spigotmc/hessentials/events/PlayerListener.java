@@ -31,12 +31,14 @@ public class PlayerListener implements Listener{
 			e.setJoinMessage(Strings.getFirstJoinMSG(p));
 			Utils.npbMOTD(p);
 			Utils.createPlayerConfig(p);
+			if (Utils.canUseScoreboard()) {
 			if (Utils.Chat_MUTED) {
 				Utils.createMutedScoreboard(p);
 				Utils.animateMutedTitle(p);
 			} else {
 				Utils.createScoreboard(p);
 				Utils.animateScoreTitle(p);
+			}
 			}
 			return;
 		}
@@ -48,12 +50,14 @@ public class PlayerListener implements Listener{
 		Utils.matchIP(p);
 		Utils.matchUsername(p);
 		Utils.matchLTP(p);
+		if (Utils.canUseScoreboard()) {
 		if (Utils.Chat_MUTED) {
 			Utils.createMutedScoreboard(p);
 			Utils.animateMutedTitle(p);
 		} else {
 			Utils.createScoreboard(p);
 			Utils.animateScoreTitle(p);
+		}
 		}
 		
 		return;

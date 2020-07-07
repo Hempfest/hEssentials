@@ -6,12 +6,12 @@ import java.util.UUID;
 
 import org.bukkit.Bukkit;
 
-public class LobbyBoard {
+public class BoardLobby {
 	
 	private static Map<UUID, Integer> TASKS = new HashMap<UUID, Integer>();
 	private final UUID uuid;
 	
-	public LobbyBoard(UUID uuid) {
+	public BoardLobby(UUID uuid) {
 		this.uuid = uuid;
 	}
 	

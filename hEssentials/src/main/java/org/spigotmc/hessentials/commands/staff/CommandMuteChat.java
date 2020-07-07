@@ -38,20 +38,18 @@ public class CommandMuteChat extends BukkitCommand {
 				Utils.sendChat_Unmuted();
 				for (Player a : Bukkit.getOnlinePlayers()) {
 				Utils.removeScoreboard(a);
-				Utils.createScoreboard(a);
-				Utils.animateScoreTitle(a);
+				Utils.resetTracking(a);
 				}
-			} else {
+				return true;
+			} else if (!Utils.Chat_MUTED) {
 				Utils.Chat_MUTED = true;
 				Utils.sendChat_Muted();
 				for (Player a : Bukkit.getOnlinePlayers()) {
 					Utils.removeScoreboard(a);
-					Utils.createMutedScoreboard(a);
-					Utils.animateMutedTitle(a);
+					Utils.resetTracking(a);
 					}
 				return true;
 			}
-			return true;
 		}
 
 		sendMessage(p, Strings.getPrefix() + "You entered the command wrong.");

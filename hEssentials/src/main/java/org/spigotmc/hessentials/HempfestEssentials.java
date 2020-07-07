@@ -5,6 +5,7 @@ import org.spigotmc.hessentials.commands.CommandHelp;
 import org.spigotmc.hessentials.commands.CommandMessage;
 import org.spigotmc.hessentials.commands.CommandOnlineList;
 import org.spigotmc.hessentials.commands.CommandReply;
+import org.spigotmc.hessentials.commands.CommandTrack;
 import org.spigotmc.hessentials.commands.staff.CommandBan;
 import org.spigotmc.hessentials.commands.staff.CommandCFUpdate;
 import org.spigotmc.hessentials.commands.staff.CommandFly;
@@ -36,8 +37,10 @@ public class HempfestEssentials extends JavaPlugin {
 		Utils.createConfiguration();
 		registerCommands();
 		registerEvents();
+		if (Utils.canUseScoreboard()) {
 		Utils.updateLobbyBoard();
 		Utils.updateInvsee();
+		}
 	}
 	
 
@@ -57,6 +60,7 @@ public class HempfestEssentials extends JavaPlugin {
 
 	public void registerCommands() {
 		Utils.registerCommand(new CommandHelp());
+		Utils.registerCommand(new CommandTrack());
 		Utils.registerCommand(new CommandGMS());
 		Utils.registerCommand(new CommandGMC());
 		Utils.registerCommand(new CommandOnlineList());

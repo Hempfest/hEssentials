@@ -6,7 +6,10 @@
 # |                      v1.0.0                     | #
 # O]===============================================[O #
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#  
-# Change the prefix used for the scoreboard (No color).  
+# Toggle the use of hEssentials Scoreboard.  
+Use-Scoreboard?: true
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+# Change the prefix used for the scoreboard (No color).
 Prefix: 'Vintage'
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#  
 # Change the text of the scoreboard.   
