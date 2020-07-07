@@ -13,6 +13,8 @@ import org.spigotmc.hessentials.HempfestEssentials;
 public class ScoreboardTask extends BukkitRunnable {
 	
 	
+	//Reference
+	
 	private HempfestEssentials HempfesEssentials;
 	private List<String> title;
 	private Map<Integer, List<String>> scoreboardContentMap;
