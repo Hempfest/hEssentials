@@ -16,6 +16,7 @@ org\spigotmc\hessentials\commands\staff\CommandGMS.class
 org\spigotmc\hessentials\util\Lists.class
 org\spigotmc\hessentials\commands\staff\CommandGamemode.class
 org\spigotmc\hessentials\commands\staff\CommandUnban.class
+org\spigotmc\hessentials\util\LobbyBoard.class
 org\spigotmc\hessentials\commands\staff\CommandBan.class
 org\spigotmc\hessentials\commands\staff\CommandFly.class
 org\spigotmc\hessentials\commands\staff\CommandWhois.class
@@ -24,4 +25,5 @@ org\spigotmc\hessentials\commands\staff\CommandInvsee.class
 org\spigotmc\hessentials\commands\CommandHelp.class
 org\spigotmc\hessentials\commands\staff\CommandStaffHelp.class
 org\spigotmc\hessentials\commands\staff\CommandSocialSpy.class
+org\spigotmc\hessentials\util\Utils$1.class
 org\spigotmc\hessentials\util\Utils.class

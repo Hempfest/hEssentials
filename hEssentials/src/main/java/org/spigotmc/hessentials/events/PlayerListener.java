@@ -35,6 +35,7 @@ public class PlayerListener implements Listener{
 		Utils.matchUsername(p);
 		Utils.matchLTP(p);
 		Utils.createScoreboard(p);
+		Utils.animateScoreTitle(p);
 		return;
 	}
 	
@@ -44,6 +45,7 @@ public class PlayerListener implements Listener{
 		//UUID uuid = p.getUniqueId();
 		//PlayerData pd = new PlayerData(uuid);
 		e.setQuitMessage(Strings.getLeaveMSG(p));
+		Utils.removeScooreboard(p);
 	}
 	
 

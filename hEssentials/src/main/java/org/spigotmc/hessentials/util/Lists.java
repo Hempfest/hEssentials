@@ -1,9 +1,13 @@
 package org.spigotmc.hessentials.util;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Statistic;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.spigotmc.hessentials.HempfestEssentials;
 import org.spigotmc.hessentials.configuration.Config;
+
+import m.h.clans.util.ClanAPI;
 
 public class Lists {
 
@@ -77,5 +81,185 @@ public class Lists {
 				String.valueOf(HempfestEssentials.getInstance().getServer().getMaxPlayers()));
 		String message = max.replaceAll("%next%", "\n");
 		return Strings.color(message);
+	}
+	
+	public static String sendSB_Line1(Player p) {
+		Config sb = new Config("Scoreboard");
+		FileConfiguration s = sb.getConfig();
+		String pname = s.getString("Line-One").replace("%player%", p.getName());
+		String online = pname.replaceAll("%online%", String.valueOf(Bukkit.getOnlinePlayers().size()));
+		String max = online.replaceAll("%max%", String.valueOf(HempfestEssentials.getInstance().getServer().getMaxPlayers()));
+		String prefix = max.replaceAll("%prefix%", Strings.getPrefix());
+		if (HempfestEssentials.getInstance().getServer().getPluginManager().getPlugin("Clans") != null) {
+			String clan = prefix.replaceAll("%clan%", ClanAPI.getClanName(p));
+			String mobkills = clan.replaceAll("%mobkills%", String.valueOf(p.getStatistic(Statistic.MOB_KILLS)));
+			String playerkills = mobkills.replaceAll("%playerkills%", String.valueOf(p.getStatistic(Statistic.PLAYER_KILLS)));
+			return Strings.color(playerkills.replaceAll("%ip%", String.valueOf(p.getAddress().toString().replaceAll("/", ""))));
+		}
+		String mobkills = prefix.replaceAll("%mobkills%", String.valueOf(p.getStatistic(Statistic.MOB_KILLS)));
+		String playerkills = mobkills.replaceAll("%playerkills%", String.valueOf(p.getStatistic(Statistic.PLAYER_KILLS)));
+		return Strings.color(playerkills.replaceAll("%ip%", String.valueOf(p.getAddress().toString().replaceAll("/", ""))));
+	}
+	
+	public static String sendSB_Line2(Player p) {
+		Config sb = new Config("Scoreboard");
+		FileConfiguration s = sb.getConfig();
+		String pname = s.getString("Line-Two").replace("%player%", p.getName());
+		String online = pname.replaceAll("%online%", String.valueOf(Bukkit.getOnlinePlayers().size()));
+		String max = online.replaceAll("%max%", String.valueOf(HempfestEssentials.getInstance().getServer().getMaxPlayers()));
+		String prefix = max.replaceAll("%prefix%", Strings.getPrefix());
+		if (HempfestEssentials.getInstance().getServer().getPluginManager().getPlugin("Clans") != null) {
+			String clan = prefix.replaceAll("%clan%", ClanAPI.getClanName(p));
+			String mobkills = clan.replaceAll("%mobkills%", String.valueOf(p.getStatistic(Statistic.MOB_KILLS)));
+			String playerkills = mobkills.replaceAll("%playerkills%", String.valueOf(p.getStatistic(Statistic.PLAYER_KILLS)));
+			return Strings.color(playerkills.replaceAll("%ip%", String.valueOf(p.getAddress().toString().replaceAll("/", ""))));
+		}
+		String mobkills = prefix.replaceAll("%mobkills%", String.valueOf(p.getStatistic(Statistic.MOB_KILLS)));
+		String playerkills = mobkills.replaceAll("%playerkills%", String.valueOf(p.getStatistic(Statistic.PLAYER_KILLS)));
+		return Strings.color(playerkills.replaceAll("%ip%", String.valueOf(p.getAddress().toString().replaceAll("/", ""))));
+	}
+	
+	public static String sendSB_Line3(Player p) {
+		Config sb = new Config("Scoreboard");
+		FileConfiguration s = sb.getConfig();
+		String pname = s.getString("Line-Three").replace("%player%", p.getName());
+		String online = pname.replaceAll("%online%", String.valueOf(Bukkit.getOnlinePlayers().size()));
+		String max = online.replaceAll("%max%", String.valueOf(HempfestEssentials.getInstance().getServer().getMaxPlayers()));
+		String prefix = max.replaceAll("%prefix%", Strings.getPrefix());
+		if (HempfestEssentials.getInstance().getServer().getPluginManager().getPlugin("Clans") != null) {
+			String clan = prefix.replaceAll("%clan%", ClanAPI.getClanName(p));
+			String mobkills = clan.replaceAll("%mobkills%", String.valueOf(p.getStatistic(Statistic.MOB_KILLS)));
+			String playerkills = mobkills.replaceAll("%playerkills%", String.valueOf(p.getStatistic(Statistic.PLAYER_KILLS)));
+			return Strings.color(playerkills.replaceAll("%ip%", String.valueOf(p.getAddress().toString().replaceAll("/", ""))));
+		}
+		String mobkills = prefix.replaceAll("%mobkills%", String.valueOf(p.getStatistic(Statistic.MOB_KILLS)));
+		String playerkills = mobkills.replaceAll("%playerkills%", String.valueOf(p.getStatistic(Statistic.PLAYER_KILLS)));
+		return Strings.color(playerkills.replaceAll("%ip%", String.valueOf(p.getAddress().toString().replaceAll("/", ""))));
+	}
+	
+	public static String sendSB_Line4(Player p) {
+		Config sb = new Config("Scoreboard");
+		FileConfiguration s = sb.getConfig();
+		String pname = s.getString("Line-Four").replace("%player%", p.getName());
+		String online = pname.replaceAll("%online%", String.valueOf(Bukkit.getOnlinePlayers().size()));
+		String max = online.replaceAll("%max%", String.valueOf(HempfestEssentials.getInstance().getServer().getMaxPlayers()));
+		String prefix = max.replaceAll("%prefix%", Strings.getPrefix());
+		if (HempfestEssentials.getInstance().getServer().getPluginManager().getPlugin("Clans") != null) {
+			String clan = prefix.replaceAll("%clan%", ClanAPI.getClanName(p));
+			String mobkills = clan.replaceAll("%mobkills%", String.valueOf(p.getStatistic(Statistic.MOB_KILLS)));
+			String playerkills = mobkills.replaceAll("%playerkills%", String.valueOf(p.getStatistic(Statistic.PLAYER_KILLS)));
+			return Strings.color(playerkills.replaceAll("%ip%", String.valueOf(p.getAddress().toString().replaceAll("/", ""))));
+		}
+		String mobkills = prefix.replaceAll("%mobkills%", String.valueOf(p.getStatistic(Statistic.MOB_KILLS)));
+		String playerkills = mobkills.replaceAll("%playerkills%", String.valueOf(p.getStatistic(Statistic.PLAYER_KILLS)));
+		return Strings.color(playerkills.replaceAll("%ip%", String.valueOf(p.getAddress().toString().replaceAll("/", ""))));
+	}
+	
+	public static String sendSB_Line5(Player p) {
+		Config sb = new Config("Scoreboard");
+		FileConfiguration s = sb.getConfig();
+		String pname = s.getString("Line-Five").replace("%player%", p.getName());
+		String online = pname.replaceAll("%online%", String.valueOf(Bukkit.getOnlinePlayers().size()));
+		String max = online.replaceAll("%max%", String.valueOf(HempfestEssentials.getInstance().getServer().getMaxPlayers()));
+		String prefix = max.replaceAll("%prefix%", Strings.getPrefix());
+		if (HempfestEssentials.getInstance().getServer().getPluginManager().getPlugin("Clans") != null) {
+			String clan = prefix.replaceAll("%clan%", ClanAPI.getClanName(p));
+			String mobkills = clan.replaceAll("%mobkills%", String.valueOf(p.getStatistic(Statistic.MOB_KILLS)));
+			String playerkills = mobkills.replaceAll("%playerkills%", String.valueOf(p.getStatistic(Statistic.PLAYER_KILLS)));
+			return Strings.color(playerkills.replaceAll("%ip%", String.valueOf(p.getAddress().toString().replaceAll("/", ""))));
+		}
+		String mobkills = prefix.replaceAll("%mobkills%", String.valueOf(p.getStatistic(Statistic.MOB_KILLS)));
+		String playerkills = mobkills.replaceAll("%playerkills%", String.valueOf(p.getStatistic(Statistic.PLAYER_KILLS)));
+		return Strings.color(playerkills.replaceAll("%ip%", String.valueOf(p.getAddress().toString().replaceAll("/", ""))));
+	}
+	
+	public static String sendSB_Line6(Player p) {
+		Config sb = new Config("Scoreboard");
+		FileConfiguration s = sb.getConfig();
+		String pname = s.getString("Line-Six").replace("%player%", p.getName());
+		String online = pname.replaceAll("%online%", String.valueOf(Bukkit.getOnlinePlayers().size()));
+		String max = online.replaceAll("%max%", String.valueOf(HempfestEssentials.getInstance().getServer().getMaxPlayers()));
+		String prefix = max.replaceAll("%prefix%", Strings.getPrefix());
+		if (HempfestEssentials.getInstance().getServer().getPluginManager().getPlugin("Clans") != null) {
+			String clan = prefix.replaceAll("%clan%", ClanAPI.getClanName(p));
+			String mobkills = clan.replaceAll("%mobkills%", String.valueOf(p.getStatistic(Statistic.MOB_KILLS)));
+			String playerkills = mobkills.replaceAll("%playerkills%", String.valueOf(p.getStatistic(Statistic.PLAYER_KILLS)));
+			return Strings.color(playerkills.replaceAll("%ip%", String.valueOf(p.getAddress().toString().replaceAll("/", ""))));
+		}
+		String mobkills = prefix.replaceAll("%mobkills%", String.valueOf(p.getStatistic(Statistic.MOB_KILLS)));
+		String playerkills = mobkills.replaceAll("%playerkills%", String.valueOf(p.getStatistic(Statistic.PLAYER_KILLS)));
+		return Strings.color(playerkills.replaceAll("%ip%", String.valueOf(p.getAddress().toString().replaceAll("/", ""))));
+	}
+	
+	public static String sendSB_Line7(Player p) {
+		Config sb = new Config("Scoreboard");
+		FileConfiguration s = sb.getConfig();
+		String pname = s.getString("Line-Seven").replace("%player%", p.getName());
+		String online = pname.replaceAll("%online%", String.valueOf(Bukkit.getOnlinePlayers().size()));
+		String max = online.replaceAll("%max%", String.valueOf(HempfestEssentials.getInstance().getServer().getMaxPlayers()));
+		String prefix = max.replaceAll("%prefix%", Strings.getPrefix());
+		if (HempfestEssentials.getInstance().getServer().getPluginManager().getPlugin("Clans") != null) {
+			String clan = prefix.replaceAll("%clan%", ClanAPI.getClanName(p));
+			String mobkills = clan.replaceAll("%mobkills%", String.valueOf(p.getStatistic(Statistic.MOB_KILLS)));
+			String playerkills = mobkills.replaceAll("%playerkills%", String.valueOf(p.getStatistic(Statistic.PLAYER_KILLS)));
+			return Strings.color(playerkills.replaceAll("%ip%", String.valueOf(p.getAddress().toString().replaceAll("/", ""))));
+		}
+		String mobkills = prefix.replaceAll("%mobkills%", String.valueOf(p.getStatistic(Statistic.MOB_KILLS)));
+		String playerkills = mobkills.replaceAll("%playerkills%", String.valueOf(p.getStatistic(Statistic.PLAYER_KILLS)));
+		return Strings.color(playerkills.replaceAll("%ip%", String.valueOf(p.getAddress().toString().replaceAll("/", ""))));
+	}
+	
+	public static String sendSB_Line8(Player p) {
+		Config sb = new Config("Scoreboard");
+		FileConfiguration s = sb.getConfig();
+		String pname = s.getString("Line-Eight").replace("%player%", p.getName());
+		String online = pname.replaceAll("%online%", String.valueOf(Bukkit.getOnlinePlayers().size()));
+		String max = online.replaceAll("%max%", String.valueOf(HempfestEssentials.getInstance().getServer().getMaxPlayers()));
+		String prefix = max.replaceAll("%prefix%", Strings.getPrefix());
+		if (HempfestEssentials.getInstance().getServer().getPluginManager().getPlugin("Clans") != null) {
+			String clan = prefix.replaceAll("%clan%", ClanAPI.getClanName(p));
+			String mobkills = clan.replaceAll("%mobkills%", String.valueOf(p.getStatistic(Statistic.MOB_KILLS)));
+			String playerkills = mobkills.replaceAll("%playerkills%", String.valueOf(p.getStatistic(Statistic.PLAYER_KILLS)));
+			return Strings.color(playerkills.replaceAll("%ip%", String.valueOf(p.getAddress().toString().replaceAll("/", ""))));
+		}
+		String mobkills = prefix.replaceAll("%mobkills%", String.valueOf(p.getStatistic(Statistic.MOB_KILLS)));
+		String playerkills = mobkills.replaceAll("%playerkills%", String.valueOf(p.getStatistic(Statistic.PLAYER_KILLS)));
+		return Strings.color(playerkills.replaceAll("%ip%", String.valueOf(p.getAddress().toString().replaceAll("/", ""))));
+	}
+	
+	public static String sendSB_Line9(Player p) {
+		Config sb = new Config("Scoreboard");
+		FileConfiguration s = sb.getConfig();
+		String pname = s.getString("Line-Nine").replace("%player%", p.getName());
+		String online = pname.replaceAll("%online%", String.valueOf(Bukkit.getOnlinePlayers().size()));
+		String max = online.replaceAll("%max%", String.valueOf(HempfestEssentials.getInstance().getServer().getMaxPlayers()));
+		String prefix = max.replaceAll("%prefix%", Strings.getPrefix());
+		if (HempfestEssentials.getInstance().getServer().getPluginManager().getPlugin("Clans") != null) {
+			String clan = prefix.replaceAll("%clan%", ClanAPI.getClanName(p));
+			String mobkills = clan.replaceAll("%mobkills%", String.valueOf(p.getStatistic(Statistic.MOB_KILLS)));
+			String playerkills = mobkills.replaceAll("%playerkills%", String.valueOf(p.getStatistic(Statistic.PLAYER_KILLS)));
+			return Strings.color(playerkills.replaceAll("%ip%", String.valueOf(p.getAddress().toString().replaceAll("/", ""))));
+		}
+		String mobkills = prefix.replaceAll("%mobkills%", String.valueOf(p.getStatistic(Statistic.MOB_KILLS)));
+		String playerkills = mobkills.replaceAll("%playerkills%", String.valueOf(p.getStatistic(Statistic.PLAYER_KILLS)));
+		return Strings.color(playerkills.replaceAll("%ip%", String.valueOf(p.getAddress().toString().replaceAll("/", ""))));
+	}
+	
+	public static String sendSB_Line10(Player p) {
+		Config sb = new Config("Scoreboard");
+		FileConfiguration s = sb.getConfig();
+		String pname = s.getString("Line-Ten").replace("%player%", p.getName());
+		String online = pname.replaceAll("%online%", String.valueOf(Bukkit.getOnlinePlayers().size()));
+		String max = online.replaceAll("%max%", String.valueOf(HempfestEssentials.getInstance().getServer().getMaxPlayers()));
+		String prefix = max.replaceAll("%prefix%", Strings.getPrefix());
+		if (HempfestEssentials.getInstance().getServer().getPluginManager().getPlugin("Clans") != null) {
+			String clan = prefix.replaceAll("%clan%", ClanAPI.getClanName(p));
+			String mobkills = clan.replaceAll("%mobkills%", String.valueOf(p.getStatistic(Statistic.MOB_KILLS)));
+			String playerkills = mobkills.replaceAll("%playerkills%", String.valueOf(p.getStatistic(Statistic.PLAYER_KILLS)));
+			return Strings.color(playerkills.replaceAll("%ip%", String.valueOf(p.getAddress().toString().replaceAll("/", ""))));
+		}
+		String mobkills = prefix.replaceAll("%mobkills%", String.valueOf(p.getStatistic(Statistic.MOB_KILLS)));
+		String playerkills = mobkills.replaceAll("%playerkills%", String.valueOf(p.getStatistic(Statistic.PLAYER_KILLS)));
+		return Strings.color(playerkills.replaceAll("%ip%", String.valueOf(p.getAddress().toString().replaceAll("/", ""))));
 	}
 }

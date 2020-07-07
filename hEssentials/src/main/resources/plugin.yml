@@ -6,5 +6,5 @@ description: A lightweight alternative to EssentialsX
 main: org.spigotmc.hessentials.HempfestEssentials
 commands:
   gamemode:
-    aliases: [hgm, hgamemode]
+    aliases: [hgm, hgamemode, gm]
     description: Change a players gamemode.

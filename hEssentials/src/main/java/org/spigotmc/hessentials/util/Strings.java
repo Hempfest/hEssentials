@@ -27,6 +27,12 @@ public class Strings {
 		return color(mess.getString("Messages.Prefix") + " ");
 	}
 	
+	public static String getScorePrefix() { 
+		Config score = new Config("Scoreboard");
+		FileConfiguration sc = score.getConfig();	
+		return sc.getString("Prefix");
+	}
+	
 	public static String getFirstJoinMSG(Player player) {
 		Config messages = new Config("Messages");
 		FileConfiguration m = messages.getConfig();

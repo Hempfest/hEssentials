@@ -35,6 +35,7 @@ public class HempfestEssentials extends JavaPlugin {
 		Utils.createConfiguration();
 		registerCommands();
 		registerEvents();
+		Utils.updateLobbyBoard();
 	}
 	
 
