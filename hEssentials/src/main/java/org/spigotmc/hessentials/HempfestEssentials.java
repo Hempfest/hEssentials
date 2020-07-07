@@ -67,8 +67,7 @@ public class HempfestEssentials extends JavaPlugin {
 		Utils.registerCommand(new CommandFly());
 		Utils.registerCommand(new CommandInvsee());
 		//Utils.registerCommand(new CommandGamemode());
-		getCommand("gamemode").setExecutor(new CommandGamemode());
-		getCommand("gamemode").setTabCompleter(new CommandGamemode());
+		Utils.registerTabCommand("gamemode", new CommandGamemode(), new CommandGamemode());
 		Utils.registerCommand(new CommandWhois());
 		Utils.registerCommand(new CommandKick());
 		Utils.registerCommand(new CommandBan());
