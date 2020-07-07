@@ -23,6 +23,16 @@ public class Message {
 		sender.spigot().sendMessage((BaseComponent)text); 
 		return;
 	}
+	public static void textHoverable(CommandSender sender, String textBody, String hoverTextBody, String textBody2, String hoverMessage) {
+		TextComponent text = new TextComponent(Strings.color(textBody));
+		TextComponent hover = new TextComponent(Strings.color(hoverTextBody));
+		TextComponent text2 = new TextComponent(Strings.color(textBody2));
+		text.addExtra(hover);
+		text.addExtra(text2);
+		hover.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, (new ComponentBuilder(Strings.color(hoverMessage))).create()));
+		sender.spigot().sendMessage((BaseComponent)text); 
+		return;
+	}
 		// *
 		//
 		// SEND TEXT THE PLAYER CAN BE SUGGESTED TO EXECUTE COMMANDS WITH

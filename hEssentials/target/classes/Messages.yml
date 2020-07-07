@@ -34,5 +34,8 @@ Messages:
     First-Player-Join: '&d&l%player% &ais joining for the first time.'
     Player-Join: '&f%player% &2has joined the game.'
     Player-Leave: '&f%player% &chas left the game.'
+    Chat-Muted: '&fChat is muted'
+    Chat-UnMuted: '&fChat is unmuted'
+    Cannot-Speak: '&c&oChat is muted and you're not permitted to speak.'
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#  
 

@@ -13,6 +13,7 @@ import org.spigotmc.hessentials.commands.staff.CommandGMS;
 import org.spigotmc.hessentials.commands.staff.CommandGamemode;
 import org.spigotmc.hessentials.commands.staff.CommandInvsee;
 import org.spigotmc.hessentials.commands.staff.CommandKick;
+import org.spigotmc.hessentials.commands.staff.CommandMuteChat;
 import org.spigotmc.hessentials.commands.staff.CommandReload;
 import org.spigotmc.hessentials.commands.staff.CommandSocialSpy;
 import org.spigotmc.hessentials.commands.staff.CommandStaffHelp;
@@ -36,6 +37,7 @@ public class HempfestEssentials extends JavaPlugin {
 		registerCommands();
 		registerEvents();
 		Utils.updateLobbyBoard();
+		Utils.updateInvsee();
 	}
 	
 
@@ -66,6 +68,7 @@ public class HempfestEssentials extends JavaPlugin {
 		Utils.registerCommand(new CommandSocialSpy());
 		Utils.registerCommand(new CommandFly());
 		Utils.registerCommand(new CommandInvsee());
+		Utils.registerCommand(new CommandMuteChat());
 		//Utils.registerCommand(new CommandGamemode());
 		Utils.registerTabCommand("gamemode", new CommandGamemode(), new CommandGamemode());
 		Utils.registerCommand(new CommandWhois());

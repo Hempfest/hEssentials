@@ -1,7 +1,9 @@
 org\spigotmc\hessentials\commands\CommandOnlineList.class
 org\spigotmc\hessentials\commands\CommandMessage.class
+org\spigotmc\hessentials\util\Utils$3.class
 org\spigotmc\hessentials\commands\staff\CommandReload.class
 org\spigotmc\hessentials\commands\staff\CommandCFUpdate.class
+org\spigotmc\hessentials\util\Utils$2.class
 org\spigotmc\hessentials\commands\staff\CommandGMC.class
 org\spigotmc\hessentials\commands\CommandReply.class
 org\spigotmc\hessentials\configuration\PlayerData.class
@@ -20,6 +22,7 @@ org\spigotmc\hessentials\util\LobbyBoard.class
 org\spigotmc\hessentials\commands\staff\CommandBan.class
 org\spigotmc\hessentials\commands\staff\CommandFly.class
 org\spigotmc\hessentials\commands\staff\CommandWhois.class
+org\spigotmc\hessentials\commands\staff\CommandMuteChat.class
 org\spigotmc\hessentials\configuration\Config.class
 org\spigotmc\hessentials\commands\staff\CommandInvsee.class
 org\spigotmc\hessentials\commands\CommandHelp.class

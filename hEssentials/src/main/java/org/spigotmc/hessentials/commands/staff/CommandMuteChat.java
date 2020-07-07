@@ -9,13 +9,13 @@ import org.bukkit.entity.Player;
 import org.spigotmc.hessentials.util.Strings;
 import org.spigotmc.hessentials.util.Utils;
 
-public class CommandInvsee extends BukkitCommand {
+public class CommandMuteChat extends BukkitCommand {
 
-	public CommandInvsee() {
-		super("inventorysee");
+	public CommandMuteChat() {
+		super("mutechat");
 		setDescription("Primary staff command for hEssentials.");
-		setAliases(Arrays.asList("invsee"));
-		setPermission("hessentials.staff.invsee");
+		setAliases(Arrays.asList("mc", "hmc"));
+		setPermission("hessentials.staff.mutechat");
 	}
 
 	public static void sendMessage(CommandSender player, String message) {
@@ -33,17 +33,24 @@ public class CommandInvsee extends BukkitCommand {
 		Player p = (Player) sender;
 		int length = args.length;
 		if (length == 0) {
-			sendMessage(p, Strings.getPrefix() + "This is a command.");
-			return true;
-		}
-		
-		if (length == 1) {
-			Player target = Bukkit.getPlayer(args[0]);
-			if (target == null) {
-				//player no exist
+			if (Utils.Chat_MUTED) {
+				Utils.Chat_MUTED = false;
+				Utils.sendChat_Unmuted();
+				for (Player a : Bukkit.getOnlinePlayers()) {
+				Utils.removeScoreboard(a);
+				Utils.createScoreboard(a);
+				Utils.animateScoreTitle(a);
+				}
+			} else {
+				Utils.Chat_MUTED = true;
+				Utils.sendChat_Muted();
+				for (Player a : Bukkit.getOnlinePlayers()) {
+					Utils.removeScoreboard(a);
+					Utils.createMutedScoreboard(a);
+					Utils.animateMutedTitle(a);
+					}
 				return true;
 			}
-			Utils.openPlayerInventory(p, target);
 			return true;
 		}
 
