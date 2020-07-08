@@ -8,12 +8,12 @@ import org.bukkit.entity.Player;
 import org.spigotmc.hessentials.util.Strings;
 import org.spigotmc.hessentials.util.Utils;
 
-public class CommandTrack extends BukkitCommand {
+public class CommandHud extends BukkitCommand {
 
-	public CommandTrack() {
-		super("track");
+	public CommandHud() {
+		super("hud");
 		setDescription("Primary command for hEssentials.");
-		setAliases(Arrays.asList("htrack"));
+		setAliases(Arrays.asList("hhud"));
 	}
 
 	public static void sendMessage(CommandSender player, String message) {
@@ -31,7 +31,16 @@ public class CommandTrack extends BukkitCommand {
 		Player p = (Player) sender;
 		int length = args.length;
 				if (length == 0) {
-				Utils.trackPlayers(p);
+					if (Utils.hasScore(p)) {
+						
+				Utils.removeScoreboard(p);
+				Utils.remScore(p);
+					
+					} else if (!Utils.hasScore(p)){
+					Utils.createScoreboard(p);	
+					Utils.animateScoreTitle(p);
+						return true;
+					}
 					return true;
 				}
 

@@ -33,6 +33,19 @@ public class Message {
 		sender.spigot().sendMessage((BaseComponent)text); 
 		return;
 	}
+	public static void textHoverable(CommandSender sender, String textBody, String hoverTextBody, String textBody2, String hoverTextbody2, String hoverMessage, String hoverMessage2) {
+		TextComponent text = new TextComponent(Strings.color(textBody));
+		TextComponent hover = new TextComponent(Strings.color(hoverTextBody));
+		TextComponent text2 = new TextComponent(Strings.color(textBody2));
+		TextComponent hover2 = new TextComponent(Strings.color(hoverTextbody2));
+		text.addExtra(hover);
+		text.addExtra(text2);
+		text.addExtra(hover2);
+		hover.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, (new ComponentBuilder(Strings.color(hoverMessage))).create()));
+		hover2.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, (new ComponentBuilder(Strings.color(hoverMessage2))).create()));
+		sender.spigot().sendMessage((BaseComponent)text); 
+		return;
+	}
 		// *
 		//
 		// SEND TEXT THE PLAYER CAN BE SUGGESTED TO EXECUTE COMMANDS WITH
@@ -56,6 +69,21 @@ public class Message {
 		text.addExtra(hover);
 		hover.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, (new ComponentBuilder(Strings.color(hoverMessage))).create()));
 		hover.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/" + commandName));
+		sender.spigot().sendMessage((BaseComponent)text); 
+		return;
+	}
+	public static void textRunnable(CommandSender sender, String textBody, String hoverTextBody, String textBody2, String hoverTextbody2, String hoverMessage, String hoverMessage2, String commandName, String commandName2) {
+		TextComponent text = new TextComponent(Strings.color(textBody));
+		TextComponent hover = new TextComponent(Strings.color(hoverTextBody));
+		TextComponent text2 = new TextComponent(Strings.color(textBody2));
+		TextComponent hover2 = new TextComponent(Strings.color(hoverTextbody2));
+		text.addExtra(hover);
+		text.addExtra(text2);
+		text.addExtra(hover2);
+		hover.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, (new ComponentBuilder(Strings.color(hoverMessage))).create()));
+		hover.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/" + commandName));
+		hover2.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, (new ComponentBuilder(Strings.color(hoverMessage2))).create()));
+		hover2.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/" + commandName2));
 		sender.spigot().sendMessage((BaseComponent)text); 
 		return;
 	}

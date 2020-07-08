@@ -9,6 +9,7 @@ org\spigotmc\hessentials\commands\CommandReply.class
 org\spigotmc\hessentials\configuration\PlayerData.class
 org\spigotmc\hessentials\events\PlayerListener.class
 org\spigotmc\hessentials\HempfestEssentials.class
+org\spigotmc\hessentials\commands\CommandTeleport.class
 org\spigotmc\hessentials\commands\staff\CommandKick.class
 org\spigotmc\hessentials\util\ScoreboardTask.class
 org\spigotmc\hessentials\util\Strings.class
@@ -36,3 +37,4 @@ org\spigotmc\hessentials\commands\staff\CommandStaffHelp.class
 org\spigotmc\hessentials\commands\staff\CommandSocialSpy.class
 org\spigotmc\hessentials\util\Utils$1.class
 org\spigotmc\hessentials\util\Utils.class
+org\spigotmc\hessentials\commands\CommandHud.class

@@ -5,6 +5,7 @@ import org.spigotmc.hessentials.commands.CommandHelp;
 import org.spigotmc.hessentials.commands.CommandMessage;
 import org.spigotmc.hessentials.commands.CommandOnlineList;
 import org.spigotmc.hessentials.commands.CommandReply;
+import org.spigotmc.hessentials.commands.CommandTeleport;
 import org.spigotmc.hessentials.commands.CommandTrack;
 import org.spigotmc.hessentials.commands.staff.CommandBan;
 import org.spigotmc.hessentials.commands.staff.CommandCFUpdate;
@@ -61,6 +62,7 @@ public class HempfestEssentials extends JavaPlugin {
 	public void registerCommands() {
 		Utils.registerCommand(new CommandHelp());
 		Utils.registerCommand(new CommandTrack());
+		Utils.registerCommand(new CommandTeleport());
 		Utils.registerCommand(new CommandGMS());
 		Utils.registerCommand(new CommandGMC());
 		Utils.registerCommand(new CommandOnlineList());

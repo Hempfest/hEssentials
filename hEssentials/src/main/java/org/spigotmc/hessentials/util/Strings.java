@@ -54,6 +54,14 @@ public class Strings {
 		return color(MSG);
 	}
 	
+	public static String getInvalidUsage() {
+		return "Invalid usage: /";
+	}
+	
+	public static String getChatMuted() {
+		return color("&f&oChat: &4Muted");
+	}
+	
 	public static String getMOTD(Player player) {
 		Config motd = new Config("MOTD");
 		Config messages = new Config("Messages");

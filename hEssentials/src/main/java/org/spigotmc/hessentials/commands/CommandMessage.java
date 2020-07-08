@@ -34,12 +34,12 @@ public class CommandMessage extends BukkitCommand {
 		Player p = (Player) sender;
 		int length = args.length;
 		if (length == 0) {
-			sendMessage(p, Strings.getPrefix() + "Invalid usage: /" + commandLabel
+			sendMessage(p, Strings.getPrefix() + Strings.getInvalidUsage() + commandLabel
 					+ " <&cplayerName&f> <&7message&f>");
 			return true;
 		}
 		if (length == 1) {
-			sendMessage(p, Strings.getPrefix() + "Invalid usage: /" + commandLabel
+			sendMessage(p, Strings.getPrefix() + Strings.getInvalidUsage() + commandLabel
 					+ " <&cplayerName&f> <&7message&f>");
 			return true;
 		}

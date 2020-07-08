@@ -2,7 +2,6 @@ package org.spigotmc.hessentials.commands.staff;
 
 import java.util.Arrays;
 
-import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.defaults.BukkitCommand;
 import org.bukkit.entity.Player;
@@ -36,18 +35,10 @@ public class CommandMuteChat extends BukkitCommand {
 			if (Utils.Chat_MUTED) {
 				Utils.Chat_MUTED = false;
 				Utils.sendChat_Unmuted();
-				for (Player a : Bukkit.getOnlinePlayers()) {
-				Utils.removeScoreboard(a);
-				Utils.resetTracking(a);
-				}
 				return true;
 			} else if (!Utils.Chat_MUTED) {
 				Utils.Chat_MUTED = true;
 				Utils.sendChat_Muted();
-				for (Player a : Bukkit.getOnlinePlayers()) {
-					Utils.removeScoreboard(a);
-					Utils.resetTracking(a);
-					}
 				return true;
 			}
 		}

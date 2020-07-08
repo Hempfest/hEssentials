@@ -34,7 +34,7 @@ public class CommandReply extends BukkitCommand {
 		Player p = (Player) sender;
 		int length = args.length;
 		 if (length == 0) {
-			 sendMessage(p, Strings.getPrefix() + "Invalid usage: /" + commandLabel
+			 sendMessage(p, Strings.getPrefix() + Strings.getInvalidUsage() + commandLabel
 						+ " <&cmessage&f> ");
 		        return true;
 		      } 

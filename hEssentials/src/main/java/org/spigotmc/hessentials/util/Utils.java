@@ -43,6 +43,8 @@ public class Utils {
 	private static int Tracking_taskID;
 
 	public static boolean Chat_MUTED = true;
+	
+	public static HashMap<String, Boolean> hud = new HashMap<String, Boolean>();
 
 	public Utils(ClanAPI api) {
 		Utils.api = api;
@@ -121,14 +123,9 @@ public class Utils {
 		Bukkit.getScheduler().scheduleSyncDelayedTask(HempfestEssentials.getInstance(), new Runnable() {
 			public void run() {
 
-					removeScoreboard(p);
-					if (Utils.Chat_MUTED) {
-						createMutedScoreboard(p);
-						animateMutedTitle(p);
-					} else if (!Utils.Chat_MUTED) {
+						removeScoreboard(p);
 						createScoreboard(p);
 						animateScoreTitle(p);
-					}
 				
 
 			}
@@ -214,16 +211,18 @@ public class Utils {
 
 	public static void removeScoreboard(Player p) {
 		BoardLobby board = new BoardLobby(p.getUniqueId());
-		BoardMuted board2 = new BoardMuted(p.getUniqueId());
-		BoardTrack board3 = new BoardTrack(p.getUniqueId());
 		if (board.hasID())
 			board.stop();
-		if (board2.hasID())
-			board2.stop();
-		if (board3.hasID())
-			board3.stop();
 	}
+	
+	public static void remScore(Player p) {
+		ScoreboardManager manager = Bukkit.getScoreboardManager();
+		Scoreboard emptyBoard = manager.getMainScoreboard();
+		p.setScoreboard(emptyBoard);
+		Utils.hud.put(p.getName(), Boolean.valueOf(false));
 
+	}
+	
 	public static void animateScoreTitle(final Player p) {
 		taskID = Bukkit.getScheduler().scheduleSyncRepeatingTask(HempfestEssentials.instance, new Runnable() {
 
@@ -239,31 +238,31 @@ public class Utils {
 				switch (count) {
 				case 0:
 					p.getScoreboard().getObjective(DisplaySlot.SIDEBAR)
-							.setDisplayName(Strings.color("&7<< &2h&a&oEssentials &7>>"));
+							.setDisplayName(Strings.color("&7<< &2h&a&oEs&2s&a&oentials &7>>"));
 					break;
 				case 1:
 					p.getScoreboard().getObjective(DisplaySlot.SIDEBAR)
-							.setDisplayName(Strings.color("&7<< &a&oh&2E&a&ossentials &7>>"));
+							.setDisplayName(Strings.color("&7<< &a&oh&2E&a&oss&2e&a&ontials &7>>"));
 					break;
 				case 2:
 					p.getScoreboard().getObjective(DisplaySlot.SIDEBAR)
-							.setDisplayName(Strings.color("&7<< &a&ohE&2s&a&osentials &7>>"));
+							.setDisplayName(Strings.color("&7<< &a&ohE&2s&a&ose&2n&a&otials &7>>"));
 					break;
 				case 3:
 					p.getScoreboard().getObjective(DisplaySlot.SIDEBAR)
-							.setDisplayName(Strings.color("&7<< &a&ohEs&2s&a&oentials &7>>"));
+							.setDisplayName(Strings.color("&7<< &a&ohEs&2s&a&oent&2i&a&oals &7>>"));
 					break;
 				case 4:
 					p.getScoreboard().getObjective(DisplaySlot.SIDEBAR)
-							.setDisplayName(Strings.color("&7<< &a&ohEss&2e&a&ontials &7>>"));
+							.setDisplayName(Strings.color("&7<< &a&ohEss&2e&a&onti&2a&a&ols &7>>"));
 					break;
 				case 5:
 					p.getScoreboard().getObjective(DisplaySlot.SIDEBAR)
-							.setDisplayName(Strings.color("&7<< &a&ohEsse&2n&a&otials &7>>"));
+							.setDisplayName(Strings.color("&7<< &a&ohEsse&2n&a&otia&2l&a&os &7>>"));
 					break;
 				case 6:
 					p.getScoreboard().getObjective(DisplaySlot.SIDEBAR)
-							.setDisplayName(Strings.color("&7<< &a&ohEssen&2t&a&oials &7>>"));
+							.setDisplayName(Strings.color("&7<< &a&ohEssen&2t&a&oial&2s &7>>"));
 					break;
 				case 7:
 					p.getScoreboard().getObjective(DisplaySlot.SIDEBAR)
@@ -411,16 +410,18 @@ public class Utils {
 
 	public static void updateLobbyBoard() {
 		for (Player p : Bukkit.getOnlinePlayers()) {
-			if (Utils.Chat_MUTED) {
-				createMutedScoreboard(p);
-				animateMutedTitle(p);
-			} else if (!Utils.Chat_MUTED) {
 				createScoreboard(p);
 				animateScoreTitle(p);
-			}
+				Utils.hud.put(p.getName(), Boolean.valueOf(true));
 		}
 	}
 	
+	//HUD check
+		public static boolean hasScore(Player player)
+		{
+			return hud.containsKey(player.getName()) ? 
+					((Boolean)hud.get(player.getName())).booleanValue() : false;
+		}
 	
 	public static void animateTrackingTitle(final Player p) {
 		Tracking_taskID = Bukkit.getScheduler().scheduleSyncRepeatingTask(HempfestEssentials.instance, new Runnable() {
@@ -535,6 +536,28 @@ public class Utils {
 		}
 		p.setScoreboard(board);
 	}
+	
+	public static void trackPlayers(Player p) {
+		int cuantos = 0;
+		float configdistance = 1000;
+
+		for (Entity entity : p.getNearbyEntities(configdistance, 250.0D, configdistance)) {
+
+			if (entity instanceof Player) {
+
+				cuantos++;
+				Player Jugador = (Player) entity;
+				if (Jugador.getGameMode() == GameMode.SURVIVAL) {
+					int distancia = (int) p.getLocation().distance(Jugador.getLocation());
+					p.sendMessage(Strings.color("&a&o" + Jugador.getName() + ": &7" + distancia + " &fblocks away."));
+				}
+			}
+		}
+
+		if (cuantos == 0) {
+			p.sendMessage(Strings.color("&c&oNo near by players."));
+		}
+	}
 
 	public static void createMutedScoreboard(Player p) {
 		ScoreboardManager manager = Bukkit.getScoreboardManager();
@@ -563,6 +586,10 @@ public class Utils {
 		Score score8 = obj.getScore(Lists.sendSB_Line8(p));
 		Score score9 = obj.getScore(Lists.sendSB_Line9(p));
 		Score score10 = obj.getScore(Lists.sendSB_Line10(p));
+		Score score11= obj.getScore(Strings.getChatMuted());
+		if (Utils.Chat_MUTED) {
+			score11.setScore(11);
+		}
 		score.setScore(10);
 		// if (Utils.SB_Twolines())
 

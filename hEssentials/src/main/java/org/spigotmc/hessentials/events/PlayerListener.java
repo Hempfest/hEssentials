@@ -28,36 +28,28 @@ public class PlayerListener implements Listener{
 		UUID uuid = p.getUniqueId();
 		PlayerData pd = new PlayerData(uuid);
 		if (!p.hasPlayedBefore()) {
+			Utils.hud.put(p.getName(), Boolean.valueOf(true));
 			e.setJoinMessage(Strings.getFirstJoinMSG(p));
 			Utils.npbMOTD(p);
 			Utils.createPlayerConfig(p);
 			if (Utils.canUseScoreboard()) {
-			if (Utils.Chat_MUTED) {
-				Utils.createMutedScoreboard(p);
-				Utils.animateMutedTitle(p);
-			} else {
 				Utils.createScoreboard(p);
 				Utils.animateScoreTitle(p);
-			}
 			}
 			return;
 		}
 		if (!pd.exists()) {
 			Utils.createPlayerConfig(p);	
 		}
+		Utils.hud.put(p.getName(), Boolean.valueOf(true));
 		e.setJoinMessage(Strings.getJoinMSG(p));
 		Utils.MOTD(p);
 		Utils.matchIP(p);
 		Utils.matchUsername(p);
 		Utils.matchLTP(p);
 		if (Utils.canUseScoreboard()) {
-		if (Utils.Chat_MUTED) {
-			Utils.createMutedScoreboard(p);
-			Utils.animateMutedTitle(p);
-		} else {
 			Utils.createScoreboard(p);
 			Utils.animateScoreTitle(p);
-		}
 		}
 		
 		return;
@@ -68,6 +60,7 @@ public class PlayerListener implements Listener{
 		Player p = (Player)e.getPlayer();
 		//UUID uuid = p.getUniqueId();
 		//PlayerData pd = new PlayerData(uuid);
+		Utils.hud.put(p.getName(), Boolean.valueOf(false));
 		e.setQuitMessage(Strings.getLeaveMSG(p));
 		Utils.removeScoreboard(p);
 	}
