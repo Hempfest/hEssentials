@@ -8,3 +8,6 @@ commands:
   gamemode:
     aliases: [hgm, hgamemode, gm]
     description: Change a players gamemode.
+  teleportrequest:
+    aliases: [tpr, htpr, tpre]
+    description: Request to teleport to a player.

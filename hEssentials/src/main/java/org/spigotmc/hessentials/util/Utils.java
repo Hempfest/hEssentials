@@ -45,7 +45,6 @@ public class Utils {
 	public static boolean Chat_MUTED = true;
 	public static HashMap<String, Boolean> hud = new HashMap<String, Boolean>();
 	public static HashMap<String, Boolean> recieved = new HashMap<String, Boolean>();
-	public static HashMap<String, Integer> warping = new HashMap<String, Integer>();
 
 	public Utils(ClanAPI api) {
 		Utils.api = api;

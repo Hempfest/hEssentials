@@ -7,6 +7,7 @@ import org.bukkit.Location;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.defaults.BukkitCommand;
 import org.bukkit.entity.Player;
+import org.spigotmc.hessentials.util.Message;
 import org.spigotmc.hessentials.util.Strings;
 
 public class CommandTeleport extends BukkitCommand {
@@ -39,7 +40,7 @@ public class CommandTeleport extends BukkitCommand {
 						Strings.sendNoPermission(p);
 						return true;
 					}
-					sendMessage(p, Strings.getPrefix() + Strings.getInvalidUsage() + commandLabel + " &7<&cplayerName&7> &7<targetName>");
+					Message.textHoverable(p, Strings.getPrefix() + Strings.getInvalidUsage() + commandLabel, " &7<&cplayerName&7> ", "&f&l|", " &7<targetName&7>", "&f&oExample: &7/tp &eHempfest", "&f&oExample: &7/tp &eHempfest &7Steve");
 					return true;
 				}
 				

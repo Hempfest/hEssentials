@@ -20,12 +20,11 @@ import org.spigotmc.hessentials.util.Message;
 import org.spigotmc.hessentials.util.Strings;
 import org.spigotmc.hessentials.util.Utils;
 
-public class PlayerListener implements Listener{
-
+public class PlayerListener implements Listener {
 
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onPlayerJoin(PlayerJoinEvent e) {
-		Player p = (Player)e.getPlayer();
+		Player p = (Player) e.getPlayer();
 		UUID uuid = p.getUniqueId();
 		PlayerData pd = new PlayerData(uuid);
 		if (!p.hasPlayedBefore()) {
@@ -40,7 +39,7 @@ public class PlayerListener implements Listener{
 			return;
 		}
 		if (!pd.exists()) {
-			Utils.createPlayerConfig(p);	
+			Utils.createPlayerConfig(p);
 		}
 		Utils.hud.put(p.getName(), Boolean.valueOf(true));
 		e.setJoinMessage(Strings.getJoinMSG(p));
@@ -52,54 +51,55 @@ public class PlayerListener implements Listener{
 			Utils.createScoreboard(p);
 			Utils.animateScoreTitle(p);
 		}
-		
+
 		return;
 	}
-	
+
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onPlayerLeave(PlayerQuitEvent e) {
-		Player p = (Player)e.getPlayer();
-		//UUID uuid = p.getUniqueId();
-		//PlayerData pd = new PlayerData(uuid);
+		Player p = (Player) e.getPlayer();
+		// UUID uuid = p.getUniqueId();
+		// PlayerData pd = new PlayerData(uuid);
 		Utils.hud.put(p.getName(), Boolean.valueOf(false));
 		e.setQuitMessage(Strings.getLeaveMSG(p));
 		Utils.removeScoreboard(p);
 	}
-	
+
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onInventoryClick(InventoryClickEvent e) {
-		 String menu = e.getView().getTitle();
-		 Player whoClicked = (Player)e.getWhoClicked();
-		 for (Player p : Bukkit.getOnlinePlayers()) {
-		if (menu.equals(p.getName() + " : click to update")) {
-			String name = menu.replaceAll(" : click to update", "");
-			Player pInventory = Bukkit.getPlayer(name);
-			e.setCancelled(true);
-			whoClicked.closeInventory();
-			Utils.openPlayerInventory(whoClicked, pInventory);
-			return;
+		String menu = e.getView().getTitle();
+		Player whoClicked = (Player) e.getWhoClicked();
+		for (Player p : Bukkit.getOnlinePlayers()) {
+			if (menu.equals(p.getName() + " : click to update")) {
+				String name = menu.replaceAll(" : click to update", "");
+				Player pInventory = Bukkit.getPlayer(name);
+				e.setCancelled(true);
+				whoClicked.closeInventory();
+				Utils.openPlayerInventory(whoClicked, pInventory);
+				return;
+			}
 		}
-		 }
 	}
-	
+
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onChat(AsyncPlayerChatEvent e) {
 		Config message = new Config("Messages");
 		FileConfiguration m = message.getConfig();
-	    if (Utils.Chat_MUTED) {
-	        if (e.getPlayer().hasPermission("hessentials.staff.mutechat")) {
-	          for (Player a : Bukkit.getOnlinePlayers())
-	          	Message.textHoverable(a, "&2[", "&4&l^", "&2] " + e.getPlayer().getDisplayName() + " &7&o" + e.getMessage(), Strings.getPrefix() + "&a&oThis player has permission to speak right now.");
-	          e.setCancelled(true);
-	        } else {
-	          e.getPlayer().sendMessage(Strings.color(m.getString("Messages.Player-Responses.Cannot-Speak")));
-	        } 
-	        e.setCancelled(true);
-	        return;
-	      } 
+		if (Utils.Chat_MUTED) {
+			if (e.getPlayer().hasPermission("hessentials.staff.mutechat")) {
+				for (Player a : Bukkit.getOnlinePlayers())
+					Message.textHoverable(a, "&2[", "&4&l^",
+							"&2] " + e.getPlayer().getDisplayName() + " &7&o" + e.getMessage(),
+							Strings.getPrefix() + "&a&oThis player has permission to speak right now.");
+				e.setCancelled(true);
+			} else {
+				e.getPlayer().sendMessage(Strings.color(m.getString("Messages.Player-Responses.Cannot-Speak")));
+			}
+			e.setCancelled(true);
+			return;
+		}
 	}
-	
-	
+
 	@EventHandler
 	public void onMOTD(ServerListPingEvent e) {
 		Config mo = new Config("MOTD");

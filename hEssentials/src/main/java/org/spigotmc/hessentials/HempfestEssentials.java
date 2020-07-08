@@ -65,7 +65,7 @@ public class HempfestEssentials extends JavaPlugin {
 		Utils.registerCommand(new CommandHelp());
 		Utils.registerCommand(new CommandTrack());
 		Utils.registerCommand(new CommandTeleport());
-		Utils.registerCommand(new CommandTpr());
+		Utils.registerTabCommand("teleportrequest", new CommandTpr(), new CommandTpr());
 		Utils.registerCommand(new CommandGMS());
 		Utils.registerCommand(new CommandGMC());
 		Utils.registerCommand(new CommandOnlineList());
