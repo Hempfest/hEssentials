@@ -1,12 +1,18 @@
 package org.spigotmc.hessentials.util;
 
 import org.bukkit.Bukkit;
+import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.spigotmc.hessentials.HempfestEssentials;
 import org.spigotmc.hessentials.configuration.Config;
 
 import net.md_5.bungee.api.ChatColor;
+import net.md_5.bungee.api.chat.BaseComponent;
+import net.md_5.bungee.api.chat.ClickEvent;
+import net.md_5.bungee.api.chat.ComponentBuilder;
+import net.md_5.bungee.api.chat.HoverEvent;
+import net.md_5.bungee.api.chat.TextComponent;
 
 public class Strings {
 	
@@ -149,6 +155,100 @@ public class Strings {
 		String last = middle.replaceAll("%prefix%", getPrefix());
 		return color(last);
 	}
+	
+public static void goSet(CommandSender s, String Command, String tag) {
+	    
+		TextComponent click = new TextComponent("§3|§7> §3/" + tag + " §7set §3[warpName]");
+		click.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, (new ComponentBuilder("§3Set a warp where you stand.")).create()));
+		click.setClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, Command));
+		s.spigot().sendMessage((BaseComponent)click); 
+
+}
+  public static void goRequest(String Command, String Command2, Player s, Player p) {
+	    
+		TextComponent text = new TextComponent("§2|§7> §2Click a button to respond. ");
+		TextComponent click = new TextComponent("§a[§nACCEPT§a]");
+		TextComponent clickb = new TextComponent(" §7| ");
+		TextComponent click2 = new TextComponent("§4[§nDENY§4]");
+		click.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, (new ComponentBuilder("§3Click to accept the request from '" + p.getName() + "'.")).create()));
+		click2.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, (new ComponentBuilder("§3Click to deny the request from '" + p.getName() + "'.")).create()));
+		click.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, Command));
+		click2.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, Command2));
+		text.addExtra(click);
+		text.addExtra(clickb);
+		text.addExtra(click2);
+		p.spigot().sendMessage((BaseComponent)text); 
+
+}
+  public static void goDel(CommandSender s, String Command, String tag) {
+	    
+	  TextComponent click = new TextComponent("§3|§7> §3/" + tag + " §7delete §3[warpName]");
+		click.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, (new ComponentBuilder("§3Remove a set warp.")).create()));
+		click.setClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, Command));
+		s.spigot().sendMessage((BaseComponent)click); 
+
+}
+  public static void goWarp(CommandSender s, String Command, String tag) {
+	    
+	  TextComponent click = new TextComponent("§3|§7> §3/" + tag + " §7[warpName]");
+		click.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, (new ComponentBuilder("§3Warp to a specified location.")).create()));
+		click.setClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, Command));
+		s.spigot().sendMessage((BaseComponent)click); 
+
+}
+  public static void goList(CommandSender s, String Command, String tag) {
+	    
+	  TextComponent click = new TextComponent("§3|§7> §3/" + tag + " §7list");
+		click.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, (new ComponentBuilder("§3Show your list of set warps.")).create()));
+		click.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, Command));
+		s.spigot().sendMessage((BaseComponent)click); 
+
+}
+  
+  public static void tpRequest(CommandSender s, String Command, String tag) {
+	    
+		TextComponent click = new TextComponent("§3|§7> §b/" + tag + " §7to §b[playerName]");
+		click.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, (new ComponentBuilder("§6Request to teleport to another online player.")).create()));
+		click.setClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, Command));
+		s.spigot().sendMessage((BaseComponent)click); 
+
+}
+  
+  public static void tpAccept(CommandSender s, String Command, String tag) {
+	    
+		TextComponent click = new TextComponent("§3|§7> §b/" + tag + " §7deny");
+		click.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, (new ComponentBuilder("§6Deny a players request to teleport to you.")).create()));
+		click.setClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, Command));
+		s.spigot().sendMessage((BaseComponent)click); 
+
+}
+  
+  public static void tpDeny(CommandSender s, String Command, String tag) {
+	    
+		TextComponent click = new TextComponent("§3|§7> §b/" + tag + " §7accept");
+		click.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, (new ComponentBuilder("§6Accept a players request to teleport to you.")).create()));
+		click.setClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, Command));
+		s.spigot().sendMessage((BaseComponent)click); 
+
+}
+  
+  public static void goTo(CommandSender s, String Command, String tag) {
+	    
+		TextComponent click = new TextComponent("§3|§7> §b/" + tag + " §7to §b[playerName] §b[warpName]");
+		click.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, (new ComponentBuilder("§6Goto someone elses private warp of specification.")).create()));
+		click.setClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, Command));
+		s.spigot().sendMessage((BaseComponent)click); 
+
+}
+
+public static void gotoList(CommandSender s, String Command, String tag) {
+	    
+		TextComponent click = new TextComponent("§3|§7> §b/" + tag + " §7list §b[playerName]");
+		click.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, (new ComponentBuilder("§6Show someone elses list of private warps.")).create()));
+		click.setClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, Command));
+		s.spigot().sendMessage((BaseComponent)click); 
+
+}
 	
 	public static String color(String text) {
 		return ChatColor.translateAlternateColorCodes('&', text);

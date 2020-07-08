@@ -7,7 +7,6 @@ import org.bukkit.Location;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.defaults.BukkitCommand;
 import org.bukkit.entity.Player;
-import org.spigotmc.hessentials.util.Message;
 import org.spigotmc.hessentials.util.Strings;
 
 public class CommandTeleport extends BukkitCommand {
@@ -16,6 +15,7 @@ public class CommandTeleport extends BukkitCommand {
 		super("teleport");
 		setDescription("Primary command for hEssentials.");
 		setAliases(Arrays.asList("hteleport", "htp", "tp"));
+		setPermission("hessentials.teleport");
 	}
 
 	public static void sendMessage(CommandSender player, String message) {
@@ -35,12 +35,20 @@ public class CommandTeleport extends BukkitCommand {
 		
 				// /tp - no args
 				if (length == 0) {
+					if (!p.hasPermission("hessentials.teleport")) {
+						Strings.sendNoPermission(p);
+						return true;
+					}
 					sendMessage(p, Strings.getPrefix() + Strings.getInvalidUsage() + commandLabel + " &7<&cplayerName&7> &7<targetName>");
 					return true;
 				}
 				
 				// /tp - playername only
 				if (length == 1) {
+					if (!p.hasPermission("hessentials.teleport")) {
+						Strings.sendNoPermission(p);
+						return true;
+					}
 					Player target = Bukkit.getPlayer(args[0]);
 					if (target == null) {
 						sendMessage(p, Strings.getPrefix() + Strings.getInvalidUsage() + commandLabel + " - &c&oPlayer not found.");
@@ -54,7 +62,10 @@ public class CommandTeleport extends BukkitCommand {
 				
 				// /tp - tp player to player
 				if (length == 2) {
-					
+					if (!p.hasPermission("hessentials.teleport.others")) {
+						Strings.sendNoPermission(p);
+						return true;
+					}
 					Player target1 = Bukkit.getPlayer(args[0]);
 					if (target1 == null) {
 						sendMessage(p, Strings.getPrefix() + Strings.getInvalidUsage() + commandLabel + " - &c&oPlayer not found.");

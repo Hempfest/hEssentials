@@ -43,8 +43,9 @@ public class Utils {
 	private static int Tracking_taskID;
 
 	public static boolean Chat_MUTED = true;
-	
 	public static HashMap<String, Boolean> hud = new HashMap<String, Boolean>();
+	public static HashMap<String, Boolean> recieved = new HashMap<String, Boolean>();
+	public static HashMap<String, Integer> warping = new HashMap<String, Integer>();
 
 	public Utils(ClanAPI api) {
 		Utils.api = api;
@@ -57,6 +58,19 @@ public class Utils {
 
 	public static void msg(Player player, String s) {
 		sendMessage(player, s);
+	}
+
+	// *
+	//
+	// Check if the player has other players nearby.
+	//
+	public static boolean canWarp(Player p) {
+		for (Entity e : p.getNearbyEntities(32.0D, 32.0D, 32.0D)) {
+			if (e instanceof Player)
+
+				return false;
+		}
+		return true;
 	}
 
 	public static void registerTabCommand(String cmdName, TabCompleter completer, CommandExecutor executor) {
@@ -82,6 +96,10 @@ public class Utils {
 		}
 	}
 
+	// *
+	//
+	// Refresh Invsee viewers
+	//
 	public static void updateInvsee() {
 		Bukkit.getScheduler().scheduleSyncRepeatingTask(HempfestEssentials.getInstance(), new Runnable() {
 			public void run() {
@@ -101,32 +119,34 @@ public class Utils {
 		}, 40L, 40L);
 	}
 
+	// * NOT WORKING
+	//
+	// Remove tracking board after 1 minute
+	//
 	public static void resetTracking(final Player p) {
 		Bukkit.getScheduler().scheduleSyncDelayedTask(HempfestEssentials.getInstance(), new Runnable() {
 			public void run() {
 
-					removeScoreboard(p);
-					if (Utils.Chat_MUTED) {
-						createMutedScoreboard(p);
-						animateMutedTitle(p);
-					} else if (!Utils.Chat_MUTED) {
-						createScoreboard(p);
-						animateScoreTitle(p);
-					}
-				
+				removeScoreboard(p);
+				if (Utils.Chat_MUTED) {
+					createMutedScoreboard(p);
+					animateMutedTitle(p);
+				} else if (!Utils.Chat_MUTED) {
+					createScoreboard(p);
+					animateScoreTitle(p);
+				}
 
 			}
 		}, 20L * 60);
 	}
-	
+
 	public static void resetBoard(final Player p) {
 		Bukkit.getScheduler().scheduleSyncDelayedTask(HempfestEssentials.getInstance(), new Runnable() {
 			public void run() {
 
-						removeScoreboard(p);
-						createScoreboard(p);
-						animateScoreTitle(p);
-				
+				removeScoreboard(p);
+				createScoreboard(p);
+				animateScoreTitle(p);
 
 			}
 		}, 20L * 60);
@@ -214,7 +234,7 @@ public class Utils {
 		if (board.hasID())
 			board.stop();
 	}
-	
+
 	public static void remScore(Player p) {
 		ScoreboardManager manager = Bukkit.getScoreboardManager();
 		Scoreboard emptyBoard = manager.getMainScoreboard();
@@ -222,7 +242,7 @@ public class Utils {
 		Utils.hud.put(p.getName(), Boolean.valueOf(false));
 
 	}
-	
+
 	public static void animateScoreTitle(final Player p) {
 		taskID = Bukkit.getScheduler().scheduleSyncRepeatingTask(HempfestEssentials.instance, new Runnable() {
 
@@ -318,15 +338,6 @@ public class Utils {
 		Bukkit.broadcastMessage(Strings.getPrefix() + Strings.color(unmuted));
 	}
 
-	public static boolean canUseScoreboard() {
-		Config score = new Config("Scoreboard");
-		FileConfiguration s = score.getConfig();
-		if (s.getBoolean("Use-Scoreboard?") == true) {
-			return true;
-		}
-		return false;
-	}
-
 	public static void animateMutedTitle(final Player p) {
 		MUTED_taskID = Bukkit.getScheduler().scheduleSyncRepeatingTask(HempfestEssentials.instance, new Runnable() {
 
@@ -410,19 +421,12 @@ public class Utils {
 
 	public static void updateLobbyBoard() {
 		for (Player p : Bukkit.getOnlinePlayers()) {
-				createScoreboard(p);
-				animateScoreTitle(p);
-				Utils.hud.put(p.getName(), Boolean.valueOf(true));
+			createScoreboard(p);
+			animateScoreTitle(p);
+			Utils.hud.put(p.getName(), Boolean.valueOf(true));
 		}
 	}
-	
-	//HUD check
-		public static boolean hasScore(Player player)
-		{
-			return hud.containsKey(player.getName()) ? 
-					((Boolean)hud.get(player.getName())).booleanValue() : false;
-		}
-	
+
 	public static void animateTrackingTitle(final Player p) {
 		Tracking_taskID = Bukkit.getScheduler().scheduleSyncRepeatingTask(HempfestEssentials.instance, new Runnable() {
 
@@ -536,7 +540,7 @@ public class Utils {
 		}
 		p.setScoreboard(board);
 	}
-	
+
 	public static void trackPlayers(Player p) {
 		int cuantos = 0;
 		float configdistance = 1000;
@@ -586,7 +590,7 @@ public class Utils {
 		Score score8 = obj.getScore(Lists.sendSB_Line8(p));
 		Score score9 = obj.getScore(Lists.sendSB_Line9(p));
 		Score score10 = obj.getScore(Lists.sendSB_Line10(p));
-		Score score11= obj.getScore(Strings.getChatMuted());
+		Score score11 = obj.getScore(Strings.getChatMuted());
 		if (Utils.Chat_MUTED) {
 			score11.setScore(11);
 		}
@@ -707,32 +711,6 @@ public class Utils {
 			f.set("IP-ADDRESS", (Object) player.getAddress().toString().replace("/", ""));
 			pd.saveConfig();
 		}
-	}
-
-	public static boolean allPagesActive() {
-		Config help = new Config("Help");
-		if (help.getConfig().getString("Two-Pages?").equals("yes")
-				&& help.getConfig().getString("Three-Pages?").equals("yes")) {
-			return true;
-		}
-		return false;
-	}
-
-	public static boolean onePageActive() {
-		Config help = new Config("Help");
-		if (help.getConfig().getString("Two-Pages?").equals("no")
-				&& help.getConfig().getString("Three-Pages?").equals("no")) {
-			return true;
-		}
-		return false;
-	}
-
-	public static boolean twoPagesActive() {
-		Config help = new Config("Help");
-		if (help.getConfig().getString("Two-Pages?").equals("yes")) {
-			return true;
-		}
-		return false;
 	}
 
 	public static void defaultConfiguration() {

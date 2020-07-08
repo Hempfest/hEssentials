@@ -5,6 +5,7 @@ import java.util.Arrays;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.defaults.BukkitCommand;
 import org.bukkit.entity.Player;
+import org.spigotmc.hessentials.util.Checks;
 import org.spigotmc.hessentials.util.Strings;
 import org.spigotmc.hessentials.util.Utils;
 
@@ -31,12 +32,12 @@ public class CommandHud extends BukkitCommand {
 		Player p = (Player) sender;
 		int length = args.length;
 				if (length == 0) {
-					if (Utils.hasScore(p)) {
+					if (Checks.hasScore(p)) {
 						
 				Utils.removeScoreboard(p);
 				Utils.remScore(p);
 					
-					} else if (!Utils.hasScore(p)){
+					} else if (!Checks.hasScore(p)){
 					Utils.createScoreboard(p);	
 					Utils.animateScoreTitle(p);
 						return true;

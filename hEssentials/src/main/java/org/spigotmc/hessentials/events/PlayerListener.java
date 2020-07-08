@@ -15,6 +15,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.server.ServerListPingEvent;
 import org.spigotmc.hessentials.configuration.Config;
 import org.spigotmc.hessentials.configuration.PlayerData;
+import org.spigotmc.hessentials.util.Checks;
 import org.spigotmc.hessentials.util.Message;
 import org.spigotmc.hessentials.util.Strings;
 import org.spigotmc.hessentials.util.Utils;
@@ -32,7 +33,7 @@ public class PlayerListener implements Listener{
 			e.setJoinMessage(Strings.getFirstJoinMSG(p));
 			Utils.npbMOTD(p);
 			Utils.createPlayerConfig(p);
-			if (Utils.canUseScoreboard()) {
+			if (Checks.canUseScoreboard()) {
 				Utils.createScoreboard(p);
 				Utils.animateScoreTitle(p);
 			}
@@ -47,7 +48,7 @@ public class PlayerListener implements Listener{
 		Utils.matchIP(p);
 		Utils.matchUsername(p);
 		Utils.matchLTP(p);
-		if (Utils.canUseScoreboard()) {
+		if (Checks.canUseScoreboard()) {
 			Utils.createScoreboard(p);
 			Utils.animateScoreTitle(p);
 		}

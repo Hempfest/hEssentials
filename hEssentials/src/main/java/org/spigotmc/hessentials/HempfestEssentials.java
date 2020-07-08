@@ -6,6 +6,7 @@ import org.spigotmc.hessentials.commands.CommandMessage;
 import org.spigotmc.hessentials.commands.CommandOnlineList;
 import org.spigotmc.hessentials.commands.CommandReply;
 import org.spigotmc.hessentials.commands.CommandTeleport;
+import org.spigotmc.hessentials.commands.CommandTpr;
 import org.spigotmc.hessentials.commands.CommandTrack;
 import org.spigotmc.hessentials.commands.staff.CommandBan;
 import org.spigotmc.hessentials.commands.staff.CommandCFUpdate;
@@ -22,6 +23,7 @@ import org.spigotmc.hessentials.commands.staff.CommandStaffHelp;
 import org.spigotmc.hessentials.commands.staff.CommandUnban;
 import org.spigotmc.hessentials.commands.staff.CommandWhois;
 import org.spigotmc.hessentials.events.PlayerListener;
+import org.spigotmc.hessentials.util.Checks;
 import org.spigotmc.hessentials.util.Utils;
 
 
@@ -38,7 +40,7 @@ public class HempfestEssentials extends JavaPlugin {
 		Utils.createConfiguration();
 		registerCommands();
 		registerEvents();
-		if (Utils.canUseScoreboard()) {
+		if (Checks.canUseScoreboard()) {
 		Utils.updateLobbyBoard();
 		Utils.updateInvsee();
 		}
@@ -63,6 +65,7 @@ public class HempfestEssentials extends JavaPlugin {
 		Utils.registerCommand(new CommandHelp());
 		Utils.registerCommand(new CommandTrack());
 		Utils.registerCommand(new CommandTeleport());
+		Utils.registerCommand(new CommandTpr());
 		Utils.registerCommand(new CommandGMS());
 		Utils.registerCommand(new CommandGMC());
 		Utils.registerCommand(new CommandOnlineList());
