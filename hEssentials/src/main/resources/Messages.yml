@@ -28,9 +28,9 @@ Messages:
   Player-Responses:
     Online-List: '%prefix%%next%&7Online Players &8[&7&l%online%&8/&7&l%max%&8]&7: &f%players%'
     Player-Message-Send: '&b%player%(me) &7&m--&7> &b%target%&3&l|&f '
-    Player-Message-Revieve: '&b%target% &7&m--&7> &b%player%(me)&3&l|&f '
+    Player-Message-Revieve: '&b%player% &7&m--&7> &b%target%(me)&3&l|&f '
     Player-Reply-Send: '&b%player%(me) &7&m--&7> &b%target%&3&l|&f '
-    Player-Reply-Recieve: '&b%target% &7&m--&7> &b%player%(me)&3&l|&f '
+    Player-Reply-Recieve: '&b%player% &7&m--&7> &b%target%(me)&3&l|&f '
     Social-Spy-Activated: '%prefix% &6&oSocial spying is enabled!'
     Social-Spy-Deactivated: '%prefix% &c&oSocial spying is disabled!'
     No-Permission: 'You don''t have permission %permnode%.'
