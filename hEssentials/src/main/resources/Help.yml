@@ -17,8 +17,8 @@ Help-Menu: '%prefix% Help with commands.%next%&e&o&m============================
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#  
 Two-Pages?: 'yes'
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#  
-Help-Menu-PG2: '%prefix%This is a test message.'
+Help-Menu-PG2: '%prefix% This is a test message.'
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#  
 Three-Pages?: 'yes'
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#  
-Help-Menu-PG3: '%prefix% you a bitch.'
+Help-Menu-PG3: '%prefix% Another test message.'

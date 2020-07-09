@@ -6,7 +6,9 @@
 # |                      v1.0.0                     | #
 # O]===============================================[O #
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#  
-# Toggle the use of hEssentials Scoreboard.  
+# Toggle the use of hEssentials Scoreboard.
+# (**EXPERIMENTAL**) This feature works most of the time but is known to be buggy at the moment.
+# It is reccomended that you re-login when experiencing any scoreboard issues.
 Use-Scoreboard?: false
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 # Change the prefix used for the scoreboard (No color).
