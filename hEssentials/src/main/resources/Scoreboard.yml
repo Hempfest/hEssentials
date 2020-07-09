@@ -7,11 +7,11 @@
 # O]===============================================[O #
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#  
 # Toggle the use of hEssentials Scoreboard.  
-Use-Scoreboard?: true
+Use-Scoreboard?: false
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 # Change the prefix used for the scoreboard (No color).
-Prefix: 'Vintage'
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#  
+Prefix: 'Info'
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 # Change the text of the scoreboard.   
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 # Variables: 
@@ -24,23 +24,23 @@ Prefix: 'Vintage'
 #   *  %playerkills% = player kill count for player
 #   *  %mobkills% = mob kill count for player
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~# 
-Line-One: '&4&o&m---------------------'
+Line-One: '&2&o&m-----------------'
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#  
-Line-Two: '%prefix% Line 1'
+Line-Two: '&o'
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-Line-Three: '%prefix% Line 2'
+Line-Three: '&b&oClan: &r%clan%'
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-Line-Four: '%prefix% Line 3'
+Line-Four: '&b&oMob Kills: &r%mobkills%'
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#  
-Line-Five: '%prefix% Line 4'
+Line-Five: '&b&oPlayers Online: &r%online%&7/&r%max%'
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~# 
-Line-Six: '%prefix% Line 5'
+Line-Six: '&5Name: &d%player%'
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-Line-Seven: '%prefix% Line 6'
+Line-Seven: ''
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-Line-Eight: '%prefix% Line 7'
+Line-Eight: ''
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-Line-Nine: '%prefix% Line 8'
+Line-Nine: ''
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-Line-Ten: '&4&o&o&m---------------------'
+Line-Ten: '&2&o&o&m----------------'
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#

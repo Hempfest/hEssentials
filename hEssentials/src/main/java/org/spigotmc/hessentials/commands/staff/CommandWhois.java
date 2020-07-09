@@ -34,7 +34,10 @@ public class CommandWhois extends BukkitCommand {
 		}
 
 		Player p = (Player) sender;
-		
+		if (!p.hasPermission(this.getPermission())) {
+			Strings.sendNoPermission(p, this.getPermission());
+			return true;
+		}
 		int length = args.length;
 		if (length == 0) {
 			sendMessage(p, Strings.getPrefix() + "Invalid Usage: /" + commandLabel + " <&cplayerName&f>");

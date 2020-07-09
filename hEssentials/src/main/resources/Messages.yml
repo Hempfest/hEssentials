@@ -22,20 +22,23 @@ Messages:
 #   *  %next% = goto the next line
 #   *  %target% = target player being messaged
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+#   *  %permnode% = gets the permission the player doesn't have access to.
+#   **/\ (Works only for "No-Permission" section.) /\**
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
   Player-Responses:
     Online-List: '%prefix%%next%&7Online Players &8[&7&l%online%&8/&7&l%max%&8]&7: &f%players%'
-    Player-Message-Send: '&b%player% &7&m--&7> &b%target%&3&l|&f '
-    Player-Message-Revieve: '&b%target% &7&m--&7> &b%player%&3&l|&f '
-    Player-Reply-Send: '%player% --> %target%'
-    Player-Reply-Recieve: '%target% --> %player%'
-    Social-Spy-Activated: 'SP is on!'
-    Social-Spy-Deactivated: 'SP is off!'
-    No-Permission: 'You have no perm!'
+    Player-Message-Send: '&b%player%(me) &7&m--&7> &b%target%&3&l|&f '
+    Player-Message-Revieve: '&b%target% &7&m--&7> &b%player%(me)&3&l|&f '
+    Player-Reply-Send: '&b%player%(me) &7&m--&7> &b%target%&3&l|&f '
+    Player-Reply-Recieve: '&b%target% &7&m--&7> &b%player%(me)&3&l|&f '
+    Social-Spy-Activated: '%prefix% &6&oSocial spying is enabled!'
+    Social-Spy-Deactivated: '%prefix% &c&oSocial spying is disabled!'
+    No-Permission: 'You don''t have permission %permnode%.'
     First-Player-Join: '&d&l%player% &ais joining for the first time.'
     Player-Join: '&f%player% &2has joined the game.'
     Player-Leave: '&f%player% &chas left the game.'
-    Chat-Muted: '&fChat is muted'
-    Chat-UnMuted: '&fChat is unmuted'
-    Cannot-Speak: '&c&oChat is muted and you're not permitted to speak.'
+    Chat-Muted: '&fChat is muted globally.'
+    Chat-UnMuted: '&fChat is unmuted globally.'
+    Cannot-Speak: '&c&oChat is muted and you''re not permitted to speak.'
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#  
 
