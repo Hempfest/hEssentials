@@ -31,22 +31,22 @@ public class CommandSocialSpy extends BukkitCommand {
 		}
 
 		Player p = (Player) sender;
-		if (!p.hasPermission("hessentials.staff.socialspy")) {
-			Strings.sendNoPermission(p);
+		if (!p.hasPermission(this.getPermission())) {
+			Strings.sendNoPermission(p, this.getPermission());
 			return true;
 		}
 		        if (Utils.socialspy.get(p) == null) {
 		          Utils.socialspy.put(p, "enabled");
-		          p.sendMessage(ChatColor.GRAY + "SocialSpy Enabled!");
+		          sendMessage(p, ChatColor.GRAY + "SocialSpy Enabled!");
 		          return true;
 		        }
 		          if (Utils.socialspy.get(p) == "disabled") {
 		            Utils.socialspy.put(p, "enabled");
-		            p.sendMessage(ChatColor.GRAY + "SocialSpy Enabled!");
+		            sendMessage(p, ChatColor.GRAY + "SocialSpy Enabled!");
 		            return true;
 		          } else  if (Utils.socialspy.get(p) == "enabled") {
 		            Utils.socialspy.put(p, "disabled");
-		            p.sendMessage(ChatColor.GRAY + "SocialSpy Disabled!");
+		            sendMessage(p, ChatColor.GRAY + "SocialSpy Disabled!");
 		            return true;
 		          } 
 		          

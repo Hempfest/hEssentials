@@ -35,7 +35,7 @@ public class CommandUnban extends BukkitCommand {
 
 		Player p = (Player) sender;
 		int length = args.length;
-		 if (!p.hasPermission("hessentials.staff.unban")) {
+		 if (!p.hasPermission(this.getPermission())) {
    		  sendMessage(p, Strings.getPrefix() + " You are not authorized!");
    		  return true;
    	  }

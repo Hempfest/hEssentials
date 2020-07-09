@@ -1,4 +1,4 @@
-package org.spigotmc.hessentials.commands;
+package org.spigotmc.hessentials.commands.tprequest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,11 +10,10 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import org.spigotmc.hessentials.configuration.Config;
-import org.spigotmc.hessentials.tprequest.Requests;
 import org.spigotmc.hessentials.util.Message;
 import org.spigotmc.hessentials.util.Strings;
 
-public class CommandTpr implements CommandExecutor, TabCompleter {
+public class CommandTpRequest implements CommandExecutor, TabCompleter {
 	
 	List<String> arguments = new ArrayList<String>();
 
@@ -40,17 +39,17 @@ public class CommandTpr implements CommandExecutor, TabCompleter {
 				if (length == 1) {
 					
 					if (args[0].equalsIgnoreCase("accept") || args[0].equalsIgnoreCase("a")) {
-				    	Requests.acceptRequest(p, data);
+				    	TpRequest.acceptRequest(p, data);
 				    	return true;
 					}
 					
 					if (args[0].equalsIgnoreCase("deny") || args[0].equalsIgnoreCase("deny")) {
-						Requests.denyRequest(p, data);
+						TpRequest.denyRequest(p, data);
 				    	return true;
 					}
 					
 					final Player other = Bukkit.getPlayer(args[0]);
-	          		Requests.sendRequest(p, other, data, args[0]);
+	          		TpRequest.sendRequest(p, other, data, args[0]);
 	          		return true;
 				}
 

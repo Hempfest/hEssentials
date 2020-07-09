@@ -10,6 +10,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
+import org.spigotmc.hessentials.util.Message;
 import org.spigotmc.hessentials.util.Strings;
 
 public class CommandGamemode implements CommandExecutor, TabCompleter {
@@ -21,6 +22,10 @@ public class CommandGamemode implements CommandExecutor, TabCompleter {
 		player.sendMessage(Strings.color(message));
 		return;
 	}
+	
+	String getPermission() {
+		return "hessentials.staff.gamemode";
+	}
 
 	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
 		if (!(sender instanceof Player)) {
@@ -28,14 +33,13 @@ public class CommandGamemode implements CommandExecutor, TabCompleter {
 			return true;
 		}
 		Player p = (Player) sender;
-		if (!p.hasPermission("hessentials.staff.gamemode")) {
-			Strings.sendNoPermission(p);
+		if (!p.hasPermission(this.getPermission())) {
+			Strings.sendNoPermission(p, this.getPermission());
 			return true;
 		}
 		int length = args.length;
 		if (length == 0) {
-			sendMessage(p, Strings.getPrefix() + "Invalid usage: /" + commandLabel
-					+ " <&csurvival/creative/adventure&f> <&7playerName&f>");
+			Message.textHoverable(p, Strings.getPrefix() + Strings.getInvalidUsage() + commandLabel, " <&csurvival/creative/adventure&f> &7<&8playerName&7> ", "&f&oExample: &7/gamemode &eSurvival\n&f&oExample: &7/gamemode &eSurvival &aHempfest");
 			return true;
 		}
 
@@ -64,25 +68,25 @@ public class CommandGamemode implements CommandExecutor, TabCompleter {
 			Player target = Bukkit.getPlayer(args[1]);
 
 			if (target != null) {
-				if (args[0].equalsIgnoreCase("creative") && p.hasPermission("hessentials.staff.gamemode.other")) {
+				if (args[0].equalsIgnoreCase("creative") && p.hasPermission(this.getPermission() + ".other")) {
 					target.setGameMode(GameMode.CREATIVE);
 					sendMessage(target, Strings.getPrefix() + "Now in game-mode creative.");
 					sendMessage(p, Strings.getPrefix() + target.getName() + "'s now in game-mode creative.");
 					return true;
 				}else
-				if (args[0].equalsIgnoreCase("survival") && p.hasPermission("hessentials.staff.gamemode.other")) {
+				if (args[0].equalsIgnoreCase("survival") && p.hasPermission(this.getPermission() + ".other")) {
 					target.setGameMode(GameMode.SURVIVAL);
 					sendMessage(target, Strings.getPrefix() + "Now in game-mode survival.");
 					sendMessage(p, Strings.getPrefix() + target.getName() + "'s now in game-mode survival.");
 					return true;
 				}else
-				if (args[0].equalsIgnoreCase("adventure") && p.hasPermission("hessentials.staff.gamemode.other")) {
+				if (args[0].equalsIgnoreCase("adventure") && p.hasPermission(this.getPermission() + ".other")) {
 					target.setGameMode(GameMode.ADVENTURE);
 					sendMessage(target, Strings.getPrefix() + "Now in game-mode adventure.");
 					sendMessage(p, Strings.getPrefix() + target.getName() + "'s now in game-mode adventure.");
 					return true;
-				}else if (!p.hasPermission("hessentials.staff.gamemode.other")) {
-					Strings.sendNoPermission(p);
+				}else if (!p.hasPermission(this.getPermission() + ".other")) {
+					Strings.sendNoPermission(p, this.getPermission() + ".other");
 					return true;
 				}
 				sendMessage(p, Strings.getPrefix() + "&4Unknown gamemode type " + '"' + args[0] + '"' + ".");

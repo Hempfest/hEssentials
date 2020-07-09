@@ -15,7 +15,7 @@ public class CommandGMC extends BukkitCommand {
 		super("gmc");
 		setDescription("Primary staff command for hEssentials.");
 		setAliases(Arrays.asList("hgmc"));
-		setPermission("hessentials.staff.gamemode");
+		setPermission("hessentials.staff.gamemode.creative");
 	}
 	
 	List<GameMode> Gm = Arrays.asList(new GameMode[] {GameMode.SURVIVAL, GameMode.ADVENTURE});
@@ -35,8 +35,8 @@ public class CommandGMC extends BukkitCommand {
 		Player p = (Player) sender;
 		int length = args.length;
 		if (length == 0) {
-			if (!p.hasPermission("hessentials.staff.gamemode")) {
-				Strings.sendNoPermission(p);
+			if (!p.hasPermission(this.getPermission())) {
+				Strings.sendNoPermission(p, this.getPermission());
 				return true;
 			}
 			if (Gm.contains(p.getGameMode())) {

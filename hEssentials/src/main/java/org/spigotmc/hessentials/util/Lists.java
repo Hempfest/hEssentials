@@ -15,7 +15,7 @@ public class Lists {
 		StringBuilder string = new StringBuilder();
 		for (Player onlinePlayers : Bukkit.getOnlinePlayers()) {
 			if (string.length() > 0)
-				string.append(Strings.color("&7, "));
+				string.append(Strings.color("&7, &r"));
 			string.append(onlinePlayers.getDisplayName());
 		}
 		Config messages = new Config("Messages");
@@ -94,8 +94,16 @@ public class Lists {
 		String max = online.replaceAll("%max%",
 				String.valueOf(HempfestEssentials.getInstance().getServer().getMaxPlayers()));
 		String prefix = max.replaceAll("%prefix%", Strings.getPrefix());
-		if (HempfestEssentials.getInstance().getServer().getPluginManager().getPlugin("Clans") != null) {
+		if (HempfestEssentials.getInstance().getServer().getPluginManager().getPlugin("Clans") != null && ClanAPI.isInClan(p)) {
 			String clan = prefix.replaceAll("%clan%", ClanAPI.getClanName(p));
+			String mobkills = clan.replaceAll("%mobkills%", String.valueOf(p.getStatistic(Statistic.MOB_KILLS)));
+			String playerkills = mobkills.replaceAll("%playerkills%",
+					String.valueOf(p.getStatistic(Statistic.PLAYER_KILLS)));
+			return Strings.color(
+					playerkills.replaceAll("%ip%", String.valueOf(p.getAddress().toString().replaceAll("/", ""))));
+		}
+		if (HempfestEssentials.getInstance().getServer().getPluginManager().getPlugin("Clans") != null && !ClanAPI.isInClan(p)) {
+			String clan = prefix.replaceAll("%clan%", "none");
 			String mobkills = clan.replaceAll("%mobkills%", String.valueOf(p.getStatistic(Statistic.MOB_KILLS)));
 			String playerkills = mobkills.replaceAll("%playerkills%",
 					String.valueOf(p.getStatistic(Statistic.PLAYER_KILLS)));
@@ -117,8 +125,16 @@ public class Lists {
 		String max = online.replaceAll("%max%",
 				String.valueOf(HempfestEssentials.getInstance().getServer().getMaxPlayers()));
 		String prefix = max.replaceAll("%prefix%", Strings.getPrefix());
-		if (HempfestEssentials.getInstance().getServer().getPluginManager().getPlugin("Clans") != null) {
+		if (HempfestEssentials.getInstance().getServer().getPluginManager().getPlugin("Clans") != null && ClanAPI.isInClan(p)) {
 			String clan = prefix.replaceAll("%clan%", ClanAPI.getClanName(p));
+			String mobkills = clan.replaceAll("%mobkills%", String.valueOf(p.getStatistic(Statistic.MOB_KILLS)));
+			String playerkills = mobkills.replaceAll("%playerkills%",
+					String.valueOf(p.getStatistic(Statistic.PLAYER_KILLS)));
+			return Strings.color(
+					playerkills.replaceAll("%ip%", String.valueOf(p.getAddress().toString().replaceAll("/", ""))));
+		}
+		if (HempfestEssentials.getInstance().getServer().getPluginManager().getPlugin("Clans") != null && !ClanAPI.isInClan(p)) {
+			String clan = prefix.replaceAll("%clan%", "none");
 			String mobkills = clan.replaceAll("%mobkills%", String.valueOf(p.getStatistic(Statistic.MOB_KILLS)));
 			String playerkills = mobkills.replaceAll("%playerkills%",
 					String.valueOf(p.getStatistic(Statistic.PLAYER_KILLS)));
@@ -140,8 +156,16 @@ public class Lists {
 		String max = online.replaceAll("%max%",
 				String.valueOf(HempfestEssentials.getInstance().getServer().getMaxPlayers()));
 		String prefix = max.replaceAll("%prefix%", Strings.getPrefix());
-		if (HempfestEssentials.getInstance().getServer().getPluginManager().getPlugin("Clans") != null) {
+		if (HempfestEssentials.getInstance().getServer().getPluginManager().getPlugin("Clans") != null && ClanAPI.isInClan(p)) {
 			String clan = prefix.replaceAll("%clan%", ClanAPI.getClanName(p));
+			String mobkills = clan.replaceAll("%mobkills%", String.valueOf(p.getStatistic(Statistic.MOB_KILLS)));
+			String playerkills = mobkills.replaceAll("%playerkills%",
+					String.valueOf(p.getStatistic(Statistic.PLAYER_KILLS)));
+			return Strings.color(
+					playerkills.replaceAll("%ip%", String.valueOf(p.getAddress().toString().replaceAll("/", ""))));
+		}
+		if (HempfestEssentials.getInstance().getServer().getPluginManager().getPlugin("Clans") != null && !ClanAPI.isInClan(p)) {
+			String clan = prefix.replaceAll("%clan%", "none");
 			String mobkills = clan.replaceAll("%mobkills%", String.valueOf(p.getStatistic(Statistic.MOB_KILLS)));
 			String playerkills = mobkills.replaceAll("%playerkills%",
 					String.valueOf(p.getStatistic(Statistic.PLAYER_KILLS)));
@@ -163,8 +187,16 @@ public class Lists {
 		String max = online.replaceAll("%max%",
 				String.valueOf(HempfestEssentials.getInstance().getServer().getMaxPlayers()));
 		String prefix = max.replaceAll("%prefix%", Strings.getPrefix());
-		if (HempfestEssentials.getInstance().getServer().getPluginManager().getPlugin("Clans") != null) {
+		if (HempfestEssentials.getInstance().getServer().getPluginManager().getPlugin("Clans") != null && ClanAPI.isInClan(p)) {
 			String clan = prefix.replaceAll("%clan%", ClanAPI.getClanName(p));
+			String mobkills = clan.replaceAll("%mobkills%", String.valueOf(p.getStatistic(Statistic.MOB_KILLS)));
+			String playerkills = mobkills.replaceAll("%playerkills%",
+					String.valueOf(p.getStatistic(Statistic.PLAYER_KILLS)));
+			return Strings.color(
+					playerkills.replaceAll("%ip%", String.valueOf(p.getAddress().toString().replaceAll("/", ""))));
+		}
+		if (HempfestEssentials.getInstance().getServer().getPluginManager().getPlugin("Clans") != null && !ClanAPI.isInClan(p)) {
+			String clan = prefix.replaceAll("%clan%", "none");
 			String mobkills = clan.replaceAll("%mobkills%", String.valueOf(p.getStatistic(Statistic.MOB_KILLS)));
 			String playerkills = mobkills.replaceAll("%playerkills%",
 					String.valueOf(p.getStatistic(Statistic.PLAYER_KILLS)));
@@ -186,8 +218,16 @@ public class Lists {
 		String max = online.replaceAll("%max%",
 				String.valueOf(HempfestEssentials.getInstance().getServer().getMaxPlayers()));
 		String prefix = max.replaceAll("%prefix%", Strings.getPrefix());
-		if (HempfestEssentials.getInstance().getServer().getPluginManager().getPlugin("Clans") != null) {
+		if (HempfestEssentials.getInstance().getServer().getPluginManager().getPlugin("Clans") != null && ClanAPI.isInClan(p)) {
 			String clan = prefix.replaceAll("%clan%", ClanAPI.getClanName(p));
+			String mobkills = clan.replaceAll("%mobkills%", String.valueOf(p.getStatistic(Statistic.MOB_KILLS)));
+			String playerkills = mobkills.replaceAll("%playerkills%",
+					String.valueOf(p.getStatistic(Statistic.PLAYER_KILLS)));
+			return Strings.color(
+					playerkills.replaceAll("%ip%", String.valueOf(p.getAddress().toString().replaceAll("/", ""))));
+		}
+		if (HempfestEssentials.getInstance().getServer().getPluginManager().getPlugin("Clans") != null && !ClanAPI.isInClan(p)) {
+			String clan = prefix.replaceAll("%clan%", "none");
 			String mobkills = clan.replaceAll("%mobkills%", String.valueOf(p.getStatistic(Statistic.MOB_KILLS)));
 			String playerkills = mobkills.replaceAll("%playerkills%",
 					String.valueOf(p.getStatistic(Statistic.PLAYER_KILLS)));
@@ -209,8 +249,16 @@ public class Lists {
 		String max = online.replaceAll("%max%",
 				String.valueOf(HempfestEssentials.getInstance().getServer().getMaxPlayers()));
 		String prefix = max.replaceAll("%prefix%", Strings.getPrefix());
-		if (HempfestEssentials.getInstance().getServer().getPluginManager().getPlugin("Clans") != null) {
+		if (HempfestEssentials.getInstance().getServer().getPluginManager().getPlugin("Clans") != null && ClanAPI.isInClan(p)) {
 			String clan = prefix.replaceAll("%clan%", ClanAPI.getClanName(p));
+			String mobkills = clan.replaceAll("%mobkills%", String.valueOf(p.getStatistic(Statistic.MOB_KILLS)));
+			String playerkills = mobkills.replaceAll("%playerkills%",
+					String.valueOf(p.getStatistic(Statistic.PLAYER_KILLS)));
+			return Strings.color(
+					playerkills.replaceAll("%ip%", String.valueOf(p.getAddress().toString().replaceAll("/", ""))));
+		}
+		if (HempfestEssentials.getInstance().getServer().getPluginManager().getPlugin("Clans") != null && !ClanAPI.isInClan(p)) {
+			String clan = prefix.replaceAll("%clan%", "none");
 			String mobkills = clan.replaceAll("%mobkills%", String.valueOf(p.getStatistic(Statistic.MOB_KILLS)));
 			String playerkills = mobkills.replaceAll("%playerkills%",
 					String.valueOf(p.getStatistic(Statistic.PLAYER_KILLS)));
@@ -232,8 +280,16 @@ public class Lists {
 		String max = online.replaceAll("%max%",
 				String.valueOf(HempfestEssentials.getInstance().getServer().getMaxPlayers()));
 		String prefix = max.replaceAll("%prefix%", Strings.getPrefix());
-		if (HempfestEssentials.getInstance().getServer().getPluginManager().getPlugin("Clans") != null) {
+		if (HempfestEssentials.getInstance().getServer().getPluginManager().getPlugin("Clans") != null && ClanAPI.isInClan(p)) {
 			String clan = prefix.replaceAll("%clan%", ClanAPI.getClanName(p));
+			String mobkills = clan.replaceAll("%mobkills%", String.valueOf(p.getStatistic(Statistic.MOB_KILLS)));
+			String playerkills = mobkills.replaceAll("%playerkills%",
+					String.valueOf(p.getStatistic(Statistic.PLAYER_KILLS)));
+			return Strings.color(
+					playerkills.replaceAll("%ip%", String.valueOf(p.getAddress().toString().replaceAll("/", ""))));
+		}
+		if (HempfestEssentials.getInstance().getServer().getPluginManager().getPlugin("Clans") != null && !ClanAPI.isInClan(p)) {
+			String clan = prefix.replaceAll("%clan%", "none");
 			String mobkills = clan.replaceAll("%mobkills%", String.valueOf(p.getStatistic(Statistic.MOB_KILLS)));
 			String playerkills = mobkills.replaceAll("%playerkills%",
 					String.valueOf(p.getStatistic(Statistic.PLAYER_KILLS)));
@@ -255,8 +311,16 @@ public class Lists {
 		String max = online.replaceAll("%max%",
 				String.valueOf(HempfestEssentials.getInstance().getServer().getMaxPlayers()));
 		String prefix = max.replaceAll("%prefix%", Strings.getPrefix());
-		if (HempfestEssentials.getInstance().getServer().getPluginManager().getPlugin("Clans") != null) {
+		if (HempfestEssentials.getInstance().getServer().getPluginManager().getPlugin("Clans") != null && ClanAPI.isInClan(p)) {
 			String clan = prefix.replaceAll("%clan%", ClanAPI.getClanName(p));
+			String mobkills = clan.replaceAll("%mobkills%", String.valueOf(p.getStatistic(Statistic.MOB_KILLS)));
+			String playerkills = mobkills.replaceAll("%playerkills%",
+					String.valueOf(p.getStatistic(Statistic.PLAYER_KILLS)));
+			return Strings.color(
+					playerkills.replaceAll("%ip%", String.valueOf(p.getAddress().toString().replaceAll("/", ""))));
+		}
+		if (HempfestEssentials.getInstance().getServer().getPluginManager().getPlugin("Clans") != null && !ClanAPI.isInClan(p)) {
+			String clan = prefix.replaceAll("%clan%", "none");
 			String mobkills = clan.replaceAll("%mobkills%", String.valueOf(p.getStatistic(Statistic.MOB_KILLS)));
 			String playerkills = mobkills.replaceAll("%playerkills%",
 					String.valueOf(p.getStatistic(Statistic.PLAYER_KILLS)));
@@ -278,8 +342,16 @@ public class Lists {
 		String max = online.replaceAll("%max%",
 				String.valueOf(HempfestEssentials.getInstance().getServer().getMaxPlayers()));
 		String prefix = max.replaceAll("%prefix%", Strings.getPrefix());
-		if (HempfestEssentials.getInstance().getServer().getPluginManager().getPlugin("Clans") != null) {
+		if (HempfestEssentials.getInstance().getServer().getPluginManager().getPlugin("Clans") != null && ClanAPI.isInClan(p)) {
 			String clan = prefix.replaceAll("%clan%", ClanAPI.getClanName(p));
+			String mobkills = clan.replaceAll("%mobkills%", String.valueOf(p.getStatistic(Statistic.MOB_KILLS)));
+			String playerkills = mobkills.replaceAll("%playerkills%",
+					String.valueOf(p.getStatistic(Statistic.PLAYER_KILLS)));
+			return Strings.color(
+					playerkills.replaceAll("%ip%", String.valueOf(p.getAddress().toString().replaceAll("/", ""))));
+		}
+		if (HempfestEssentials.getInstance().getServer().getPluginManager().getPlugin("Clans") != null && !ClanAPI.isInClan(p)) {
+			String clan = prefix.replaceAll("%clan%", "none");
 			String mobkills = clan.replaceAll("%mobkills%", String.valueOf(p.getStatistic(Statistic.MOB_KILLS)));
 			String playerkills = mobkills.replaceAll("%playerkills%",
 					String.valueOf(p.getStatistic(Statistic.PLAYER_KILLS)));
@@ -301,8 +373,16 @@ public class Lists {
 		String max = online.replaceAll("%max%",
 				String.valueOf(HempfestEssentials.getInstance().getServer().getMaxPlayers()));
 		String prefix = max.replaceAll("%prefix%", Strings.getPrefix());
-		if (HempfestEssentials.getInstance().getServer().getPluginManager().getPlugin("Clans") != null) {
+		if (HempfestEssentials.getInstance().getServer().getPluginManager().getPlugin("Clans") != null && ClanAPI.isInClan(p)) {
 			String clan = prefix.replaceAll("%clan%", ClanAPI.getClanName(p));
+			String mobkills = clan.replaceAll("%mobkills%", String.valueOf(p.getStatistic(Statistic.MOB_KILLS)));
+			String playerkills = mobkills.replaceAll("%playerkills%",
+					String.valueOf(p.getStatistic(Statistic.PLAYER_KILLS)));
+			return Strings.color(
+					playerkills.replaceAll("%ip%", String.valueOf(p.getAddress().toString().replaceAll("/", ""))));
+		}
+		if (HempfestEssentials.getInstance().getServer().getPluginManager().getPlugin("Clans") != null && !ClanAPI.isInClan(p)) {
+			String clan = prefix.replaceAll("%clan%", "none");
 			String mobkills = clan.replaceAll("%mobkills%", String.valueOf(p.getStatistic(Statistic.MOB_KILLS)));
 			String playerkills = mobkills.replaceAll("%playerkills%",
 					String.valueOf(p.getStatistic(Statistic.PLAYER_KILLS)));

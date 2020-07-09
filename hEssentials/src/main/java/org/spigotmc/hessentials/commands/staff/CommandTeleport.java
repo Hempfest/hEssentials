@@ -1,4 +1,4 @@
-package org.spigotmc.hessentials.commands;
+package org.spigotmc.hessentials.commands.staff;
 
 import java.util.Arrays;
 
@@ -36,8 +36,8 @@ public class CommandTeleport extends BukkitCommand {
 		
 				// /tp - no args
 				if (length == 0) {
-					if (!p.hasPermission("hessentials.teleport")) {
-						Strings.sendNoPermission(p);
+					if (!p.hasPermission(this.getPermission())) {
+						Strings.sendNoPermission(p, this.getPermission());
 						return true;
 					}
 					Message.textHoverable(p, Strings.getPrefix() + Strings.getInvalidUsage() + commandLabel, " &7<&cplayerName&7> ", "&f&l|", " &7<targetName&7>", "&f&oExample: &7/tp &eHempfest", "&f&oExample: &7/tp &eHempfest &7Steve");
@@ -46,8 +46,8 @@ public class CommandTeleport extends BukkitCommand {
 				
 				// /tp - playername only
 				if (length == 1) {
-					if (!p.hasPermission("hessentials.teleport")) {
-						Strings.sendNoPermission(p);
+					if (!p.hasPermission(this.getPermission())) {
+						Strings.sendNoPermission(p, this.getPermission());
 						return true;
 					}
 					Player target = Bukkit.getPlayer(args[0]);
@@ -64,7 +64,7 @@ public class CommandTeleport extends BukkitCommand {
 				// /tp - tp player to player
 				if (length == 2) {
 					if (!p.hasPermission("hessentials.teleport.others")) {
-						Strings.sendNoPermission(p);
+						Strings.sendNoPermission(p, this.getPermission() + ".others");
 						return true;
 					}
 					Player target1 = Bukkit.getPlayer(args[0]);

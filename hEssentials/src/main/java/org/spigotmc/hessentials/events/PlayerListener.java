@@ -60,9 +60,11 @@ public class PlayerListener implements Listener {
 		Player p = (Player) e.getPlayer();
 		// UUID uuid = p.getUniqueId();
 		// PlayerData pd = new PlayerData(uuid);
-		Utils.hud.put(p.getName(), Boolean.valueOf(false));
 		e.setQuitMessage(Strings.getLeaveMSG(p));
+		if (Checks.canUseScoreboard()) {
+			Utils.hud.put(p.getName(), Boolean.valueOf(false));
 		Utils.removeScoreboard(p);
+		}
 	}
 
 	@EventHandler(priority = EventPriority.HIGHEST)

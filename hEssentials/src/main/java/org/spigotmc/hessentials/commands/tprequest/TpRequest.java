@@ -1,4 +1,4 @@
-package org.spigotmc.hessentials.tprequest;
+package org.spigotmc.hessentials.commands.tprequest;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -12,7 +12,7 @@ import org.spigotmc.hessentials.util.Checks;
 import org.spigotmc.hessentials.util.Strings;
 import org.spigotmc.hessentials.util.Utils;
 
-public class Requests {
+public class TpRequest {
 	
 	public static void sendMessage(CommandSender player, String message) {
 		player.sendMessage(Strings.color(message));

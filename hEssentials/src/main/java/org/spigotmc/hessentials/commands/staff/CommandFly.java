@@ -34,7 +34,7 @@ public class CommandFly extends BukkitCommand {
 		int length = args.length;
 		if (length == 0) {
 			   if (!p.hasPermission("hessentials.staff.fly")) {
-   	            Strings.sendNoPermission(p);
+   	            Strings.sendNoPermission(p, this.getPermission());
    	            return true;
    	          } 
    	          if (p.getAllowFlight()) {

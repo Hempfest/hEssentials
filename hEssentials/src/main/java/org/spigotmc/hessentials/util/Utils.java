@@ -678,6 +678,7 @@ public class Utils {
 		f.set("USERNAME", (Object) player.getName());
 		f.set("IP-ADDRESS", (Object) player.getAddress().toString().replace("/", ""));
 		f.set("Last-Time-Played", 0);
+		f.createSection("Private-Homes");
 		pd.saveConfig();
 
 	}
@@ -697,7 +698,7 @@ public class Utils {
 		PlayerData pd = new PlayerData(uuid);
 		FileConfiguration f = pd.getConfig();
 		if (!f.get("Last-Time-Played").equals(player.getLastPlayed())) {
-			f.set("USERNAME", (Object) player.getLastPlayed());
+			f.set("Last-Time-Played", (Object) player.getLastPlayed());
 			pd.saveConfig();
 		}
 	}

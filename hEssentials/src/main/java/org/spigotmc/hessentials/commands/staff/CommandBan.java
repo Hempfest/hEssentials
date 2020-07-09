@@ -8,6 +8,7 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.defaults.BukkitCommand;
 import org.bukkit.entity.Player;
+import org.spigotmc.hessentials.util.Message;
 import org.spigotmc.hessentials.util.Strings;
 
 public class CommandBan extends BukkitCommand {
@@ -34,12 +35,12 @@ public class CommandBan extends BukkitCommand {
 
 		Player p = (Player) sender;
 		int length = args.length;
-		if (!p.hasPermission("core.staff")) {
-  		  p.sendMessage(Strings.getPrefix() + " You are not authorized!");
+		if (!p.hasPermission(this.getPermission())) {
+  		  Strings.sendNoPermission(p, this.getPermission());
   		  return true;
   	  }
   	  if (length == 0) {
-  		  p.sendMessage(Strings.getPrefix() + " /ban <player> | <reason>");
+  		  Message.textHoverable(p, Strings.getPrefix() + Strings.getInvalidUsage() + commandLabel, " &7<&cplayerName&7> ", "&f&l|", " &7<banReason&7>", "&f&oExample: &7/ban &eHempfest", "&f&oExample: &7/ban &eHempfest &cCheating");
   		  return true;
   	  }
   	  if (length == 1) {
@@ -52,12 +53,12 @@ public class CommandBan extends BukkitCommand {
   			  }
   			  return true;
   		  }
-  		  if (target.hasPermission("hessentials.staff.ban")) {
-  			  p.sendMessage(Strings.getPrefix() + " You cannot ban this player!");
+  		  if (target.hasPermission(this.getPermission())) {
+  			  p.sendMessage(Strings.getPrefix() + "You cannot ban this player!");
   			  return true;
   		  }
-  		  target.kickPlayer(Strings.getPrefix() + "\n§c§lYou have been banned.\n§fREASON:\n§lNONE");
-  		  Bukkit.broadcastMessage(Strings.getPrefix() + " Player '§c" + target.getName() + "§7' banned for '§cNO REASON§7'.");
+  		  target.kickPlayer(Strings.getPrefix() + "\n&c&lYou have been banned.\n&fREASON:\n&lNONE");
+  		  Bukkit.broadcastMessage(Strings.getPrefix() + " Player '&c" + target.getName() + "&7' banned for '&cNO REASON&7'.");
   		  Bukkit.getBanList(Type.NAME).addBan(target.getName(), Strings.color("&4&lNO REASON"), null, p.getName());
   		  return true;
   	  }
@@ -66,12 +67,12 @@ public class CommandBan extends BukkitCommand {
             for (int i = 1; i < args.length; i++)
               rsn.append(String.valueOf(args[i]) + " "); 
             Player target = Bukkit.getPlayer(args[0]);
-            if (target.hasPermission("hessentials.staff.ban")) {
-  			  p.sendMessage(Strings.getPrefix() + " You cannot ban this player!");
+            if (target.hasPermission(this.getPermission())) {
+  			  p.sendMessage(Strings.getPrefix() + "You cannot ban this player!");
   			  return true;
   		  }
-            target.kickPlayer(Strings.getPrefix() + "\n§c§lYou have been banned.\n§c§lREASON:\n§f§l" + rsn);
-            Bukkit.broadcastMessage(Strings.getPrefix() + " Player '§c" + target.getName() + "§7' banned for '§c" + rsn + "§7'.");
+            target.kickPlayer(Strings.getPrefix() + "\n&c&lYou have been banned.\n&c&lREASON:\n&f&l" + rsn);
+            Bukkit.broadcastMessage(Strings.getPrefix() + " Player '&c" + target.getName() + "&7' banned for '&c" + rsn + "&7'.");
             Bukkit.getBanList(Type.NAME).addBan(target.getName(), Strings.color("&4&l" + rsn), null, p.getName());
   		  return true;
   	  }

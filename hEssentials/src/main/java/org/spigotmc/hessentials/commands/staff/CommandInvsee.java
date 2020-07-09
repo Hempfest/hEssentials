@@ -29,8 +29,13 @@ public class CommandInvsee extends BukkitCommand {
 			sendMessage(sender, Strings.getPrefix() + "This is a player only command.");
 			return true;
 		}
-
+		
 		Player p = (Player) sender;
+		
+		if (!p.hasPermission(this.getPermission())) {
+			Strings.sendNoPermission(p, this.getPermission());
+			return true;
+		}
 		int length = args.length;
 		if (length == 0) {
 			sendMessage(p, Strings.getPrefix() + "This is a command.");

@@ -5,23 +5,29 @@ import org.spigotmc.hessentials.commands.CommandHelp;
 import org.spigotmc.hessentials.commands.CommandMessage;
 import org.spigotmc.hessentials.commands.CommandOnlineList;
 import org.spigotmc.hessentials.commands.CommandReply;
-import org.spigotmc.hessentials.commands.CommandTeleport;
-import org.spigotmc.hessentials.commands.CommandTpr;
 import org.spigotmc.hessentials.commands.CommandTrack;
+import org.spigotmc.hessentials.commands.homes.CommandDelhome;
+import org.spigotmc.hessentials.commands.homes.CommandHome;
+import org.spigotmc.hessentials.commands.homes.CommandHomes;
+import org.spigotmc.hessentials.commands.homes.CommandSethome;
 import org.spigotmc.hessentials.commands.staff.CommandBan;
 import org.spigotmc.hessentials.commands.staff.CommandCFUpdate;
 import org.spigotmc.hessentials.commands.staff.CommandFly;
 import org.spigotmc.hessentials.commands.staff.CommandGMC;
 import org.spigotmc.hessentials.commands.staff.CommandGMS;
 import org.spigotmc.hessentials.commands.staff.CommandGamemode;
+import org.spigotmc.hessentials.commands.staff.CommandHomelist;
 import org.spigotmc.hessentials.commands.staff.CommandInvsee;
 import org.spigotmc.hessentials.commands.staff.CommandKick;
 import org.spigotmc.hessentials.commands.staff.CommandMuteChat;
+import org.spigotmc.hessentials.commands.staff.CommandPlayerhome;
 import org.spigotmc.hessentials.commands.staff.CommandReload;
 import org.spigotmc.hessentials.commands.staff.CommandSocialSpy;
 import org.spigotmc.hessentials.commands.staff.CommandStaffHelp;
+import org.spigotmc.hessentials.commands.staff.CommandTeleport;
 import org.spigotmc.hessentials.commands.staff.CommandUnban;
 import org.spigotmc.hessentials.commands.staff.CommandWhois;
+import org.spigotmc.hessentials.commands.tprequest.CommandTpRequest;
 import org.spigotmc.hessentials.events.PlayerListener;
 import org.spigotmc.hessentials.util.Checks;
 import org.spigotmc.hessentials.util.Utils;
@@ -39,6 +45,7 @@ public class HempfestEssentials extends JavaPlugin {
 		setInstance(this);
 		Utils.createConfiguration();
 		registerCommands();
+		registerTabCommands();
 		registerEvents();
 		if (Checks.canUseScoreboard()) {
 		Utils.updateLobbyBoard();
@@ -62,10 +69,15 @@ public class HempfestEssentials extends JavaPlugin {
 	}
 
 	public void registerCommands() {
+		Utils.registerCommand(new CommandHome());
+		Utils.registerCommand(new CommandHomes());
+		Utils.registerCommand(new CommandHomelist());
+		Utils.registerCommand(new CommandPlayerhome());
+		Utils.registerCommand(new CommandSethome());
+		Utils.registerCommand(new CommandDelhome());
 		Utils.registerCommand(new CommandHelp());
 		Utils.registerCommand(new CommandTrack());
 		Utils.registerCommand(new CommandTeleport());
-		Utils.registerTabCommand("teleportrequest", new CommandTpr(), new CommandTpr());
 		Utils.registerCommand(new CommandGMS());
 		Utils.registerCommand(new CommandGMC());
 		Utils.registerCommand(new CommandOnlineList());
@@ -78,12 +90,15 @@ public class HempfestEssentials extends JavaPlugin {
 		Utils.registerCommand(new CommandFly());
 		Utils.registerCommand(new CommandInvsee());
 		Utils.registerCommand(new CommandMuteChat());
-		//Utils.registerCommand(new CommandGamemode());
-		Utils.registerTabCommand("gamemode", new CommandGamemode(), new CommandGamemode());
 		Utils.registerCommand(new CommandWhois());
 		Utils.registerCommand(new CommandKick());
 		Utils.registerCommand(new CommandBan());
 		Utils.registerCommand(new CommandUnban());
+	}
+	
+	public void registerTabCommands() {
+		Utils.registerTabCommand("teleportrequest", new CommandTpRequest(), new CommandTpRequest());
+		Utils.registerTabCommand("gamemode", new CommandGamemode(), new CommandGamemode());
 	}
 
 }

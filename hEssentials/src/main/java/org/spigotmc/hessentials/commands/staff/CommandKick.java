@@ -31,22 +31,23 @@ public class CommandKick extends BukkitCommand {
 
 		Player p = (Player) sender;
 		int length = args.length;
-		 if (!p.hasPermission("hessentials.staff.kick")) {
-   		  p.sendMessage(Strings.getPrefix() + " You are not authorized!");
+		 if (!p.hasPermission(this.getPermission())) {
+   		 Strings.sendNoPermission(p, this.getPermission());
    		  return true;
    	  }
    	  if (length == 0) {
-   		  p.sendMessage(Strings.getPrefix() + " /kick <player> | <reason>");
+   		  
+   		  sendMessage(p, Strings.getPrefix() + Strings.getInvalidUsage() + "kick <player> | <reason>");
    		  return true;
    	  }
    	  if (length == 1) {
    		  Player target = Bukkit.getPlayer(args[0]);
-   		  if (target.getName().equals("Hempfest") || target.hasPermission("core.admin")) {
-   			  p.sendMessage(Strings.getPrefix() + " You cannot kick this player!");
+   		  if (target.getName().equals("Hempfest") || target.hasPermission(this.getPermission())) {
+   			  sendMessage(p, Strings.getPrefix() + "You cannot kick this player!");
    			  return true;
    		  }
-   		  target.kickPlayer(Strings.getPrefix() + "\n§c§lYou have been kicked.\n§fREASON:\n§lNONE");
-   		  Bukkit.broadcastMessage(Strings.getPrefix() + " Player '§c" + target.getName() + "§7' kicked for '§cNO REASON§7'.");
+   		  target.kickPlayer(Strings.getPrefix() + "\n&c&lYou have been kicked.\n&fREASON:\n&lNONE");
+   		  Bukkit.broadcastMessage(Strings.getPrefix() + "Player '&c" + target.getName() + "&7' kicked for '&cNO REASON&7'.");
    		  return true;
    	  }
    	  if (length > 1) {
@@ -54,12 +55,12 @@ public class CommandKick extends BukkitCommand {
              for (int i = 1; i < args.length; i++)
                rsn.append(String.valueOf(args[i]) + " "); 
              Player target = Bukkit.getPlayer(args[0]);
-             if (target.hasPermission("hessentials.staff.kick")) {
-   			  p.sendMessage(Strings.getPrefix() + " You cannot kick this player!");
+             if (target.hasPermission(this.getPermission())) {
+   			  sendMessage(p, Strings.getPrefix() + "You cannot kick this player!");
    			  return true;
    		  }
-             target.kickPlayer(Strings.getPrefix() + "\n§c§lYou have been kicked.\n§c§lREASON:\n§f§l" + rsn);
-             Bukkit.broadcastMessage(Strings.getPrefix() + " Player '§c" + target.getName() + "§7' kicked for '§c" + rsn + "§7'.");
+             target.kickPlayer(Strings.getPrefix() + "\n&c&lYou have been kicked.\n&c&lREASON:\n&f&l" + rsn);
+             Bukkit.broadcastMessage(Strings.getPrefix() + "Player '&c" + target.getName() + "&7' kicked for '&c" + rsn + "&7'.");
    		  return true;
    	  }
 

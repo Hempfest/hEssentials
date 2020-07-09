@@ -33,8 +33,8 @@ public class CommandReload extends BukkitCommand {
 		}
 
 		Player p = (Player) sender;
-		if (!p.hasPermission("hessentials.staff.reload")) {
-			Strings.sendNoPermission(p);
+		if (!p.hasPermission(this.getPermission())) {
+			Strings.sendNoPermission(p, this.getPermission());
 			return true;
 		}
 		int length = args.length;

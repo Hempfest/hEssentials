@@ -1,5 +1,7 @@
 package org.spigotmc.hessentials.util;
 
+import java.io.UnsupportedEncodingException;
+
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -21,10 +23,10 @@ public class Strings {
 		p.sendMessage(getPrefix() + color("&a&lSuccessfully received the Menu Item's."));
 	}
 	
-	public static void sendNoPermission(Player p) {
+	public static void sendNoPermission(Player p, String permission) {
 		Config messages = new Config("Messages");
 		FileConfiguration mess = messages.getConfig();	
-		p.sendMessage(getPrefix() + color(mess.getString("Messages.Player-Responses.No-Permission")));
+		p.sendMessage(getPrefix() + color(mess.getString("Messages.Player-Responses.No-Permission").replaceAll("%permnode%", permission)));
 	}
 	
 	public static String getPrefix() { 
@@ -67,6 +69,17 @@ public class Strings {
 	public static String getChatMuted() {
 		return color("&f&oChat: &4Muted");
 	}
+	
+	  public static String infinity() {
+		  String inf = null;
+		    try {
+		    	inf = new String(String.valueOf(Character.toString('\u221e')).getBytes("UTF-8"), "UTF-8");
+		    } catch (UnsupportedEncodingException ex) {
+		    	inf = "?";
+		    	ex.printStackTrace();
+		    }
+		    return inf;
+	  }
 	
 	public static String getMOTD(Player player) {
 		Config motd = new Config("MOTD");
