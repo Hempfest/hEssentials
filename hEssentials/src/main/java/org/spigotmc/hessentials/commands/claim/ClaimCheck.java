@@ -1,10 +1,9 @@
-package org.spigotmc.hessentials.util;
+package org.spigotmc.hessentials.commands.claim;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
-import org.spigotmc.hessentials.commands.claim.ClaimUtil;
 
 
 

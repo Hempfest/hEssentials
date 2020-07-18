@@ -31,6 +31,12 @@ import org.bukkit.scoreboard.ScoreboardManager;
 import org.spigotmc.hessentials.HempfestEssentials;
 import org.spigotmc.hessentials.configuration.Config;
 import org.spigotmc.hessentials.configuration.PlayerData;
+import org.spigotmc.hessentials.util.scoreboards.BoardLobby;
+import org.spigotmc.hessentials.util.scoreboards.BoardMuted;
+import org.spigotmc.hessentials.util.scoreboards.BoardTrack;
+import org.spigotmc.hessentials.util.variables.Checks;
+import org.spigotmc.hessentials.util.variables.Lists;
+import org.spigotmc.hessentials.util.variables.Strings;
 
 import m.h.clans.util.ClanAPI;
 

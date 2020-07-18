@@ -7,9 +7,9 @@ import org.bukkit.command.defaults.BukkitCommand;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.spigotmc.hessentials.HempfestEssentials;
-import org.spigotmc.hessentials.util.Message;
-import org.spigotmc.hessentials.util.Strings;
 import org.spigotmc.hessentials.util.Utils;
+import org.spigotmc.hessentials.util.variables.Message;
+import org.spigotmc.hessentials.util.variables.Strings;
 
 public class CommandReload extends BukkitCommand {
 

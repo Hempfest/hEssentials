@@ -1,4 +1,4 @@
-package org.spigotmc.hessentials.util;
+package org.spigotmc.hessentials.util.variables;
 
 import org.bukkit.command.CommandSender;
 

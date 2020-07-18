@@ -1,8 +1,9 @@
-package org.spigotmc.hessentials.util;
+package org.spigotmc.hessentials.util.variables;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.spigotmc.hessentials.configuration.Config;
+import org.spigotmc.hessentials.util.Utils;
 
 public class Checks {
 

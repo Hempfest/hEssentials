@@ -10,8 +10,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import org.spigotmc.hessentials.configuration.Config;
-import org.spigotmc.hessentials.util.Message;
-import org.spigotmc.hessentials.util.Strings;
+import org.spigotmc.hessentials.util.variables.Message;
+import org.spigotmc.hessentials.util.variables.Strings;
 
 public class CommandTpRequest implements CommandExecutor, TabCompleter {
 	

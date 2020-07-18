@@ -6,6 +6,7 @@ import org.spigotmc.hessentials.commands.CommandMessage;
 import org.spigotmc.hessentials.commands.CommandOnlineList;
 import org.spigotmc.hessentials.commands.CommandReply;
 import org.spigotmc.hessentials.commands.CommandTrack;
+import org.spigotmc.hessentials.commands.claim.ClaimCheck;
 import org.spigotmc.hessentials.commands.claim.CommandClaim;
 import org.spigotmc.hessentials.commands.homes.CommandDelhome;
 import org.spigotmc.hessentials.commands.homes.CommandHome;
@@ -31,9 +32,8 @@ import org.spigotmc.hessentials.commands.staff.CommandUnban;
 import org.spigotmc.hessentials.commands.staff.CommandWhois;
 import org.spigotmc.hessentials.commands.tprequest.CommandTpRequest;
 import org.spigotmc.hessentials.events.PlayerListener;
-import org.spigotmc.hessentials.util.Checks;
-import org.spigotmc.hessentials.util.ClaimCheck;
 import org.spigotmc.hessentials.util.Utils;
+import org.spigotmc.hessentials.util.variables.Checks;
 
 
 

@@ -16,10 +16,10 @@ import org.bukkit.event.server.ServerListPingEvent;
 import org.spigotmc.hessentials.commands.claim.ClaimUtil;
 import org.spigotmc.hessentials.configuration.Config;
 import org.spigotmc.hessentials.configuration.PlayerData;
-import org.spigotmc.hessentials.util.Checks;
-import org.spigotmc.hessentials.util.Message;
-import org.spigotmc.hessentials.util.Strings;
 import org.spigotmc.hessentials.util.Utils;
+import org.spigotmc.hessentials.util.variables.Checks;
+import org.spigotmc.hessentials.util.variables.Message;
+import org.spigotmc.hessentials.util.variables.Strings;
 
 public class PlayerListener implements Listener {
 

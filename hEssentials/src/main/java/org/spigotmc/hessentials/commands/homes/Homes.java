@@ -13,7 +13,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerTeleportEvent;
 import org.spigotmc.hessentials.configuration.PlayerData;
-import org.spigotmc.hessentials.util.Strings;
+import org.spigotmc.hessentials.util.variables.Strings;
 
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.ComponentBuilder;

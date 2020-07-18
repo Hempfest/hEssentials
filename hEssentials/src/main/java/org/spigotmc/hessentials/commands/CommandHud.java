@@ -5,9 +5,9 @@ import java.util.Arrays;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.defaults.BukkitCommand;
 import org.bukkit.entity.Player;
-import org.spigotmc.hessentials.util.Checks;
-import org.spigotmc.hessentials.util.Strings;
 import org.spigotmc.hessentials.util.Utils;
+import org.spigotmc.hessentials.util.variables.Checks;
+import org.spigotmc.hessentials.util.variables.Strings;
 
 public class CommandHud extends BukkitCommand {
 

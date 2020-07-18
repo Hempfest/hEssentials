@@ -8,9 +8,9 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.spigotmc.hessentials.HempfestEssentials;
 import org.spigotmc.hessentials.configuration.Config;
-import org.spigotmc.hessentials.util.Checks;
-import org.spigotmc.hessentials.util.Strings;
 import org.spigotmc.hessentials.util.Utils;
+import org.spigotmc.hessentials.util.variables.Checks;
+import org.spigotmc.hessentials.util.variables.Strings;
 
 public class TpRequest {
 	

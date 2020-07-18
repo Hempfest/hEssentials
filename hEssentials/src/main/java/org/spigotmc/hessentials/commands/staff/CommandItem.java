@@ -7,7 +7,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.defaults.BukkitCommand;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import org.spigotmc.hessentials.util.Strings;
+import org.spigotmc.hessentials.util.variables.Strings;
 
 public class CommandItem extends BukkitCommand {
 

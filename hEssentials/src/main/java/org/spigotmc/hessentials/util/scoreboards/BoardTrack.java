@@ -1,4 +1,4 @@
-package org.spigotmc.hessentials.util;
+package org.spigotmc.hessentials.util.scoreboards;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -6,12 +6,12 @@ import java.util.UUID;
 
 import org.bukkit.Bukkit;
 
-public class BoardLobby {
+public class BoardTrack {
 	
 	private static Map<UUID, Integer> TASKS = new HashMap<UUID, Integer>();
 	private final UUID uuid;
 	
-	public BoardLobby(UUID uuid) {
+	public BoardTrack(UUID uuid) {
 		this.uuid = uuid;
 	}
 	

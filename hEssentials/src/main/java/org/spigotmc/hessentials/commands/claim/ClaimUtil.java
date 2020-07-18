@@ -9,7 +9,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.spigotmc.hessentials.configuration.Config;
 import org.spigotmc.hessentials.configuration.PlayerData;
-import org.spigotmc.hessentials.util.Strings;
+import org.spigotmc.hessentials.util.variables.Strings;
 
 public class ClaimUtil {
 	

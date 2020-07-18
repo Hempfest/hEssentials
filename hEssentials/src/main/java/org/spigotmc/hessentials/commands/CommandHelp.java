@@ -5,10 +5,10 @@ import java.util.Arrays;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.defaults.BukkitCommand;
 import org.bukkit.entity.Player;
-import org.spigotmc.hessentials.util.Checks;
-import org.spigotmc.hessentials.util.Lists;
-import org.spigotmc.hessentials.util.Message;
-import org.spigotmc.hessentials.util.Strings;
+import org.spigotmc.hessentials.util.variables.Checks;
+import org.spigotmc.hessentials.util.variables.Lists;
+import org.spigotmc.hessentials.util.variables.Message;
+import org.spigotmc.hessentials.util.variables.Strings;
 
 public class CommandHelp extends BukkitCommand {
 

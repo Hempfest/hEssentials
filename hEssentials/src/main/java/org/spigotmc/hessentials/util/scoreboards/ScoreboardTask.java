@@ -1,4 +1,4 @@
-package org.spigotmc.hessentials.util;
+package org.spigotmc.hessentials.util.scoreboards;
 
 import java.util.List;
 import java.util.Map;

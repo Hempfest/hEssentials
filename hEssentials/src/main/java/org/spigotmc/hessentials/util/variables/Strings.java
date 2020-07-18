@@ -1,4 +1,4 @@
-package org.spigotmc.hessentials.util;
+package org.spigotmc.hessentials.util.variables;
 
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
