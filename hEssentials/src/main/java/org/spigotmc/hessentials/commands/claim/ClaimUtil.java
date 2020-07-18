@@ -137,7 +137,7 @@ public class ClaimUtil {
 	}
 	
 	// Get the claim name at the specified location
-	static String getClaimName(Location loc) {
+	public static String getClaimName(Location loc) {
 		Config data = new Config("Claims");
 		FileConfiguration d = data.getConfig();
 		if (isInClaim(loc)) {
@@ -149,7 +149,7 @@ public class ClaimUtil {
 			 }
 		}
 		}
-		return "N/A";
+		return "Wild";
 	}
 	
 	// Get the claim owner of the specified location
@@ -166,8 +166,8 @@ public class ClaimUtil {
 		}
 	} else
 		
-		return "N/A";
-		return "N/A";
+		return "Unowned";
+		return "Unowned";
 	}
 	
 	// Delete the claim of a player

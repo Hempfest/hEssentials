@@ -23,6 +23,8 @@ Messages:
 #   *  %prefix% = current plugin prefix
 #   *  %next% = goto the next line
 #   *  %target% = target player being messaged
+#   *  %owner% = returns the owner of the claimed land
+#   *  %land% = returns the name of the claimed land
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 #   *  %permnode% = gets the permission the player doesn't have access to.
 #   **/\ (Works only for "No-Permission" section.) /\**
@@ -42,5 +44,13 @@ Messages:
     Chat-Muted: '&fChat is muted globally.'
     Chat-UnMuted: '&fChat is unmuted globally.'
     Cannot-Speak: '&c&oChat is muted and you''re not permitted to speak.'
+    Inside-Claim-Unlisted-Title: '%owner%''s land.'
+    Inside-Claim-Unlisted-SubTitle: 'Land: %claim%.'
+    Inside-Claim-User-Title: 'Shared land from &e%owner%'
+    Inside-Claim-User-SubTitle: 'Land: %claim%'
+    Inside-Claim-Owner-Title: 'Owned land'
+    Inside-Claim-Owner-SubTitle: 'Land: %claim%'
+    Outside-Claim-Wilderness-Title: '&4&lWilderness'
+    Outside-Claim-Wilderness-SubTitle: '&7Tread carefully'
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#  
 

@@ -8,6 +8,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.spigotmc.hessentials.HempfestEssentials;
+import org.spigotmc.hessentials.commands.claim.ClaimUtil;
 import org.spigotmc.hessentials.configuration.Config;
 
 import net.md_5.bungee.api.ChatColor;
@@ -18,6 +19,55 @@ import net.md_5.bungee.api.chat.HoverEvent;
 import net.md_5.bungee.api.chat.TextComponent;
 
 public class Strings {
+	
+	public static String getRandomTitle(Player p) {
+		Config messages = new Config(getMessagesUsed());
+		FileConfiguration mess = messages.getConfig();	
+		String text = mess.getString("Messages.Player-Responses.Inside-Claim-Unlisted-Title").replaceAll("%owner%", ClaimUtil.getClaimOwner(p.getLocation()));
+		return color(text.replaceAll("%claim%", ClaimUtil.getClaimName(p.getLocation())));
+	}
+	public static String getRandomsubTitle(Player p) {
+		Config messages = new Config(getMessagesUsed());
+		FileConfiguration mess = messages.getConfig();	
+		String text = mess.getString("Messages.Player-Responses.Inside-Claim-Unlisted-SubTitle").replaceAll("%owner%", ClaimUtil.getClaimOwner(p.getLocation()));
+		return color(text.replaceAll("%claim%", ClaimUtil.getClaimName(p.getLocation())));
+	}
+	public static String getUserTitle(Player p) {
+		Config messages = new Config(getMessagesUsed());
+		FileConfiguration mess = messages.getConfig();	
+		String text = mess.getString("Messages.Player-Responses.Inside-Claim-User-Title").replaceAll("%owner%", ClaimUtil.getClaimOwner(p.getLocation()));
+		return color(text.replaceAll("%claim%", ClaimUtil.getClaimName(p.getLocation())));
+	}
+	public static String getUserSubTitle(Player p) {
+		Config messages = new Config(getMessagesUsed());
+		FileConfiguration mess = messages.getConfig();	
+		String text = mess.getString("Messages.Player-Responses.Inside-Claim-User-SubTitle").replaceAll("%owner%", ClaimUtil.getClaimOwner(p.getLocation()));
+		return color(text.replaceAll("%claim%", ClaimUtil.getClaimName(p.getLocation())));
+	}
+	public static String getOwnerTitle(Player p) {
+		Config messages = new Config(getMessagesUsed());
+		FileConfiguration mess = messages.getConfig();	
+		String text = mess.getString("Messages.Player-Responses.Inside-Claim-Owner-Title").replaceAll("%owner%", ClaimUtil.getClaimOwner(p.getLocation()));
+		return color(text.replaceAll("%claim%", ClaimUtil.getClaimName(p.getLocation())));
+	}
+	public static String getOwnerSubTitle(Player p) {
+		Config messages = new Config(getMessagesUsed());
+		FileConfiguration mess = messages.getConfig();	
+		String text = mess.getString("Messages.Player-Responses.Inside-Claim-Owner-SubTitle").replaceAll("%owner%", ClaimUtil.getClaimOwner(p.getLocation()));
+		return color(text.replaceAll("%claim%", ClaimUtil.getClaimName(p.getLocation())));
+	}
+	public static String getWildTitle(Player p) {
+		Config messages = new Config(getMessagesUsed());
+		FileConfiguration mess = messages.getConfig();	
+		String text = mess.getString("Messages.Player-Responses.Outside-Claim-Wilderness-Title").replaceAll("%owner%", ClaimUtil.getClaimOwner(p.getLocation()));
+		return color(text.replaceAll("%claim%", ClaimUtil.getClaimName(p.getLocation())));
+	}
+	public static String getWildSubTitle(Player p) {
+		Config messages = new Config(getMessagesUsed());
+		FileConfiguration mess = messages.getConfig();	
+		String text = mess.getString("Messages.Player-Responses.Outside-Claim-Wilderness-SubTitle").replaceAll("%owner%", ClaimUtil.getClaimOwner(p.getLocation()));
+		return color(text.replaceAll("%claim%", ClaimUtil.getClaimName(p.getLocation())));
+	}
 	
 	
 	public static void sendReceivedMenu(Player p) {
