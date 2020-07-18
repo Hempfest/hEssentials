@@ -1,5 +1,6 @@
 package org.spigotmc.hessentials.util;
 
+import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 
 import org.bukkit.Bukkit;
@@ -24,13 +25,13 @@ public class Strings {
 	}
 	
 	public static void sendNoPermission(Player p, String permission) {
-		Config messages = new Config("Messages");
+		Config messages = new Config(getMessagesUsed());
 		FileConfiguration mess = messages.getConfig();	
 		p.sendMessage(getPrefix() + color(mess.getString("Messages.Player-Responses.No-Permission").replaceAll("%permnode%", permission)));
 	}
 	
 	public static String getPrefix() { 
-		Config messages = new Config("Messages");
+		Config messages = new Config(getMessagesUsed());
 		FileConfiguration mess = messages.getConfig();	
 		return color(mess.getString("Messages.Prefix") + " ");
 	}
@@ -42,24 +43,54 @@ public class Strings {
 	}
 	
 	public static String getFirstJoinMSG(Player player) {
-		Config messages = new Config("Messages");
+		Config messages = new Config(getMessagesUsed());
 		FileConfiguration m = messages.getConfig();
 		String MSG = m.getString("Messages.Player-Responses.First-Player-Join").replaceAll("%player%", player.getName());
 		return color(MSG);
 	}
 	
+	public static String getSocialSpyOn(Player player) {
+		Config messages = new Config(getMessagesUsed());
+		FileConfiguration m = messages.getConfig();
+		String MSG = m.getString("Messages.Player-Responses.Social-Spy-Activated").replaceAll("%player%", player.getName());
+		return color(MSG.replaceAll("%prefix%", getPrefix()));
+	}
+	public static String getSocialSpyOff(Player player) {
+		Config messages = new Config(getMessagesUsed());
+		FileConfiguration m = messages.getConfig();
+		String MSG = m.getString("Messages.Player-Responses.Social-Spy-Deactivated").replaceAll("%player%", player.getName());
+		return color(MSG.replaceAll("%prefix%", getPrefix()));
+	}
+	
 	public static String getJoinMSG(Player player) {
-		Config messages = new Config("Messages");
+		Config messages = new Config(getMessagesUsed());
 		FileConfiguration m = messages.getConfig();
 		String MSG = m.getString("Messages.Player-Responses.Player-Join").replaceAll("%player%", player.getName());
 		return color(MSG);
 	}
 	
 	public static String getLeaveMSG(Player player) {
-		Config messages = new Config("Messages");
+		Config messages = new Config(getMessagesUsed());
 		FileConfiguration m = messages.getConfig();
 		String MSG = m.getString("Messages.Player-Responses.Player-Leave").replaceAll("%player%", player.getName());
 		return color(MSG);
+	}
+	
+	public static String getMessagesUsed() {
+		Config messages = new Config("Messages");
+		Config messages_es = new Config("Messages_espanola");
+		FileConfiguration config = messages.getConfig();
+		if (config.getString("Config.Use").equals("es")) {
+			InputStream in = HempfestEssentials.instance.getResource("Messages_espanola.yml");
+			if (!messages_es.exists()) {
+				Config.copy(in, messages_es.getFile());
+			}
+			return "Messages_espanola";
+			}
+		if (config.getString("Config.Use").equals("en")) {
+			return "Messages";
+		}
+			return "Messages";
 	}
 	
 	public static String getInvalidUsage() {
@@ -83,7 +114,7 @@ public class Strings {
 	
 	public static String getMOTD(Player player) {
 		Config motd = new Config("MOTD");
-		Config messages = new Config("Messages");
+		Config messages = new Config(getMessagesUsed());
 		FileConfiguration m = motd.getConfig();
 		String section = m.getString("Message-of-the-day").replaceAll("%online%",
 				String.valueOf(Bukkit.getOnlinePlayers().size()));
@@ -97,7 +128,7 @@ public class Strings {
 	
 	public static String getNPB_MOTD(Player player) {
 		Config motd = new Config("MOTD");
-		Config messages = new Config("Messages");
+		Config messages = new Config(getMessagesUsed());
 		FileConfiguration m = motd.getConfig();
 		String section = m.getString("MOTD-First-Join").replaceAll("%online%",
 				String.valueOf(Bukkit.getOnlinePlayers().size()));
@@ -110,7 +141,7 @@ public class Strings {
 	}
 	
 	public static String messageSentMSG(Player player, Player target) {
-		Config messages = new Config("Messages");
+		Config messages = new Config(getMessagesUsed());
 		FileConfiguration mess = messages.getConfig();	
 		String start = mess.getString("Messages.Player-Responses.Player-Message-Send").replaceAll("%target%", target.getName());
 		String next = start.replaceAll("%player%", player.getName());
@@ -120,7 +151,7 @@ public class Strings {
 	}
 	
 	public static String messageRecievedMSG(Player player, Player target) {
-		Config messages = new Config("Messages");
+		Config messages = new Config(getMessagesUsed());
 		FileConfiguration mess = messages.getConfig();
 		String start = mess.getString("Messages.Player-Responses.Player-Message-Revieve").replaceAll("%target%", target.getName());
 		String next = start.replaceAll("%player%", player.getName());
@@ -130,7 +161,7 @@ public class Strings {
 	}
 	
 	public static String replySentMSG(Player player, Player target) {
-		Config messages = new Config("Messages");
+		Config messages = new Config(getMessagesUsed());
 		FileConfiguration mess = messages.getConfig();
 		String start = mess.getString("Messages.Player-Responses.Player-Reply-Send").replaceAll("%target%", target.getName());
 		String next = start.replaceAll("%player%", player.getName());
@@ -140,7 +171,7 @@ public class Strings {
 	}
 	
 	public static String replyRecievedMSG(Player player, Player target) {
-		Config messages = new Config("Messages");
+		Config messages = new Config(getMessagesUsed());
 		FileConfiguration mess = messages.getConfig();	
 		String start = mess.getString("Messages.Player-Responses.Player-Reply-Recieve").replaceAll("%target%", target.getName());
 		String next = start.replaceAll("%player%", player.getName());
@@ -150,7 +181,7 @@ public class Strings {
 	}
 	
 	public static String socialSpyActivateMSG(Player player) {
-		Config messages = new Config("Messages");
+		Config messages = new Config(getMessagesUsed());
 		FileConfiguration mess = messages.getConfig();	
 		String start = mess.getString("Messages.Player-Responses.Social-Spy-Activated");
 		String next = start.replaceAll("%player%", player.getName());
@@ -160,7 +191,7 @@ public class Strings {
 	}
 	
 	public static String socialSpyDeactivateMSG(Player player) {
-		Config messages = new Config("Messages");
+		Config messages = new Config(getMessagesUsed());
 		FileConfiguration mess = messages.getConfig();
 		String start = mess.getString("Messages.Player-Responses.Social-Spy-Deactivated");
 		String next = start.replaceAll("%player%", player.getName());

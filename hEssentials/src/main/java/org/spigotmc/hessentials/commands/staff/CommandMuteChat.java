@@ -35,10 +35,12 @@ public class CommandMuteChat extends BukkitCommand {
 			if (Utils.Chat_MUTED) {
 				Utils.Chat_MUTED = false;
 				Utils.sendChat_Unmuted();
+				
 				return true;
 			} else if (!Utils.Chat_MUTED) {
 				Utils.Chat_MUTED = true;
 				Utils.sendChat_Muted();
+				
 				return true;
 			}
 		}

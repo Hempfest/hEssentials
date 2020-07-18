@@ -13,6 +13,7 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.server.ServerListPingEvent;
+import org.spigotmc.hessentials.commands.claim.ClaimUtil;
 import org.spigotmc.hessentials.configuration.Config;
 import org.spigotmc.hessentials.configuration.PlayerData;
 import org.spigotmc.hessentials.util.Checks;
@@ -32,6 +33,7 @@ public class PlayerListener implements Listener {
 			e.setJoinMessage(Strings.getFirstJoinMSG(p));
 			Utils.npbMOTD(p);
 			Utils.createPlayerConfig(p);
+			ClaimUtil.updateClaimUser(p);
 			if (Checks.canUseScoreboard()) {
 				Utils.createScoreboard(p);
 				Utils.animateScoreTitle(p);
@@ -41,6 +43,7 @@ public class PlayerListener implements Listener {
 		if (!pd.exists()) {
 			Utils.createPlayerConfig(p);
 		}
+		ClaimUtil.updateClaimUser(p);
 		Utils.hud.put(p.getName(), Boolean.valueOf(true));
 		e.setJoinMessage(Strings.getJoinMSG(p));
 		Utils.MOTD(p);
@@ -62,7 +65,6 @@ public class PlayerListener implements Listener {
 		// PlayerData pd = new PlayerData(uuid);
 		e.setQuitMessage(Strings.getLeaveMSG(p));
 		if (Checks.canUseScoreboard()) {
-			Utils.hud.put(p.getName(), Boolean.valueOf(false));
 		Utils.removeScoreboard(p);
 		}
 	}
@@ -85,7 +87,7 @@ public class PlayerListener implements Listener {
 
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onChat(AsyncPlayerChatEvent e) {
-		Config message = new Config("Messages");
+		Config message = new Config(Strings.getMessagesUsed());
 		FileConfiguration m = message.getConfig();
 		if (Utils.Chat_MUTED) {
 			if (e.getPlayer().hasPermission("hessentials.staff.mutechat")) {

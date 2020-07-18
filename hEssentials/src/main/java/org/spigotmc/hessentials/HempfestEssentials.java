@@ -6,6 +6,7 @@ import org.spigotmc.hessentials.commands.CommandMessage;
 import org.spigotmc.hessentials.commands.CommandOnlineList;
 import org.spigotmc.hessentials.commands.CommandReply;
 import org.spigotmc.hessentials.commands.CommandTrack;
+import org.spigotmc.hessentials.commands.claim.CommandClaim;
 import org.spigotmc.hessentials.commands.homes.CommandDelhome;
 import org.spigotmc.hessentials.commands.homes.CommandHome;
 import org.spigotmc.hessentials.commands.homes.CommandHomes;
@@ -18,6 +19,7 @@ import org.spigotmc.hessentials.commands.staff.CommandGMS;
 import org.spigotmc.hessentials.commands.staff.CommandGamemode;
 import org.spigotmc.hessentials.commands.staff.CommandHomelist;
 import org.spigotmc.hessentials.commands.staff.CommandInvsee;
+import org.spigotmc.hessentials.commands.staff.CommandItem;
 import org.spigotmc.hessentials.commands.staff.CommandKick;
 import org.spigotmc.hessentials.commands.staff.CommandMuteChat;
 import org.spigotmc.hessentials.commands.staff.CommandPlayerhome;
@@ -30,6 +32,7 @@ import org.spigotmc.hessentials.commands.staff.CommandWhois;
 import org.spigotmc.hessentials.commands.tprequest.CommandTpRequest;
 import org.spigotmc.hessentials.events.PlayerListener;
 import org.spigotmc.hessentials.util.Checks;
+import org.spigotmc.hessentials.util.ClaimCheck;
 import org.spigotmc.hessentials.util.Utils;
 
 
@@ -44,12 +47,13 @@ public class HempfestEssentials extends JavaPlugin {
 	public void onEnable() {
 		setInstance(this);
 		Utils.createConfiguration();
+		Utils.updateInvsee();
 		registerCommands();
 		registerTabCommands();
 		registerEvents();
+		runTimers();
 		if (Checks.canUseScoreboard()) {
 		Utils.updateLobbyBoard();
-		Utils.updateInvsee();
 		}
 	}
 	
@@ -67,6 +71,11 @@ public class HempfestEssentials extends JavaPlugin {
 		getServer().getPluginManager().registerEvents(new PlayerListener(), getInstance());
 		
 	}
+	
+	public void runTimers() {
+		 ClaimCheck claimCheck = new ClaimCheck();
+	        claimCheck.runTaskTimer(this, 40L, 40L);
+	}
 
 	public void registerCommands() {
 		Utils.registerCommand(new CommandHome());
@@ -77,6 +86,8 @@ public class HempfestEssentials extends JavaPlugin {
 		Utils.registerCommand(new CommandDelhome());
 		Utils.registerCommand(new CommandHelp());
 		Utils.registerCommand(new CommandTrack());
+		Utils.registerCommand(new CommandItem());
+		Utils.registerCommand(new CommandClaim());
 		Utils.registerCommand(new CommandTeleport());
 		Utils.registerCommand(new CommandGMS());
 		Utils.registerCommand(new CommandGMC());

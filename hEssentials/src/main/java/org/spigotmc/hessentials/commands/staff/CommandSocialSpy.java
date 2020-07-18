@@ -2,7 +2,6 @@ package org.spigotmc.hessentials.commands.staff;
 
 import java.util.Arrays;
 
-import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.defaults.BukkitCommand;
 import org.bukkit.entity.Player;
@@ -37,16 +36,16 @@ public class CommandSocialSpy extends BukkitCommand {
 		}
 		        if (Utils.socialspy.get(p) == null) {
 		          Utils.socialspy.put(p, "enabled");
-		          sendMessage(p, ChatColor.GRAY + "SocialSpy Enabled!");
+		          sendMessage(p, Strings.getSocialSpyOn(p));
 		          return true;
 		        }
 		          if (Utils.socialspy.get(p) == "disabled") {
 		            Utils.socialspy.put(p, "enabled");
-		            sendMessage(p, ChatColor.GRAY + "SocialSpy Enabled!");
+		            sendMessage(p, Strings.getSocialSpyOn(p));
 		            return true;
 		          } else  if (Utils.socialspy.get(p) == "enabled") {
 		            Utils.socialspy.put(p, "disabled");
-		            sendMessage(p, ChatColor.GRAY + "SocialSpy Disabled!");
+		            sendMessage(p, Strings.getSocialSpyOff(p));
 		            return true;
 		          } 
 		          

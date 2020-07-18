@@ -20,6 +20,7 @@ public class TpRequest {
 	}
 	
 	public static void acceptRequest(final Player p, final Config data) {
+		
 		if (Checks.didRecieve(p)) {
 			String dest = data.getConfig().getString("Request-List." + p.getName());
 			final Player destination = Bukkit.getPlayer(dest);

@@ -1,0 +1,44 @@
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+# O]===============================================[O #
+# |                Hempfest Essentials              | #
+# O]===============================================[O #
+# O]===============================================[O #
+# |                      v1.0.0                     | #
+# O]===============================================[O #
+#  
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#  
+Messages:  
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#  
+# Cambie el prefijo utilizado para el complemento.  
+  Prefix: '&2hEssentials &a:&r'
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#  
+# Cambiar los mensajes de respuesta del jugador.   
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+# Variables: 
+#   *  %players% = Jugadors online por nombre
+#   *  %online% = cantidad actual de jugadores en línea
+#   *  %max% = recuento máximo de jugadores de su servidor
+#   *  %prefix% = prefijo actual del complemento
+#   *  %next% = ir a la siguiente línea
+#   *  %target% = Jugador objetivo siendo enviado
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+#   *  %permnode% = obtiene el permiso al que el jugador no tiene acceso.
+#   **/\ (Funciona solo para la sección "No-Permission".) /\**
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+  Player-Responses:
+    Online-List: '%prefix%%next% &7Jugadores en línea &8[&7&l%online%&8 / &7&l%max%&8] &7: &f%players%'
+    Player-Message-Send: '&b%player%(yo) &7&m--&7> &b%target%&3&l|&f '
+    Player-Message-Revieve: '&b%player% &7&m--&7> &b%target%(yo)&3&l|&f '
+    Player-Reply-Send: '&b%player%(yo) &7&m--&7> &b%target%&3&l|&f '
+    Player-Reply-Recieve: '&b%player% &7&m--&7> &b%target%(yo)&3&l|&f '
+    Social-Spy-Activated: '%prefix% &6&o¡El espionaje social está habilitado!'
+    Social-Spy-Deactivated: '%prefix% &c&o¡El espionaje social está deshabilitado!'
+    No-Permission: 'No tienes permiso %permnode%.'
+    First-Player-Join: '&d&l%player% &ase une por primera vez.'
+    Player-Join: '&f%player% &2se ha unido al juego.'
+    Player-Leave: '&f%player% &cha abandonado el juego.'
+    Chat-Muted: '&fEl chat está silenciado a nivel mundial.'
+    Chat-UnMuted: '&fEl chat no más silenciado a nivel mundial.'
+    Cannot-Speak: '&c&oEl chat está silenciado y no puedes hablar.'
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#  
+

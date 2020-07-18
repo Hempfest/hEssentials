@@ -18,7 +18,7 @@ public class Lists {
 				string.append(Strings.color("&7, &r"));
 			string.append(onlinePlayers.getDisplayName());
 		}
-		Config messages = new Config("Messages");
+		Config messages = new Config(Strings.getMessagesUsed());
 		String online = messages.getConfig().getString("Messages.Player-Responses.Online-List").replaceAll("%online%",
 				String.valueOf(Bukkit.getOnlinePlayers().size()));
 		String players = online.replaceAll("%players%", string.toString());
@@ -37,7 +37,7 @@ public class Lists {
 			string.append(onlinePlayers.getDisplayName() + Strings.color("&7"));
 		}
 		Config help = new Config("Help");
-		Config messages = new Config("Messages");
+		Config messages = new Config(Strings.getMessagesUsed());
 		String online = help.getConfig().getString("Help-Menu").replaceAll("%online%",
 				String.valueOf(Bukkit.getOnlinePlayers().size()));
 		String players = online.replaceAll("%player%", player.getName());
@@ -56,7 +56,7 @@ public class Lists {
 			string.append(onlinePlayers.getDisplayName() + Strings.color("&7"));
 		}
 		Config help = new Config("Help");
-		Config messages = new Config("Messages");
+		Config messages = new Config(Strings.getMessagesUsed());
 		String online = help.getConfig().getString("Help-Menu-PG2").replaceAll("%online%",
 				String.valueOf(Bukkit.getOnlinePlayers().size()));
 		String players = online.replaceAll("%player%", player.getName());
@@ -75,7 +75,7 @@ public class Lists {
 			string.append(onlinePlayers.getDisplayName() + Strings.color("&7"));
 		}
 		Config help = new Config("Help");
-		Config messages = new Config("Messages");
+		Config messages = new Config(Strings.getMessagesUsed());
 		String online = help.getConfig().getString("Help-Menu-PG3").replaceAll("%online%",
 				String.valueOf(Bukkit.getOnlinePlayers().size()));
 		String players = online.replaceAll("%player%", player.getName());
