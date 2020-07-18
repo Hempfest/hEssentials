@@ -95,6 +95,8 @@ public class ClaimUtil {
 				pd.saveConfig();
 				sendMessage(p, Strings.getPrefix() + "You were given permission to the land &7(&f" + getClaimName(p.getLocation()) + "&7) &rby: " + getClaimOwner(p.getLocation()));
 			}
+		} else {
+			return;
 		}
 			
 		}
@@ -214,7 +216,7 @@ public class ClaimUtil {
 			return;
 		} 
 		List<String> Claims = data.getConfig().getStringList("Claims-List");
-		if (Claims.contains(ID)) {
+		if (!Claims.contains(ID)) {
 		Claims.add(ID);
 		}
 		if (!Claim.contains(ID)) {
@@ -228,6 +230,7 @@ public class ClaimUtil {
 		data.getConfig().set("Claims-Location." + ID + ".X", x);
 		data.getConfig().set("Claims-Location." + ID + ".Z", z);
 		data.getConfig().set("Claims-Location." + ID + ".Owner", p.getName());
+		data.getConfig().createSection("Claims-Location." + ID + ".User");
 		data.saveConfig();
 		sendMessage(p, Strings.getPrefix() + "You just claimed land: " + claimName);
 		return;
