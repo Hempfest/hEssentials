@@ -50,6 +50,7 @@ public class Utils {
 
 	public static boolean Chat_MUTED = false;
 	public static HashMap<String, Boolean> hud = new HashMap<String, Boolean>();
+	public static HashMap<String, Boolean> title_claim = new HashMap<String, Boolean>();
 	public static HashMap<String, Boolean> hud_muted = new HashMap<String, Boolean>();
 	public static HashMap<String, Boolean> hud_tracking = new HashMap<String, Boolean>();
 	public static HashMap<String, Boolean> recieved = new HashMap<String, Boolean>();
