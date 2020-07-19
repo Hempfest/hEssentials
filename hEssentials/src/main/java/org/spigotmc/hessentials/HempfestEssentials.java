@@ -7,6 +7,7 @@ import org.spigotmc.hessentials.commands.CommandOnlineList;
 import org.spigotmc.hessentials.commands.CommandReply;
 import org.spigotmc.hessentials.commands.CommandTrack;
 import org.spigotmc.hessentials.commands.claim.ClaimCheck;
+import org.spigotmc.hessentials.commands.claim.ClaimUtil;
 import org.spigotmc.hessentials.commands.claim.CommandClaim;
 import org.spigotmc.hessentials.commands.homes.CommandDelhome;
 import org.spigotmc.hessentials.commands.homes.CommandHome;
@@ -69,7 +70,7 @@ public class HempfestEssentials extends JavaPlugin {
 
 	public void registerEvents() {
 		getServer().getPluginManager().registerEvents(new PlayerListener(), getInstance());
-		
+		getServer().getPluginManager().registerEvents(new ClaimUtil(), getInstance());
 	}
 	
 	public void runTimers() {

@@ -27,18 +27,50 @@ Messages:
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
   Player-Responses:
     Online-List: '%prefix%%next% &7Jugadores en línea &8[&7&l%online%&8 / &7&l%max%&8] &7: &f%players%'
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+#   * NO PERMISSION MESSAGE - Change the message displayed 
+# when the player doesnt have permission.
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+    No-Permission: 'No tienes permiso %permnode%.'
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+#   * PRIVATE MESSAGES - Here you can edit the format for
+# private messaging.
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
     Player-Message-Send: '&b%player%(yo) &7&m--&7> &b%target%&3&l|&f '
     Player-Message-Revieve: '&b%player% &7&m--&7> &b%target%(yo)&3&l|&f '
     Player-Reply-Send: '&b%player%(yo) &7&m--&7> &b%target%&3&l|&f '
     Player-Reply-Recieve: '&b%player% &7&m--&7> &b%target%(yo)&3&l|&f '
     Social-Spy-Activated: '%prefix% &6&o¡El espionaje social está habilitado!'
     Social-Spy-Deactivated: '%prefix% &c&o¡El espionaje social está deshabilitado!'
-    No-Permission: 'No tienes permiso %permnode%.'
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+#   * Join/Leave - Change the messages displayed on server
+# join/leave.
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#  
     First-Player-Join: '&d&l%player% &ase une por primera vez.'
     Player-Join: '&f%player% &2se ha unido al juego.'
     Player-Leave: '&f%player% &cha abandonado el juego.'
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+#   * CHAT MUTED - Edit the messages sent on the global
+# chat mute event.
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
     Chat-Muted: '&fEl chat está silenciado a nivel mundial.'
     Chat-UnMuted: '&fEl chat no más silenciado a nivel mundial.'
     Cannot-Speak: '&c&oEl chat está silenciado y no puedes hablar.'
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#  
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+#   * CLAIM MESSAGES - Here you can edit the titles
+# sent to the player while they change locations.
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+    Inside-Claim-Unlisted-Title: '%owner%''s land.'
+    Inside-Claim-Unlisted-SubTitle: 'Land: %claim%.'
+    Inside-Claim-User-Title: 'Shared land from &e%owner%'
+    Inside-Claim-User-SubTitle: 'Land: %claim%'
+    Inside-Claim-Owner-Title: 'Owned land'
+    Inside-Claim-Owner-SubTitle: 'Land: %claim%'
+    Outside-Claim-Wilderness-Title: '&4&lWilderness'
+    Outside-Claim-Wilderness-SubTitle: '&7Tread carefully'
+    
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+#   * PLAYERHOMES MESSAGES - Here you can edit the titles
+# sent to the player while they change locations.
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~# 
 

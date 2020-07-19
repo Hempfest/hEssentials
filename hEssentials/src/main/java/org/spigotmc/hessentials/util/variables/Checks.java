@@ -32,6 +32,11 @@ public class Checks {
 		return Utils.title_claim.containsKey(player.getName()) ? ((Boolean) Utils.title_claim.get(player.getName())).booleanValue()
 				: false;
 	}
+	
+	public static boolean titleSent2(Player player) {
+		return Utils.title_claim2.containsKey(player.getName()) ? ((Boolean) Utils.title_claim2.get(player.getName())).booleanValue()
+				: false;
+	}
 
 	// HUD check
 	public static boolean hasScore_muted(Player player) {

@@ -63,6 +63,10 @@ public class CommandClaim extends BukkitCommand {
 						// needs more args
 						return true;
 					}
+					if (args[0].equalsIgnoreCase("goto")) {
+						ClaimUtil.teleportChunk(p, args[1]);
+						return true;
+					}
 				}
 				if (length == 3) {
 					if (args[0].equalsIgnoreCase("adduser")) {

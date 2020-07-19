@@ -34,7 +34,7 @@
 		<dependency>
 			<groupId>Clans</groupId>
 			<artifactId>Spawn</artifactId>
-			<version>1.5.1</version>
+			<version>1.5.5</version>
 			<scope>system</scope>
 			<systemPath>${project.basedir}/src/main/resources/Clans.jar</systemPath>
 		</dependency>

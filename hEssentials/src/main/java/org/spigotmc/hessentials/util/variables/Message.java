@@ -15,6 +15,7 @@ public class Message {
 		//
 		// SEND TEXT THE PLAYER CAN ONLY HOVER OVER AND SEE MORE TEXT WITH
 		//
+	@SuppressWarnings("deprecation")
 	public static void textHoverable(CommandSender sender, String textBody, String hoverTextBody, String hoverMessage) {
 		TextComponent text = new TextComponent(Strings.color(textBody));
 		TextComponent hover = new TextComponent(Strings.color(hoverTextBody));
@@ -23,6 +24,7 @@ public class Message {
 		sender.spigot().sendMessage((BaseComponent)text); 
 		return;
 	}
+	@SuppressWarnings("deprecation")
 	public static void textHoverable(CommandSender sender, String textBody, String hoverTextBody, String textBody2, String hoverMessage) {
 		TextComponent text = new TextComponent(Strings.color(textBody));
 		TextComponent hover = new TextComponent(Strings.color(hoverTextBody));
@@ -33,6 +35,7 @@ public class Message {
 		sender.spigot().sendMessage((BaseComponent)text); 
 		return;
 	}
+	@SuppressWarnings("deprecation")
 	public static void textHoverable(CommandSender sender, String textBody, String hoverTextBody, String textBody2, String hoverTextbody2, String hoverMessage, String hoverMessage2) {
 		TextComponent text = new TextComponent(Strings.color(textBody));
 		TextComponent hover = new TextComponent(Strings.color(hoverTextBody));
@@ -50,6 +53,7 @@ public class Message {
 		//
 		// SEND TEXT THE PLAYER CAN BE SUGGESTED TO EXECUTE COMMANDS WITH
 		//
+	@SuppressWarnings("deprecation")
 	public static void textSuggestable(CommandSender sender, String textBody, String hoverTextBody, String hoverMessage, String commandName) {
 		TextComponent text = new TextComponent(Strings.color(textBody));
 		TextComponent hover = new TextComponent(Strings.color(hoverTextBody));
@@ -63,6 +67,7 @@ public class Message {
 		//
 		// SEND TEXT THE PLAYER CAN RUN COMMANDS WITH
 		//
+	@SuppressWarnings("deprecation")
 	public static void textRunnable(CommandSender sender, String textBody, String hoverTextBody, String hoverMessage, String commandName) {
 		TextComponent text = new TextComponent(Strings.color(textBody));
 		TextComponent hover = new TextComponent(Strings.color(hoverTextBody));
@@ -72,6 +77,7 @@ public class Message {
 		sender.spigot().sendMessage((BaseComponent)text); 
 		return;
 	}
+	@SuppressWarnings("deprecation")
 	public static void textRunnable(CommandSender sender, String textBody, String hoverTextBody, String textBody2, String hoverTextbody2, String hoverMessage, String hoverMessage2, String commandName, String commandName2) {
 		TextComponent text = new TextComponent(Strings.color(textBody));
 		TextComponent hover = new TextComponent(Strings.color(hoverTextBody));

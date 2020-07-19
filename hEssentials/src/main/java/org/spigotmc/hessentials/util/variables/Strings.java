@@ -68,6 +68,18 @@ public class Strings {
 		String text = mess.getString("Messages.Player-Responses.Outside-Claim-Wilderness-SubTitle").replaceAll("%owner%", ClaimUtil.getClaimOwner(p.getLocation()));
 		return color(text.replaceAll("%claim%", ClaimUtil.getClaimName(p.getLocation())));
 	}
+	public static String getCannotBreak(Player p) {
+		Config messages = new Config(getMessagesUsed());
+		FileConfiguration mess = messages.getConfig();	
+		String text = mess.getString("Messages.Player-Responses.Inside-Claim-Denied-Break").replaceAll("%owner%", ClaimUtil.getClaimOwner(p.getLocation()));
+		return color(text.replaceAll("%claim%", ClaimUtil.getClaimName(p.getLocation())));
+	}
+	public static String getCannotPlace(Player p) {
+		Config messages = new Config(getMessagesUsed());
+		FileConfiguration mess = messages.getConfig();	
+		String text = mess.getString("Messages.Player-Responses.Inside-Claim-Denied-Place").replaceAll("%owner%", ClaimUtil.getClaimOwner(p.getLocation()));
+		return color(text.replaceAll("%claim%", ClaimUtil.getClaimName(p.getLocation())));
+	}
 	
 	
 	public static void sendReceivedMenu(Player p) {
@@ -137,7 +149,7 @@ public class Strings {
 			}
 			return "Messages_espanola";
 			}
-		if (config.getString("Config.Use").equals("en")) {
+		if (config.getString("Config.Use").equals("this")) {
 			return "Messages";
 		}
 			return "Messages";
@@ -250,6 +262,7 @@ public class Strings {
 		return color(last);
 	}
 	
+@SuppressWarnings("deprecation")
 public static void goSet(CommandSender s, String Command, String tag) {
 	    
 		TextComponent click = new TextComponent("§3|§7> §3/" + tag + " §7set §3[warpName]");
@@ -258,7 +271,8 @@ public static void goSet(CommandSender s, String Command, String tag) {
 		s.spigot().sendMessage((BaseComponent)click); 
 
 }
-  public static void goRequest(String Command, String Command2, Player s, Player p) {
+  @SuppressWarnings("deprecation")
+public static void goRequest(String Command, String Command2, Player s, Player p) {
 	    
 		TextComponent text = new TextComponent("§2|§7> §2Click a button to respond. ");
 		TextComponent click = new TextComponent("§a[§nACCEPT§a]");
@@ -274,7 +288,8 @@ public static void goSet(CommandSender s, String Command, String tag) {
 		p.spigot().sendMessage((BaseComponent)text); 
 
 }
-  public static void goDel(CommandSender s, String Command, String tag) {
+  @SuppressWarnings("deprecation")
+public static void goDel(CommandSender s, String Command, String tag) {
 	    
 	  TextComponent click = new TextComponent("§3|§7> §3/" + tag + " §7delete §3[warpName]");
 		click.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, (new ComponentBuilder("§3Remove a set warp.")).create()));
@@ -282,7 +297,8 @@ public static void goSet(CommandSender s, String Command, String tag) {
 		s.spigot().sendMessage((BaseComponent)click); 
 
 }
-  public static void goWarp(CommandSender s, String Command, String tag) {
+  @SuppressWarnings("deprecation")
+public static void goWarp(CommandSender s, String Command, String tag) {
 	    
 	  TextComponent click = new TextComponent("§3|§7> §3/" + tag + " §7[warpName]");
 		click.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, (new ComponentBuilder("§3Warp to a specified location.")).create()));
@@ -290,7 +306,8 @@ public static void goSet(CommandSender s, String Command, String tag) {
 		s.spigot().sendMessage((BaseComponent)click); 
 
 }
-  public static void goList(CommandSender s, String Command, String tag) {
+  @SuppressWarnings("deprecation")
+public static void goList(CommandSender s, String Command, String tag) {
 	    
 	  TextComponent click = new TextComponent("§3|§7> §3/" + tag + " §7list");
 		click.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, (new ComponentBuilder("§3Show your list of set warps.")).create()));
@@ -299,7 +316,8 @@ public static void goSet(CommandSender s, String Command, String tag) {
 
 }
   
-  public static void tpRequest(CommandSender s, String Command, String tag) {
+  @SuppressWarnings("deprecation")
+public static void tpRequest(CommandSender s, String Command, String tag) {
 	    
 		TextComponent click = new TextComponent("§3|§7> §b/" + tag + " §7to §b[playerName]");
 		click.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, (new ComponentBuilder("§6Request to teleport to another online player.")).create()));
@@ -308,7 +326,8 @@ public static void goSet(CommandSender s, String Command, String tag) {
 
 }
   
-  public static void tpAccept(CommandSender s, String Command, String tag) {
+  @SuppressWarnings("deprecation")
+public static void tpAccept(CommandSender s, String Command, String tag) {
 	    
 		TextComponent click = new TextComponent("§3|§7> §b/" + tag + " §7deny");
 		click.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, (new ComponentBuilder("§6Deny a players request to teleport to you.")).create()));
@@ -317,7 +336,8 @@ public static void goSet(CommandSender s, String Command, String tag) {
 
 }
   
-  public static void tpDeny(CommandSender s, String Command, String tag) {
+  @SuppressWarnings("deprecation")
+public static void tpDeny(CommandSender s, String Command, String tag) {
 	    
 		TextComponent click = new TextComponent("§3|§7> §b/" + tag + " §7accept");
 		click.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, (new ComponentBuilder("§6Accept a players request to teleport to you.")).create()));
@@ -326,7 +346,8 @@ public static void goSet(CommandSender s, String Command, String tag) {
 
 }
   
-  public static void goTo(CommandSender s, String Command, String tag) {
+  @SuppressWarnings("deprecation")
+public static void goTo(CommandSender s, String Command, String tag) {
 	    
 		TextComponent click = new TextComponent("§3|§7> §b/" + tag + " §7to §b[playerName] §b[warpName]");
 		click.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, (new ComponentBuilder("§6Goto someone elses private warp of specification.")).create()));
@@ -335,6 +356,7 @@ public static void goSet(CommandSender s, String Command, String tag) {
 
 }
 
+@SuppressWarnings("deprecation")
 public static void gotoList(CommandSender s, String Command, String tag) {
 	    
 		TextComponent click = new TextComponent("§3|§7> §b/" + tag + " §7list §b[playerName]");

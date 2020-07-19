@@ -191,6 +191,7 @@ public class Homes {
 		sendMessage(p, Strings.getPrefix() + "Home '" + name + "' has been deleted");
 	}
 
+	@SuppressWarnings("deprecation")
 	public static void listwarps(Player p) {
 		PlayerData homes = new PlayerData(p.getUniqueId());
 		FileConfiguration config = homes.getConfig();
