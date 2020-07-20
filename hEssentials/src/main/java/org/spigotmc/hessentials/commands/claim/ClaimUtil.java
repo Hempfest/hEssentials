@@ -345,6 +345,7 @@ public class ClaimUtil implements Listener {
 		int x = data.getConfig().getInt("Claims-Location." + claimName + ".X");
 		int y = 150;
 		int z = data.getConfig().getInt("Claims-Location." + claimName + ".Z");
+		String w = data.getConfig().getString("Claims-Location." + claimName + ".World");
 		if (pd.getConfig().getStringList("Claims").contains(claimName)) {
 
 			boolean isOnLand = false;
@@ -357,7 +358,7 @@ public class ClaimUtil implements Listener {
 				} else
 					y--;
 
-				p.teleport(new Location(p.getWorld(), teleportLocation.getX(), teleportLocation.getY() + 1,
+				p.teleport(new Location(Bukkit.getWorld(w), teleportLocation.getX(), teleportLocation.getY() + 1,
 						teleportLocation.getZ()));
 				
 			}
