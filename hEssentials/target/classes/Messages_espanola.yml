@@ -1,26 +1,29 @@
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 # O]===============================================[O #
-# |                Hempfest Essentials              | #
+# |                Hempfest Esenciales              | #
 # O]===============================================[O #
 # O]===============================================[O #
-# |                      v1.0.0                     | #
+# |                      v1.1.0                     | #
 # O]===============================================[O #
 #  
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#  
 Messages:  
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#  
 # Cambie el prefijo utilizado para el complemento.  
-  Prefix: '&2hEssentials &a:&r'
+  Prefix: '&2hEsenciales &a:&r'
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#  
 # Cambiar los mensajes de respuesta del jugador.   
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-# Variables: 
-#   *  %players% = Jugadors online por nombre
-#   *  %online% = cantidad actual de jugadores en línea
-#   *  %max% = recuento máximo de jugadores de su servidor
-#   *  %prefix% = prefijo actual del complemento
-#   *  %next% = ir a la siguiente línea
-#   *  %target% = Jugador objetivo siendo enviado
+# Variables:
+#  *  %players% = jugadores en línea por nombre
+#  *  %player% = nombre del jugador que habla
+#  *  %online% = cantidad actual de jugadores en línea
+#  *  %max% = número máximo de jugadores de su servidor
+#  *  %prefix% = prefijo actual del complemento
+#  *  %next% = ir a la siguiente línea
+#  *  %target% = jugador objetivo que se está enviando un mensaje
+#  *  %owner% = devuelve el propietario de la tierra reclamada
+#  *  %land% = devuelve el nombre de la tierra reclamada
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 #   *  %permnode% = obtiene el permiso al que el jugador no tiene acceso.
 #   **/\ (Funciona solo para la sección "No-Permission".) /\**
@@ -28,13 +31,13 @@ Messages:
   Player-Responses:
     Online-List: '%prefix%%next% &7Jugadores en línea &8[&7&l%online%&8 / &7&l%max%&8] &7: &f%players%'
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-#   * NO PERMISSION MESSAGE - Change the message displayed 
-# when the player doesnt have permission.
+#   * NO HAY MENSAJE DE PERMISO: cambie el mensaje que se muestra
+# cuando el jugador no tiene permiso.
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
     No-Permission: 'No tienes permiso %permnode%.'
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-#   * PRIVATE MESSAGES - Here you can edit the format for
-# private messaging.
+#   * MENSAJES PRIVADOS: aquí puede editar el formato para
+# mensajes privados.
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
     Player-Message-Send: '&b%player%(yo) &7&m--&7> &b%target%&3&l|&f '
     Player-Message-Revieve: '&b%player% &7&m--&7> &b%target%(yo)&3&l|&f '
@@ -43,34 +46,39 @@ Messages:
     Social-Spy-Activated: '%prefix% &6&o¡El espionaje social está habilitado!'
     Social-Spy-Deactivated: '%prefix% &c&o¡El espionaje social está deshabilitado!'
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-#   * Join/Leave - Change the messages displayed on server
-# join/leave.
+#   * Unirse / Salir: cambie los mensajes que se muestran en el servidor
+# unirse / salir.
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#  
     First-Player-Join: '&d&l%player% &ase une por primera vez.'
     Player-Join: '&f%player% &2se ha unido al juego.'
     Player-Leave: '&f%player% &cha abandonado el juego.'
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-#   * CHAT MUTED - Edit the messages sent on the global
-# chat mute event.
+#   * CHAT MUTED - Edita los mensajes enviados en el global
+# evento de silencio de chat.
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
     Chat-Muted: '&fEl chat está silenciado a nivel mundial.'
     Chat-UnMuted: '&fEl chat no más silenciado a nivel mundial.'
     Cannot-Speak: '&c&oEl chat está silenciado y no puedes hablar.'
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-#   * CLAIM MESSAGES - Here you can edit the titles
-# sent to the player while they change locations.
+#   * MENSAJES DE RECLAMACIÓN: aquí puede editar los títulos
+# enviado al jugador mientras cambian de ubicación.
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-    Inside-Claim-Unlisted-Title: '%owner%''s land.'
-    Inside-Claim-Unlisted-SubTitle: 'Land: %claim%.'
-    Inside-Claim-User-Title: 'Shared land from &e%owner%'
-    Inside-Claim-User-SubTitle: 'Land: %claim%'
-    Inside-Claim-Owner-Title: 'Owned land'
-    Inside-Claim-Owner-SubTitle: 'Land: %claim%'
-    Outside-Claim-Wilderness-Title: '&4&lWilderness'
-    Outside-Claim-Wilderness-SubTitle: '&7Tread carefully'
-    
+    Inside-Claim-Unlisted-Title: '%owner%''s tierra.'
+    Inside-Claim-Unlisted-SubTitle: 'Tierra: %claim%.'
+    Inside-Claim-User-Title: 'Shared tierra from &e%owner%'
+    Inside-Claim-User-SubTitle: 'Tierra: %claim%'
+    Inside-Claim-Owner-Title: 'De propiedad tierra'
+    Inside-Claim-Owner-SubTitle: 'Tierra: %claim%'
+    Inside-Claim-Denied-Place: 'No puedes construir en %claim%'
+    Inside-Claim-Denied-Break: 'No puedes destruir en %claim%'
+    Inside-Claim-Denied-Use: '&7No puedes usar eso en &c&o%claim%'
+    Outside-Claim-Wilderness-Title: '&4&lDesierto'
+    Outside-Claim-Wilderness-SubTitle: '&7Ten cuidado'
+     
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-#   * PLAYERHOMES MESSAGES - Here you can edit the titles
-# sent to the player while they change locations.
+#   * PLAYERHOMES MESSAGES - Aquí puedes editar los mensajes
+# enviado al jugador mientras cambian de ubicación.
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~# 
-
+    Player-Home-Create: 'Acabas de crear la casa ''&a%home%&r''.'
+    Player-Home-Delete: 'Acabas de eliminar la casa ''&a%home%&r''.'
+    Player-Home-Update: 'Acabas de actualizar la casa ''&a%home%&r''.'

@@ -25,7 +25,6 @@ org\spigotmc\hessentials\commands\claim\ClaimCheck.class
 org\spigotmc\hessentials\util\scoreboards\ScoreboardTask.class
 org\spigotmc\hessentials\commands\staff\CommandSocialSpy.class
 org\spigotmc\hessentials\commands\tprequest\TpRequest$1.class
-org\spigotmc\hessentials\commands\announcements\Announcements.class
 org\spigotmc\hessentials\util\Utils.class
 org\spigotmc\hessentials\commands\CommandHud.class
 org\spigotmc\hessentials\commands\homes\CommandDelhome.class
@@ -49,6 +48,7 @@ org\spigotmc\hessentials\commands\staff\CommandBan.class
 org\spigotmc\hessentials\commands\staff\CommandFly.class
 org\spigotmc\hessentials\commands\staff\CommandTeleport.class
 org\spigotmc\hessentials\configuration\Config.class
+org\spigotmc\hessentials\commands\staff\CommandGive.class
 org\spigotmc\hessentials\commands\staff\CommandInvsee.class
 org\spigotmc\hessentials\util\scoreboards\BoardTrack.class
 org\spigotmc\hessentials\util\variables\Checks.class

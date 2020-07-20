@@ -78,6 +78,18 @@ public class Message {
 		return;
 	}
 	@SuppressWarnings("deprecation")
+	public static void textRunnable(CommandSender sender, String textBody, String hoverTextBody, String textBody2, String hoverMessage, String commandName) {
+		TextComponent text = new TextComponent(Strings.color(textBody));
+		TextComponent hover = new TextComponent(Strings.color(hoverTextBody));
+		TextComponent text2 = new TextComponent(Strings.color(textBody2));
+		text.addExtra(hover);
+		text.addExtra(text2);
+		hover.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, (new ComponentBuilder(Strings.color(hoverMessage))).create()));
+		hover.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/" + commandName));
+		sender.spigot().sendMessage((BaseComponent)text); 
+		return;
+	}
+	@SuppressWarnings("deprecation")
 	public static void textRunnable(CommandSender sender, String textBody, String hoverTextBody, String textBody2, String hoverTextbody2, String hoverMessage, String hoverMessage2, String commandName, String commandName2) {
 		TextComponent text = new TextComponent(Strings.color(textBody));
 		TextComponent hover = new TextComponent(Strings.color(hoverTextBody));

@@ -68,17 +68,41 @@ public class Strings {
 		String text = mess.getString("Messages.Player-Responses.Outside-Claim-Wilderness-SubTitle").replaceAll("%owner%", ClaimUtil.getClaimOwner(p.getLocation()));
 		return color(text.replaceAll("%claim%", ClaimUtil.getClaimName(p.getLocation())));
 	}
-	public static String getCannotBreak(Player p) {
+	public static String getHomeCreated(Player p, String home) {
 		Config messages = new Config(getMessagesUsed());
 		FileConfiguration mess = messages.getConfig();	
-		String text = mess.getString("Messages.Player-Responses.Inside-Claim-Denied-Break").replaceAll("%owner%", ClaimUtil.getClaimOwner(p.getLocation()));
-		return color(text.replaceAll("%claim%", ClaimUtil.getClaimName(p.getLocation())));
+		String text = mess.getString("Messages.Player-Responses.Player-Home-Create").replaceAll("%home%", home);
+		return color(text);
 	}
-	public static String getCannotPlace(Player p) {
+	public static String getHomeUpdated(Player p, String home) {
 		Config messages = new Config(getMessagesUsed());
 		FileConfiguration mess = messages.getConfig();	
-		String text = mess.getString("Messages.Player-Responses.Inside-Claim-Denied-Place").replaceAll("%owner%", ClaimUtil.getClaimOwner(p.getLocation()));
-		return color(text.replaceAll("%claim%", ClaimUtil.getClaimName(p.getLocation())));
+		String text = mess.getString("Messages.Player-Responses.Player-Home-Update").replaceAll("%home%", home);
+		return color(text);
+	}
+	public static String getHomeDeleted(Player p, String home) {
+		Config messages = new Config(getMessagesUsed());
+		FileConfiguration mess = messages.getConfig();	
+		String text = mess.getString("Messages.Player-Responses.Player-Home-Delete").replaceAll("%home%", home);
+		return color(text);
+	}
+	public static String getCannotBreak(Player p, String claimName, String claimOwner) {
+		Config messages = new Config(getMessagesUsed());
+		FileConfiguration mess = messages.getConfig();	
+		String text = mess.getString("Messages.Player-Responses.Inside-Claim-Denied-Break").replaceAll("%owner%", claimOwner);
+		return color(text.replaceAll("%claim%", claimName));
+	}
+	public static String getCannotUse(Player p, String claimName, String claimOwner) {
+		Config messages = new Config(getMessagesUsed());
+		FileConfiguration mess = messages.getConfig();	
+		String text = mess.getString("Messages.Player-Responses.Inside-Claim-Denied-Use").replaceAll("%owner%", claimOwner);
+		return color(text.replaceAll("%claim%", claimName));
+	}
+	public static String getCannotPlace(Player p, String claimName, String claimOwner) {
+		Config messages = new Config(getMessagesUsed());
+		FileConfiguration mess = messages.getConfig();	
+		String text = mess.getString("Messages.Player-Responses.Inside-Claim-Denied-Place").replaceAll("%owner%", claimOwner);
+		return color(text.replaceAll("%claim%", claimName));
 	}
 	
 	

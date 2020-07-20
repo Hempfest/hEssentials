@@ -52,6 +52,8 @@ public class Utils {
 	public static HashMap<String, Boolean> hud = new HashMap<String, Boolean>();
 	public static HashMap<String, Boolean> title_claim = new HashMap<String, Boolean>();
 	public static HashMap<String, Boolean> title_claim2 = new HashMap<String, Boolean>();
+	public static HashMap<String, Boolean> title_claim3 = new HashMap<String, Boolean>();
+	public static HashMap<String, Boolean> title_claim4 = new HashMap<String, Boolean>();
 	public static HashMap<String, Boolean> hud_muted = new HashMap<String, Boolean>();
 	public static HashMap<String, Boolean> hud_tracking = new HashMap<String, Boolean>();
 	public static HashMap<String, Boolean> recieved = new HashMap<String, Boolean>();
@@ -759,12 +761,15 @@ public class Utils {
 		Config messages = new Config("Messages");
 		Config help = new Config("Help");
 		Config motd = new Config("MOTD");
+		Config staff_help = new Config("Staff_Help");
 		InputStream in = HempfestEssentials.instance.getResource("Messages.yml");
 		InputStream in2 = HempfestEssentials.instance.getResource("Help.yml");
 		InputStream in3 = HempfestEssentials.instance.getResource("MOTD.yml");
+		InputStream in4 = HempfestEssentials.instance.getResource("Staff_Help.yml");
 		Config.copy(in, messages.getFile());
 		Config.copy(in2, help.getFile());
 		Config.copy(in3, motd.getFile());
+		Config.copy(in4, staff_help.getFile());
 	}
 
 	public static void createConfiguration() {
@@ -772,10 +777,14 @@ public class Utils {
 		Config help = new Config("Help");
 		Config motd = new Config("MOTD");
 		Config score = new Config("Scoreboard");
+		Config staff_help = new Config("Staff_Help");
+		Config claims = new Config("Claims");
 		InputStream in = HempfestEssentials.instance.getResource("Messages.yml");
 		InputStream in2 = HempfestEssentials.instance.getResource("Help.yml");
 		InputStream in3 = HempfestEssentials.instance.getResource("MOTD.yml");
 		InputStream in4 = HempfestEssentials.instance.getResource("Scoreboard.yml");
+		InputStream in5 = HempfestEssentials.instance.getResource("Staff_Help.yml");
+		InputStream in6 = HempfestEssentials.instance.getResource("Claims.yml");
 		if (!messages.exists()) {
 			Config.copy(in, messages.getFile());
 		}
@@ -787,6 +796,12 @@ public class Utils {
 		}
 		if (!score.exists()) {
 			Config.copy(in4, score.getFile());
+		}
+		if (!staff_help.exists()) {
+			Config.copy(in5, staff_help.getFile());
+		}
+		if (!claims.exists()) {
+			Config.copy(in6, claims.getFile());
 		}
 
 	}

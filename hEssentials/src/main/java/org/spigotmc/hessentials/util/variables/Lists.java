@@ -47,7 +47,64 @@ public class Lists {
 		String message = max.replaceAll("%next%", "\n");
 		return Strings.color(message);
 	}
-
+	
+	public static String sendHelp_STAFF_Menu(Player player) {
+		StringBuilder string = new StringBuilder();
+		for (Player onlinePlayers : Bukkit.getOnlinePlayers()) {
+			if (string.length() > 0)
+				string.append(", ");
+			string.append(onlinePlayers.getDisplayName() + Strings.color("&7"));
+		}
+		Config help = new Config("Staff_Help");
+		Config messages = new Config(Strings.getMessagesUsed());
+		String online = help.getConfig().getString("Help-Menu").replaceAll("%online%",
+				String.valueOf(Bukkit.getOnlinePlayers().size()));
+		String players = online.replaceAll("%player%", player.getName());
+		String prefix = players.replaceAll("%prefix%", messages.getConfig().getString("Messages.Prefix"));
+		String max = prefix.replaceAll("%max%",
+				String.valueOf(HempfestEssentials.getInstance().getServer().getMaxPlayers()));
+		String message = max.replaceAll("%next%", "\n");
+		return Strings.color(message);
+	}
+	
+	public static String sendHelp_STAFF_Menu2(Player player) {
+		StringBuilder string = new StringBuilder();
+		for (Player onlinePlayers : Bukkit.getOnlinePlayers()) {
+			if (string.length() > 0)
+				string.append(", ");
+			string.append(onlinePlayers.getDisplayName() + Strings.color("&7"));
+		}
+		Config help = new Config("Staff_Help");
+		Config messages = new Config(Strings.getMessagesUsed());
+		String online = help.getConfig().getString("Help-Menu-PG2").replaceAll("%online%",
+				String.valueOf(Bukkit.getOnlinePlayers().size()));
+		String players = online.replaceAll("%player%", player.getName());
+		String prefix = players.replaceAll("%prefix%", messages.getConfig().getString("Messages.Prefix"));
+		String max = prefix.replaceAll("%max%",
+				String.valueOf(HempfestEssentials.getInstance().getServer().getMaxPlayers()));
+		String message = max.replaceAll("%next%", "\n");
+		return Strings.color(message);
+	}
+	
+	public static String sendHelp_STAFF_Menu3(Player player) {
+		StringBuilder string = new StringBuilder();
+		for (Player onlinePlayers : Bukkit.getOnlinePlayers()) {
+			if (string.length() > 0)
+				string.append(", ");
+			string.append(onlinePlayers.getDisplayName() + Strings.color("&7"));
+		}
+		Config help = new Config("Staff_Help");
+		Config messages = new Config(Strings.getMessagesUsed());
+		String online = help.getConfig().getString("Help-Menu-PG3").replaceAll("%online%",
+				String.valueOf(Bukkit.getOnlinePlayers().size()));
+		String players = online.replaceAll("%player%", player.getName());
+		String prefix = players.replaceAll("%prefix%", messages.getConfig().getString("Messages.Prefix"));
+		String max = prefix.replaceAll("%max%",
+				String.valueOf(HempfestEssentials.getInstance().getServer().getMaxPlayers()));
+		String message = max.replaceAll("%next%", "\n");
+		return Strings.color(message);
+	}
+	
 	public static String sendHelpMenu2(Player player) {
 		StringBuilder string = new StringBuilder();
 		for (Player onlinePlayers : Bukkit.getOnlinePlayers()) {

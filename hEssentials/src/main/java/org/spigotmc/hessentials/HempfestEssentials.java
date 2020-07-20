@@ -19,10 +19,12 @@ import org.spigotmc.hessentials.commands.staff.CommandFly;
 import org.spigotmc.hessentials.commands.staff.CommandGMC;
 import org.spigotmc.hessentials.commands.staff.CommandGMS;
 import org.spigotmc.hessentials.commands.staff.CommandGamemode;
+import org.spigotmc.hessentials.commands.staff.CommandGive;
 import org.spigotmc.hessentials.commands.staff.CommandHomelist;
 import org.spigotmc.hessentials.commands.staff.CommandInvsee;
 import org.spigotmc.hessentials.commands.staff.CommandItem;
 import org.spigotmc.hessentials.commands.staff.CommandKick;
+import org.spigotmc.hessentials.commands.staff.CommandKickAll;
 import org.spigotmc.hessentials.commands.staff.CommandMuteChat;
 import org.spigotmc.hessentials.commands.staff.CommandPlayerhome;
 import org.spigotmc.hessentials.commands.staff.CommandReload;
@@ -86,7 +88,9 @@ public class HempfestEssentials extends JavaPlugin {
 		Utils.registerCommand(new CommandSethome());
 		Utils.registerCommand(new CommandDelhome());
 		Utils.registerCommand(new CommandHelp());
+		Utils.registerCommand(new CommandStaffHelp());
 		Utils.registerCommand(new CommandTrack());
+		Utils.registerCommand(new CommandGive());
 		Utils.registerCommand(new CommandItem());
 		Utils.registerCommand(new CommandClaim());
 		Utils.registerCommand(new CommandTeleport());
@@ -104,6 +108,7 @@ public class HempfestEssentials extends JavaPlugin {
 		Utils.registerCommand(new CommandMuteChat());
 		Utils.registerCommand(new CommandWhois());
 		Utils.registerCommand(new CommandKick());
+		Utils.registerCommand(new CommandKickAll());
 		Utils.registerCommand(new CommandBan());
 		Utils.registerCommand(new CommandUnban());
 	}

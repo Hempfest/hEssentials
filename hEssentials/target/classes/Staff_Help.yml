@@ -4,22 +4,39 @@
 # |                    [For Staff]                  | #
 # O]===============================================[O #
 # O]===============================================[O #
-# |                      v1.0.0                     | #
+# |                      v1.1.0                     | #
 # O]===============================================[O #
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 # Variables: 
 #   *  %player% = players name
-#   *  %online% = amount of playres online
+#   *  %online% = amount of players online
 #   *  %max% = max playercount of your server
 #   *  %prefix% = current plugin prefix
 #   *  %next% = goto the next line
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~# 
-Help-Menu: '%prefix% Help with commands.%next%&e&o&m====================================%next%&f/help,hhelp - Command information.%next%&f/message,msg,hmsg - Message an online player.%next%&f/reply,r - Respond to an incoming message.%next%&f/who,list - Show the online list of players via command.'
+Help-Menu: '%prefix% Help with staff commands.
+%next%&c&o/ban - Ban a player from the server
+%next%&c&o/kick - kick an online player from the server
+%next%&c&o/hload - Reset the hessentials config to default.
+%next%&c&o/fly - Allow a player to have flight
+%next%&c&o/gamemode - change a players gamemode
+%next%&c&o/give - give a player an item
+%next%&c&o/item - give yourself an item
+%next%&c&o/listhomes - list a players homes on/offline
+%next%&c&o/invsee - View an online players inventory'
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#  
 Two-Pages?: 'yes'
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#  
-Help-Menu-PG2: '%prefix%This is a test message.'
+Help-Menu-PG2: '%prefix% Help with staff commands. 
+%next%&c&o/mutechat - Toggle global chat being muted
+%next%&c&o/playerhome - teleport to another players private home
+%next%&c&o/hess - reload the hessentials config
+%next%&c&o/socialspy - spy on private messaging
+%next%&c&o/tp - teleport a player to another player
+%next%&c&o/unban - unban a player.
+%next%&c&o/whois - Display information on a player'
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#  
-Three-Pages?: 'yes'
+Three-Pages?: 'no'
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#  
-Help-Menu-PG3: '%prefix% you a bitch.'
+Help-Menu-PG3: '%prefix% Another test message. 
+%next%Another new line!'

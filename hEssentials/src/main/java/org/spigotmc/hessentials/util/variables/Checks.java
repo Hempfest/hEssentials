@@ -21,7 +21,16 @@ public class Checks {
 				? ((Boolean) Utils.recieved.get(player.getName())).booleanValue()
 				: false;
 	}
-
+	
+	public static boolean isInt(String e) {
+		try {
+			Integer.parseInt(e);
+		} catch (NumberFormatException nfe) {
+			return false;
+		}
+		return true;
+	}
+	
 	// HUD check
 	public static boolean hasScore(Player player) {
 		return Utils.hud.containsKey(player.getName()) ? ((Boolean) Utils.hud.get(player.getName())).booleanValue()
@@ -35,6 +44,16 @@ public class Checks {
 	
 	public static boolean titleSent2(Player player) {
 		return Utils.title_claim2.containsKey(player.getName()) ? ((Boolean) Utils.title_claim2.get(player.getName())).booleanValue()
+				: false;
+	}
+	
+	public static boolean titleSent3(Player player) {
+		return Utils.title_claim3.containsKey(player.getName()) ? ((Boolean) Utils.title_claim3.get(player.getName())).booleanValue()
+				: false;
+	}
+	
+	public static boolean titleSent4(Player player) {
+		return Utils.title_claim4.containsKey(player.getName()) ? ((Boolean) Utils.title_claim4.get(player.getName())).booleanValue()
 				: false;
 	}
 
@@ -73,6 +92,32 @@ public class Checks {
 
 	public static boolean twoPagesActive() {
 		Config help = new Config("Help");
+		if (help.getConfig().getString("Two-Pages?").equals("yes")) {
+			return true;
+		}
+		return false;
+	}
+	
+	public static boolean allPages_STAFF_Active() {
+		Config help = new Config("Staff_Help");
+		if (help.getConfig().getString("Two-Pages?").equals("yes")
+				&& help.getConfig().getString("Three-Pages?").equals("yes")) {
+			return true;
+		}
+		return false;
+	}
+
+	public static boolean onePage_STAFF_Active() {
+		Config help = new Config("Staff_Help");
+		if (help.getConfig().getString("Two-Pages?").equals("no")
+				&& help.getConfig().getString("Three-Pages?").equals("no")) {
+			return true;
+		}
+		return false;
+	}
+
+	public static boolean twoPages_STAFF_Active() {
+		Config help = new Config("Staff_Help");
 		if (help.getConfig().getString("Two-Pages?").equals("yes")) {
 			return true;
 		}

@@ -36,28 +36,25 @@ public class CommandKickAll extends BukkitCommand {
    		  return true;
    	  }
    	  if (length == 0) {
-   		  sendMessage(p, Strings.getPrefix() + Strings.getInvalidUsage() + "kick <player> | <reason>");
-   		  return true;
-   	  }
-   	  if (length == 1) {
-   		  for (Player target : Bukkit.getOnlinePlayers()) {
-   		  target.kickPlayer(Strings.getPrefix() + "\n&c&lYou have been kicked.\n&fREASON:\n&lNONE");
-   		  Bukkit.broadcastMessage(Strings.getPrefix() + "Player '&c" + target.getName() + "&7' kicked for '&cNO REASON&7'.");
-   		  return true;
-   		  }
+   		for (Player target : Bukkit.getOnlinePlayers()) {
+   			if (!target.getName().equals(p.getName())) {
+     		  target.kickPlayer(Strings.color(Strings.getPrefix() + "\n&c&lYou have been kicked.\n&fREASON:\n&lNONE"));
+     		  Bukkit.broadcastMessage(Strings.color(Strings.getPrefix() + "Player '&c" + target.getName() + "&7' kicked for '&cNO REASON&7'."));
+     		  return true;
+   			}
+     		  }
    	  }
    	  if (length > 1) {
    		  StringBuilder rsn = new StringBuilder();
-             for (int i = 1; i < args.length; i++)
+             for (int i = 0; i < args.length; i++)
                rsn.append(String.valueOf(args[i]) + " "); 
              for (Player target : Bukkit.getOnlinePlayers()) {
-             if (target.hasPermission(this.getPermission())) {
-   			  sendMessage(p, Strings.getPrefix() + "You cannot kick this player!");
-   			  return true;
+             if (!target.getName().equals(p.getName())) {
+            	 target.kickPlayer(Strings.color(Strings.getPrefix() + "\n&c&lYou have been kicked.\n&c&lREASON:\n&f&l" + rsn));
+                 Bukkit.broadcastMessage(Strings.color(Strings.getPrefix() + "Player '&c" + target.getName() + "&7' kicked for '&c" + rsn + "&7'."));
+       		  return true;
    		  }
-             target.kickPlayer(Strings.getPrefix() + "\n&c&lYou have been kicked.\n&c&lREASON:\n&f&l" + rsn);
-             Bukkit.broadcastMessage(Strings.getPrefix() + "Player '&c" + target.getName() + "&7' kicked for '&c" + rsn + "&7'.");
-   		  return true;
+             
              }
    	  }
 

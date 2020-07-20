@@ -3,12 +3,12 @@
 # |                Hempfest Essentials              | #
 # O]===============================================[O #
 # O]===============================================[O #
-# |                      v1.0.0                     | #
+# |                      v1.1.0                     | #
 # O]===============================================[O #
 #  
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#  
 Config:
-# Configs {this[English], es[Espanola], de[Deutsche]}
+# Configs {this[English], es[Espanola]}
   Use: this
 Messages:  
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#  
@@ -19,6 +19,7 @@ Messages:
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 # Variables: 
 #   *  %players% = online players by name
+#   *  %player% = name of the talking player 
 #   *  %online% = current amount of online players
 #   *  %max% = max playercount of your server
 #   *  %prefix% = current plugin prefix
@@ -65,19 +66,22 @@ Messages:
 #   * CLAIM MESSAGES - Here you can edit the titles
 # sent to the player while they change locations.
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-    Inside-Claim-Unlisted-Title: '%owner%''s land.'
-    Inside-Claim-Unlisted-SubTitle: 'Land: %claim%.'
-    Inside-Claim-User-Title: 'Shared land from &e%owner%'
-    Inside-Claim-User-SubTitle: 'Land: %claim%'
-    Inside-Claim-Owner-Title: 'Owned land'
-    Inside-Claim-Owner-SubTitle: 'Land: %claim%'
-    Inside-Claim-Denied-Place: 'You cannot build in %claim%'
-    Inside-Claim-Denied-Break: 'You cannot detroy in %claim%'
+    Inside-Claim-Unlisted-Title: '&c&o%owner%''s &7claim.'
+    Inside-Claim-Unlisted-SubTitle: '&7Land: &c&o%claim%.'
+    Inside-Claim-User-Title: '&e%owner%''s &7claim'
+    Inside-Claim-User-SubTitle: '&7Shared Land: &e&o%claim%'
+    Inside-Claim-Owner-Title: '&a&oOwned &7claim'
+    Inside-Claim-Owner-SubTitle: '&7Land: &a&o%claim%'
+    Inside-Claim-Denied-Place: '&7You cannot build in &c&o%claim%'
+    Inside-Claim-Denied-Break: '&7You cannot destroy in &c&o%claim%'
+    Inside-Claim-Denied-Use: '&7You cannot use that in &c&o%claim%'
     Outside-Claim-Wilderness-Title: '&4&lWilderness'
     Outside-Claim-Wilderness-SubTitle: '&7Tread carefully'
     
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-#   * PLAYERHOMES MESSAGES - Here you can edit the titles
+#   * PLAYERHOMES MESSAGES - Here you can edit the messages
 # sent to the player while they change locations.
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~# 
-
+    Player-Home-Create: 'You just created the home ''&a%home%&r''.'
+    Player-Home-Delete: 'You just deleted the home ''&a%home%&r''.'
+    Player-Home-Update: 'You just updated the home ''&a%home%&r''.'

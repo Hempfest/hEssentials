@@ -13,7 +13,7 @@ public class CommandCFUpdate extends BukkitCommand {
 	public CommandCFUpdate() {
 		super("hload");
 		setDescription("Primary command for hEssentials.");
-		setAliases(Arrays.asList("hc", "hessentialsconf", "hconf"));
+		setAliases(Arrays.asList("hessentialsconf", "hconf"));
 		setPermission("hessentials.staff.updateconfig");
 	}
 

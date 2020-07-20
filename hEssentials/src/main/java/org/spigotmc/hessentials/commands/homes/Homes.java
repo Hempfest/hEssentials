@@ -70,7 +70,6 @@ public class Homes {
 	public static void warp(Player p, String name, String tag) {
 		PlayerData homes = new PlayerData(p.getUniqueId());
 		FileConfiguration config = homes.getConfig();
-		final String playername = p.getName().toLowerCase();
 		final ConfigurationSection list = config.getConfigurationSection("Private-Homes");
 		if (list == null) {
 			sendMessage(p, Strings.getInvalidUsage() + tag);
@@ -80,14 +79,13 @@ public class Homes {
 			sendMessage(p, Strings.getPrefix() + "Home '" + name + "' doesn't exist");
 			return;
 		}
-
-		World world = Bukkit.getWorld(config.getString("Private-Homes." + name + ".world"));
-		double x = config.getDouble("warps." + playername + "." + name + ".x");
-		double y = config.getDouble("warps." + playername + "." + name + ".y");
-		double z = config.getDouble("warps." + playername + "." + name + ".z");
-		float yaw = config.getInt("warps." + playername + "." + name + ".yaw");
-		float pitch = config.getInt("warps." + playername + "." + name + ".pitch");
-		p.teleport(new Location(world, x, y, z, yaw, pitch));
+		 ConfigurationSection warp = list.getConfigurationSection(name);
+         World world = Bukkit.getWorld(warp.getString("world"));
+         int x = warp.getInt("x");
+         int y = warp.getInt("y");
+         int z = warp.getInt("z");
+         Location loc = new Location(world, x, y, z);
+         p.teleport(loc, PlayerTeleportEvent.TeleportCause.PLUGIN);
 
 	}
 
@@ -161,7 +159,7 @@ public class Homes {
 			warp.set("yaw", Float.valueOf(loc.getYaw()));
 			warp.set("pitch", Float.valueOf(loc.getPitch()));
 			homes.saveConfig();
-			sendMessage(p, Strings.getPrefix() + "Home '" + name + "' has been re-located.");
+			sendMessage(p, Strings.getPrefix() + Strings.getHomeUpdated(p, name));
 			return;
 		}
 		if (list.getString(name) == null)
@@ -175,7 +173,7 @@ public class Homes {
 		warp.set("yaw", Float.valueOf(loc.getYaw()));
 		warp.set("pitch", Float.valueOf(loc.getPitch()));
 		homes.saveConfig();
-		sendMessage(p, Strings.getPrefix() + "Home '" + name + "' has been set.");
+		sendMessage(p, Strings.getPrefix() + Strings.getHomeCreated(p, name));
 	}
 	
 	public static void deleteWarp(Player p, String name) {
@@ -188,7 +186,7 @@ public class Homes {
 		}
 		list.set(name, null);
 		homes.saveConfig();
-		sendMessage(p, Strings.getPrefix() + "Home '" + name + "' has been deleted");
+		sendMessage(p, Strings.getPrefix() + Strings.getHomeDeleted(p, name));
 	}
 
 	@SuppressWarnings("deprecation")
@@ -259,11 +257,11 @@ public class Homes {
 				p.spigot().sendMessage(symbol);
 			}
 		} else {
-			PlayerData homes = new PlayerData(p.getUniqueId());
+			PlayerData homes = new PlayerData(online.getUniqueId());
 			FileConfiguration config = homes.getConfig();
 			ConfigurationSection list = config.getConfigurationSection("Private-Homes");
 			String playername = online.getName();
-			if (countWarps(p) == 0) {
+			if (countWarps(online) == 0) {
 				sendMessage(p, Strings.getPrefix() + playername + "'s Home List §f[§3" + countWarps(online) + "§f/§3"
 						+ String.valueOf(maxWarps(online)).replaceAll("999", Strings.infinity()) + "§f]");
 				sendMessage(p, ChatColor.GRAY + "[&cThis player has no home set.&7]");

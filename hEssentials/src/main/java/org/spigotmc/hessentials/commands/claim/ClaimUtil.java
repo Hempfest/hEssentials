@@ -5,6 +5,8 @@ import java.util.List;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.World;
+import org.bukkit.block.Block;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -14,6 +16,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerBucketEmptyEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.spigotmc.hessentials.HempfestEssentials;
 import org.spigotmc.hessentials.configuration.Config;
 import org.spigotmc.hessentials.configuration.PlayerData;
@@ -29,22 +32,51 @@ public class ClaimUtil implements Listener {
 	 @EventHandler(priority = EventPriority.HIGH)
 	  public void onBucketRelease(PlayerBucketEmptyEvent e) {
 		  Player p = e.getPlayer();
-		  if (isInClaim(p.getLocation())) {
-				if (!getClaimList(p).contains(getClaimName(p.getLocation()))) {
+		  Block block = e.getBlock();
+			Location blocks = block.getLocation();
+			if (isInClaim(blocks)) {
+				if (!getClaimList(p).contains(getClaimName(blocks))) {
 					e.setCancelled(true);
-					sendMessage(p, Strings.getPrefix() + Strings.getCannotPlace(p));
+					String claimName = getClaimName(blocks);
+					String claimOwner = getClaimOwner(blocks);
+					sendMessage(p, Strings.getPrefix() + Strings.getCannotPlace(p, claimName, claimOwner));
 					return;
 				}
 			}
 	  }
-	
+	@EventHandler
+	public void onChestUse(PlayerInteractEvent e) {
+		try {
+		Block block = e.getClickedBlock();
+		Location blocks = block.getLocation();
+		Player p = e.getPlayer();
+		if (isInClaim(blocks)) {
+			if (block.getType().isInteractable()) {
+			if (!getClaimList(p).contains(getClaimName(blocks))) {
+				e.setCancelled(true);
+				String claimName = getClaimName(blocks);
+				String claimOwner = getClaimOwner(blocks);
+				sendMessage(p, Strings.getPrefix() + Strings.getCannotUse(p, claimName, claimOwner));
+				return;
+				}
+			return;
+			}
+		}
+		} catch (NullPointerException ex) {
+			return;
+		}
+	}
 	@EventHandler(priority = EventPriority.HIGH)
 	public void onBreak(BlockBreakEvent e) {
 		Player p = e.getPlayer();
-		if (isInClaim(p.getLocation())) {
-			if (!getClaimList(p).contains(getClaimName(p.getLocation()))) {
+		Block block = e.getBlock();
+		Location blocks = block.getLocation();
+		if (isInClaim(blocks)) {
+			if (!getClaimList(p).contains(getClaimName(blocks))) {
 				e.setCancelled(true);
-				sendMessage(p, Strings.getPrefix() + Strings.getCannotBreak(p));
+				String claimName = getClaimName(blocks);
+				String claimOwner = getClaimOwner(blocks);
+				sendMessage(p, Strings.getPrefix() + Strings.getCannotBreak(p, claimName, claimOwner));
 				return;
 			}
 		}
@@ -53,10 +85,14 @@ public class ClaimUtil implements Listener {
 	@EventHandler(priority = EventPriority.HIGH)
 	public void onBreak(BlockPlaceEvent e) {
 		Player p = e.getPlayer();
-		if (isInClaim(p.getLocation())) {
-			if (!getClaimList(p).contains(getClaimName(p.getLocation()))) {
+		Block block = e.getBlock();
+		Location blocks = block.getLocation();
+		if (isInClaim(blocks)) {
+			if (!getClaimList(p).contains(getClaimName(blocks))) {
 				e.setCancelled(true);
-				sendMessage(p, Strings.getPrefix() + Strings.getCannotPlace(p));
+				String claimName = getClaimName(blocks);
+				String claimOwner = getClaimOwner(blocks);
+				sendMessage(p, Strings.getPrefix() + Strings.getCannotPlace(p, claimName, claimOwner));
 				return;
 			}
 		}
@@ -69,8 +105,9 @@ public class ClaimUtil implements Listener {
 		for (String s : d.getConfigurationSection("Claims-Location").getKeys(false)) {
 			int x = d.getInt("Claims-Location." + s + ".X");
 			int z = d.getInt("Claims-Location." + s + ".Z");
+			String w = d.getString("Claims-Location." + s + ".World");
 			if ((loc.getChunk().getX() <= x) && (loc.getChunk().getZ() <= z) && (loc.getChunk().getX() >= x)
-					&& (loc.getChunk().getZ() >= z)) {
+					&& (loc.getChunk().getZ() >= z) && loc.getWorld().getName().equals(w)) {
 				return true;
 			}
 
@@ -137,8 +174,18 @@ public class ClaimUtil implements Listener {
 					sendMessage(p, Strings.getPrefix() + "You were given permission to the land &7(&f"
 							+ getClaimName(p.getLocation()) + "&7) &rby: " + getClaimOwner(p.getLocation()));
 				}
-			} else {
+			} else if (!d.getString("Claims-Location." + getClaimName(p.getLocation()) + ".User").contains(p.getName())) {
+				if (isClaimOwner(p)) {
+					return;
+				}
+				if (Claim.contains(getClaimName(p.getLocation()))) {
+				Claim.remove(getClaimName(p.getLocation()));
+				pd.getConfig().set("Claims", Claim);
+				pd.saveConfig();
+				sendMessage(p, Strings.getPrefix() + "You were removed permission to the land &7(&f"
+						+ getClaimName(p.getLocation()) + "&7) &rby: " + getClaimOwner(p.getLocation()));
 				return;
+				}
 			}
 
 		}
@@ -182,6 +229,48 @@ public class ClaimUtil implements Listener {
 			}
 
 			sendMessage(p, Strings.getPrefix() + "You just added user (" + target + ") to land: " + claimName);
+
+		}
+	}
+	
+	// Remove access to a claim from an online user
+	public static void removeClaimUser(Player p, String claimName, String target) {
+		Config data = new Config("Claims");
+		FileConfiguration d = data.getConfig();
+		PlayerData da = new PlayerData(p.getUniqueId());
+		// chefk if the players in the claim and if it exists
+		if (!getClaimName(p.getLocation()).equals(claimName)) {
+			sendMessage(p, Strings.getPrefix() + "You must be standing within the claim to remove users!");
+			return;
+		}
+		if (!da.getConfig().getStringList("Claims").contains(claimName)) {
+			sendMessage(p, Strings.getPrefix() + "You do not own a claim by the name of: " + claimName);
+			return;
+		}
+
+		if (isInClaim(p.getLocation()) && isClaimOwner(p)) {
+			for (String s : d.getConfigurationSection("Claims-Location").getKeys(false)) {
+				List<String> Claims = d.getStringList("Claims-Location" + s + ".User");
+				if (Claims.contains(target) && s.equals(claimName)) {
+					Claims.remove(target);
+				}
+				Player online = Bukkit.getPlayer(target);
+				if (online != null) {
+					PlayerData pd = new PlayerData(online.getUniqueId());
+					List<String> Claim = pd.getConfig().getStringList("Claims");
+					if (Claim.contains(claimName)) {
+						Claim.remove(claimName);
+						pd.getConfig().set("Claims", Claim);
+						pd.saveConfig();
+						sendMessage(online, Strings.getPrefix() + "You were removed permission to the land &7(&f"
+								+ claimName + "&7) &rby: " + p.getName());
+					}
+				}
+				d.set("Claims-Location." + s + ".User", Claims);
+				data.saveConfig();
+			}
+
+			sendMessage(p, Strings.getPrefix() + "You just removed user (" + target + ") from land: " + claimName);
 
 		}
 	}
@@ -270,7 +359,9 @@ public class ClaimUtil implements Listener {
 
 				p.teleport(new Location(p.getWorld(), teleportLocation.getX(), teleportLocation.getY() + 1,
 						teleportLocation.getZ()));
+				
 			}
+			sendMessage(p, Strings.getPrefix() + "&aTeleported &7to: &e" + claimName);
 		}
 
 	}
@@ -310,8 +401,10 @@ public class ClaimUtil implements Listener {
 		data.getConfig().set("Claims-List", Claims);
 		int x = location.getChunk().getX();
 		int z = location.getChunk().getZ();
+		World w = location.getWorld();
 		data.getConfig().set("Claims-Location." + ID + ".X", x);
 		data.getConfig().set("Claims-Location." + ID + ".Z", z);
+		data.getConfig().set("Claims-Location." + ID + ".World", w.getName());
 		data.getConfig().set("Claims-Location." + ID + ".Owner", p.getName());
 		data.getConfig().createSection("Claims-Location." + ID + ".User");
 		data.saveConfig();
