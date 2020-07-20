@@ -44,7 +44,7 @@ public class ClaimUtil implements Listener {
 				}
 			}
 	  }
-	@EventHandler
+	@EventHandler(priority = EventPriority.HIGH)
 	public void onChestUse(PlayerInteractEvent e) {
 		try {
 		Block block = e.getClickedBlock();
