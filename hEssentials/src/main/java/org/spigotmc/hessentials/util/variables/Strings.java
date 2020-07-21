@@ -4,6 +4,7 @@ import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -105,6 +106,29 @@ public class Strings {
 		return color(text.replaceAll("%claim%", claimName));
 	}
 	
+	public static String getClaimColor(Player p) {
+		if (ClaimUtil.isClaimOwner(p))
+			return "&a&o";
+		
+		if (ClaimUtil.isClaimUser(p)) 
+			return "&e&o";
+		
+		if (!ClaimUtil.isClaimOwner(p) || !ClaimUtil.isClaimUser(p))
+			return "&c&o";
+		return "&r";
+	}
+	
+	public static String getAREA(Player p, Location loc) {
+		if (ClaimUtil.isInClaim(loc)) {
+			return getClaimColor(p) + ClaimUtil.getClaimName(loc);
+		} else
+		if (m.h.clans.util.claim.ClaimUtil.isInClaim(loc)) {
+			return "&a&o" + m.h.clans.util.claim.ClaimUtil.getClaimOwner(m.h.clans.util.claim.ClaimUtil.getClaimID(loc));
+		} else if (!ClaimUtil.isInClaim(loc) || !m.h.clans.util.claim.ClaimUtil.isInClaim(loc)) {
+		return "&4&lWilderness";
+		}
+		return "&f&oN/A";
+	}
 	
 	public static void sendReceivedMenu(Player p) {
 		p.sendMessage(getPrefix() + color("&a&lSuccessfully received the Menu Item's."));

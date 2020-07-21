@@ -35,6 +35,7 @@ import org.spigotmc.hessentials.commands.staff.CommandUnban;
 import org.spigotmc.hessentials.commands.staff.CommandWhois;
 import org.spigotmc.hessentials.commands.tprequest.CommandTpRequest;
 import org.spigotmc.hessentials.events.PlayerListener;
+import org.spigotmc.hessentials.util.Placeholders;
 import org.spigotmc.hessentials.util.Utils;
 import org.spigotmc.hessentials.util.variables.Checks;
 
@@ -55,9 +56,7 @@ public class HempfestEssentials extends JavaPlugin {
 		registerTabCommands();
 		registerEvents();
 		runTimers();
-		if (Checks.canUseScoreboard()) {
-		Utils.updateLobbyBoard();
-		}
+	
 	}
 	
 
@@ -71,8 +70,15 @@ public class HempfestEssentials extends JavaPlugin {
 	
 
 	public void registerEvents() {
+
 		getServer().getPluginManager().registerEvents(new PlayerListener(), getInstance());
 		getServer().getPluginManager().registerEvents(new ClaimUtil(), getInstance());
+		if (Checks.checkforPH()) {
+			new Placeholders(this).register();
+			getLogger().info(String.format("PlaceholderAPI FOUND!", new Object[] { getDescription().getName() }));
+		} else {
+			getLogger().info(String.format("PlaceholderAPI not detected!", new Object[] { getDescription().getName() }));
+		}
 	}
 	
 	public void runTimers() {

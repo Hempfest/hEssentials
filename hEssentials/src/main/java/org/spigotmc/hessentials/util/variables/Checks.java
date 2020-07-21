@@ -1,5 +1,6 @@
 package org.spigotmc.hessentials.util.variables;
 
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.spigotmc.hessentials.configuration.Config;
@@ -29,6 +30,17 @@ public class Checks {
 			return false;
 		}
 		return true;
+	}
+	
+	public static boolean checkforPH() {
+	      if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
+	    	  
+	            return true;
+	        } else {
+	        	return false;
+	            
+	            
+	        }
 	}
 	
 	// HUD check

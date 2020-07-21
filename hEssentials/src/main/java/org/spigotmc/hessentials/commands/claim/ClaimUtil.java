@@ -123,7 +123,22 @@ public class ClaimUtil implements Listener {
 		}
 		return false;
 	}
-
+	
+	public static List<String> getUserList(Player p, String claimName) {
+		
+		Config data = new Config("Claims");
+		FileConfiguration d = data.getConfig();
+		List<String> Claims = d.getStringList("Claims-Location." + claimName + ".User");
+		if (!d.getConfigurationSection("Claims-Location").contains(claimName)) {
+			return null;
+		}
+		if (d.getString("Claims-Location." + claimName + ".Owner").equals(p.getName())) {
+			return Claims;
+		}
+		List<String> Claim = d.getStringList("Claims-Location." + getClaimName(p.getLocation()) + ".User");
+		return Claim;
+	}
+	
 	// Return the players claim list
 	public static List<String> getClaimList(Player p) {
 		Config data = new Config("Claims");
@@ -208,7 +223,7 @@ public class ClaimUtil implements Listener {
 
 		if (isInClaim(p.getLocation()) && isClaimOwner(p)) {
 			for (String s : d.getConfigurationSection("Claims-Location").getKeys(false)) {
-				List<String> Claims = d.getStringList("Claims-Location" + s + ".User");
+				List<String> Claims = d.getStringList("Claims-Location." + s + ".User");
 				if (!Claims.contains(target) && s.equals(claimName)) {
 					Claims.add(target);
 				}
@@ -250,7 +265,7 @@ public class ClaimUtil implements Listener {
 
 		if (isInClaim(p.getLocation()) && isClaimOwner(p)) {
 			for (String s : d.getConfigurationSection("Claims-Location").getKeys(false)) {
-				List<String> Claims = d.getStringList("Claims-Location" + s + ".User");
+				List<String> Claims = d.getStringList("Claims-Location." + s + ".User");
 				if (Claims.contains(target) && s.equals(claimName)) {
 					Claims.remove(target);
 				}
@@ -274,7 +289,7 @@ public class ClaimUtil implements Listener {
 
 		}
 	}
-
+	
 	// Get the claim name at the specified location
 	public static String getClaimName(Location loc) {
 		Config data = new Config("Claims");

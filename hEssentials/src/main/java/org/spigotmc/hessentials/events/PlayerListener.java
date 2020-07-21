@@ -17,7 +17,6 @@ import org.spigotmc.hessentials.commands.claim.ClaimUtil;
 import org.spigotmc.hessentials.configuration.Config;
 import org.spigotmc.hessentials.configuration.PlayerData;
 import org.spigotmc.hessentials.util.Utils;
-import org.spigotmc.hessentials.util.variables.Checks;
 import org.spigotmc.hessentials.util.variables.Message;
 import org.spigotmc.hessentials.util.variables.Strings;
 
@@ -34,10 +33,6 @@ public class PlayerListener implements Listener {
 			Utils.npbMOTD(p);
 			Utils.createPlayerConfig(p);
 			ClaimUtil.updateClaimUser(p);
-			if (Checks.canUseScoreboard()) {
-				Utils.createScoreboard(p);
-				Utils.animateScoreTitle(p);
-			}
 			return;
 		}
 		if (!pd.exists()) {
@@ -50,10 +45,6 @@ public class PlayerListener implements Listener {
 		Utils.matchIP(p);
 		Utils.matchUsername(p);
 		Utils.matchLTP(p);
-		if (Checks.canUseScoreboard()) {
-			Utils.createScoreboard(p);
-			Utils.animateScoreTitle(p);
-		}
 
 		return;
 	}
@@ -64,9 +55,6 @@ public class PlayerListener implements Listener {
 		// UUID uuid = p.getUniqueId();
 		// PlayerData pd = new PlayerData(uuid);
 		e.setQuitMessage(Strings.getLeaveMSG(p));
-		if (Checks.canUseScoreboard()) {
-		Utils.removeScoreboard(p);
-		}
 	}
 
 	@EventHandler(priority = EventPriority.HIGHEST)

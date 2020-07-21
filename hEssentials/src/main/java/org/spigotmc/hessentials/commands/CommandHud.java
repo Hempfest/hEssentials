@@ -34,12 +34,11 @@ public class CommandHud extends BukkitCommand {
 				if (length == 0) {
 					if (Checks.hasScore(p)) {
 						
-				Utils.removeScoreboard(p);
+				
 				Utils.remScore(p);
 					
 					} else if (!Checks.hasScore(p)){
-					Utils.createScoreboard(p);	
-					Utils.animateScoreTitle(p);
+					
 						return true;
 					}
 					return true;

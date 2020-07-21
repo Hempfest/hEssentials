@@ -2,6 +2,7 @@ name: hEssentials
 version: 1.1.0
 api-version: 1.16
 author: Hempfest
+soft-depend: [PlaceholderAPI, Clans]
 description: A lightweight alternative to EssentialsX
 main: org.spigotmc.hessentials.HempfestEssentials
 commands:

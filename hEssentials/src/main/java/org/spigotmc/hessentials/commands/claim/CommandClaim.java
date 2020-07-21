@@ -108,6 +108,10 @@ public class CommandClaim extends BukkitCommand {
 						ClaimUtil.saveChunk(p, args[1]);
 						return true;
 					}
+					if (args[0].equalsIgnoreCase("users")) {
+						sendMessage(p, Strings.getPrefix() + args[1] + " User-List: &e&o" + ClaimUtil.getUserList(p, args[1]));
+						return true;
+					}
 					if (args[0].equalsIgnoreCase("delete") || args[0].equalsIgnoreCase("d") || args[0].equalsIgnoreCase("del")) {
 						if (!p.hasPermission(this.getPermission() + ".delete")) {
 							Strings.sendNoPermission(p, this.getPermission() + ".delete");

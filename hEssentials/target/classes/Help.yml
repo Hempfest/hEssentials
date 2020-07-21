@@ -13,24 +13,27 @@
 #   *  %prefix% = current plugin prefix
 #   *  %next% = goto the next line
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~# 
-Help-Menu: '%prefix% Help with commands.
+Help-Menu: '%prefix% &a&oHelp with commands.
 %next%&e&o&m====================================
-%next%&f/help,hhelp - Command information.
-%next%&f/message,msg,hmsg - Message an online player.
-%next%&f/reply,r - Respond to an incoming message.
-%next%&f/who,list - Show the online list of players via command.
-%next%&f/track - Track players near you!
-%next%&f/homes - View your current set homes.
-%next%&f/sethome - Set a private home.
-%next%&f/delhome - Delete a private home.
-%next%&f/home - Teleport to a private home.
-%next%&f/claim - Help with private land claiming.'
+%next%&7/help,hhelp - Command information.
+%next%&7/message,msg,hmsg - Message an online player.
+%next%&7/reply,r - Respond to an incoming message.
+%next%&7/who,list - Show the online list of players via command.
+%next%&7/track - Track players near you!
+%next%&7/homes - View your current set homes.
+%next%&7/sethome - Set a private home.
+%next%&7/delhome - Delete a private home.
+%next%&7/home - Teleport to a private home.
+%next%&7/claim - Help with private land claiming.
+%next%&e&o&m===================================='
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#  
 Two-Pages?: 'yes'
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#  
-Help-Menu-PG2: '%prefix% Help with commands.
-%next%&f/tpr - Send or accept/deny teleport requests
-%next%&f/othercommands - put them here :)'
+Help-Menu-PG2: '%prefix% &a&oHelp with commands.
+%next%&e&o&m====================================
+%next%&7/tpr - Send or accept/deny teleport requests
+%next%&7/othercommands - put them here :)
+%next%&e&o&m===================================='
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#  
 Three-Pages?: 'no'
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#  
