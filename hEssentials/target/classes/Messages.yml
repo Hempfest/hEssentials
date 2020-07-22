@@ -37,7 +37,7 @@ Messages:
 #   * NO PERMISSION MESSAGE - Change the message displayed 
 # when the player doesnt have permission.
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-    No-Permission: 'You don''t have permission %permnode%.'
+    No-Permission: 'You don''t have permission ''%permnode%'''
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 #   * PRIVATE MESSAGES - Here you can edit the format for
 # private messaging.
@@ -85,3 +85,28 @@ Messages:
     Player-Home-Create: 'You just created the home ''&a%home%&r''.'
     Player-Home-Delete: 'You just deleted the home ''&a%home%&r''.'
     Player-Home-Update: 'You just updated the home ''&a%home%&r''.'
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+# O]===============================================[O #
+# |                MESSAGE OF THE DAY               | #
+# O]===============================================[O #
+# O]===============================================[O #
+#  |                     Hello :)                  | #
+# O]===============================================[O #
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+# Variables: 
+#   *  %player% = players name
+#   *  %online% = amount of playres online
+#   *  %max% = max playercount of your server
+#   *  %prefix% = current plugin prefix
+#   *  %next% = goto the next line
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~# 
+Message-of-the-day: '%prefix% I need configured. This is what players see on login.'
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#  
+MOTD-First-Join: '%prefix% this is the first MOTD message players see on their first join.'
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+MOTD-Server-List: '%prefix% &4&oI need configured.'
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+# Set the max player count in the server list. (Its fake)
+Server-Max-Players: 1
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~# 

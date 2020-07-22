@@ -105,6 +105,22 @@ public class Message {
 		sender.spigot().sendMessage((BaseComponent)text); 
 		return;
 	}
+	@SuppressWarnings("deprecation")
+	public static void textRunnable(CommandSender sender, String hoverTextBody, String hoverTextBody2, String hoverTextBody3, String hoverMessage, String hoverMessage2, String hoverMessage3, String commandName, String commandName2, String commandName3) {
+		TextComponent hover = new TextComponent(Strings.color(hoverTextBody));
+		TextComponent hover2 = new TextComponent(Strings.color(hoverTextBody2));
+		TextComponent hover3 = new TextComponent(Strings.color(hoverTextBody3));
+		hover.addExtra(hover2);
+		hover.addExtra(hover3);
+		hover.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, (new ComponentBuilder(Strings.color(hoverMessage))).create()));
+		hover.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/" + commandName));
+		hover2.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, (new ComponentBuilder(Strings.color(hoverMessage2))).create()));
+		hover2.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/" + commandName2));
+		hover3.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, (new ComponentBuilder(Strings.color(hoverMessage3))).create()));
+		hover3.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/" + commandName3));
+		sender.spigot().sendMessage((BaseComponent)hover); 
+		return;
+	}
 	
 	
 

@@ -3,11 +3,18 @@ package org.spigotmc.hessentials.util.variables;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.RegisteredServiceProvider;
+import org.spigotmc.hessentials.HempfestEssentials;
 import org.spigotmc.hessentials.configuration.Config;
 import org.spigotmc.hessentials.util.Utils;
 
-public class Checks {
+import m.h.clans.Clans;
+import net.milkbowl.vault.economy.Economy;
 
+public class Checks {
+	
+	private static Economy econ = null;
+	
 	public static boolean canUseScoreboard() {
 		Config score = new Config("Scoreboard");
 		FileConfiguration s = score.getConfig();
@@ -31,6 +38,27 @@ public class Checks {
 		}
 		return true;
 	}
+	
+	public static boolean economyEnabled() {
+		if (Bukkit.getServer().getPluginManager().isPluginEnabled("Vault")) {
+			if (HempfestEssentials.getInstance().eco.isEnabled()) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public static boolean setupEconomy() {
+        if (Clans.getInstance().getServer().getPluginManager().getPlugin("Vault") == null) {
+            return false;
+        }
+        RegisteredServiceProvider<Economy> rsp = Clans.getInstance().getServer().getServicesManager().getRegistration(Economy.class);
+        if (rsp == null) {
+            return false;
+        }
+        econ = rsp.getProvider();
+        return econ != null;
+    }
 	
 	public static boolean checkforPH() {
 	      if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {

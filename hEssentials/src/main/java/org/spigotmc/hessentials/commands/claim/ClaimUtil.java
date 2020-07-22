@@ -17,7 +17,6 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerBucketEmptyEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.spigotmc.hessentials.HempfestEssentials;
 import org.spigotmc.hessentials.configuration.Config;
 import org.spigotmc.hessentials.configuration.PlayerData;
 import org.spigotmc.hessentials.util.variables.Strings;
@@ -389,7 +388,7 @@ public class ClaimUtil implements Listener {
 		PlayerData pd = new PlayerData(p.getUniqueId());
 		List<String> Claim = pd.getConfig().getStringList("Claims");
 		String ID = claimName.toString();
-		if (HempfestEssentials.getInstance().getServer().getPluginManager().getPlugin("Clans") != null) {
+		if (Bukkit.getPluginManager().isPluginEnabled("Clans")) {
 			if (m.h.clans.util.claim.ClaimUtil.isInClaim(p.getLocation())) {
 				sendMessage(p,
 						Strings.getPrefix() + "You do not own this land.\nOwner: " + m.h.clans.util.claim.ClaimUtil

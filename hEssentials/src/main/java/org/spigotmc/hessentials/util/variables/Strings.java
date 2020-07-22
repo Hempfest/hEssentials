@@ -223,7 +223,7 @@ public class Strings {
 	  }
 	
 	public static String getMOTD(Player player) {
-		Config motd = new Config("MOTD");
+		Config motd = new Config("Messages");
 		Config messages = new Config(getMessagesUsed());
 		FileConfiguration m = motd.getConfig();
 		String section = m.getString("Message-of-the-day").replaceAll("%online%",
@@ -237,7 +237,7 @@ public class Strings {
 	}
 	
 	public static String getNPB_MOTD(Player player) {
-		Config motd = new Config("MOTD");
+		Config motd = new Config("Messages");
 		Config messages = new Config(getMessagesUsed());
 		FileConfiguration m = motd.getConfig();
 		String section = m.getString("MOTD-First-Join").replaceAll("%online%",

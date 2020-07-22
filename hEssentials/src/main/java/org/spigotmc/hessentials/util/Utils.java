@@ -176,8 +176,8 @@ public class Utils {
 	}
 
 	public static void MOTD(Player player) {
-		Config motd = new Config("MOTD");
-		InputStream in3 = HempfestEssentials.instance.getResource("MOTD.yml");
+		Config motd = new Config("Messages");
+		InputStream in3 = HempfestEssentials.instance.getResource("Messages.yml");
 		if (motd.exists()) {
 			sendMessage(player, Strings.getMOTD(player));
 		} else {
@@ -340,27 +340,22 @@ public class Utils {
 	public static void defaultConfiguration() {
 		Config messages = new Config("Messages");
 		Config help = new Config("Help");
-		Config motd = new Config("MOTD");
 		Config staff_help = new Config("Staff_Help");
 		InputStream in = HempfestEssentials.instance.getResource("Messages.yml");
 		InputStream in2 = HempfestEssentials.instance.getResource("Help.yml");
-		InputStream in3 = HempfestEssentials.instance.getResource("MOTD.yml");
 		InputStream in4 = HempfestEssentials.instance.getResource("Staff_Help.yml");
 		Config.copy(in, messages.getFile());
 		Config.copy(in2, help.getFile());
-		Config.copy(in3, motd.getFile());
 		Config.copy(in4, staff_help.getFile());
 	}
 
 	public static void createConfiguration() {
 		Config messages = new Config("Messages");
 		Config help = new Config("Help");
-		Config motd = new Config("MOTD");
 		Config staff_help = new Config("Staff_Help");
 		Config claims = new Config("Claims");
 		InputStream in = HempfestEssentials.instance.getResource("Messages.yml");
 		InputStream in2 = HempfestEssentials.instance.getResource("Help.yml");
-		InputStream in3 = HempfestEssentials.instance.getResource("MOTD.yml");
 		InputStream in5 = HempfestEssentials.instance.getResource("Staff_Help.yml");
 		InputStream in6 = HempfestEssentials.instance.getResource("Claims.yml");
 		if (!messages.exists()) {
@@ -368,9 +363,6 @@ public class Utils {
 		}
 		if (!help.exists()) {
 			Config.copy(in2, help.getFile());
-		}
-		if (!motd.exists()) {
-			Config.copy(in3, motd.getFile());
 		}
 		if (!staff_help.exists()) {
 			Config.copy(in5, staff_help.getFile());

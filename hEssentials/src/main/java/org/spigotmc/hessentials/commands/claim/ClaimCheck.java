@@ -14,7 +14,13 @@ import org.spigotmc.hessentials.util.variables.Strings;
 public class ClaimCheck extends BukkitRunnable
 {
 	
-    
+    private boolean clansEnabled() {
+    	if (Bukkit.getPluginManager().isPluginEnabled("Clans")) {
+    		return true;
+    	}
+    	return false;
+    }
+	
     public void run() {
         for (final Player p : Bukkit.getOnlinePlayers()) {
     		//Config data = new Config("Claims");
@@ -79,7 +85,14 @@ public class ClaimCheck extends BukkitRunnable
         			Utils.title_claim.put(p.getName(), Boolean.valueOf(false));
         			Utils.title_claim2.put(p.getName(), Boolean.valueOf(false));
         			Utils.title_claim4.put(p.getName(), Boolean.valueOf(false));
+        			if (clansEnabled()) {
+        				if (!m.h.clans.util.claim.ClaimUtil.isInClaim(loc)) {
         			p.sendMessage(Strings.color(Strings.getWildTitle(p) + " " + Strings.getWildSubTitle(p)));
+        			
+        				} else
+        					return;
+        			} else if (!clansEnabled())
+        				p.sendMessage(Strings.color(Strings.getWildTitle(p) + " " + Strings.getWildSubTitle(p)));
         			return;
 				}
     			if (Checks.titleSent2(p)) {
@@ -87,7 +100,14 @@ public class ClaimCheck extends BukkitRunnable
     				Utils.title_claim.put(p.getName(), Boolean.valueOf(false));
         			Utils.title_claim2.put(p.getName(), Boolean.valueOf(false));
         			Utils.title_claim4.put(p.getName(), Boolean.valueOf(false));
+        			if (clansEnabled()) {
+        				if (!m.h.clans.util.claim.ClaimUtil.isInClaim(loc)) {
         			p.sendMessage(Strings.color(Strings.getWildTitle(p) + " " + Strings.getWildSubTitle(p)));
+        			
+        				} else
+        					return;
+        			} else if (!clansEnabled())
+        				p.sendMessage(Strings.color(Strings.getWildTitle(p) + " " + Strings.getWildSubTitle(p)));
         			return;
 				}
     			if (!Checks.titleSent3(p) && Checks.titleSent2(p) && Checks.titleSent(p)) {
@@ -96,7 +116,14 @@ public class ClaimCheck extends BukkitRunnable
 					Utils.title_claim2.put(p.getName(), Boolean.valueOf(false));
     			Utils.title_claim3.put(p.getName(), Boolean.valueOf(true));
     			Utils.title_claim4.put(p.getName(), Boolean.valueOf(false));
+    			if (clansEnabled()) {
+    				if (!m.h.clans.util.claim.ClaimUtil.isInClaim(loc)) {
     			p.sendMessage(Strings.color(Strings.getWildTitle(p) + " " + Strings.getWildSubTitle(p)));
+    			
+    				} else
+    					return;
+    			} else if (!clansEnabled())
+    				p.sendMessage(Strings.color(Strings.getWildTitle(p) + " " + Strings.getWildSubTitle(p)));
     			return;
 				}
     			return;

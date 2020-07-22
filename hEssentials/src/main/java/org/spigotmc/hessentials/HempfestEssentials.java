@@ -1,5 +1,7 @@
 package org.spigotmc.hessentials;
 
+import java.util.logging.Logger;
+
 import org.bukkit.plugin.java.JavaPlugin;
 import org.spigotmc.hessentials.commands.CommandHelp;
 import org.spigotmc.hessentials.commands.CommandMessage;
@@ -39,14 +41,16 @@ import org.spigotmc.hessentials.util.Placeholders;
 import org.spigotmc.hessentials.util.Utils;
 import org.spigotmc.hessentials.util.variables.Checks;
 
+import net.milkbowl.vault.economy.Economy;
+
 
 
 public class HempfestEssentials extends JavaPlugin {
 
 	//Instance
 	public static HempfestEssentials instance;
-	
-	
+	private static final Logger log = Logger.getLogger("Minecraft");
+	public Economy eco;
 	//Start server
 	public void onEnable() {
 		setInstance(this);
@@ -73,17 +77,22 @@ public class HempfestEssentials extends JavaPlugin {
 
 		getServer().getPluginManager().registerEvents(new PlayerListener(), getInstance());
 		getServer().getPluginManager().registerEvents(new ClaimUtil(), getInstance());
+		if (!Checks.setupEconomy() ) {
+            log.severe(String.format("[%s] - Disabled due to no Vault dependency found!", getDescription().getName()));
+            getServer().getPluginManager().disablePlugin(this);
+            return;
+        }
 		if (Checks.checkforPH()) {
 			new Placeholders(this).register();
-			getLogger().info(String.format("PlaceholderAPI FOUND!", new Object[] { getDescription().getName() }));
+			log.info(String.format("PlaceholderAPI FOUND!", new Object[] { getDescription().getName() }));
 		} else {
-			getLogger().info(String.format("PlaceholderAPI not detected!", new Object[] { getDescription().getName() }));
+			log.info(String.format("PlaceholderAPI not detected!", new Object[] { getDescription().getName() }));
 		}
 	}
 	
 	public void runTimers() {
 		 ClaimCheck claimCheck = new ClaimCheck();
-	        claimCheck.runTaskTimer(this, 40L, 40L);
+	        claimCheck.runTaskTimer(this, 20L, 20L);
 	}
 
 	public void registerCommands() {

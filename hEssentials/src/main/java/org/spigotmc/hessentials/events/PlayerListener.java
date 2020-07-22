@@ -94,7 +94,7 @@ public class PlayerListener implements Listener {
 
 	@EventHandler
 	public void onMOTD(ServerListPingEvent e) {
-		Config mo = new Config("MOTD");
+		Config mo = new Config("Messages");
 		FileConfiguration m = mo.getConfig();
 		String motd = Strings.color(m.getString("MOTD-Server-List").replaceAll("%prefix%", Strings.getPrefix()));
 		e.setMotd(motd);

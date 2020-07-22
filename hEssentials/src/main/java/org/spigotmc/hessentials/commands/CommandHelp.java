@@ -22,7 +22,7 @@ public class CommandHelp extends BukkitCommand {
 		player.sendMessage(Strings.color(message));
 		return;
 	}
-
+	
 	@Override
 	public boolean execute(CommandSender sender, String commandLabel, String[] args) {
 		if (!(sender instanceof Player)) {
@@ -36,17 +36,17 @@ public class CommandHelp extends BukkitCommand {
 		if (length == 0) {
 		
 			if (Checks.allPagesActive()) {
-				int pgcount = 3;
+				//int pgcount = 3;
 				sendMessage(p, Lists.sendHelpMenu(p));
-				Message.textRunnable(p, "&fCurrently on page [1/" + pgcount + "]", " | &lPAGE 2 >>", "Click to goto the next page.", "help 2");
+				Message.textRunnable(p, "&fPage [&b&l1&f]", " | Page [&72&f]", " | Page [&73&f]", "Click to goto page 1.", "Click to goto page 2.", "Click to goto page 3.", "help 1", "help 2", "help 3");
 			} else if (Checks.twoPagesActive()) {
-				int pgcount = 2;
+				//int pgcount = 2;
 				sendMessage(p, Lists.sendHelpMenu(p));
-				Message.textRunnable(p, "&fCurrently on page [1/" + pgcount + "]", " | &lPAGE 2 >>", "Click to goto the next page.", "help 2");
+				Message.textRunnable(p, "&fPage [" + "&b&l1" + "&f]", " | Page [&72&f]", "Click to goto the next page.", "help 2");
 			} else if (Checks.onePageActive()) {
 				int pgcount = 1;
 			sendMessage(p, Lists.sendHelpMenu(p));
-			Message.textHoverable(p, "&fCurrently on page [1/" + pgcount + "]", " | [O]", "There is only one help page." );
+			Message.textHoverable(p, "&fPage [&71&f/&b" + pgcount + "&f]", " | [&b&o~&f]", "There is only one help page." );
 			return true;
 			}
 			return true;
@@ -55,47 +55,47 @@ public class CommandHelp extends BukkitCommand {
 		if (length == 1) {
 			if (args[0].equalsIgnoreCase("1")) {
 				if (Checks.allPagesActive()) {
-					int pgcount = 3;
+					//int pgcount = 3;
 					sendMessage(p, Lists.sendHelpMenu(p));
-					Message.textRunnable(p, "&fCurrently on page [1/" + pgcount + "]", " | &lPAGE 2 >>", "Click to goto the next page.", "help 2");
+					Message.textRunnable(p, "&fPage [" + "&b&l1" + "&f]", " | Page [&72&f]", " | Page [&73&f]", "Click to goto page 1.", "Click to goto page 2.", "Click to goto page 3.", "help 1", "help 2", "help 3");
 				} else if (Checks.twoPagesActive()) {
-					int pgcount = 2;
+					//int pgcount = 2;
 					sendMessage(p, Lists.sendHelpMenu(p));
-					Message.textRunnable(p, "&fCurrently on page [1/" + pgcount + "]", " | &lPAGE 2 >>", "Click to goto the next page.", "help 2");
+					Message.textRunnable(p, "&fPage [" + "&b&l1" + "&f]", " | Page [&72&f]", "Click to goto the next page.", "help 2");
 				} else if (Checks.onePageActive()) {
 					int pgcount = 1;
 					sendMessage(p, Lists.sendHelpMenu(p));
-					Message.textHoverable(p, "&fCurrently on page [1/" + pgcount + "]", " | [O]", "There is only one help page." );
+					Message.textHoverable(p, "&fPage [&71&f/&b" + pgcount + "&f]", " | [&b&o~&f]", "There is only one help page." );
 					return true;
 				}
 			} else if (args[0].equalsIgnoreCase("2")) {
 				if (Checks.allPagesActive()) {
-					int pgcount = 3;
+				//	int pgcount = 3;
 					sendMessage(p, Lists.sendHelpMenu2(p));
-					Message.textRunnable(p, "&fCurrently on page [2/" + pgcount + "]", " | &lPAGE 3 >>", "Click to goto the next page.", "help 3");
+					Message.textRunnable(p, "&fPage [" + "&71" + "&f]", " | Page [&b&l2&f]", " | Page [&73&f]", "Click to goto page 1.", "Click to goto page 2.", "Click to goto page 3.", "help 1", "help 2", "help 3");
 				} else if (Checks.twoPagesActive()) {
 					int pgcount = 2;
 					sendMessage(p, Lists.sendHelpMenu2(p));
-					Message.textHoverable(p, "&fCurrently on page [2/" + pgcount + "]", " | [O]", "There is only two help pages." );
+					Message.textHoverable(p, "&fPage [&72&f/&b" + pgcount + "&f]", " | [&b&o~&f]", "There is only two help pages." );
 				} else if (Checks.onePageActive()) {
 					int pgcount = 1;
 					sendMessage(p, Lists.sendHelpMenu(p));
-					Message.textHoverable(p, "&fCurrently on page [1/" + pgcount + "]", " | [O]", "There is only one help page." );
+					Message.textHoverable(p, "&fPage [&71&f/&b" + pgcount + "&f]", " | [&b&o~&f]", "There is only one help page." );
 					return true;
 				}
 			} else if (args[0].equalsIgnoreCase("3")) {
 				if (Checks.allPagesActive()) {
-					int pgcount = 3;
+					//int pgcount = 3;
 					sendMessage(p, Lists.sendHelpMenu3(p));
-					Message.textHoverable(p, "&fCurrently on page [3/" + pgcount + "]", " | [O]", "You are on the last help page." );
+					Message.textRunnable(p, "&fPage [" + "&71" + "&f]", " | Page [&72&f]", " | Page [&b&l3&f]", "Click to goto page 1.", "Click to goto page 2.", "Click to goto page 3.", "help 1", "help 2", "help 3");
 				} else if (Checks.twoPagesActive()) {
-					int pgcount = 2;
+					//int pgcount = 2;
 					sendMessage(p, Lists.sendHelpMenu2(p));
-					Message.textHoverable(p, "&fCurrently on page [2/" + pgcount + "]", " | [O]", "There is only two help pages." );
+					Message.textHoverable(p, "&fPage [" + "&71" + "&f]", " | Page [&b&l2&f]", "You are on the final page." );
 				} else if (Checks.onePageActive()) {
 					int pgcount = 1;
 					sendMessage(p, Lists.sendHelpMenu(p));
-					Message.textHoverable(p, "&fCurrently on page [1/" + pgcount + "]", " | [O]", "There is only one help page." );
+					Message.textHoverable(p, "&fPage [&71&f/&b" + pgcount + "&f]", " | [&b&o~&f]", "There is only one help page." );
 					return true;
 				}
 			}
