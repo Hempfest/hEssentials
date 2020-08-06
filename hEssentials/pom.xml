@@ -19,10 +19,6 @@
 
 	<repositories>
 		<repository>
-		<id>jitpack.io</id>
-		<url>https://jitpack.io</url>
-		</repository>
-		<repository>
 			<id>spigot-repo</id>
 			<url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
 		</repository>
@@ -39,12 +35,13 @@
 			<version>1.16.1-R0.1-SNAPSHOT</version>
 			<scope>provided</scope>
 		</dependency>
-	 	<dependency>
-        <groupId>com.github.MilkBowl</groupId>
-        <artifactId>VaultAPI</artifactId>
-        <version>1.7</version>
-        <scope>provided</scope>
-    	</dependency>
+		<dependency>
+            <groupId>org.bukkit</groupId>
+            <artifactId>craftbukkit-1.16.1</artifactId>
+            <version>LATEST</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/resources/craftbukkit-1.16.1.jar</systemPath>
+        </dependency>
 		<dependency>
          <groupId>me.clip</groupId>
           <artifactId>placeholderapi</artifactId>
@@ -53,10 +50,17 @@
         </dependency>
 		<dependency>
 			<groupId>Clans</groupId>
-			<artifactId>Spawn</artifactId>
+			<artifactId>Clans</artifactId>
 			<version>1.5.5</version>
 			<scope>system</scope>
 			<systemPath>${project.basedir}/src/main/resources/Clans.jar</systemPath>
+		</dependency>
+		<dependency>
+			<groupId>hEssentialsChat</groupId>
+			<artifactId>hEssentialsChat</artifactId>
+			<version>1.0.0</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/src/main/resources/hEssentialsChat.jar</systemPath>
 		</dependency>
 	</dependencies>
 </project>

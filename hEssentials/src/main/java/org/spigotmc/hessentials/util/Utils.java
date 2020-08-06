@@ -1,13 +1,16 @@
 package org.spigotmc.hessentials.util;
 
+import java.io.File;
 import java.io.InputStream;
 import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
@@ -28,14 +31,12 @@ import org.bukkit.scoreboard.ScoreboardManager;
 import org.spigotmc.hessentials.HempfestEssentials;
 import org.spigotmc.hessentials.configuration.Config;
 import org.spigotmc.hessentials.configuration.PlayerData;
+import org.spigotmc.hessentials.gui.Gui;
 import org.spigotmc.hessentials.util.variables.Strings;
 
-import m.h.clans.util.ClanAPI;
 
 public class Utils {
 
-	public static ClanAPI api;
-	Utils u;
 
 	public static boolean Chat_MUTED = false;
 	public static HashMap<String, Boolean> hud = new HashMap<String, Boolean>();
@@ -46,11 +47,10 @@ public class Utils {
 	public static HashMap<String, Boolean> hud_muted = new HashMap<String, Boolean>();
 	public static HashMap<String, Boolean> hud_tracking = new HashMap<String, Boolean>();
 	public static HashMap<String, Boolean> recieved = new HashMap<String, Boolean>();
-
-	public Utils(ClanAPI api) {
-		Utils.api = api;
-	}
-
+	public static HashMap<Player, Gui> guiManager = new HashMap<>();
+	
+	public static int stop = 0;
+	
 	// Reply hashmap
 	public static HashMap<Player, Player> reply = new HashMap<Player, Player>();
 	// Socialspy hashmap
@@ -125,8 +125,79 @@ public class Utils {
 	// Remove tracking board after 1 minute
 	//
 
+	 /**
+     * Sends the HELP as a paginated list of strings in chat to a player
+     *
+     * @param sender The sender to send the list to
+     * @param list The list to paginate
+     * @param page The page number to display.
+     * @param countAll The count of all available entries
+     */
+   public void paginateHelp(CommandSender sender, List<String> list, int page, int contentLinesPerPage)
+   {
+       int totalPageCount = 1;
+       if((list.size() % contentLinesPerPage) == 0)
+       {
+         if(list.size() > 0)
+         {
+             totalPageCount = list.size() / contentLinesPerPage;
+         }    
+       }
+       else
+       {
+         totalPageCount = (list.size() / contentLinesPerPage) + 1;
+       }
 
+       if(page <= totalPageCount)
+       {   
+         //beginline
+         if(list.isEmpty())
+         {
+             sender.sendMessage(ChatColor.WHITE + "The list is empty!");
+         }
+         else
+         {
+             int i = 0, k = 0;
+             page--;
 
+             for (String entry : list)
+             {
+               k++;
+               if ((((page * contentLinesPerPage) + i + 1) == k) && (k != ((page * contentLinesPerPage) + contentLinesPerPage + 1)))
+               {
+                   i++;
+                   String a = entry.replaceAll("%player%", sender.getName());
+                   String b = a.replaceAll("%online%", String.valueOf(Bukkit.getOnlinePlayers().size()));
+                   String c = b.replaceAll("%max%", String.valueOf(Bukkit.getServer().getMaxPlayers()));
+                   String d = c.replaceAll("%prefix%", Strings.getPrefix());
+                   String e = d.replaceAll("%page%", String.valueOf(page + 1));
+                   String f = e.replaceAll("%page_total%", String.valueOf(totalPageCount));
+                   sender.sendMessage(Strings.color(f));
+               }
+             }
+         }
+  //endline
+       }
+       else
+       {
+         sender.sendMessage(ChatColor.YELLOW + "There are only " + ChatColor.WHITE + totalPageCount + ChatColor.YELLOW + " pages!");
+       }
+   }
+   
+   public static Gui guiManager(Player p) {
+		Gui gui;
+		if (!(guiManager.containsKey(p))) { 
+
+			
+			gui = new Gui(p);
+			guiManager.put(p, gui);
+
+			return gui;
+		} else {
+			return guiManager.get(p); 
+		}
+	}
+	
 
 	public static void openPlayerInventory(Player p, Player target) {
 		Inventory inv = Bukkit.createInventory(target, 54, Strings.color(target.getName() + " : click to update"));
@@ -205,7 +276,23 @@ public class Utils {
 		return;
 	}
 
-
+	public static void updateConfiguration () {
+		Config me = new Config("Messages");
+		FileConfiguration m = me.getConfig();
+		if (!m.getString("Version").equals(HempfestEssentials.getInstance().getDescription().getVersion())) {
+			for (Player all : Bukkit.getOnlinePlayers()) {
+				if (all.hasPermission("hessentials.staff")) {
+					sendMessage(all, Strings.getPrefix() + "Configuration updated.");
+				}
+			}
+			 File config = new File(HempfestEssentials.instance.getDataFolder(), "Messages.yml");
+			 config.delete();
+				InputStream in = HempfestEssentials.instance.getResource("Messages.yml");
+			 Config.copy(in, me.getFile());
+				
+			return;
+		}
+	}
 
 	public static void remScore(Player p) {
 		ScoreboardManager manager = Bukkit.getScoreboardManager();
@@ -336,27 +423,27 @@ public class Utils {
 			pd.saveConfig();
 		}
 	}
-
+	
 	public static void defaultConfiguration() {
 		Config messages = new Config("Messages");
 		Config help = new Config("Help");
-		Config staff_help = new Config("Staff_Help");
+		Config heco = new Config("hEconomy");
 		InputStream in = HempfestEssentials.instance.getResource("Messages.yml");
 		InputStream in2 = HempfestEssentials.instance.getResource("Help.yml");
-		InputStream in4 = HempfestEssentials.instance.getResource("Staff_Help.yml");
+		InputStream in5 = HempfestEssentials.instance.getResource("hEconomy.yml");
 		Config.copy(in, messages.getFile());
 		Config.copy(in2, help.getFile());
-		Config.copy(in4, staff_help.getFile());
+		Config.copy(in5, heco.getFile());
 	}
 
 	public static void createConfiguration() {
 		Config messages = new Config("Messages");
 		Config help = new Config("Help");
-		Config staff_help = new Config("Staff_Help");
 		Config claims = new Config("Claims");
+		Config heco = new Config("hEconomy");
 		InputStream in = HempfestEssentials.instance.getResource("Messages.yml");
 		InputStream in2 = HempfestEssentials.instance.getResource("Help.yml");
-		InputStream in5 = HempfestEssentials.instance.getResource("Staff_Help.yml");
+		InputStream in3 = HempfestEssentials.instance.getResource("hEconomy.yml");
 		InputStream in6 = HempfestEssentials.instance.getResource("Claims.yml");
 		if (!messages.exists()) {
 			Config.copy(in, messages.getFile());
@@ -364,11 +451,11 @@ public class Utils {
 		if (!help.exists()) {
 			Config.copy(in2, help.getFile());
 		}
-		if (!staff_help.exists()) {
-			Config.copy(in5, staff_help.getFile());
-		}
 		if (!claims.exists()) {
 			Config.copy(in6, claims.getFile());
+		}
+		if (!heco.exists()) {
+			Config.copy(in3, heco.getFile());
 		}
 
 	}

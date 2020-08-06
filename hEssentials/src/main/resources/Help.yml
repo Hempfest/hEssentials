@@ -11,30 +11,56 @@
 #   *  %online% = amount of playres online
 #   *  %max% = max playercount of your server
 #   *  %prefix% = current plugin prefix
-#   *  %next% = goto the next line
+#   *  %page% = the current page number the user is on
+#   *  %page_total% = the total amount of pages
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~# 
-Help-Menu: '%prefix% &a&oHelp with commands.
-%next%&e&o&m====================================
-%next%&7/help,hhelp - Command information.
-%next%&7/message,msg,hmsg - Message an online player.
-%next%&7/reply,r - Respond to an incoming message.
-%next%&7/who,list - Show the online list of players via command.
-%next%&7/track - Track players near you!
-%next%&7/homes - View your current set homes.
-%next%&7/sethome - Set a private home.
-%next%&7/delhome - Delete a private home.
-%next%&7/home - Teleport to a private home.
-%next%&7/claim - Help with private land claiming.
-%next%&e&o&m===================================='
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#  
-Two-Pages?: 'yes'
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#  
-Help-Menu-PG2: '%prefix% &a&oHelp with commands.
-%next%&e&o&m====================================
-%next%&7/tpr - Send or accept/deny teleport requests
-%next%&7/othercommands - put them here :)
-%next%&e&o&m===================================='
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#  
-Three-Pages?: 'no'
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#  
-Help-Menu-PG3: '%prefix% Another test message.'
+Amount-per-page: 6
+Help-Menu: 
+  - '%prefix% &a&oHelp with commands. &f%page% &2/ &f%page_total%'
+  - '&e&o&m===================================='
+  - '&7/help,hhelp - Command information.'
+  - '&7/message,msg,hmsg - Message an online player.'
+  - '&7/reply,r - Respond to an incoming message.'
+  - '&7/who,list - Show the online list of players via command.'
+  - '%prefix% &a&oHelp with commands. &f%page% &2/ &f%page_total%'
+  - '&e&o&m===================================='
+  - '&7/track - Track players near you!'
+  - '&7/homes - View your current set homes.'
+  - '&7/sethome - Set a private home.'
+  - '&7/delhome - Delete a private home.'
+  - '%prefix% &a&oHelp with commands. &f%page% &2/ &f%page_total%'
+  - '&e&o&m===================================='
+  - '&7/home - Teleport to a private home.'
+  - '&7/claim - Help with private land claiming.'
+  - '&7/tpr - Send or accept/deny teleport requests.'
+  - '&c&o/help staff &7<&cpage#&7> &c&o- View the staff command list.'
+  - '&e&o&m===================================='
+
+Staff-Help-Menu: 
+  - '%prefix% Help with staff commands. &f%page% &2/ &f%page_total%'
+  - '&8&o&m===================================='
+  - '&c&o/ban - Ban a player from the server'
+  - '&c&o/kick - kick an online player from the server'
+  - '&c&o/hload - Reset the hessentials config to default.'
+  - '&c&o/fly - Allow a player to have flight'
+  - '%prefix% Help with staff commands. &f%page% &2/ &f%page_total%'
+  - '&8&o&m===================================='
+  - '&c&o/gamemode - change a players gamemode'
+  - '&c&o/give - give a player an item'
+  - '&c&o/item - give yourself an item'
+  - '&c&o/listhomes - list a players homes on/offline'
+  - '%prefix% Help with staff commands. &f%page% &2/ &f%page_total%'
+  - '&8&o&m===================================='
+  - '&c&o/mutechat - Toggle global chat being muted'
+  - '&c&o/playerhome - teleport to another players private home'
+  - '&c&o/hess - reload the hessentials config'
+  - '&c&o/socialspy - spy on private messaging'
+  - '%prefix% Help with staff commands. &f%page% &2/ &f%page_total%'
+  - '&8&o&m===================================='
+  - '&c&o/tp - teleport a player to another player'
+  - '&c&o/unban - unban a player.'
+  - '&c&o/whois - Display information on a player'
+  - '%prefix% Help with staff commands. &f%page% &2/ &f%page_total%'
+  - '&8&o&m===================================='
+  - '&c&o/invsee - View an online players inventory'
+  - '&8&o&m===================================='

@@ -12,6 +12,7 @@ import org.spigotmc.hessentials.HempfestEssentials;
 import org.spigotmc.hessentials.commands.claim.ClaimUtil;
 import org.spigotmc.hessentials.configuration.Config;
 
+import m.h.clans.listener.ClanAPI;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.ClickEvent;
@@ -122,9 +123,9 @@ public class Strings {
 		if (ClaimUtil.isInClaim(loc)) {
 			return getClaimColor(p) + ClaimUtil.getClaimName(loc);
 		} else
-		if (m.h.clans.util.claim.ClaimUtil.isInClaim(loc)) {
-			return "&a&o" + m.h.clans.util.claim.ClaimUtil.getClaimOwner(m.h.clans.util.claim.ClaimUtil.getClaimID(loc));
-		} else if (!ClaimUtil.isInClaim(loc) || !m.h.clans.util.claim.ClaimUtil.isInClaim(loc)) {
+		if (ClanAPI.isInClaim(loc)) {
+			return "&a&o" + ClanAPI.getClaimOwner(ClanAPI.getClaimID(loc));
+		} else if (!ClaimUtil.isInClaim(loc) || !ClanAPI.isInClaim(loc)) {
 		return "&4&lWilderness";
 		}
 		return "&f&oN/A";

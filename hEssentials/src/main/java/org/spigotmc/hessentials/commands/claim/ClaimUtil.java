@@ -5,6 +5,7 @@ import java.util.List;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.Particle;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.command.CommandSender;
@@ -17,9 +18,19 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerBucketEmptyEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.util.Vector;
+import org.spigotmc.hessentials.HempfestEssentials;
 import org.spigotmc.hessentials.configuration.Config;
 import org.spigotmc.hessentials.configuration.PlayerData;
+import org.spigotmc.hessentials.util.Utils;
 import org.spigotmc.hessentials.util.variables.Strings;
+
+import m.h.clans.Clans;
+import m.h.clans.listener.ClanAPI;
+import net.md_5.bungee.api.ChatMessageType;
+import net.md_5.bungee.api.chat.TextComponent;
+
+
 
 public class ClaimUtil implements Listener {
 
@@ -352,7 +363,25 @@ public class ClaimUtil implements Listener {
 		}
 
 	}
-
+	
+	public static Location locateChunk(Player p, String claimName) {
+		Config data = new Config("Claims");
+		int x = data.getConfig().getInt("Claims-Location." + claimName + ".X");
+		int y = 95;
+		int z = data.getConfig().getInt("Claims-Location." + claimName + ".Z");
+		Location teleportLocation = new Location(p.getWorld(), x << 4, y, z << 4);
+		return teleportLocation;
+	}
+	
+	public static boolean chunkNull(String claimName) {
+		Config data = new Config("Claims");
+		if (!data.getConfig().getStringList("Claims-List").contains(claimName)) {
+			return true;
+		}
+		
+		return false;
+	}
+	
 	public static void teleportChunk(Player p, String claimName) {
 		PlayerData pd = new PlayerData(p.getUniqueId());
 		Config data = new Config("Claims");
@@ -380,19 +409,49 @@ public class ClaimUtil implements Listener {
 		}
 
 	}
+	
+	public static void StopTimer() {
+		Bukkit.getScheduler().scheduleSyncDelayedTask(Clans.getInstance(), new Runnable() {
+			public void run() {
+				Bukkit.getScheduler().cancelTask(Utils.stop);
+			}
+		}, 20L * 60);
+	}
+	
+	// Connect player loc to claim loc
+	public static void connectSpace(final Player p, final Location claimLocation, final String claimName) {
+		Utils.stop = Bukkit.getScheduler().scheduleSyncRepeatingTask(HempfestEssentials.getInstance(), new Runnable() {
+            public void run() {
+            	Location origin = p.getEyeLocation();  // location where it starts
+                Vector target = claimLocation.toVector();  // location where it ends (for the direction only)
+                origin.setDirection(target.subtract(origin.toVector()));  // setting direction bc of above information
+                Vector increase = origin.getDirection().multiply(1.3); // getting what to increase by
+                
+                for (int counter = 0; counter < 10; counter++) { // 5 == blocks to travel
+                	Location loc = origin.add(increase);
+                    float x = (float) loc.getX();
+                    float y = (float) loc.getY();
+                    float z = (float) loc.getZ();
+                	loc.getWorld().spawnParticle(Particle.SOUL_FIRE_FLAME, x, y, z, 10, 0, 0, 0, 0);
+                }
+                p.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(Strings.color("&b&oLocating chunk: &a" + claimName)));
+            }
+            
+        },20L, 40L);
+    }
 
 	// Create a claim for the player
 	public static void saveChunk(Player p, String claimName) {
 		Location location = p.getLocation();
 		Config data = new Config("Claims");
 		PlayerData pd = new PlayerData(p.getUniqueId());
-		List<String> Claim = pd.getConfig().getStringList("Claims");
+		
 		String ID = claimName.toString();
 		if (Bukkit.getPluginManager().isPluginEnabled("Clans")) {
-			if (m.h.clans.util.claim.ClaimUtil.isInClaim(p.getLocation())) {
+			if (ClanAPI.isInClaim(p.getLocation())) {
 				sendMessage(p,
-						Strings.getPrefix() + "You do not own this land.\nOwner: " + m.h.clans.util.claim.ClaimUtil
-								.getClaimOwner(m.h.clans.util.claim.ClaimUtil.getClaimID(p.getLocation())));
+						Strings.getPrefix() + "You do not own this land.\nOwner: " + ClanAPI
+								.getClaimOwner(ClanAPI.getClaimID(p.getLocation())));
 				return;
 			}
 		}
@@ -404,6 +463,7 @@ public class ClaimUtil implements Listener {
 			sendMessage(p, Strings.getPrefix() + "You already own this land.\nClaim: " + getClaimName(location));
 			return;
 		}
+		List<String> Claim = pd.getConfig().getStringList("Claims");
 		List<String> Claims = data.getConfig().getStringList("Claims-List");
 		if (!Claims.contains(ID)) {
 			Claims.add(ID);

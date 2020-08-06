@@ -13,30 +13,39 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.server.ServerListPingEvent;
+import org.bukkit.inventory.InventoryHolder;
 import org.spigotmc.hessentials.commands.claim.ClaimUtil;
+import org.spigotmc.hessentials.commands.economy.Eco;
+import org.spigotmc.hessentials.commands.economy.EconomyData;
 import org.spigotmc.hessentials.configuration.Config;
 import org.spigotmc.hessentials.configuration.PlayerData;
+import org.spigotmc.hessentials.gui.Menu;
 import org.spigotmc.hessentials.util.Utils;
 import org.spigotmc.hessentials.util.variables.Message;
 import org.spigotmc.hessentials.util.variables.Strings;
 
 public class PlayerListener implements Listener {
-
-	@EventHandler(priority = EventPriority.HIGHEST)
+	
+	@EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
 	public void onPlayerJoin(PlayerJoinEvent e) {
 		Player p = (Player) e.getPlayer();
 		UUID uuid = p.getUniqueId();
 		PlayerData pd = new PlayerData(uuid);
+		EconomyData pl = new EconomyData(uuid);
 		if (!p.hasPlayedBefore()) {
 			Utils.hud.put(p.getName(), Boolean.valueOf(true));
 			e.setJoinMessage(Strings.getFirstJoinMSG(p));
 			Utils.npbMOTD(p);
 			Utils.createPlayerConfig(p);
 			ClaimUtil.updateClaimUser(p);
+			Eco.createPlayerData(p);
 			return;
 		}
 		if (!pd.exists()) {
 			Utils.createPlayerConfig(p);
+		}
+		if (!pl.exists()) {
+			Eco.createPlayerData(p);
 		}
 		ClaimUtil.updateClaimUser(p);
 		Utils.hud.put(p.getName(), Boolean.valueOf(true));
@@ -48,8 +57,31 @@ public class PlayerListener implements Listener {
 
 		return;
 	}
+	
+	// GUI interact event
+		@EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
+		public void onMenuClick(InventoryClickEvent e) {
 
-	@EventHandler(priority = EventPriority.HIGHEST)
+			InventoryHolder holder = e.getInventory().getHolder();
+			// If the inventoryholder of the inventory clicked on
+			// is an instance of Menu, then gg. The reason that
+			// an InventoryHolder can be a Menu is because our Menu
+			// class implements InventoryHolder!!
+			if (holder instanceof Menu) {
+				e.setCancelled(true); // prevent them from fucking with the inventory
+				if (e.getCurrentItem() == null) { // deal with null exceptions
+					return;
+				}
+				// Since we know our inventoryholder is a menu, get the Menu Object representing
+				// the menu we clicked on
+				Menu menu = (Menu) holder;
+				// Call the handleMenu object which takes the event and processes it
+				menu.handleMenu(e);
+			}
+
+		}
+
+	@EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
 	public void onPlayerLeave(PlayerQuitEvent e) {
 		Player p = (Player) e.getPlayer();
 		// UUID uuid = p.getUniqueId();
@@ -57,7 +89,7 @@ public class PlayerListener implements Listener {
 		e.setQuitMessage(Strings.getLeaveMSG(p));
 	}
 
-	@EventHandler(priority = EventPriority.HIGHEST)
+	@EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
 	public void onInventoryClick(InventoryClickEvent e) {
 		String menu = e.getView().getTitle();
 		Player whoClicked = (Player) e.getWhoClicked();
@@ -73,7 +105,7 @@ public class PlayerListener implements Listener {
 		}
 	}
 
-	@EventHandler(priority = EventPriority.HIGHEST)
+	@EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
 	public void onChat(AsyncPlayerChatEvent e) {
 		Config message = new Config(Strings.getMessagesUsed());
 		FileConfiguration m = message.getConfig();

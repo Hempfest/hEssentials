@@ -42,6 +42,11 @@ public class CommandClaim extends BukkitCommand {
 					
 				}
 				if (length == 1) {
+					if (args[0].equalsIgnoreCase("find")) {
+						sendMessage(p, "&7You need to specify a name.");
+						Message.textHoverable(p, Strings.getPrefix() + Strings.getInvalidUsage() + commandLabel, " &7<&efind&7> &7<&8claimName&7> ", "&f&oExample: &7/claim find &eSurvival");
+						return true;
+					}
 					if (args[0].equalsIgnoreCase("set") || args[0].equalsIgnoreCase("s")) {
 						if (!p.hasPermission(this.getPermission() + ".create")) {
 							Strings.sendNoPermission(p, this.getPermission() + ".create");
@@ -100,6 +105,15 @@ public class CommandClaim extends BukkitCommand {
 					return true;
 				}
 				if (length == 2) {
+					if (args[0].equalsIgnoreCase("find")) {
+						if (ClaimUtil.chunkNull(args[1])) {
+							sendMessage(p, Strings.getPrefix() + "&7&oClaim not found.");
+							return true;
+						}
+						ClaimUtil.connectSpace(p, ClaimUtil.locateChunk(p, args[1]), args[1]);
+						ClaimUtil.StopTimer();
+						return true;
+					}
 					if (args[0].equalsIgnoreCase("set") || args[0].equalsIgnoreCase("s")) {
 						if (!p.hasPermission(this.getPermission() + ".create")) {
 							Strings.sendNoPermission(p, this.getPermission() + ".create");

@@ -7,7 +7,8 @@ import org.bukkit.entity.Player;
 import org.spigotmc.hessentials.HempfestEssentials;
 import org.spigotmc.hessentials.configuration.Config;
 
-import m.h.clans.util.ClanAPI;
+import m.h.clans.listener.ClanAPI;
+
 
 public class Lists {
 

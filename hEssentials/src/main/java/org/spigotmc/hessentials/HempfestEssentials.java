@@ -11,6 +11,8 @@ import org.spigotmc.hessentials.commands.CommandTrack;
 import org.spigotmc.hessentials.commands.claim.ClaimCheck;
 import org.spigotmc.hessentials.commands.claim.ClaimUtil;
 import org.spigotmc.hessentials.commands.claim.CommandClaim;
+import org.spigotmc.hessentials.commands.economy.CommandEconomy;
+import org.spigotmc.hessentials.commands.economy.Eco;
 import org.spigotmc.hessentials.commands.homes.CommandDelhome;
 import org.spigotmc.hessentials.commands.homes.CommandHome;
 import org.spigotmc.hessentials.commands.homes.CommandHomes;
@@ -31,7 +33,6 @@ import org.spigotmc.hessentials.commands.staff.CommandMuteChat;
 import org.spigotmc.hessentials.commands.staff.CommandPlayerhome;
 import org.spigotmc.hessentials.commands.staff.CommandReload;
 import org.spigotmc.hessentials.commands.staff.CommandSocialSpy;
-import org.spigotmc.hessentials.commands.staff.CommandStaffHelp;
 import org.spigotmc.hessentials.commands.staff.CommandTeleport;
 import org.spigotmc.hessentials.commands.staff.CommandUnban;
 import org.spigotmc.hessentials.commands.staff.CommandWhois;
@@ -41,8 +42,6 @@ import org.spigotmc.hessentials.util.Placeholders;
 import org.spigotmc.hessentials.util.Utils;
 import org.spigotmc.hessentials.util.variables.Checks;
 
-import net.milkbowl.vault.economy.Economy;
-
 
 
 public class HempfestEssentials extends JavaPlugin {
@@ -50,7 +49,6 @@ public class HempfestEssentials extends JavaPlugin {
 	//Instance
 	public static HempfestEssentials instance;
 	private static final Logger log = Logger.getLogger("Minecraft");
-	public Economy eco;
 	//Start server
 	public void onEnable() {
 		setInstance(this);
@@ -77,16 +75,15 @@ public class HempfestEssentials extends JavaPlugin {
 
 		getServer().getPluginManager().registerEvents(new PlayerListener(), getInstance());
 		getServer().getPluginManager().registerEvents(new ClaimUtil(), getInstance());
-		if (!Checks.setupEconomy() ) {
-            log.severe(String.format("[%s] - Disabled due to no Vault dependency found!", getDescription().getName()));
-            getServer().getPluginManager().disablePlugin(this);
-            return;
+		getServer().getPluginManager().registerEvents(new Eco(), getInstance());
+		if (!Checks.economyEnabled()) {
+            log.severe(String.format("[%s] - Economy disabled!", getDescription().getName()));
         }
 		if (Checks.checkforPH()) {
 			new Placeholders(this).register();
-			log.info(String.format("PlaceholderAPI FOUND!", new Object[] { getDescription().getName() }));
+			log.info(String.format("[%s] - PlaceholderAPI FOUND!", new Object[] { getDescription().getName() }));
 		} else {
-			log.info(String.format("PlaceholderAPI not detected!", new Object[] { getDescription().getName() }));
+			log.info(String.format("[%s] - PlaceholderAPI not detected!", new Object[] { getDescription().getName() }));
 		}
 	}
 	
@@ -103,7 +100,6 @@ public class HempfestEssentials extends JavaPlugin {
 		Utils.registerCommand(new CommandSethome());
 		Utils.registerCommand(new CommandDelhome());
 		Utils.registerCommand(new CommandHelp());
-		Utils.registerCommand(new CommandStaffHelp());
 		Utils.registerCommand(new CommandTrack());
 		Utils.registerCommand(new CommandGive());
 		Utils.registerCommand(new CommandItem());
@@ -116,9 +112,9 @@ public class HempfestEssentials extends JavaPlugin {
 		Utils.registerCommand(new CommandReply());
 		Utils.registerCommand(new CommandReload());
 		Utils.registerCommand(new CommandCFUpdate());
-		Utils.registerCommand(new CommandStaffHelp());
 		Utils.registerCommand(new CommandSocialSpy());
 		Utils.registerCommand(new CommandFly());
+		Utils.registerCommand(new CommandEconomy());
 		Utils.registerCommand(new CommandInvsee());
 		Utils.registerCommand(new CommandMuteChat());
 		Utils.registerCommand(new CommandWhois());

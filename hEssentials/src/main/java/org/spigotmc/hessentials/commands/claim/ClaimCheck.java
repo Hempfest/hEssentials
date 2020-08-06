@@ -4,15 +4,19 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.spigotmc.hessentials.commands.economy.Eco;
 import org.spigotmc.hessentials.util.Utils;
 import org.spigotmc.hessentials.util.variables.Checks;
 import org.spigotmc.hessentials.util.variables.Strings;
+
+import m.h.clans.listener.ClanAPI;
 
 
 
 
 public class ClaimCheck extends BukkitRunnable
 {
+	
 	
     private boolean clansEnabled() {
     	if (Bukkit.getPluginManager().isPluginEnabled("Clans")) {
@@ -27,6 +31,8 @@ public class ClaimCheck extends BukkitRunnable
     		//FileConfiguration d = data.getConfig();
     		Location loc = p.getLocation();
     		ClaimUtil.updateClaimUser(p);
+    		Eco.updatePlayerData(p);
+    		Utils.updateConfiguration();
     		if (ClaimUtil.isInClaim(loc)) {
     			if (ClaimUtil.isClaimOwner(p)) {
     				if (!Checks.titleSent(p) || !Checks.titleSent4(p) && !Checks.titleSent2(p)) {
@@ -86,7 +92,7 @@ public class ClaimCheck extends BukkitRunnable
         			Utils.title_claim2.put(p.getName(), Boolean.valueOf(false));
         			Utils.title_claim4.put(p.getName(), Boolean.valueOf(false));
         			if (clansEnabled()) {
-        				if (!m.h.clans.util.claim.ClaimUtil.isInClaim(loc)) {
+        				if (!ClanAPI.isInClaim(loc)) {
         			p.sendMessage(Strings.color(Strings.getWildTitle(p) + " " + Strings.getWildSubTitle(p)));
         			
         				} else
@@ -101,7 +107,7 @@ public class ClaimCheck extends BukkitRunnable
         			Utils.title_claim2.put(p.getName(), Boolean.valueOf(false));
         			Utils.title_claim4.put(p.getName(), Boolean.valueOf(false));
         			if (clansEnabled()) {
-        				if (!m.h.clans.util.claim.ClaimUtil.isInClaim(loc)) {
+        				if (!ClanAPI.isInClaim(loc)) {
         			p.sendMessage(Strings.color(Strings.getWildTitle(p) + " " + Strings.getWildSubTitle(p)));
         			
         				} else
@@ -117,7 +123,7 @@ public class ClaimCheck extends BukkitRunnable
     			Utils.title_claim3.put(p.getName(), Boolean.valueOf(true));
     			Utils.title_claim4.put(p.getName(), Boolean.valueOf(false));
     			if (clansEnabled()) {
-    				if (!m.h.clans.util.claim.ClaimUtil.isInClaim(loc)) {
+    				if (!ClanAPI.isInClaim(loc)) {
     			p.sendMessage(Strings.color(Strings.getWildTitle(p) + " " + Strings.getWildSubTitle(p)));
     			
     				} else
