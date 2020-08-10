@@ -56,7 +56,7 @@ public class CommandMessage extends BukkitCommand {
 				Utils.reply.put(p, target);
 				for (Player pl : Bukkit.getOnlinePlayers()) {
 					if (Utils.socialspy.get(pl) == "enabled")
-						sendMessage(pl, Strings.messageRecievedMSG(p, target) + msg.toString());
+						sendMessage(pl, Strings.messageSpyMSG(p, target) + msg.toString());
 				}
 				sendMessage(p, Strings.messageSentMSG(p, target) + msg.toString());
 				target.playSound(target.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 20.0F, 60.0F);

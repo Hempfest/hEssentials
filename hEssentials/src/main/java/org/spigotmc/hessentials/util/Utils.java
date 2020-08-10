@@ -3,6 +3,7 @@ package org.spigotmc.hessentials.util;
 import java.io.File;
 import java.io.InputStream;
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
@@ -14,6 +15,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
+import org.bukkit.Server;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandMap;
 import org.bukkit.command.CommandSender;
@@ -32,7 +34,12 @@ import org.spigotmc.hessentials.HempfestEssentials;
 import org.spigotmc.hessentials.configuration.Config;
 import org.spigotmc.hessentials.configuration.PlayerData;
 import org.spigotmc.hessentials.gui.Gui;
+import org.spigotmc.hessentials.util.variables.Component;
 import org.spigotmc.hessentials.util.variables.Strings;
+
+import addon.chat.hessentials.GroupAPI;
+import net.md_5.bungee.api.chat.BaseComponent;
+import net.md_5.bungee.api.chat.TextComponent;
 
 
 public class Utils {
@@ -57,8 +64,12 @@ public class Utils {
 	public static HashMap<Player, String> socialspy = new HashMap<Player, String>();
 	
 
-	public static void msg(Player player, String s) {
-		sendMessage(player, s);
+	public static void sendMessage(Player player, String s) {
+		player.sendMessage(Strings.color(s));
+	}
+	
+	public void sendComponent(Player player, TextComponent text) {
+		player.spigot().sendMessage((BaseComponent) text);
 	}
 
 	// *
@@ -133,7 +144,7 @@ public class Utils {
      * @param page The page number to display.
      * @param countAll The count of all available entries
      */
-   public void paginateHelp(CommandSender sender, List<String> list, int page, int contentLinesPerPage)
+   public void paginateHelp(Player sender, List<String> list, int page, int contentLinesPerPage)
    {
        int totalPageCount = 1;
        if((list.size() % contentLinesPerPage) == 0)
@@ -173,8 +184,17 @@ public class Utils {
                    String e = d.replaceAll("%page%", String.valueOf(page + 1));
                    String f = e.replaceAll("%page_total%", String.valueOf(totalPageCount));
                    sender.sendMessage(Strings.color(f));
+                   
                }
              }
+             int point; point = page + 1; if (page >= 1) {
+            	 int last; last = point - 1; point = point + 1;
+                 sendComponent(sender, Component.textRunnable(sender, "&7Navigate &b&o&m--&b> &7[", "&c&oBACK&7]", "&7 : [", "&b&oNEXT&7]", "&b&oClick to go &d&oback a page", "&b&oClick to goto the &5&onext page", "help " + last, "help " + point));
+            	 } if (page == 0) { 
+            		 point = page + 1 + 1;
+                	 sendComponent(sender, Component.textRunnable(sender, "&7Navigate &b&o&m--&b> &7[", "&b&oNEXT", "&7]", "&b&oClick to goto the &5&onext page", "help " + point));
+            	 }
+             
          }
   //endline
        }
@@ -183,6 +203,77 @@ public class Utils {
          sender.sendMessage(ChatColor.YELLOW + "There are only " + ChatColor.WHITE + totalPageCount + ChatColor.YELLOW + " pages!");
        }
    }
+   
+   public void paginateStaffHelp(Player sender, List<String> list, int page, int contentLinesPerPage)
+   {
+       int totalPageCount = 1;
+       if((list.size() % contentLinesPerPage) == 0)
+       {
+         if(list.size() > 0)
+         {
+             totalPageCount = list.size() / contentLinesPerPage;
+         }    
+       }
+       else
+       {
+         totalPageCount = (list.size() / contentLinesPerPage) + 1;
+       }
+
+       if(page <= totalPageCount)
+       {   
+         //beginline
+         if(list.isEmpty())
+         {
+             sender.sendMessage(ChatColor.WHITE + "The list is empty!");
+         }
+         else
+         {
+             int i = 0, k = 0;
+             page--;
+
+             for (String entry : list)
+             {
+               k++;
+               if ((((page * contentLinesPerPage) + i + 1) == k) && (k != ((page * contentLinesPerPage) + contentLinesPerPage + 1)))
+               {
+                   i++;
+                   String a = entry.replaceAll("%player%", sender.getName());
+                   String b = a.replaceAll("%online%", String.valueOf(Bukkit.getOnlinePlayers().size()));
+                   String c = b.replaceAll("%max%", String.valueOf(Bukkit.getServer().getMaxPlayers()));
+                   String d = c.replaceAll("%prefix%", Strings.getPrefix());
+                   String e = d.replaceAll("%page%", String.valueOf(page + 1));
+                   String f = e.replaceAll("%page_total%", String.valueOf(totalPageCount));
+                   sender.sendMessage(Strings.color(f));
+                   
+               }
+             }
+             int point; point = page + 1; if (page >= 1) {
+            	 int last; last = point - 1; point = point + 1;
+                 sendComponent(sender, Component.textRunnable(sender, "&7Navigate &b&o&m--&b> &7[", "&c&oBACK&7]", "&7 : [", "&b&oNEXT&7]", "&b&oClick to go &d&oback a page", "&b&oClick to goto the &5&onext page", "help staff " + last, "help staff " + point));
+            	 } if (page == 0) { 
+            		 point = page + 1 + 1;
+                	 sendComponent(sender, Component.textRunnable(sender, "&7Navigate &b&o&m--&b> &7[", "&b&oNEXT", "&7]", "&b&oClick to goto the &5&onext page", "help staff " + point));
+            	 }
+             
+         }
+  //endline
+       }
+       else
+       {
+         sender.sendMessage(ChatColor.YELLOW + "There are only " + ChatColor.WHITE + totalPageCount + ChatColor.YELLOW + " pages!");
+       }
+   }
+   
+	
+	public static List<String> getEconomyHelp() {
+		List<String> help = new ArrayList<>();
+		help.add("&6/buy - Buy an ingame item using gold as currency.");
+		help.add("&6/sell - Sell an ingame item receiving gold as currency.");
+		help.add("&6/pay - Pay an online player in gold.");
+		help.add("&6/deposit - Deposit a specified amount of gold into your account.");
+		help.add("&6/withdraw - Withdraw a specified amount of gold from your account.");
+		return help;
+	}
    
    public static Gui guiManager(Player p) {
 		Gui gui;
@@ -273,6 +364,10 @@ public class Utils {
 		sendMessage(player, "&f&oLast Played &7&l| &2&o" + date);
 		sendMessage(player, "&f&oFirst Joined &7&l| &2&o" + date2);
 		sendMessage(player, "&f&oGamemode &7&l| &2&o" + target.getGameMode());
+		if (Bukkit.getServer().getPluginManager().isPluginEnabled("hEssentialsChat")) {
+			GroupAPI api = new GroupAPI();
+			sendMessage(player, "&f&oGroup &7&l| &2&o" + api.getGroup(player));
+		}
 		return;
 	}
 
@@ -317,7 +412,16 @@ public class Utils {
 	}
 
 	
-	
+	public static boolean day(Player p) {
+		Server server = Bukkit.getServer();
+		long time = server.getWorld(p.getLocation().getWorld().getName()).getTime();
+
+		if(time > 0 && time < 13000) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 	
 	
 
@@ -333,7 +437,7 @@ public class Utils {
 				Player Jugador = (Player) entity;
 				if (Jugador.getGameMode() == GameMode.SURVIVAL) {
 					int distancia = (int) p.getLocation().distance(Jugador.getLocation());
-					return Strings.color("&a&o" + Jugador.getName() + ": &7" + distancia + " &fblocks away.");
+					return Strings.color("&e&o" + Jugador.getName() + ": &7" + distancia + " &fblocks away.");
 				}
 			}
 		}
@@ -356,6 +460,11 @@ public class Utils {
 		sendMessage(player, "&f&oUUID &7&l| &2&o" + UUID);
 		sendMessage(player, "&f&oLast Played &7&l| &2&o" + date);
 		sendMessage(player, "&f&oFirst Joined &7&l| &2&o" + date2);
+		if (Bukkit.getServer().getPluginManager().isPluginEnabled("hEssentialsChat")) {
+			
+			String group = data.getConfig().getString("GROUP");
+			sendMessage(player, "&f&oGroup &7&l| &2&o" + group);
+		}
 		return;
 	}
 
@@ -371,15 +480,20 @@ public class Utils {
 		}
 	}
 
+
 	public static void reloadConfiguration() {
 		Config messages = new Config(Strings.getMessagesUsed());
 		Config help = new Config("Help");
-		Config motd = new Config("MOTD");
-		Config score = new Config("Scoreboard");
+		Config claims = new Config("Claims");
+		Config heco = new Config("hEconomy");
+		Config groups = new Config("Groups");
+		Config voting = new Config("bed_voting");
 		help.reload();
-		motd.reload();
 		messages.reload();
-		score.reload();
+		claims.reload();
+		heco.reload();
+		groups.reload();
+		voting.reload();
 	}
 
 	public static void createPlayerConfig(Player player) {
@@ -428,12 +542,18 @@ public class Utils {
 		Config messages = new Config("Messages");
 		Config help = new Config("Help");
 		Config heco = new Config("hEconomy");
+		Config groups = new Config("Groups");
+		Config voting = new Config("bed_voting");
 		InputStream in = HempfestEssentials.instance.getResource("Messages.yml");
+		InputStream in3 = HempfestEssentials.instance.getResource("Groups.yml");
 		InputStream in2 = HempfestEssentials.instance.getResource("Help.yml");
 		InputStream in5 = HempfestEssentials.instance.getResource("hEconomy.yml");
+		InputStream in6 = HempfestEssentials.instance.getResource("bed_voting.yml");
 		Config.copy(in, messages.getFile());
 		Config.copy(in2, help.getFile());
 		Config.copy(in5, heco.getFile());
+		Config.copy(in3, groups.getFile());
+		Config.copy(in6, voting.getFile());
 	}
 
 	public static void createConfiguration() {
@@ -441,10 +561,17 @@ public class Utils {
 		Config help = new Config("Help");
 		Config claims = new Config("Claims");
 		Config heco = new Config("hEconomy");
+		Config groups = new Config("Groups");
+		Config voting = new Config("bed_voting");
 		InputStream in = HempfestEssentials.instance.getResource("Messages.yml");
 		InputStream in2 = HempfestEssentials.instance.getResource("Help.yml");
 		InputStream in3 = HempfestEssentials.instance.getResource("hEconomy.yml");
+		InputStream in4 = HempfestEssentials.instance.getResource("Groups.yml");
 		InputStream in6 = HempfestEssentials.instance.getResource("Claims.yml");
+		InputStream in7 = HempfestEssentials.instance.getResource("bed_voting.yml");
+		if (!voting.exists()) {
+			Config.copy(in7, voting.getFile());
+		}
 		if (!messages.exists()) {
 			Config.copy(in, messages.getFile());
 		}
@@ -456,6 +583,9 @@ public class Utils {
 		}
 		if (!heco.exists()) {
 			Config.copy(in3, heco.getFile());
+		}
+		if (!groups.exists()) {
+			Config.copy(in4, groups.getFile());
 		}
 
 	}

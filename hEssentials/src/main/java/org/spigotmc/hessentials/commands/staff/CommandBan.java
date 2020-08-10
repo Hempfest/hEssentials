@@ -8,7 +8,8 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.defaults.BukkitCommand;
 import org.bukkit.entity.Player;
-import org.spigotmc.hessentials.util.variables.Message;
+import org.spigotmc.hessentials.util.Utils;
+import org.spigotmc.hessentials.util.variables.Component;
 import org.spigotmc.hessentials.util.variables.Strings;
 
 public class CommandBan extends BukkitCommand {
@@ -34,13 +35,14 @@ public class CommandBan extends BukkitCommand {
 		}
 
 		Player p = (Player) sender;
+		Utils u = new Utils();
 		int length = args.length;
 		if (!p.hasPermission(this.getPermission())) {
   		  Strings.sendNoPermission(p, this.getPermission());
   		  return true;
   	  }
   	  if (length == 0) {
-  		  Message.textHoverable(p, Strings.getPrefix() + Strings.getInvalidUsage() + commandLabel, " &7<&cplayerName&7> ", "&f&l|", " &7<banReason&7>", "&f&oExample: &7/ban &eHempfest", "&f&oExample: &7/ban &eHempfest &cCheating");
+  		u.sendComponent(p, Component.textHoverable(p, Strings.getPrefix() + Strings.getInvalidUsage() + commandLabel, " &7<&cplayerName&7> ", "&f&l|", " &7<banReason&7>", "&f&oExample: &7/ban &eHempfest", "&f&oExample: &7/ban &eHempfest &cCheating"));
   		  return true;
   	  }
   	  if (length == 1) {

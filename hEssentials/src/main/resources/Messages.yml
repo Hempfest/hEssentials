@@ -43,10 +43,11 @@ Messages:
 #   * PRIVATE MESSAGES - Here you can edit the format for
 # private messaging.
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-    Player-Message-Send: '&b%player%(me) &7&m--&7> &b%target%&3&l|&f '
-    Player-Message-Revieve: '&b%player% &7&m--&7> &b%target%(me)&3&l|&f '
-    Player-Reply-Send: '&b%player%(me) &7&m--&7> &b%target%&3&l|&f '
-    Player-Reply-Recieve: '&b%player% &7&m--&7> &b%target%(me)&3&l|&f '
+    Player-Message-Spy: '&2&o%player% &a&o&m--&a> &2&o%target% &2&l|&f '
+    Player-Message-Send: '&b%player%(&fme&b) &7&m--&7> &b%target% &3&l|&f '
+    Player-Message-Revieve: '&b%player% &7&m--&7> &b%target%(&fme&b) &3&l|&f '
+    Player-Reply-Send: '&b%player%(&fme&b) &7&m--&7> &b%target% &3&l|&f '
+    Player-Reply-Recieve: '&b%player% &7&m--&7> &b%target%(&fme&b) &3&l|&f '
     Social-Spy-Activated: '%prefix% &6&oSocial spying is enabled!'
     Social-Spy-Deactivated: '%prefix% &c&oSocial spying is disabled!'
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#

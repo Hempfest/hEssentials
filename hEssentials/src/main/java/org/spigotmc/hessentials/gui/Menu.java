@@ -9,8 +9,8 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.spigotmc.hessentials.util.variables.Strings;
 
-import m.h.clans.util.Strings;
 
 public abstract class Menu implements InventoryHolder {
 
@@ -23,7 +23,7 @@ public abstract class Menu implements InventoryHolder {
 	protected Inventory inventory;
 	protected ItemStack FILLER_GLASS = makeItem(Material.BLACK_STAINED_GLASS_PANE, " ");
 	protected ItemStack FILLER_GLASS_LIGHT = makeItem(Material.RED_STAINED_GLASS_PANE,
-			Strings.colorize("&7&oOther clans will appear here."));
+			Strings.color("&7&oOther clans will appear here."));
 
 	// Constructor for Menu. Pass in a gui so that
 	// we have information on who's menu this is and

@@ -2,10 +2,12 @@ package org.spigotmc.hessentials.commands.staff;
 
 import java.util.Arrays;
 
+import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.defaults.BukkitCommand;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
-import org.spigotmc.hessentials.util.Utils;
+import org.spigotmc.hessentials.configuration.Config;
 import org.spigotmc.hessentials.util.variables.Strings;
 
 public class CommandDay extends BukkitCommand {
@@ -36,8 +38,12 @@ public class CommandDay extends BukkitCommand {
 		}
 		int length = args.length;
 		if (length == 0) {
-			Utils.defaultConfiguration();
-			sendMessage(p, Strings.getPrefix() + "&fAll configs are now up to date.");
+			Config voting = new Config("bed_voting");
+			ConfigurationSection section = voting.getConfig().getConfigurationSection("Bed-Voting");
+			 section.set("Day-Voting", 0);
+			 voting.saveConfig();
+			Bukkit.getWorld(p.getLocation().getWorld().getName()).setTime(0L);
+			sendMessage(p, Strings.getPrefix() + "&a&oIt is now day.");
 			return true;
 		}
 

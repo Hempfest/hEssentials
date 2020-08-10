@@ -10,7 +10,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import org.spigotmc.hessentials.configuration.Config;
-import org.spigotmc.hessentials.util.variables.Message;
+import org.spigotmc.hessentials.util.Utils;
+import org.spigotmc.hessentials.util.variables.Component;
 import org.spigotmc.hessentials.util.variables.Strings;
 
 public class CommandTpRequest implements CommandExecutor, TabCompleter {
@@ -29,12 +30,13 @@ public class CommandTpRequest implements CommandExecutor, TabCompleter {
 		}
 
 		final Player p = (Player) sender;
+		Utils u = new Utils();
 		int length = args.length;
 		
 		final Config data = new Config("Teleports");
 		
 				if (length == 0) {
-					Message.textHoverable(p, Strings.getPrefix() + Strings.getInvalidUsage() + commandLabel, " &7<&aaccept&7,&cdeny&7> ", "&f&l|", " &7<&cplayerName&7>", "&f&oExample: &7/tpr &aAccept\n&f&oExample: &7/tpr &cDeny", "&f&oExample: &7/tpr &eHempfest");
+					u.sendComponent(p, Component.textHoverable(p, Strings.getPrefix() + Strings.getInvalidUsage() + commandLabel, " &7<&aaccept&7,&cdeny&7> ", "&f&l|", " &7<&cplayerName&7>", "&f&oExample: &7/tpr &aAccept\n&f&oExample: &7/tpr &cDeny", "&f&oExample: &7/tpr &eHempfest"));
 					return true;
 				}
 				

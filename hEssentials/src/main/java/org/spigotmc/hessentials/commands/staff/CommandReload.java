@@ -8,7 +8,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.spigotmc.hessentials.HempfestEssentials;
 import org.spigotmc.hessentials.util.Utils;
-import org.spigotmc.hessentials.util.variables.Message;
+import org.spigotmc.hessentials.util.variables.Component;
 import org.spigotmc.hessentials.util.variables.Strings;
 
 public class CommandReload extends BukkitCommand {
@@ -33,6 +33,7 @@ public class CommandReload extends BukkitCommand {
 		}
 
 		Player p = (Player) sender;
+		Utils u = new Utils();
 		if (!p.hasPermission(this.getPermission())) {
 			Strings.sendNoPermission(p, this.getPermission());
 			return true;
@@ -41,7 +42,7 @@ public class CommandReload extends BukkitCommand {
 		PluginDescriptionFile pdf = HempfestEssentials.instance.getDescription();
 		if (length == 0) {
 			Utils.reloadConfiguration();
-			Message.textHoverable(p, Strings.getPrefix() + "&2&oCurrently running ", "&av" + pdf.getVersion() , "&3&oPlugin by &b&oHempfest");
+			u.sendComponent(p, Component.textHoverable(p, Strings.getPrefix() + "&2&oCurrently running ", "&av" + pdf.getVersion() , "&3&oPlugin by &b&oHempfest"));
 			sendMessage(p, "&fAll configs are reloaded.");
 			return true;
 		}

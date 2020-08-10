@@ -189,8 +189,7 @@ public class ClaimUtil implements Listener {
 		if (isInClaim(p.getLocation())) {
 			PlayerData pd = new PlayerData(p.getUniqueId());
 			List<String> Claim = pd.getConfig().getStringList("Claims");
-			if (d.getString("Claims-Location." + getClaimName(p.getLocation()) + ".User").contains(p.getName())
-					&& !pd.getConfig().getStringList("Claims").contains(getClaimName(p.getLocation()))) {
+			if (d.getString("Claims-Location." + getClaimName(p.getLocation()) + ".User").contains(p.getName())) {
 
 				if (!Claim.contains(getClaimName(p.getLocation()))) {
 					Claim.add(getClaimName(p.getLocation()));
@@ -199,7 +198,7 @@ public class ClaimUtil implements Listener {
 					sendMessage(p, Strings.getPrefix() + "You were given permission to the land &7(&f"
 							+ getClaimName(p.getLocation()) + "&7) &rby: " + getClaimOwner(p.getLocation()));
 				}
-			} else if (!d.getString("Claims-Location." + getClaimName(p.getLocation()) + ".User").contains(p.getName())) {
+			} else if (!d.getString("Claims-Location." + getClaimName(p.getLocation()) + ".User").contains(p.getName().toLowerCase())) {
 				if (isClaimOwner(p)) {
 					return;
 				}

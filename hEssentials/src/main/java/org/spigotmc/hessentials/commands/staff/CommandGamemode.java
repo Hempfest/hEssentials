@@ -10,7 +10,8 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
-import org.spigotmc.hessentials.util.variables.Message;
+import org.spigotmc.hessentials.util.Utils;
+import org.spigotmc.hessentials.util.variables.Component;
 import org.spigotmc.hessentials.util.variables.Strings;
 
 public class CommandGamemode implements CommandExecutor, TabCompleter {
@@ -33,13 +34,14 @@ public class CommandGamemode implements CommandExecutor, TabCompleter {
 			return true;
 		}
 		Player p = (Player) sender;
+		Utils u = new Utils();
 		if (!p.hasPermission(this.getPermission())) {
 			Strings.sendNoPermission(p, this.getPermission());
 			return true;
 		}
 		int length = args.length;
 		if (length == 0) {
-			Message.textHoverable(p, Strings.getPrefix() + Strings.getInvalidUsage() + commandLabel, " <&csurvival/creative/adventure&f> &7<&8playerName&7> ", "&f&oExample: &7/gamemode &eSurvival\n&f&oExample: &7/gamemode &eSurvival &aHempfest");
+			u.sendComponent(p, Component.textHoverable(p, Strings.getPrefix() + Strings.getInvalidUsage() + commandLabel, " <&csurvival/creative/adventure&f> &7<&8playerName&7> ", "&f&oExample: &7/gamemode &eSurvival\n&f&oExample: &7/gamemode &eSurvival &aHempfest"));
 			return true;
 		}
 

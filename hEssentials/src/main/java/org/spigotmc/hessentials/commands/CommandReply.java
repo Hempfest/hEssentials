@@ -52,7 +52,7 @@ public class CommandReply extends BukkitCommand {
 		        Utils.reply.put(p, target);
 		        	for (Player pl : Bukkit.getOnlinePlayers()) {
 		                if (Utils.socialspy.get(pl) == "enabled")
-		                  sendMessage(pl, Strings.replyRecievedMSG(p, target) + reply.toString());  
+		                	sendMessage(pl, Strings.messageSpyMSG(p, target) + reply.toString()); 
 		            } 
 		       sendMessage(p, Strings.replySentMSG(p, target) + reply.toString());
 		        target.playSound(target.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 20.0F, 60.0F);

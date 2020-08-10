@@ -40,7 +40,7 @@ public class CommandEconomy extends BukkitCommand {
 		uuid = p.getUniqueId();
 		eco = new EconomyData(uuid);
 		length = args.length;
-		
+		if (Checks.economyEnabled()) {
 		if (length == 0) {
 			
 		}
@@ -51,28 +51,64 @@ public class CommandEconomy extends BukkitCommand {
 				return true;
 			}
 			if (args[0].equalsIgnoreCase("balance")) {
-				sendMessage(p, Strings.getPrefix() + "Balance: " + Eco.format(Eco.getBalance(p)) + " &6&ogold");
+				sendMessage(p, Strings.getPrefix() + "Balance: " + Economy.format(Economy.getBalance(p)) + " &6&ogold");
 				return true;
 			}
 			if (args[0].equalsIgnoreCase("toplist")) {
-				Eco.getLeaderboard(p);
+				Economy.getLeaderboard(p);
 				return true;
 			}
 			if (args[0].equalsIgnoreCase("set")) {
 				sendMessage(p, Strings.getPrefix() + "Not enough arguments! ~ \nExpected /" + commandLabel + " set <&c" + "playerName" + "&r> <&cAmount&r>");
 				return true;
 			}
+			if (args[0].equalsIgnoreCase("pay")) {
+				sendMessage(p, Strings.getPrefix() + "Not enough arguments! ~ \nExpected /" + commandLabel + " pay <&c" + "playerName" + "&r> <&cAmount&r>");
+				return true;
+			}
+			if (args[0].equalsIgnoreCase("buy")) {
+				sendMessage(p, Strings.getPrefix() + "Not enough arguments! ~ \nExpected /" + commandLabel + " buy <&c" + "amount" + "&r> <&citem_Name&r>");
+				return true;
+			}
+			if (args[0].equalsIgnoreCase("sell")) {
+				sendMessage(p, Strings.getPrefix() + "Not enough arguments! ~ \nExpected /" + commandLabel + " sell <&c" + "amount" + "&r> <&citem_Name&r>");
+				return true;
+			}
+			if (args[0].equalsIgnoreCase("withdraw")) {
+				sendMessage(p, Strings.getPrefix() + "Not enough arguments! ~ \nExpected /" + commandLabel + " withdraw <&c" + "amount" + "&r>");
+				return true;
+			}
+			if (args[0].equalsIgnoreCase("deposit")) {
+				sendMessage(p, Strings.getPrefix() + "Not enough arguments! ~ \nExpected /" + commandLabel + " deposit <&c" + "amount" + "&r>");
+				return true;
+			}
+			if (args[0].equalsIgnoreCase("reset")) {
+				sendMessage(p, Strings.getPrefix() + "Not enough arguments! ~ \nExpected /" + commandLabel + " reset <&cplayerName&f>");
+				return true;
+			}
 			return true;
 		}
 		
 		if (length == 2) {
+			if (args[0].equalsIgnoreCase("buy")) {
+				sendMessage(p, Strings.getPrefix() + "Not enough arguments! ~ \nExpected /" + commandLabel + " buy <&c" + "amount" + "&r> <&citem_Name&r>");
+				return true;
+			}
+			if (args[0].equalsIgnoreCase("pay")) {
+				sendMessage(p, Strings.getPrefix() + "Not enough arguments! ~ \nExpected /" + commandLabel + " pay <&c" + "playerName" + "&r> <&cAmount&r>");
+				return true;
+			}
+			if (args[0].equalsIgnoreCase("sell")) {
+				sendMessage(p, Strings.getPrefix() + "Not enough arguments! ~ \nExpected /" + commandLabel + " sell <&c" + "amount" + "&r> <&citem_Name&r>");
+				return true;
+			}
 			if (args[0].equalsIgnoreCase("deposit")) {
 				int amount = Integer.valueOf(args[1]);
 				if (!Checks.isInt(args[1])) {
 					p.sendMessage(Strings.getPrefix() + '"' + args[1] + '"' + " is not a number.");
 					return true;
 				}
-				Eco.depositAmount(p, amount);
+				Economy.depositAmount(p, amount);
 				return true;
 			}
 			if (args[0].equalsIgnoreCase("withdraw")) {
@@ -81,7 +117,7 @@ public class CommandEconomy extends BukkitCommand {
 					p.sendMessage(Strings.getPrefix() + '"' + args[1] + '"' + " is not a number.");
 					return true;
 				}
-				Eco.withdrawAmount(p, amount);
+				Economy.withdrawAmount(p, amount);
 				return true;
 			}
 			if (args[0].equalsIgnoreCase("reset")) {
@@ -90,8 +126,9 @@ public class CommandEconomy extends BukkitCommand {
 					sendMessage(p, Strings.getPrefix() + "Player not found");
 					return true;
 				}
+				EconomyData eco2 = new EconomyData(target.getUniqueId());
 				sendMessage(p, Strings.getPrefix() + "Reset the balance of player: " + target.getName());
-				Eco.resetBalance(p, eco);
+				Economy.resetBalance(p, eco2);
 				return true;
 			}
 			if (args[0].equalsIgnoreCase("set")) {
@@ -102,50 +139,85 @@ public class CommandEconomy extends BukkitCommand {
 		}
 		
 		if (length == 3) {
-			if (args[0].equalsIgnoreCase("set")) {
+			if (args[0].equalsIgnoreCase("pay")) {
 				Player target = Bukkit.getPlayer(args[1]);
 				if (target == null) {
 					sendMessage(p, Strings.getPrefix() + "Player not found");
 					return true;
 				}
+				if (!Checks.isInt(args[2])) {
+					sendMessage(p, Strings.getPrefix() + "Wrong format!\nExpected format: #?");
+					return true;
+				}
+				EconomyData eco2 = new EconomyData(target.getUniqueId());
+				int amount = Integer.valueOf(args[2]);
+				Economy.takeAmount(p, eco, amount);
+				Economy.giveAmount(target, eco2, amount);
+				
+				sendMessage(p, Strings.getPrefix() + "Sent " + amount +  "&6g&f to player: " + target.getName());
+				sendMessage(target, Strings.getPrefix() + "Player " + p.getName() +  " sent you: " + amount + "&6g");
+				return true;
+			}
+			if (args[0].equalsIgnoreCase("set")) {
+				Player target = Bukkit.getPlayer(args[1]);
+				
+				if (target == null) {
+					sendMessage(p, Strings.getPrefix() + "Player not found");
+					return true;
+				}
+				EconomyData eco2 = new EconomyData(target.getUniqueId());
 				if (!args[2].contains(".") || !Checks.isDouble(args[2])) {
 					sendMessage(p, Strings.getPrefix() + "Wrong format!\nExpected format: ###.##");
 					return true;
 				}
-				sendMessage(p, Strings.getPrefix() + "Set the balance of player: " + target.getName() + " to: " + Eco.format(Double.valueOf(args[2])));
-				Eco.setBalance(p, eco, Double.valueOf(args[2]));
+				sendMessage(p, Strings.getPrefix() + "Set the balance of player: " + target.getName() + " to: " + Economy.format(Double.valueOf(args[2])));
+				Economy.setBalance(p, eco2, Double.valueOf(args[2]));
 				return true;
 			}
 			
 			if (args[0].equalsIgnoreCase("buy")) {
-				int amount = Integer.valueOf(args[1]); 
+				 
 				Material itemType = Material.matchMaterial(args[2]);
 				if (itemType == null) { //check whether the material exists
 				    sender.sendMessage("Unknown material: " + args[2] + ".");
 				    return true;
 				}
+				if (!Checks.isInt(args[1])) {
+					sendMessage(p, Strings.getPrefix() + "Wrong format!\nExpected format: #?");
+					return true;
+				}
+				int amount = Integer.valueOf(args[1]);
 				ItemStack itemStack = new ItemStack(itemType);
-				Eco.buyItem(p, itemStack, amount, eco);
+				Economy.buyItem(p, itemStack, amount, eco);
 				return true;
 			}
 			if (args[0].equalsIgnoreCase("sell")) {
-				int amount = Integer.valueOf(args[1]); 
+				
 				Material itemType = Material.matchMaterial(args[2]);
 				if (itemType == null) { //check whether the material exists
 				    sender.sendMessage("Unknown material: " + args[2] + ".");
 				    return true;
 				}
+				if (!Checks.isInt(args[1])) {
+					sendMessage(p, Strings.getPrefix() + "Wrong format!\nExpected format: #?");
+					return true;
+				}
+				int amount = Integer.valueOf(args[1]); 
 				ItemStack itemStack = new ItemStack(itemType);
-				Eco.sellItem(p, itemStack, amount, eco);
+				Economy.sellItem(p, itemStack, amount, eco);
 				return true;
 			}
 		}
-		
-		
-		
-		
 		sendMessage(p, Strings.getPrefix() + "You entered the command wrong.");
 		return true;
+		} else {
+			sendMessage(p, Strings.getPrefix() + "hEssentials &6Gold Economy &ris disabled on this server.");
+			return true;
+			
+		}
+		
+		
+
 	}
 	
 }

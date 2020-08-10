@@ -119,13 +119,22 @@ public class Strings {
 		return "&r";
 	}
 	
+	private static boolean isInClanClaim(Location loc) {
+		if (Bukkit.getServer().getPluginManager().isPluginEnabled("Clans")) {
+		if (ClanAPI.isInClaim(loc)) {
+			return true;
+		}
+		}
+		return false;
+	}
+	
 	public static String getAREA(Player p, Location loc) {
 		if (ClaimUtil.isInClaim(loc)) {
 			return getClaimColor(p) + ClaimUtil.getClaimName(loc);
 		} else
-		if (ClanAPI.isInClaim(loc)) {
+		if (isInClanClaim(loc)) {
 			return "&a&o" + ClanAPI.getClaimOwner(ClanAPI.getClaimID(loc));
-		} else if (!ClaimUtil.isInClaim(loc) || !ClanAPI.isInClaim(loc)) {
+		} else if (!ClaimUtil.isInClaim(loc) || !isInClanClaim(loc)) {
 		return "&4&lWilderness";
 		}
 		return "&f&oN/A";
@@ -144,7 +153,7 @@ public class Strings {
 	public static String getPrefix() { 
 		Config messages = new Config(getMessagesUsed());
 		FileConfiguration mess = messages.getConfig();	
-		return color(mess.getString("Messages.Prefix") + " ");
+		return color(mess.getString("Messages.Prefix") + " &f");
 	}
 	
 	public static String getScorePrefix() { 
@@ -234,7 +243,7 @@ public class Strings {
 		String max = prefix.replaceAll("%max%",
 				String.valueOf(HempfestEssentials.getInstance().getServer().getMaxPlayers()));
 		String message = max.replaceAll("%next%", "\n");
-		return message;
+		return color(message);
 	}
 	
 	public static String getNPB_MOTD(Player player) {
@@ -265,6 +274,16 @@ public class Strings {
 		Config messages = new Config(getMessagesUsed());
 		FileConfiguration mess = messages.getConfig();
 		String start = mess.getString("Messages.Player-Responses.Player-Message-Revieve").replaceAll("%target%", target.getName());
+		String next = start.replaceAll("%player%", player.getName());
+		String middle = next.replaceAll("%next%", "\n");
+		String last = middle.replaceAll("%prefix%", getPrefix());
+		return color(last);
+	}
+	
+	public static String messageSpyMSG(Player player, Player target) {
+		Config messages = new Config(getMessagesUsed());
+		FileConfiguration mess = messages.getConfig();
+		String start = mess.getString("Messages.Player-Responses.Player-Message-Spy").replaceAll("%target%", target.getName());
 		String next = start.replaceAll("%player%", player.getName());
 		String middle = next.replaceAll("%next%", "\n");
 		String last = middle.replaceAll("%prefix%", getPrefix());

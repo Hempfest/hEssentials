@@ -32,6 +32,10 @@ public class CommandMuteChat extends BukkitCommand {
 		Player p = (Player) sender;
 		int length = args.length;
 		if (length == 0) {
+			if (!p.hasPermission(this.getPermission())) {
+				Strings.sendNoPermission(p, this.getPermission());
+				return true;
+			}
 			if (Utils.Chat_MUTED) {
 				Utils.Chat_MUTED = false;
 				Utils.sendChat_Unmuted();

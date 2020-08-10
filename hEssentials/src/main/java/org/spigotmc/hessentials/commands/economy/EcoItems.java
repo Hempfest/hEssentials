@@ -588,665 +588,665 @@ public class EcoItems{
 		switch (e.getCurrentItem().getType()) {
 		case ACACIA_BOAT:
 			e.setCancelled(true);
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 ACACIA_BOAT"); break;
 		case ACACIA_BUTTON:
 			e.setCancelled(true);
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 ACACIA_BUTTON"); break;
 		case ACACIA_DOOR:
 			e.setCancelled(true);
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 ACACIA_DOOR"); break;
 		case ACACIA_FENCE:
 			e.setCancelled(true);
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 ACACIA_FENCE"); break;
 		case ACACIA_FENCE_GATE:
 			e.setCancelled(true);
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 ACACIA_FENCE_GATE"); break;
 		case ACACIA_LEAVES:
 			e.setCancelled(true);
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 ACACIA_LEAVES"); break;
 		case ACACIA_LOG:
 			e.setCancelled(true);
 			Bukkit.getServer().dispatchCommand(p, "heco buy 1 acacia_log");
 			break;
 		case ACACIA_PLANKS:
 			e.setCancelled(true);
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 ACACIA_PLANKS"); break;
 		case ACACIA_PRESSURE_PLATE:
 			e.setCancelled(true);
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 ACACIA_PRESSURE_PLATE"); break;
 		case ACACIA_SAPLING:
 			e.setCancelled(true);
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 ACACIA_SAPLING"); break;
 		case ACACIA_SIGN:
 			e.setCancelled(true);
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 ACACIA_SIGN"); break;
 		case ACACIA_SLAB:
 			e.setCancelled(true);
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 ACACIA_SLAB"); break;
 		case ACACIA_STAIRS:
 			e.setCancelled(true);
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 ACACIA_STAIRS"); break;
 		case ACACIA_TRAPDOOR:
 			e.setCancelled(true);
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 ACACIA_TRAPDOOR"); break;
 		case ACACIA_WALL_SIGN:
 			e.setCancelled(true);
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 ACACIA_WALL_SIGN"); break;
 		case ACACIA_WOOD:
 			e.setCancelled(true);
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 ACACIA_WOOD"); break;
 		case ACTIVATOR_RAIL:
 			e.setCancelled(true);
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			Bukkit.getServer().dispatchCommand(p, "heco buy 1 ACTIVATOR_RAIL"); break;
 		case AIR:
 			e.setCancelled(true);
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			break;
 		case ALLIUM:
 			e.setCancelled(true);
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 ALLIUM"); break;
 		case ANCIENT_DEBRIS:
 			e.setCancelled(true);
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 ANCIENT_DEBRIS"); break;
 		case ANDESITE:
 			e.setCancelled(true);
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 ANDESITE"); break;
 		case ANDESITE_SLAB:
 			e.setCancelled(true);
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 ANDESITE_SLAB"); break;
 		case ANDESITE_STAIRS:
 			e.setCancelled(true);
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 ANDESITE_STAIRS"); break;
 		case ANDESITE_WALL:
 			e.setCancelled(true);
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 ANDESITE_WALL"); break;
 		case ANVIL:
 			e.setCancelled(true);
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 ANVIL"); break;
 		case APPLE:
 			e.setCancelled(true);
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 APPLE"); break;
 		case ARMOR_STAND:
 			e.setCancelled(true);
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 ARMOR_STAND"); break;
 		case ARROW:
 			e.setCancelled(true);
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 ARROW"); break;
 		case ATTACHED_MELON_STEM:
 			e.setCancelled(true);
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 ATTACHED_MELON_STEM"); break;
 		case ATTACHED_PUMPKIN_STEM:
 			e.setCancelled(true);
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 ATTACHED_PUMPKIN_STEM"); break;
 		case AZURE_BLUET:
 			e.setCancelled(true);
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 AZURE_BLUET"); break;
 		case BAKED_POTATO:
 			e.setCancelled(true);
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BAKED_POTATO"); break;
 		case BAMBOO:
 			e.setCancelled(true);
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BAMBOO"); break;
 		case BAMBOO_SAPLING:
 			e.setCancelled(true);
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BAMBOO_SAPLING"); break;
 		case BARREL:
 			e.setCancelled(true);
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BARREL"); break;
 		case BARRIER:
 			e.setCancelled(true);
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BARRIER"); break;
 		case BASALT:
 			e.setCancelled(true);
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BASALT"); break;
 		case BAT_SPAWN_EGG:
 			e.setCancelled(true);
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BAT_SPAWN_EGG"); break;
 		case BEACON:
 			e.setCancelled(true);
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BEACON"); break;
 		case BEDROCK:
 			e.setCancelled(true);
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BEDROCK"); break;
 		case BEEF:
 			e.setCancelled(true);
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BEEF"); break;
 		case BEEHIVE:
 			e.setCancelled(true);
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BEEHIVE"); break;
 		case BEETROOT:
 			
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BEETROOT"); break;
 		case BEETROOTS:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BEETROOTS"); break;
 		case BEETROOT_SEEDS:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BEETROOT_SEEDS"); break;
 		case BEETROOT_SOUP:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BEETROOT_SOUP"); break;
 		case BEE_NEST:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BEE_NEST"); break;
 		case BEE_SPAWN_EGG:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BEE_SPAWN_EGG"); break;
 		case BELL:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BELL"); break;
 		case BIRCH_BOAT:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BIRCH_BOAT"); break;
 		case BIRCH_BUTTON:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BIRCH_BUTTON"); break;
 		case BIRCH_DOOR:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BIRCH_DOOR"); break;
 		case BIRCH_FENCE:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BIRCH_FENCE"); break;
 		case BIRCH_FENCE_GATE:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BIRCH_FENCE_GATE"); break;
 		case BIRCH_LEAVES:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BIRCH_LEAVES"); break;
 		case BIRCH_LOG:
 			e.setCancelled(true);
 			Bukkit.getServer().dispatchCommand(p, "heco buy 1 birch_log");
 			break;
 		case BIRCH_PLANKS:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BIRCH_PLANKS"); break;
 		case BIRCH_PRESSURE_PLATE:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BIRCH_PRESSURE_PLATE"); break;
 		case BIRCH_SAPLING:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BIRCH_SAPLING"); break;
 		case BIRCH_SIGN:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BIRCH_SIGN"); break;
 		case BIRCH_SLAB:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BIRCH_SLAB"); break;
 		case BIRCH_STAIRS:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BIRCH_STAIRS"); break;
 		case BIRCH_TRAPDOOR:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BIRCH_TRAPDOOR"); break;
 		case BIRCH_WALL_SIGN:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BIRCH_WALL_SIGN"); break;
 		case BIRCH_WOOD:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BIRCH_WOOD"); break;
 		case BLACKSTONE:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BLACKSTONE"); break;
 		case BLACKSTONE_SLAB:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BLACKSTONE_SLAB"); break;
 		case BLACKSTONE_STAIRS:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BLACKSTONE_STAIRS"); break;
 		case BLACKSTONE_WALL:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BLACKSTONE_WALL"); break;
 		case BLACK_BANNER:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BLACK_BANNER"); break;
 		case BLACK_BED:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BLACK_BED"); break;
 		case BLACK_CARPET:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BLACK_CARPET"); break;
 		case BLACK_CONCRETE:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BLACK_CONCRETE"); break;
 		case BLACK_CONCRETE_POWDER:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BLACK_CONCRETE_POWDER"); break;
 		case BLACK_DYE:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BLACK_DYE"); break;
 		case BLACK_GLAZED_TERRACOTTA:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BLACK_GLAZED_TERRACOTTA"); break;
 		case BLACK_SHULKER_BOX:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BLACK_SHULKER_BOX"); break;
 		case BLACK_STAINED_GLASS:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BLACK_STAINED_GLASS"); break;
 		case BLACK_STAINED_GLASS_PANE:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BLACK_STAINED_GLASS_PANE"); break;
 		case BLACK_TERRACOTTA:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BLACK_TERRACOTTA"); break;
 		case BLACK_WALL_BANNER:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BLACK_WALL_BANNER"); break;
 		case BLACK_WOOL:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BLACK_WOOL"); break;
 		case BLAST_FURNACE:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BLAST_FURNACE"); break;
 		case BLAZE_POWDER:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BLAZE_POWDER"); break;
 		case BLAZE_ROD:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BLAZE_ROD"); break;
 		case BLAZE_SPAWN_EGG:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BLAZE_SPAWN_EGG"); break;
 		case BLUE_BANNER:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BLUE_BANNER"); break;
 		case BLUE_BED:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BLUE_BED"); break;
 		case BLUE_CARPET:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BLUE_CARPET"); break;
 		case BLUE_CONCRETE:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BLUE_CONCRETE"); break;
 		case BLUE_CONCRETE_POWDER:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BLUE_CONCRETE_POWDER"); break;
 		case BLUE_DYE:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BLUE_DYE"); break;
 		case BLUE_GLAZED_TERRACOTTA:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BLUE_GLAZED_TERRACOTTA"); break;
 		case BLUE_ICE:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BLUE_ICE"); break;
 		case BLUE_ORCHID:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BLUE_ORCHID"); break;
 		case BLUE_SHULKER_BOX:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BLUE_SHULKER_BOX"); break;
 		case BLUE_STAINED_GLASS:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BLUE_STAINED_GLASS"); break;
 		case BLUE_STAINED_GLASS_PANE:
 			e.setCancelled(true);
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BLUE_STAINED_GLASS_PANE"); break;
 		case BLUE_TERRACOTTA:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BLUE_TERRACOTTA"); break;
 		case BLUE_WALL_BANNER:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BLUE_WALL_BANNER"); break;
 		case BLUE_WOOL:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BLUE_WOOL"); break;
 		case BONE:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BONE"); break;
 		case BONE_BLOCK:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BONE_BLOCK"); break;
 		case BONE_MEAL:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BONE_MEAL"); break;
 		case BOOK:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BOOK"); break;
 		case BOOKSHELF:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BOOKSHELF"); break;
 		case BOW:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BOW"); break;
 		case BOWL:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BOWL"); break;
 		case BRAIN_CORAL:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BRAIN_CORAL"); break;
 		case BRAIN_CORAL_BLOCK:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BRAIN_CORAL_BLOCK"); break;
 		case BRAIN_CORAL_FAN:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BRAIN_CORAL_FAN"); break;
 		case BRAIN_CORAL_WALL_FAN:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BRAIN_CORAL_WALL_FAN"); break;
 		case BREAD:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BREAD"); break;
 		case BREWING_STAND:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BREWING_STAND"); break;
 		case BRICK:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BRICK"); break;
 		case BRICKS:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BRICKS"); break;
 		case BRICK_SLAB:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BRICK_SLAB"); break;
 		case BRICK_STAIRS:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BRICK_STAIRS"); break;
 		case BRICK_WALL:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BRICK_WALL"); break;
 		case BROWN_BANNER:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BROWN_BANNER"); break;
 		case BROWN_BED:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BROWN_BED"); break;
 		case BROWN_CARPET:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BROWN_CARPET"); break;
 		case BROWN_CONCRETE:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BROWN_CONCRETE"); break;
 		case BROWN_CONCRETE_POWDER:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BROWN_CONCRETE_POWDER"); break;
 		case BROWN_DYE:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BROWN_DYE"); break;
 		case BROWN_GLAZED_TERRACOTTA:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BROWN_GLAZED_TERRACOTTA"); break;
 		case BROWN_MUSHROOM:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BROWN_MUSHROOM"); break;
 		case BROWN_MUSHROOM_BLOCK:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BROWN_MUSHROOM_BLOCK"); break;
 		case BROWN_SHULKER_BOX:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BROWN_SHULKER_BOX"); break;
 		case BROWN_STAINED_GLASS:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BROWN_STAINED_GLASS"); break;
 		case BROWN_STAINED_GLASS_PANE:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BROWN_STAINED_GLASS_PANE"); break;
 		case BROWN_TERRACOTTA:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BROWN_TERRACOTTA"); break;
 		case BROWN_WALL_BANNER:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BROWN_WALL_BANNER"); break;
 		case BROWN_WOOL:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BROWN_WOOL"); break;
 		case BUBBLE_COLUMN:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BUBBLE_COLUMN"); break;
 		case BUBBLE_CORAL:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BUBBLE_CORAL"); break;
 		case BUBBLE_CORAL_BLOCK:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BUBBLE_CORAL_BLOCK"); break;
 		case BUBBLE_CORAL_FAN:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BUBBLE_CORAL_FAN"); break;
 		case BUBBLE_CORAL_WALL_FAN:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BUBBLE_CORAL_WALL_FAN"); break;
 		case BUCKET:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 BUCKET"); break;
 		case CACTUS:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 CACTUS"); break;
 		case CAKE:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 CAKE"); break;
 		case CAMPFIRE:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 CAMPFIRE"); break;
 		case CARROT:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 CARROT"); break;
 		case CARROTS:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 CARROTS"); break;
 		case CARROT_ON_A_STICK:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 CARROT_ON_A_STICK"); break;
 		case CARTOGRAPHY_TABLE:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 CARTOGRAPHY_TABLE"); break;
 		case CARVED_PUMPKIN:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 CARVED_PUMPKIN"); break;
 		case CAT_SPAWN_EGG:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 CAT_SPAWN_EGG"); break;
 		case CAULDRON:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 CAULDRON"); break;
 		case CAVE_AIR:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 CAVE_AIR"); break;
 		case CAVE_SPIDER_SPAWN_EGG:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 CAVE_SPIDER_SPAWN_EGG"); break;
 		case CHAIN:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 CHAIN"); break;
 		case CHAINMAIL_BOOTS:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 CHAINMAIL_BOOTS"); break;
 		case CHAINMAIL_CHESTPLATE:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 CHAINMAIL_CHESTPLATE"); break;
 		case CHAINMAIL_HELMET:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 CHAINMAIL_HELMET"); break;
 		case CHAINMAIL_LEGGINGS:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 CHAINMAIL_LEGGINGS"); break;
 		case CHAIN_COMMAND_BLOCK:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 CHAIN_COMMAND_BLOCK"); break;
 		case CHARCOAL:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 CHARCOAL"); break;
 		case CHEST:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 CHEST"); break;
 		case CHEST_MINECART:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 CHEST_MINECART"); break;
 		case CHICKEN:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 CHICKEN"); break;
 		case CHICKEN_SPAWN_EGG:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 CHICKEN_SPAWN_EGG"); break;
 		case CHIPPED_ANVIL:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 CHIPPED_ANVIL"); break;
 		case CHISELED_NETHER_BRICKS:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 CHISELED_NETHER_BRICKS"); break;
 		case CHISELED_POLISHED_BLACKSTONE:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 CHISELED_POLISHED_BLACKSTONE"); break;
 		case CHISELED_QUARTZ_BLOCK:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 CHISELED_QUARTZ_BLOCK"); break;
 		case CHISELED_RED_SANDSTONE:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 CHISELED_RED_SANDSTONE"); break;
 		case CHISELED_SANDSTONE:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 CHISELED_SANDSTONE"); break;
 		case CHISELED_STONE_BRICKS:
 			e.setCancelled(true);
 			Bukkit.getServer().dispatchCommand(p, "heco buy 1 chiseled_stone_bricks");
 			break;
 		case CHORUS_FLOWER:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 CHORUS_FLOWER"); break;
 		case CHORUS_FRUIT:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 CHORUS_FRUIT"); break;
 		case CHORUS_PLANT:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 CHORUS_PLANT"); break;
 		case CLAY:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 CLAY"); break;
 		case CLAY_BALL:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 CLAY_BALL"); break;
 		case CLOCK:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 CLOCK"); break;
 		case COAL:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 COAL"); break;
 		case COAL_BLOCK:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 COAL_BLOCK"); break;
 		case COAL_ORE:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 COAL_ORE"); break;
 		case COARSE_DIRT:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 COARSE_DIRT"); break;
 		case COBBLESTONE:
 			e.setCancelled(true);
 			Bukkit.getServer().dispatchCommand(p, "heco buy 1 cobblestone");
 			break;
 		case COBBLESTONE_SLAB:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 COBBLESTONE_SLAB"); break;
 		case COBBLESTONE_STAIRS:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 COBBLESTONE_STAIRS"); break;
 		case COBBLESTONE_WALL:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 COBBLESTONE_WALL"); break;
 		case COBWEB:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 COBWEB"); break;
 		case COCOA:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 COCOA"); break;
 		case COCOA_BEANS:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 COCOA_BEANS"); break;
 		case COD:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 COD"); break;
 		case COD_BUCKET:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 COD_BUCKET"); break;
 		case COD_SPAWN_EGG:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 COD_SPAWN_EGG"); break;
 		case COMMAND_BLOCK:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 COMMAND_BLOCK"); break;
 		case COMMAND_BLOCK_MINECART:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 COMMAND_BLOCK_MINECART"); break;
 		case COMPARATOR:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 COMPARATOR"); break;
 		case COMPASS:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 COMPASS"); break;
 		case COMPOSTER:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 COMPOSTER"); break;
 		case CONDUIT:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 CONDUIT"); break;
 		case COOKED_BEEF:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 COOKED_BEEF"); break;
 		case COOKED_CHICKEN:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 COOKED_CHICKEN"); break;
 		case COOKED_COD:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 COOKED_COD"); break;
 		case COOKED_MUTTON:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 COOKED_MUTTON"); break;
 		case COOKED_PORKCHOP:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 COOKED_PORKCHOP"); break;
 		case COOKED_RABBIT:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 COOKED_RABBIT"); break;
 		case COOKED_SALMON:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 COOKED_SALMON"); break;
 		case COOKIE:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 COOKIE"); break;
 		case CORNFLOWER:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 CORNFLOWER"); break;
 		case COW_SPAWN_EGG:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 COW_SPAWN_EGG"); break;
 		case CRACKED_NETHER_BRICKS:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 CRACKED_NETHER_BRICKS"); break;
 		case CRACKED_POLISHED_BLACKSTONE_BRICKS:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 CRACKED_POLISHED_BLACKSTONE_BRICKS"); break;
 		case CRACKED_STONE_BRICKS:
 			e.setCancelled(true);
 			Bukkit.getServer().dispatchCommand(p, "heco buy 1 cracked_stone_bricks");
 			break;
 		case CRAFTING_TABLE:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 CRAFTING_TABLE"); break;
 		case CREEPER_BANNER_PATTERN:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 CREEPER_BANNER_PATTERN"); break;
 		case CREEPER_HEAD:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 CREEPER_HEAD"); break;
 		case CREEPER_SPAWN_EGG:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 CREEPER_SPAWN_EGG"); break;
 		case CREEPER_WALL_HEAD:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 CREEPER_WALL_HEAD"); break;
 		case CRIMSON_BUTTON:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 CRIMSON_BUTTON"); break;
 		case CRIMSON_DOOR:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 CRIMSON_DOOR"); break;
 		case CRIMSON_FENCE:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 CRIMSON_FENCE"); break;
 		case CRIMSON_FENCE_GATE:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 CRIMSON_FENCE_GATE"); break;
 		case CRIMSON_FUNGUS:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 CRIMSON_FUNGUS"); break;
 		case CRIMSON_HYPHAE:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 CRIMSON_HYPHAE"); break;
 		case CRIMSON_NYLIUM:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 CRIMSON_NYLIUM"); break;
 		case CRIMSON_PLANKS:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 CRIMSON_PLANKS"); break;
 		case CRIMSON_PRESSURE_PLATE:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 CRIMSON_PRESSURE_PLATE"); break;
 		case CRIMSON_ROOTS:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 CRIMSON_ROOTS"); break;
 		case CRIMSON_SIGN:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 CRIMSON_SIGN"); break;
 		case CRIMSON_SLAB:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 CRIMSON_SLAB"); break;
 		case CRIMSON_STAIRS:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 CRIMSON_STAIRS"); break;
 		case CRIMSON_STEM:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 CRIMSON_STEM"); break;
 		case CRIMSON_TRAPDOOR:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 CRIMSON_TRAPDOOR"); break;
 		case CRIMSON_WALL_SIGN:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 CRIMSON_WALL_SIGN"); break;
 		case CROSSBOW:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 CROSSBOW"); break;
 		case CRYING_OBSIDIAN:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 CRYING_OBSIDIAN"); break;
 		case CUT_RED_SANDSTONE:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 CUT_RED_SANDSTONE"); break;
 		case CUT_RED_SANDSTONE_SLAB:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 CUT_RED_SANDSTONE_SLAB"); break;
 		case CUT_SANDSTONE:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 CUT_SANDSTONE"); break;
 		case CUT_SANDSTONE_SLAB:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 CUT_SANDSTONE_SLAB"); break;
 		case CYAN_BANNER:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 CYAN_BANNER"); break;
 		case CYAN_BED:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 CYAN_BED"); break;
 		case CYAN_CARPET:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 CYAN_CARPET"); break;
 		case CYAN_CONCRETE:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 CYAN_CONCRETE"); break;
 		case CYAN_CONCRETE_POWDER:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 CYAN_CONCRETE_POWDER"); break;
 		case CYAN_DYE:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 CYAN_DYE"); break;
 		case CYAN_GLAZED_TERRACOTTA:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 CYAN_GLAZED_TERRACOTTA"); break;
 		case CYAN_SHULKER_BOX:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 CYAN_SHULKER_BOX"); break;
 		case CYAN_STAINED_GLASS:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 CYAN_STAINED_GLASS"); break;
 		case CYAN_STAINED_GLASS_PANE:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 CYAN_STAINED_GLASS_PANE"); break;
 		case CYAN_TERRACOTTA:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 CYAN_TERRACOTTA"); break;
 		case CYAN_WALL_BANNER:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 CYAN_WALL_BANNER"); break;
 		case CYAN_WOOL:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 CYAN_WOOL"); break;
 		case DAMAGED_ANVIL:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 DAMAGED_ANVIL"); break;
 		case DANDELION:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 DANDELION"); break;
 		case DARK_OAK_BOAT:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 DARK_OAK_BOAT"); break;
 		case DARK_OAK_BUTTON:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 DARK_OAK_BUTTON"); break;
 		case DARK_OAK_DOOR:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 DARK_OAK_DOOR"); break;
 		case DARK_OAK_FENCE:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 DARK_OAK_FENCE"); break;
 		case DARK_OAK_FENCE_GATE:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 DARK_OAK_FENCE_GATE"); break;
 		case DARK_OAK_LEAVES:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 DARK_OAK_LEAVES"); break;
 		case DARK_OAK_LOG:
 			e.setCancelled(true);
 			Bukkit.getServer().dispatchCommand(p, "heco buy 1 dark_oak_log");
 			break;
 		case DARK_OAK_PLANKS:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 DARK_OAK_PLANKS"); break;
 		case DARK_OAK_PRESSURE_PLATE:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 DARK_OAK_PRESSURE_PLATE"); break;
 		case DARK_OAK_SAPLING:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 DARK_OAK_SAPLING"); break;
 		case DARK_OAK_SIGN:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 DARK_OAK_SIGN"); break;
 		case DARK_OAK_SLAB:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 DARK_OAK_SLAB"); break;
 		case DARK_OAK_STAIRS:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 DARK_OAK_STAIRS"); break;
 		case DARK_OAK_TRAPDOOR:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 DARK_OAK_TRAPDOOR"); break;
 		case DARK_OAK_WALL_SIGN:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 DARK_OAK_WALL_SIGN"); break;
 		case DARK_OAK_WOOD:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 DARK_OAK_WOOD"); break;
 		case DARK_PRISMARINE:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 DARK_PRISMARINE"); break;
 		case DARK_PRISMARINE_SLAB:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 DARK_PRISMARINE_SLAB"); break;
 		case DARK_PRISMARINE_STAIRS:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 DARK_PRISMARINE_STAIRS"); break;
 		case DAYLIGHT_DETECTOR:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 DAYLIGHT_DETECTOR"); break;
 		case DEAD_BRAIN_CORAL:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 DEAD_BRAIN_CORAL"); break;
 		case DEAD_BRAIN_CORAL_BLOCK:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 DEAD_BRAIN_CORAL_BLOCK"); break;
 		case DEAD_BRAIN_CORAL_FAN:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 DEAD_BRAIN_CORAL_FAN"); break;
 		case DEAD_BRAIN_CORAL_WALL_FAN:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 DEAD_BRAIN_CORAL_WALL_FAN"); break;
 		case DEAD_BUBBLE_CORAL:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 DEAD_BUBBLE_CORAL"); break;
 		case DEAD_BUBBLE_CORAL_BLOCK:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 DEAD_BUBBLE_CORAL_BLOCK"); break;
 		case DEAD_BUBBLE_CORAL_FAN:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 DEAD_BUBBLE_CORAL_FAN"); break;
 		case DEAD_BUBBLE_CORAL_WALL_FAN:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 DEAD_BUBBLE_CORAL_WALL_FAN"); break;
 		case DEAD_BUSH:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 DEAD_BUSH"); break;
 		case DEAD_FIRE_CORAL:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 DEAD_FIRE_CORAL"); break;
 		case DEAD_FIRE_CORAL_BLOCK:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 DEAD_FIRE_CORAL_BLOCK"); break;
 		case DEAD_FIRE_CORAL_FAN:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 DEAD_FIRE_CORAL_FAN"); break;
 		case DEAD_FIRE_CORAL_WALL_FAN:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 DEAD_FIRE_CORAL_WALL_FAN"); break;
 		case DEAD_HORN_CORAL:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 DEAD_HORN_CORAL"); break;
 		case DEAD_HORN_CORAL_BLOCK:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 DEAD_HORN_CORAL_BLOCK"); break;
 		case DEAD_HORN_CORAL_FAN:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 DEAD_HORN_CORAL_FAN"); break;
 		case DEAD_HORN_CORAL_WALL_FAN:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 DEAD_HORN_CORAL_WALL_FAN"); break;
 		case DEAD_TUBE_CORAL:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 DEAD_TUBE_CORAL"); break;
 		case DEAD_TUBE_CORAL_BLOCK:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 DEAD_TUBE_CORAL_BLOCK"); break;
 		case DEAD_TUBE_CORAL_FAN:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 DEAD_TUBE_CORAL_FAN"); break;
 		case DEAD_TUBE_CORAL_WALL_FAN:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 DEAD_TUBE_CORAL_WALL_FAN"); break;
 		case DEBUG_STICK:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 DEBUG_STICK"); break;
 		case DETECTOR_RAIL:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 DETECTOR_RAIL"); break;
 		case DIAMOND:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 DIAMOND"); break;
 		case DIAMOND_AXE:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 DIAMOND_AXE"); break;
 		case DIAMOND_BLOCK:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 DIAMOND_BLOCK"); break;
 		case DIAMOND_BOOTS:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 DIAMOND_BOOTS"); break;
 		case DIAMOND_CHESTPLATE:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 DIAMOND_CHESTPLATE"); break;
 		case DIAMOND_HELMET:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 DIAMOND_HELMET"); break;
 		case DIAMOND_HOE:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 DIAMOND_HOE"); break;
 		case DIAMOND_HORSE_ARMOR:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 DIAMOND_HORSE_ARMOR"); break;
 		case DIAMOND_LEGGINGS:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 DIAMOND_LEGGINGS"); break;
 		case DIAMOND_ORE:
 			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
 		case DIAMOND_PICKAXE:
@@ -1480,7 +1480,7 @@ public class EcoItems{
 		case GRAY_SHULKER_BOX:
 			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
 		case GRAY_STAINED_GLASS:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 GRAY_STAINED_GLASS"); break;
 		case GRAY_STAINED_GLASS_PANE:
 			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
 		case GRAY_TERRACOTTA:
@@ -1506,7 +1506,7 @@ public class EcoItems{
 		case GREEN_SHULKER_BOX:
 			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
 		case GREEN_STAINED_GLASS:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 GREEN_STAINED_GLASS"); break;
 		case GREEN_STAINED_GLASS_PANE:
 			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
 		case GREEN_TERRACOTTA:
@@ -1572,7 +1572,7 @@ public class EcoItems{
 		case IRON_AXE:
 			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
 		case IRON_BARS:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 iron_bars"); break;
 		case IRON_BLOCK:
 			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
 		case IRON_BOOTS:
@@ -1702,7 +1702,7 @@ public class EcoItems{
 		case LIGHT_BLUE_SHULKER_BOX:
 			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
 		case LIGHT_BLUE_STAINED_GLASS:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 LIGHT_BLUE_STAINED_GLASS"); break;
 		case LIGHT_BLUE_STAINED_GLASS_PANE:
 			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
 		case LIGHT_BLUE_TERRACOTTA:
@@ -1728,7 +1728,7 @@ public class EcoItems{
 		case LIGHT_GRAY_SHULKER_BOX:
 			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
 		case LIGHT_GRAY_STAINED_GLASS:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 LIGHT_GRAY_STAINED_GLASS"); break;
 		case LIGHT_GRAY_STAINED_GLASS_PANE:
 			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
 		case LIGHT_GRAY_TERRACOTTA:
@@ -1762,7 +1762,7 @@ public class EcoItems{
 		case LIME_SHULKER_BOX:
 			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
 		case LIME_STAINED_GLASS:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 LIME_STAINED_GLASS"); break;
 		case LIME_STAINED_GLASS_PANE:
 			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
 		case LIME_TERRACOTTA:
@@ -1796,7 +1796,7 @@ public class EcoItems{
 		case MAGENTA_SHULKER_BOX:
 			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
 		case MAGENTA_STAINED_GLASS:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 MAGENTA_STAINED_GLASS"); break;
 		case MAGENTA_STAINED_GLASS_PANE:
 			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
 		case MAGENTA_TERRACOTTA:
@@ -1998,7 +1998,7 @@ public class EcoItems{
 		case ORANGE_SHULKER_BOX:
 			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
 		case ORANGE_STAINED_GLASS:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 ORANGE_STAINED_GLASS"); break;
 		case ORANGE_STAINED_GLASS_PANE:
 			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
 		case ORANGE_TERRACOTTA:
@@ -2054,7 +2054,7 @@ public class EcoItems{
 		case PINK_SHULKER_BOX:
 			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
 		case PINK_STAINED_GLASS:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 PINK_STAINED_GLASS"); break;
 		case PINK_STAINED_GLASS_PANE:
 			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
 		case PINK_TERRACOTTA:
@@ -2066,7 +2066,7 @@ public class EcoItems{
 		case PINK_WOOL:
 			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
 		case PISTON:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 PISTON"); break;
 		case PISTON_HEAD:
 			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
 		case PLAYER_HEAD:
@@ -2242,7 +2242,7 @@ public class EcoItems{
 		case PURPLE_SHULKER_BOX:
 			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
 		case PURPLE_STAINED_GLASS:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 PURPLE_STAINED_GLASS"); break;
 		case PURPLE_STAINED_GLASS_PANE:
 			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
 		case PURPLE_TERRACOTTA:
@@ -2290,11 +2290,11 @@ public class EcoItems{
 		case REDSTONE_BLOCK:
 			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
 		case REDSTONE_LAMP:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 REDSTONE_LAMP"); break;
 		case REDSTONE_ORE:
 			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
 		case REDSTONE_TORCH:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 REDSTONE_TORCH"); break;
 		case REDSTONE_WALL_TORCH:
 			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
 		case REDSTONE_WIRE:
@@ -2338,7 +2338,7 @@ public class EcoItems{
 		case RED_SHULKER_BOX:
 			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
 		case RED_STAINED_GLASS:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 RED_STAINED_GLASS"); break;
 		case RED_STAINED_GLASS_PANE:
 			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
 		case RED_TERRACOTTA:
@@ -2516,7 +2516,7 @@ public class EcoItems{
 		case STICK:
 			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
 		case STICKY_PISTON:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 STICKY_PISTON"); break;
 		case STONE:
 			e.setCancelled(true);
 			Bukkit.getServer().dispatchCommand(p, "heco buy 1 stone");
@@ -2740,7 +2740,7 @@ public class EcoItems{
 		case WHITE_SHULKER_BOX:
 			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
 		case WHITE_STAINED_GLASS:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 WHITE_STAINED_GLASS"); break;
 		case WHITE_STAINED_GLASS_PANE:
 			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
 		case WHITE_TERRACOTTA:
@@ -2794,7 +2794,7 @@ public class EcoItems{
 		case YELLOW_SHULKER_BOX:
 			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
 		case YELLOW_STAINED_GLASS:
-			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
+			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 YELLOW_STAINED_GLASS"); break;
 		case YELLOW_STAINED_GLASS_PANE:
 			e.setCancelled(true); Bukkit.getServer().dispatchCommand(p, "heco buy 1 "); break;
 		case YELLOW_TERRACOTTA:

@@ -3,22 +3,27 @@ package org.spigotmc.hessentials;
 import java.util.logging.Logger;
 
 import org.bukkit.plugin.java.JavaPlugin;
+import org.spigotmc.hessentials.commands.CommandBuy;
+import org.spigotmc.hessentials.commands.CommandDeposit;
 import org.spigotmc.hessentials.commands.CommandHelp;
 import org.spigotmc.hessentials.commands.CommandMessage;
 import org.spigotmc.hessentials.commands.CommandOnlineList;
+import org.spigotmc.hessentials.commands.CommandPay;
 import org.spigotmc.hessentials.commands.CommandReply;
+import org.spigotmc.hessentials.commands.CommandSell;
 import org.spigotmc.hessentials.commands.CommandTrack;
-import org.spigotmc.hessentials.commands.claim.ClaimCheck;
+import org.spigotmc.hessentials.commands.CommandWithdraw;
 import org.spigotmc.hessentials.commands.claim.ClaimUtil;
 import org.spigotmc.hessentials.commands.claim.CommandClaim;
 import org.spigotmc.hessentials.commands.economy.CommandEconomy;
-import org.spigotmc.hessentials.commands.economy.Eco;
+import org.spigotmc.hessentials.commands.economy.Economy;
 import org.spigotmc.hessentials.commands.homes.CommandDelhome;
 import org.spigotmc.hessentials.commands.homes.CommandHome;
 import org.spigotmc.hessentials.commands.homes.CommandHomes;
 import org.spigotmc.hessentials.commands.homes.CommandSethome;
 import org.spigotmc.hessentials.commands.staff.CommandBan;
 import org.spigotmc.hessentials.commands.staff.CommandCFUpdate;
+import org.spigotmc.hessentials.commands.staff.CommandDay;
 import org.spigotmc.hessentials.commands.staff.CommandFly;
 import org.spigotmc.hessentials.commands.staff.CommandGMC;
 import org.spigotmc.hessentials.commands.staff.CommandGMS;
@@ -30,15 +35,18 @@ import org.spigotmc.hessentials.commands.staff.CommandItem;
 import org.spigotmc.hessentials.commands.staff.CommandKick;
 import org.spigotmc.hessentials.commands.staff.CommandKickAll;
 import org.spigotmc.hessentials.commands.staff.CommandMuteChat;
+import org.spigotmc.hessentials.commands.staff.CommandNight;
 import org.spigotmc.hessentials.commands.staff.CommandPlayerhome;
 import org.spigotmc.hessentials.commands.staff.CommandReload;
 import org.spigotmc.hessentials.commands.staff.CommandSocialSpy;
+import org.spigotmc.hessentials.commands.staff.CommandSuffix;
 import org.spigotmc.hessentials.commands.staff.CommandTeleport;
 import org.spigotmc.hessentials.commands.staff.CommandUnban;
 import org.spigotmc.hessentials.commands.staff.CommandWhois;
 import org.spigotmc.hessentials.commands.tprequest.CommandTpRequest;
 import org.spigotmc.hessentials.events.PlayerListener;
 import org.spigotmc.hessentials.util.Placeholders;
+import org.spigotmc.hessentials.util.Region;
 import org.spigotmc.hessentials.util.Utils;
 import org.spigotmc.hessentials.util.variables.Checks;
 
@@ -75,7 +83,7 @@ public class HempfestEssentials extends JavaPlugin {
 
 		getServer().getPluginManager().registerEvents(new PlayerListener(), getInstance());
 		getServer().getPluginManager().registerEvents(new ClaimUtil(), getInstance());
-		getServer().getPluginManager().registerEvents(new Eco(), getInstance());
+		getServer().getPluginManager().registerEvents(new Economy(), getInstance());
 		if (!Checks.economyEnabled()) {
             log.severe(String.format("[%s] - Economy disabled!", getDescription().getName()));
         }
@@ -88,18 +96,26 @@ public class HempfestEssentials extends JavaPlugin {
 	}
 	
 	public void runTimers() {
-		 ClaimCheck claimCheck = new ClaimCheck();
-	        claimCheck.runTaskTimer(this, 20L, 20L);
+		 Region Refresh = new Region();
+		 Refresh.runTaskTimerAsynchronously(this, 20L, 20L);
 	}
 
 	public void registerCommands() {
 		Utils.registerCommand(new CommandHome());
 		Utils.registerCommand(new CommandHomes());
+		Utils.registerCommand(new CommandSuffix());
 		Utils.registerCommand(new CommandHomelist());
 		Utils.registerCommand(new CommandPlayerhome());
 		Utils.registerCommand(new CommandSethome());
 		Utils.registerCommand(new CommandDelhome());
 		Utils.registerCommand(new CommandHelp());
+		Utils.registerCommand(new CommandBuy());
+		Utils.registerCommand(new CommandSell());
+		Utils.registerCommand(new CommandWithdraw());
+		Utils.registerCommand(new CommandDeposit());
+		Utils.registerCommand(new CommandPay());
+		Utils.registerCommand(new CommandDay());
+		Utils.registerCommand(new CommandNight());
 		Utils.registerCommand(new CommandTrack());
 		Utils.registerCommand(new CommandGive());
 		Utils.registerCommand(new CommandItem());

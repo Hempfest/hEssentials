@@ -5,7 +5,8 @@ import java.util.Arrays;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.defaults.BukkitCommand;
 import org.bukkit.entity.Player;
-import org.spigotmc.hessentials.util.variables.Message;
+import org.spigotmc.hessentials.util.Utils;
+import org.spigotmc.hessentials.util.variables.Component;
 import org.spigotmc.hessentials.util.variables.Strings;
 
 public class CommandClaim extends BukkitCommand {
@@ -30,21 +31,22 @@ public class CommandClaim extends BukkitCommand {
 		}
 		
 		final Player p = (Player) sender;
+		Utils u = new Utils();
 		int length = args.length;
 				if (length == 0) {
 					if (!p.hasPermission(this.getPermission())) {
 						Strings.sendNoPermission(p, this.getPermission());
 						return true;
 					}
-					Message.textHoverable(p, Strings.getPrefix() + Strings.getInvalidUsage() + commandLabel, " &7<&aset&7/&cdelete&7/&eadduser&7/&6goto&7/&5list&7> ", Strings.getPrefix() + "&7Type a sub command to learn how to use it.");
-					Message.textRunnable(p, "&7Claim List: &7[", "&b&oClick Here", "&7]", Strings.getPrefix() + "&7Click me to show your claim list", "claim list");
+					u.sendComponent(p, Component.textHoverable(p, Strings.getPrefix() + Strings.getInvalidUsage() + commandLabel, " &7<&aset&7/&cdelete&7/&eadduser&7/&6goto&7/&5list&7> ", Strings.getPrefix() + "&7Type a sub command to learn how to use it."));
+					u.sendComponent(p, Component.textRunnable(p, "&7Claim List: &7[", "&b&oClick Here", "&7]", Strings.getPrefix() + "&7Click me to show your claim list", "claim list"));
 					return true;
 					
 				}
 				if (length == 1) {
 					if (args[0].equalsIgnoreCase("find")) {
 						sendMessage(p, "&7You need to specify a name.");
-						Message.textHoverable(p, Strings.getPrefix() + Strings.getInvalidUsage() + commandLabel, " &7<&efind&7> &7<&8claimName&7> ", "&f&oExample: &7/claim find &eSurvival");
+						u.sendComponent(p, Component.textHoverable(p, Strings.getPrefix() + Strings.getInvalidUsage() + commandLabel, " &7<&efind&7> &7<&8claimName&7> ", "&f&oExample: &7/claim find &eSurvival"));
 						return true;
 					}
 					if (args[0].equalsIgnoreCase("set") || args[0].equalsIgnoreCase("s")) {
@@ -53,7 +55,7 @@ public class CommandClaim extends BukkitCommand {
 							return true;
 						}
 						sendMessage(p, "&7You need to specify a name.");
-						Message.textHoverable(p, Strings.getPrefix() + Strings.getInvalidUsage() + commandLabel, " &7<&aset&7> &7<&8claimName&7> ", "&f&oExample: &7/claim set &eSurvival");
+						u.sendComponent(p, Component.textHoverable(p, Strings.getPrefix() + Strings.getInvalidUsage() + commandLabel, " &7<&aset&7> &7<&8claimName&7> ", "&f&oExample: &7/claim set &eSurvival"));
 						return true;
 					}
 					if (args[0].equalsIgnoreCase("delete") || args[0].equalsIgnoreCase("d") || args[0].equalsIgnoreCase("del")) {
@@ -62,7 +64,7 @@ public class CommandClaim extends BukkitCommand {
 							return true;
 						}
 						sendMessage(p, "&7You need to specify a name.");
-						Message.textHoverable(p, Strings.getPrefix() + Strings.getInvalidUsage() + commandLabel, " &7<&cdelete&7> &7<&8claimName&7> ", "&f&oExample: &7/claim delete &cSurvival");
+						u.sendComponent(p, Component.textHoverable(p, Strings.getPrefix() + Strings.getInvalidUsage() + commandLabel, " &7<&cdelete&7> &7<&8claimName&7> ", "&f&oExample: &7/claim delete &cSurvival"));
 						return true;
 					}
 					if (args[0].equalsIgnoreCase("adduser") || args[0].equalsIgnoreCase("a") || args[0].equalsIgnoreCase("add")) {
@@ -71,7 +73,7 @@ public class CommandClaim extends BukkitCommand {
 							return true;
 						}
 						sendMessage(p, "&7You need to specify a name.");
-						Message.textHoverable(p, Strings.getPrefix() + Strings.getInvalidUsage() + commandLabel, " &7<&eadduser&7> &7<&8claimName&7> &7<&8playerName&7> ", "&7/claim adduser &eHempfest");
+						u.sendComponent(p, Component.textHoverable(p, Strings.getPrefix() + Strings.getInvalidUsage() + commandLabel, " &7<&eadduser&7> &7<&8claimName&7> &7<&8playerName&7> ", "&7/claim adduser &eHempfest"));
 						return true;
 					}
 					if (args[0].equalsIgnoreCase("removeuser") || args[0].equalsIgnoreCase("r") || args[0].equalsIgnoreCase("ru")) {
@@ -80,7 +82,7 @@ public class CommandClaim extends BukkitCommand {
 							return true;
 						}
 						sendMessage(p, "&7You need to specify a name.");
-						Message.textHoverable(p, Strings.getPrefix() + Strings.getInvalidUsage() + commandLabel, " &7<&c&oremoveuser&7> &7<&8claimName&7> &7<&8playerName&7> ", "&7/claim removeuser &c&oHempfest");
+						u.sendComponent(p, Component.textHoverable(p, Strings.getPrefix() + Strings.getInvalidUsage() + commandLabel, " &7<&c&oremoveuser&7> &7<&8claimName&7> &7<&8playerName&7> ", "&7/claim removeuser &c&oHempfest"));
 						return true;
 					}
 					if (args[0].equalsIgnoreCase("goto") || args[0].equalsIgnoreCase("g") || args[0].equalsIgnoreCase("tp")) {
@@ -89,7 +91,7 @@ public class CommandClaim extends BukkitCommand {
 							return true;
 						}
 						sendMessage(p, "&7You need to specify a name.");
-						Message.textHoverable(p, Strings.getPrefix() + Strings.getInvalidUsage() + commandLabel, " &7<&6goto&7> &7<&8claimName&7> ", "&f&oExample: &7/claim goto &eSurvival");
+						u.sendComponent(p, Component.textHoverable(p, Strings.getPrefix() + Strings.getInvalidUsage() + commandLabel, " &7<&6goto&7> &7<&8claimName&7> ", "&f&oExample: &7/claim goto &eSurvival"));
 						return true;
 					}
 					if (args[0].equalsIgnoreCase("list") || args[0].equalsIgnoreCase("l")) {
@@ -140,7 +142,7 @@ public class CommandClaim extends BukkitCommand {
 							return true;
 						}
 						sendMessage(p, "&7You need to specify a name.");
-						Message.textHoverable(p, Strings.getPrefix() + Strings.getInvalidUsage() + commandLabel, " &7<&eadduser&7> &7<&8claimName&7> &7<&8playerName&7> ", "&7/claim adduser &eHempfest");
+						u.sendComponent(p, Component.textHoverable(p, Strings.getPrefix() + Strings.getInvalidUsage() + commandLabel, " &7<&eadduser&7> &7<&8claimName&7> &7<&8playerName&7> ", "&7/claim adduser &eHempfest"));
 						return true;
 					}
 					if (args[0].equalsIgnoreCase("removeuser") || args[0].equalsIgnoreCase("r") || args[0].equalsIgnoreCase("ru")) {
@@ -149,7 +151,7 @@ public class CommandClaim extends BukkitCommand {
 							return true;
 						}
 						sendMessage(p, "&7You need to specify a name.");
-						Message.textHoverable(p, Strings.getPrefix() + Strings.getInvalidUsage() + commandLabel, " &7<&c&oremoveuser&7> &7<&8claimName&7> &7<&8playerName&7> ", "&7/claim removeuser &c&oHempfest");
+						u.sendComponent(p, Component.textHoverable(p, Strings.getPrefix() + Strings.getInvalidUsage() + commandLabel, " &7<&c&oremoveuser&7> &7<&8claimName&7> &7<&8playerName&7> ", "&7/claim removeuser &c&oHempfest"));
 						return true;
 					}
 					if (args[0].equalsIgnoreCase("goto") || args[0].equalsIgnoreCase("g") || args[0].equalsIgnoreCase("tp")) {

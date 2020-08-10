@@ -5,7 +5,8 @@ import java.util.Arrays;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.defaults.BukkitCommand;
 import org.bukkit.entity.Player;
-import org.spigotmc.hessentials.util.variables.Message;
+import org.spigotmc.hessentials.util.Utils;
+import org.spigotmc.hessentials.util.variables.Component;
 import org.spigotmc.hessentials.util.variables.Strings;
 
 public class CommandDelhome extends BukkitCommand {
@@ -30,13 +31,14 @@ public class CommandDelhome extends BukkitCommand {
 		}
 
 		Player p = (Player) sender;
+		Utils u = new Utils();
 		int length = args.length;
 				if (length == 0) {
 					if (!p.hasPermission(this.getPermission())) {
 						Strings.sendNoPermission(p, this.getPermission());
 						return true;
 					}
-					Message.textHoverable(p, Strings.getPrefix() + Strings.getInvalidUsage() + commandLabel, " &7<&ahomeName&7> ", "&f&oExample: &7/delhome &eSkybase");
+					u.sendComponent(p, Component.textHoverable(p, Strings.getPrefix() + Strings.getInvalidUsage() + commandLabel, " &7<&ahomeName&7> ", "&f&oExample: &7/delhome &eSkybase"));
 					return true;
 				}
 				

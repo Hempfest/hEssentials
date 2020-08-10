@@ -57,6 +57,7 @@ public class CommandTrack extends BukkitCommand {
 				if (length == 0) {
 				sendActionBar(p);
 	            StopTimer();
+	            sendMessage(sender, Strings.getPrefix() + "&a&oNow tracking players within 1000m.");
 					return true;
 				}
 
