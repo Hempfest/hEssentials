@@ -40,7 +40,6 @@ public class PlayerListener implements Listener {
 		if (!p.hasPlayedBefore()) {
 			Utils.hud.put(p.getName(), Boolean.valueOf(true));
 			e.setJoinMessage(Strings.getFirstJoinMSG(p));
-			Utils.npbMOTD(p);
 			Utils.createPlayerConfig(p);
 			ClaimUtil.updateClaimUser(p);
 			Economy.createPlayerData(p);
@@ -62,24 +61,14 @@ public class PlayerListener implements Listener {
 		if (!pl.exists()) {
 			Economy.createPlayerData(p);
 		}
-		
+		Utils.title_claim.put(p.getName(), false);
+		Utils.title_claim2.put(p.getName(), false);
+		Utils.title_claim3.put(p.getName(), false);
+		Utils.title_claim4.put(p.getName(), false);
 		ClaimUtil.updateClaimUser(p);
 		Utils.hud.put(p.getName(), Boolean.valueOf(true));
 		e.setJoinMessage(Strings.getJoinMSG(p));
 		Utils.MOTD(p);
-		Utils.matchIP(p);
-		Utils.matchUsername(p);
-		Utils.matchLTP(p);
-		if (Bukkit.getServer().getPluginManager().isPluginEnabled("hEssentialsChat")) {
-			
-			GroupAPI chat = new GroupAPI();
-			chat.updateGroup(p);
-			if (!chat.hasSuffix(p)) {
-				pd.getConfig().set("SUFFIX", "Default");
-				pd.saveConfig();
-				return;
-			}
-		}
 		return;
 	}
 	
@@ -177,7 +166,7 @@ public class PlayerListener implements Listener {
 		Config mo = new Config("Messages");
 		FileConfiguration m = mo.getConfig();
 		String motd = Strings.color(m.getString("MOTD-Server-List").replaceAll("%prefix%", Strings.getPrefix()));
-		e.setMotd(motd);
+		e.setMotd(motd.replaceAll("%next%", Strings.color("\n")));
 		e.setMaxPlayers(m.getInt("Server-Max-Players"));
 	}
 

@@ -7,6 +7,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.defaults.BukkitCommand;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.spigotmc.hessentials.util.MaterialUtils;
 import org.spigotmc.hessentials.util.variables.Checks;
 import org.spigotmc.hessentials.util.variables.Strings;
 
@@ -16,7 +17,7 @@ public class CommandItem extends BukkitCommand {
 		super("item");
 		setDescription("Primary command for hEssentials.");
 		setAliases(Arrays.asList("hitem", "i", "hi"));
-		setPermission("hessentials.item");
+		setPermission("hessentials.staff.item");
 	}
 
 	public static void sendMessage(CommandSender player, String message) {
@@ -61,9 +62,9 @@ public class CommandItem extends BukkitCommand {
 						Strings.sendNoPermission(p, this.getPermission());
 						return true;
 					}
-					Material itemType = Material.matchMaterial(args[1]);
+					Material itemType = MaterialUtils.getMaterial(args[1]);
 					if (itemType == null) { //check whether the material exists
-					    sendMessage(p, Strings.getPrefix() + "Unknown material: " + args[1] + ".");
+						sendMessage(p, Strings.getPrefix() + "Item not found: " + args[1] + ".");
 					    return true;
 					}
 					if (!Checks.isInt(args[0])) { //check whether the player is online

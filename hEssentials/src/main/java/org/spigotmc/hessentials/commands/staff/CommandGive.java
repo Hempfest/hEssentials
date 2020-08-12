@@ -7,6 +7,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.defaults.BukkitCommand;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.spigotmc.hessentials.util.MaterialUtils;
 import org.spigotmc.hessentials.util.variables.Checks;
 import org.spigotmc.hessentials.util.variables.Strings;
 
@@ -16,7 +17,7 @@ public class CommandGive extends BukkitCommand {
 		super("give");
 		setDescription("Primary command for hEssentials.");
 		setAliases(Arrays.asList("hgive"));
-		setPermission("hessentials.give");
+		setPermission("hessentials.staff.give");
 	}
 
 	public static void sendMessage(CommandSender player, String message) {
@@ -46,8 +47,8 @@ public class CommandGive extends BukkitCommand {
 					return true;
 				}
 				if (length == 1) {
-					if (!p.hasPermission(this.getPermission() + ".others")) {
-						Strings.sendNoPermission(p, this.getPermission() + ".others");
+					if (!p.hasPermission(this.getPermission() + ".other")) {
+						Strings.sendNoPermission(p, this.getPermission() + ".other");
 						return true;
 					}
 					String playerName = args[0];
@@ -60,15 +61,15 @@ public class CommandGive extends BukkitCommand {
 					return true;
 				}
 				if (length == 2) {
-					if (!p.hasPermission(this.getPermission() + ".others")) {
-						Strings.sendNoPermission(p, this.getPermission() + ".others");
+					if (!p.hasPermission(this.getPermission() + ".other")) {
+						Strings.sendNoPermission(p, this.getPermission() + ".other");
 						return true;
 					}
 					String playerName = args[0];
 					Player target = sender.getServer().getPlayerExact(playerName);
-					Material itemType = Material.matchMaterial(args[1]);
+					Material itemType = MaterialUtils.getMaterial(args[1]);
 					if (itemType == null) { //check whether the material exists
-					    sender.sendMessage("Unknown material: " + args[1] + ".");
+						sendMessage(p, Strings.getPrefix() + "Item not found: " + args[1] + ".");
 					    return true;
 					}
 					ItemStack itemStack = new ItemStack(itemType);
@@ -77,15 +78,15 @@ public class CommandGive extends BukkitCommand {
 					return true;
 				}
 				if (length == 3) {
-					if (!p.hasPermission(this.getPermission() + ".others")) {
-						Strings.sendNoPermission(p, this.getPermission() + ".others");
+					if (!p.hasPermission(this.getPermission() + ".other")) {
+						Strings.sendNoPermission(p, this.getPermission() + ".other");
 						return true;
 					}
 					String playerName = args[0];
 					Player target = sender.getServer().getPlayerExact(playerName);
-					Material itemType = Material.matchMaterial(args[2]);
+					Material itemType = MaterialUtils.getMaterial(args[2]);
 					if (itemType == null) { //check whether the material exists
-					    sender.sendMessage("Unknown material: " + args[2] + ".");
+						sendMessage(p, Strings.getPrefix() + "Item not found: " + args[2] + ".");
 					    return true;
 					}
 					if (!Checks.isInt(args[1])) { //check whether the player is online

@@ -169,6 +169,36 @@ public class ClaimUtil implements Listener {
 		return Claims;
 
 	}
+	
+	public static List<String> claimList() {
+		Config data = new Config("Claims");
+		FileConfiguration d = data.getConfig();
+		List<String> Claims = d.getStringList("Claim-List");
+		
+		return Claims;
+
+	}
+	
+	  public static int maxWarps(String playername) {
+		    Player player = Bukkit.getPlayer(playername);
+		    int returnv = 0;
+		    if (player == null)
+		      return 0; 
+		    for (int i = 100; i >= 0; i--) {
+		      if (player.hasPermission("hessentials.claim.infinite")) {
+		        returnv = -1;
+		        break;
+		      } 
+		      if (player.hasPermission("hessentials.claim." + i)) {
+		        returnv = i;
+		        break;
+		      } 
+		    } 
+		    if (returnv == -1) 
+		    	return 999;
+		    	
+		    return returnv;
+		  }
 
 	// Check if the player is a claim user
 	public static boolean isClaimUser(Player p) {
@@ -460,6 +490,10 @@ public class ClaimUtil implements Listener {
 		}
 		if (isInClaim(location) && isClaimOwner(p)) {
 			sendMessage(p, Strings.getPrefix() + "You already own this land.\nClaim: " + getClaimName(location));
+			return;
+		}
+		if (getClaimList(p).size() >= maxWarps(p.getName())) {
+			sendMessage(p, Strings.getPrefix() + "You already have set your max amount of claims: " + maxWarps(p.getName()));
 			return;
 		}
 		List<String> Claim = pd.getConfig().getStringList("Claims");

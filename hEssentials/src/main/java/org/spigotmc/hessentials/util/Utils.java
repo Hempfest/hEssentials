@@ -54,6 +54,7 @@ public class Utils {
 	public static HashMap<String, Boolean> hud_muted = new HashMap<String, Boolean>();
 	public static HashMap<String, Boolean> hud_tracking = new HashMap<String, Boolean>();
 	public static HashMap<String, Boolean> recieved = new HashMap<String, Boolean>();
+	public static HashMap<Player, String> view = new HashMap<Player, String>();
 	public static HashMap<Player, Gui> guiManager = new HashMap<>();
 	
 	public static int stop = 0;
@@ -288,6 +289,42 @@ public class Utils {
 			return guiManager.get(p); 
 		}
 	}
+   
+   public static UUID usernameToUUID(String username) {
+       for(String s : getAllUserIDs()) {
+           PlayerData pd = new PlayerData(UUID.fromString(s));
+           if(pd.exists()) {
+               FileConfiguration f = pd.getConfig();
+               String name = f.getString("USERNAME");
+               if(name.equalsIgnoreCase(username)) {
+                   return UUID.fromString(s);
+               }
+           }
+       }
+       return null;
+   }
+   
+   public static List<String> getAllUserIDs(){
+       List<String> users = new ArrayList<String>();
+       for(File file : PlayerData.getDataFolder().listFiles()) {
+           users.add(file.getName().replace(".yml", ""));
+       }
+       return users;
+   }
+   
+   public static Gui guiManager(OfflinePlayer p) {
+		Gui gui;
+		if (!(guiManager.containsKey(p))) { 
+
+			
+			gui = new Gui(p);
+			guiManager.put((Player) p, gui);
+
+			return gui;
+		} else {
+			return guiManager.get(p); 
+		}
+	}
 	
 
 	public static void openPlayerInventory(Player p, Player target) {
@@ -366,7 +403,7 @@ public class Utils {
 		sendMessage(player, "&f&oGamemode &7&l| &2&o" + target.getGameMode());
 		if (Bukkit.getServer().getPluginManager().isPluginEnabled("hEssentialsChat")) {
 			GroupAPI api = new GroupAPI();
-			sendMessage(player, "&f&oGroup &7&l| &2&o" + api.getGroup(player));
+			sendMessage(player, "&f&oGroup &7&l| &2&o" + api.getGroup(target));
 		}
 		return;
 	}
@@ -463,7 +500,12 @@ public class Utils {
 		if (Bukkit.getServer().getPluginManager().isPluginEnabled("hEssentialsChat")) {
 			
 			String group = data.getConfig().getString("GROUP");
-			sendMessage(player, "&f&oGroup &7&l| &2&o" + group);
+			if (group == null) {
+				sendMessage(player, "&f&oGroup &7&l| &2&o" + "Default");
+			} else {
+				sendMessage(player, "&f&oGroup &7&l| &2&o" + group);
+			}
+			
 		}
 		return;
 	}

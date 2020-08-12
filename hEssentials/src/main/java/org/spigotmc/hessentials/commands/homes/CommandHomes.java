@@ -5,6 +5,9 @@ import java.util.Arrays;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.defaults.BukkitCommand;
 import org.bukkit.entity.Player;
+import org.spigotmc.hessentials.gui.Gui;
+import org.spigotmc.hessentials.gui.homes.HomeList;
+import org.spigotmc.hessentials.util.Utils;
 import org.spigotmc.hessentials.util.variables.Strings;
 
 public class CommandHomes extends BukkitCommand {
@@ -35,6 +38,9 @@ public class CommandHomes extends BukkitCommand {
 						Strings.sendNoPermission(p, this.getPermission());
 						return true;
 					}
+					Gui gui = new Gui(p);
+					gui.setUUID(p.getUniqueId());
+					new HomeList(Utils.guiManager(p)).open();
 					Homes.listwarps(p);
 					return true;
 				}

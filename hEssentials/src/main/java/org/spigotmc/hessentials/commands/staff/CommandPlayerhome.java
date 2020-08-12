@@ -17,7 +17,7 @@ public class CommandPlayerhome extends BukkitCommand {
 		super("playerhome");
 		setDescription("Primary command for hEssentials.");
 		setAliases(Arrays.asList("hplayerhome", "hph", "ph"));
-		setPermission("hessentials.homes.use.others");
+		setPermission("hessentials.staff.homes.use.others");
 	}
 
 	public static void sendMessage(CommandSender player, String message) {

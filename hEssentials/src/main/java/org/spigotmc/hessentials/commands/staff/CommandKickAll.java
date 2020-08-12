@@ -52,10 +52,11 @@ public class CommandKickAll extends BukkitCommand {
              if (!target.getName().equals(p.getName())) {
             	 target.kickPlayer(Strings.color(Strings.getPrefix() + "\n&c&lYou have been kicked.\n&c&lREASON:\n&f&l" + rsn));
                  Bukkit.broadcastMessage(Strings.color(Strings.getPrefix() + "Player '&c" + target.getName() + "&7' kicked for '&c" + rsn + "&7'."));
-       		  return true;
+       		
    		  }
              
              }
+             return true;
    	  }
 
 		sendMessage(p, Strings.getPrefix() + "You entered the command wrong.");

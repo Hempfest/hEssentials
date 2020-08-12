@@ -17,7 +17,6 @@ public class CommandHelp extends BukkitCommand {
 		super("help");
 		setDescription("Primary command for hEssentials.");
 		setAliases(Arrays.asList("hhelp"));
-		setPermission("hessentials.staff");
 	}
 
 	public static void sendMessage(CommandSender player, String message) {
@@ -57,7 +56,7 @@ public class CommandHelp extends BukkitCommand {
 		if (length == 1) {
 			try {
 			if (args[0].equalsIgnoreCase("staff")) {
-				if (p.hasPermission(this.getPermission())) {
+				if (p.hasPermission("hessentials.staff")) {
 				u.paginateStaffHelp(p, staffhelp, 1, pgAmnt);
 				return true;
 				} else {
@@ -84,7 +83,7 @@ public class CommandHelp extends BukkitCommand {
 				return true;
 			}
 			if (args[0].equalsIgnoreCase("staff")) {
-			if (p.hasPermission(this.getPermission())) {
+			if (p.hasPermission("hessentials.staff")) {
 			u.paginateStaffHelp(p, staffhelp, amnt, pgAmnt);
 			return true;
 				}

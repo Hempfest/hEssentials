@@ -28,85 +28,98 @@ Economy:
 # The variable you're looking for will look like 'minecraft:item_name'
 # 'item_name' is all you need from the id.
 # Lastly once you've gotten the proper item set a buy and sell price
-DIRT:
-  Buy-Price: 2.00
-GRASS_BLOCK:
-  Buy-Price: 2.50
-STONE:
-  Buy-Price: 5.00
-COBBLESTONE:
-  Buy-Price: 3.50
-GRANITE:
-  Buy-Price: 2.50
-POLISHED_GRANITE:
-  Buy-Price: 2.50
-STONE_BRICKS:
-  Buy-Price: 6.50
-CRACKED_STONE_BRICKS:
-  Buy-Price: 5.50
-CHISELED_STONE_BRICKS:
-  Buy-Price: 5.50
-OAK_LOG:
-  Buy-Price: 1.50
-SPRUCE_LOG:
-  Buy-Price: 2.50
-BIRCH_LOG:
-  Buy-Price: 2.50
-JUNGLE_LOG:
-  Buy-Price: 2.50
-ACACIA_LOG:
-  Buy-Price: 2.50
-DARK_OAK_LOG:
-  Buy-Price: 2.50
-GLASS:
-  Buy-Price: 0.50
-GLOWSTONE:
-  Buy-Price: 1.50
-TORCH:
-  Buy-Price: 2.50
-BOOKSHELF:
-  Buy-Price: 0.33
-ENCHANTING_TABLE:
-  Buy-Price: 68.90
-IRON_BARS:
-  Buy-Price: 11.60
-WHITE_STAINED_GLASS:
-  Buy-Price: 0.50
-ORANGE_STAINED_GLASS:
-  Buy-Price: 0.50
-MAGENTA_STAINED_GLASS:
-  Buy-Price: 0.50
-LIGHT_BLUE_STAINED_GLASS:
-  Buy-Price: 0.50
-YELLOW_STAINED_GLASS:
-  Buy-Price: 0.50
-LIME_STAINED_GLASS:
-  Buy-Price: 0.50
-PINK_STAINED_GLASS:
-  Buy-Price: 0.50
-GRAY_STAINED_GLASS:
-  Buy-Price: 0.50
-LIGHT_GRAY_STAINED_GLASS:
-  Buy-Price: 0.50
-CYAN_STAINED_GLASS:
-  Buy-Price: 0.50
-PURPLE_STAINED_GLASS:
-  Buy-Price: 0.50
-BLUE_STAINED_GLASS:
-  Buy-Price: 0.50
-BROWN_STAINED_GLASS:
-  Buy-Price: 0.50
-GREEN_STAINED_GLASS:
-  Buy-Price: 0.50
-RED_STAINED_GLASS:
-  Buy-Price: 0.50
-BLACK_STAINED_GLASS:
-  Buy-Price: 0.50
-STICKY_PISTON:
-  Buy-Price: 14.75
-PISTON:
-  Buy-Price: 13.75
-REDSTONE_TORCH:
-  Buy-Price: 1.50
-REDSTONE_LAMP:
-  Buy-Price: 12.50
+Items:
+  DIRT:
+    Buy-Price: 2.00
+  GRASS_BLOCK:
+    Buy-Price: 2.50
+  STONE:
+    Buy-Price: 5.00
+  COBBLESTONE:
+    Buy-Price: 3.50
+  GRANITE:
+    Buy-Price: 2.50
+  POLISHED_GRANITE:
+    Buy-Price: 2.50
+  STONE_BRICKS:
+    Buy-Price: 6.50
+  CRACKED_STONE_BRICKS:
+    Buy-Price: 5.50
+  CHISELED_STONE_BRICKS:
+    Buy-Price: 5.50
+  OAK_LOG:
+    Buy-Price: 1.50
+  SPRUCE_LOG:
+    Buy-Price: 2.50
+  BIRCH_LOG:
+    Buy-Price: 2.50
+  JUNGLE_LOG:
+    Buy-Price: 2.50
+  ACACIA_LOG:
+    Buy-Price: 2.50
+  DARK_OAK_LOG:
+    Buy-Price: 2.50
+  GLASS:
+    Buy-Price: 0.50
+  GLOWSTONE:
+    Buy-Price: 1.50
+  TORCH:
+    Buy-Price: 2.50
+  BOOKSHELF:
+    Buy-Price: 0.33
+  ENCHANTING_TABLE:
+    Buy-Price: 68.90
+  IRON_BARS:
+    Buy-Price: 11.60
+  WHITE_STAINED_GLASS:
+    Buy-Price: 0.50
+  ORANGE_STAINED_GLASS:
+    Buy-Price: 0.50
+  MAGENTA_STAINED_GLASS:
+    Buy-Price: 0.50
+  LIGHT_BLUE_STAINED_GLASS:
+    Buy-Price: 0.50
+  YELLOW_STAINED_GLASS:
+    Buy-Price: 0.50
+  LIME_STAINED_GLASS:
+    Buy-Price: 0.50
+  PINK_STAINED_GLASS:
+    Buy-Price: 0.50
+  GRAY_STAINED_GLASS:
+    Buy-Price: 0.50
+  LIGHT_GRAY_STAINED_GLASS:
+    Buy-Price: 0.50
+  CYAN_STAINED_GLASS:
+    Buy-Price: 0.50
+  PURPLE_STAINED_GLASS:
+    Buy-Price: 0.50
+  BLUE_STAINED_GLASS:
+    Buy-Price: 0.50
+  BROWN_STAINED_GLASS:
+    Buy-Price: 0.50
+  GREEN_STAINED_GLASS:
+    Buy-Price: 0.50
+  RED_STAINED_GLASS:
+    Buy-Price: 0.50
+  BLACK_STAINED_GLASS:
+    Buy-Price: 0.50
+  STICKY_PISTON:
+    Buy-Price: 14.75
+  PISTON:
+    Buy-Price: 13.75
+  REDSTONE_TORCH:
+    Buy-Price: 1.50
+  REDSTONE_LAMP:
+    Buy-Price: 12.50
+  IRON_INGOT:
+    Buy-Price: 1.27
+  DIAMOND:
+    Buy-Price: 11.54
+  BLAZE_ROD:
+    Buy-Price: 500.12
+  COOKED_BEEF:
+    Buy-Price: 1.0
+  COAL:
+    Buy-Price: 6.33
+  BLAZE_ROD:
+    Buy-Price: 1.22

@@ -141,7 +141,7 @@ public class EcoItems{
 		if (m.contains("STONE")) {
 		ItemStack b2 = new ItemStack(Material.STONE, 1);
 		ItemMeta bm2 = b2.getItemMeta();
-		double amount = m.getDouble("STONE.Buy-Price");
+		double amount = m.getDouble("Items." + "STONE.Buy-Price");
 		bm2.setDisplayName(Strings.color("&7&oStone"));
 		bm2.setLore(Arrays.asList(Strings.color("Buy for this item for"), Strings.color(amount + "&6&lGOLD")));
 		b2.setItemMeta(bm2);
@@ -151,7 +151,7 @@ public class EcoItems{
 		if (m.contains("COBBLESTONE")) {
 		ItemStack b1 = new ItemStack(Material.COBBLESTONE, 1);
 		ItemMeta bm1 = b1.getItemMeta();
-		double amount2 = m.getDouble("COBBLESTONE.Buy-Price");
+		double amount2 = m.getDouble("Items." + "COBBLESTONE.Buy-Price");
 		bm1.setDisplayName(Strings.color("&7&oCobblestone"));
 		bm1.setLore(Arrays.asList(Strings.color("Buy for this item for"), Strings.color(amount2 + "&6&lGOLD")));
 		b1.setItemMeta(bm1);
@@ -161,7 +161,7 @@ public class EcoItems{
 		if (m.contains("DIRT")) {
 		ItemStack b0 = new ItemStack(Material.DIRT, 1);
 		ItemMeta bm0 = b0.getItemMeta();
-		double amount3 = m.getDouble("DIRT.Buy-Price");
+		double amount3 = m.getDouble("Items." + "DIRT.Buy-Price");
 		bm0.setDisplayName(Strings.color("&7&oDirt"));
 		bm0.setLore(Arrays.asList(Strings.color("Buy for this item for"), Strings.color(amount3 + "&6&lGOLD")));
 		b0.setItemMeta(bm0);
@@ -171,7 +171,7 @@ public class EcoItems{
 		if (m.contains("GRASS_BLOCK")) {
 		ItemStack b = new ItemStack(Material.GRASS_BLOCK, 1);
 		ItemMeta bm = b.getItemMeta();
-		double amount4 = m.getDouble("GRASS_BLOCK.Buy-Price");
+		double amount4 = m.getDouble("Items." + "GRASS_BLOCK.Buy-Price");
 		bm.setDisplayName(Strings.color("&7&oGrass_block"));
 		bm.setLore(Arrays.asList(Strings.color("Buy for this item for"), Strings.color(amount4 + "&6&lGOLD")));
 		b.setItemMeta(bm);
@@ -181,7 +181,7 @@ public class EcoItems{
 		if (m.contains("OAK_LOG")) {
 		ItemStack b6 = new ItemStack(Material.OAK_LOG, 1);
 		ItemMeta bm6 = b6.getItemMeta();
-		double amount0 = m.getDouble("OAK_LOG.Buy-Price");
+		double amount0 = m.getDouble("Items." + "OAK_LOG.Buy-Price");
 		bm6.setDisplayName(Strings.color("&7&oOak_log"));
 		bm6.setLore(Arrays.asList(Strings.color("Buy for this item for"), Strings.color(amount0 + "&6&lGOLD")));
 		b6.setItemMeta(bm6);
@@ -191,7 +191,7 @@ public class EcoItems{
 		if (m.contains("SPRUCE_LOG")) {
 			ItemStack b7 = new ItemStack(Material.SPRUCE_LOG, 1);
 			ItemMeta bm7 = b7.getItemMeta();
-			double amount5 = m.getDouble("SPRUCE_LOG.Buy-Price");
+			double amount5 = m.getDouble("Items." + "SPRUCE_LOG.Buy-Price");
 			bm7.setDisplayName(Strings.color("&7&oSpruce_log"));
 			bm7.setLore(Arrays.asList(Strings.color("Buy for this item for"), Strings.color(amount5 + "&6&lGOLD")));
 			b7.setItemMeta(bm7);
@@ -201,7 +201,7 @@ public class EcoItems{
 		if (m.contains("BIRCH_LOG")) {
 			ItemStack b8 = new ItemStack(Material.BIRCH_LOG, 1);
 			ItemMeta bm8 = b8.getItemMeta();
-			double amount6 = m.getDouble("BIRCH_LOG.Buy-Price");
+			double amount6 = m.getDouble("Items." + "BIRCH_LOG.Buy-Price");
 			bm8.setDisplayName(Strings.color("&7&oBirch_log"));
 			bm8.setLore(Arrays.asList(Strings.color("Buy for this item for"), Strings.color(amount6 + "&6&lGOLD")));
 			b8.setItemMeta(bm8);
@@ -211,7 +211,7 @@ public class EcoItems{
 		if (m.contains("SPRUCE_LOG")) {
 			ItemStack b9 = new ItemStack(Material.SPRUCE_LOG, 1);
 			ItemMeta bm9 = b9.getItemMeta();
-			double amount7 = m.getDouble("SPRUCE_LOG.Buy-Price");
+			double amount7 = m.getDouble("Items." + "SPRUCE_LOG.Buy-Price");
 			bm9.setDisplayName(Strings.color("&7&oSpruce_log"));
 			bm9.setLore(Arrays.asList(Strings.color("Buy for this item for"), Strings.color(amount7 + "&6&lGOLD")));
 			b9.setItemMeta(bm9);
@@ -221,7 +221,7 @@ public class EcoItems{
 		if (m.contains("JUNGLE_LOG")) {
 			ItemStack b10 = new ItemStack(Material.JUNGLE_LOG, 1);
 			ItemMeta bm10 = b10.getItemMeta();
-			double amount8 = m.getDouble("JUNGLE_LOG.Buy-Price");
+			double amount8 = m.getDouble("Items." + "JUNGLE_LOG.Buy-Price");
 			bm10.setDisplayName(Strings.color("&7&oJungle_log"));
 			bm10.setLore(Arrays.asList(Strings.color("Buy for this item for"), Strings.color(amount8 + "&6&lGOLD")));
 			b10.setItemMeta(bm10);
@@ -231,7 +231,7 @@ public class EcoItems{
 		if (m.contains("ACACIA_LOG")) {
 			ItemStack b10 = new ItemStack(Material.ACACIA_LOG, 1);
 			ItemMeta bm10 = b10.getItemMeta();
-			double amount8 = m.getDouble("ACACIA_LOG.Buy-Price");
+			double amount8 = m.getDouble("Items." + "ACACIA_LOG.Buy-Price");
 			bm10.setDisplayName(Strings.color("&7&oAcacia_log"));
 			bm10.setLore(Arrays.asList(Strings.color("Buy for this item for"), Strings.color(amount8 + "&6&lGOLD")));
 			b10.setItemMeta(bm10);
@@ -241,7 +241,7 @@ public class EcoItems{
 		if (m.contains("DARK_OAK_LOG")) {
 			ItemStack b10 = new ItemStack(Material.DARK_OAK_LOG, 1);
 			ItemMeta bm10 = b10.getItemMeta();
-			double amount8 = m.getDouble("DARK_OAK_LOG.Buy-Price");
+			double amount8 = m.getDouble("Items." + "DARK_OAK_LOG.Buy-Price");
 			bm10.setDisplayName(Strings.color("&7&oDark_oak_log"));
 			bm10.setLore(Arrays.asList(Strings.color("Buy for this item for"), Strings.color(amount8 + "&6&lGOLD")));
 			b10.setItemMeta(bm10);
@@ -251,7 +251,7 @@ public class EcoItems{
 		if (m.contains("GRANITE")) {
 			ItemStack b10 = new ItemStack(Material.GRANITE, 1);
 			ItemMeta bm10 = b10.getItemMeta();
-			double amount8 = m.getDouble("GRANITE.Buy-Price");
+			double amount8 = m.getDouble("Items." + "GRANITE.Buy-Price");
 			bm10.setDisplayName(Strings.color("&7&oGranite"));
 			bm10.setLore(Arrays.asList(Strings.color("Buy for this item for"), Strings.color(amount8 + "&6&lGOLD")));
 			b10.setItemMeta(bm10);
@@ -261,7 +261,7 @@ public class EcoItems{
 		if (m.contains("POLISHED_GRANITE")) {
 			ItemStack b10 = new ItemStack(Material.POLISHED_GRANITE, 1);
 			ItemMeta bm10 = b10.getItemMeta();
-			double amount8 = m.getDouble("POLISHED_GRANITE.Buy-Price");
+			double amount8 = m.getDouble("Items." + "POLISHED_GRANITE.Buy-Price");
 			bm10.setDisplayName(Strings.color("&7&oPolished_granite"));
 			bm10.setLore(Arrays.asList(Strings.color("Buy for this item for"), Strings.color(amount8 + "&6&lGOLD")));
 			b10.setItemMeta(bm10);
@@ -271,7 +271,7 @@ public class EcoItems{
 		if (m.contains("STONE_BRICKS")) {
 			ItemStack b10 = new ItemStack(Material.STONE_BRICKS, 1);
 			ItemMeta bm10 = b10.getItemMeta();
-			double amount8 = m.getDouble("STONE_BRICKS.Buy-Price");
+			double amount8 = m.getDouble("Items." + "STONE_BRICKS.Buy-Price");
 			bm10.setDisplayName(Strings.color("&7&oStone_bricks"));
 			bm10.setLore(Arrays.asList(Strings.color("Buy for this item for"), Strings.color(amount8 + "&6&lGOLD")));
 			b10.setItemMeta(bm10);
@@ -281,7 +281,7 @@ public class EcoItems{
 		if (m.contains("CHISELED_STONE_BRICKS")) {
 			ItemStack b10 = new ItemStack(Material.CHISELED_STONE_BRICKS, 1);
 			ItemMeta bm10 = b10.getItemMeta();
-			double amount8 = m.getDouble("CHISELED_STONE_BRICKS.Buy-Price");
+			double amount8 = m.getDouble("Items." + "CHISELED_STONE_BRICKS.Buy-Price");
 			bm10.setDisplayName(Strings.color("&7&oChiseled_stone_bricks"));
 			bm10.setLore(Arrays.asList(Strings.color("Buy for this item for"), Strings.color(amount8 + "&6&lGOLD")));
 			b10.setItemMeta(bm10);
@@ -291,7 +291,7 @@ public class EcoItems{
         if (m.contains("CRACKED_STONE_BRICKS")) {
         	ItemStack b10 = new ItemStack(Material.CRACKED_STONE_BRICKS, 1);
 			ItemMeta bm10 = b10.getItemMeta();
-			double amount8 = m.getDouble("CRACKED_STONE_BRICKS.Buy-Price");
+			double amount8 = m.getDouble("Items." + "CRACKED_STONE_BRICKS.Buy-Price");
 			bm10.setDisplayName(Strings.color("&7&oCracked_stone_bricks"));
 			bm10.setLore(Arrays.asList(Strings.color("Buy for this item for"), Strings.color(amount8 + "&6&lGOLD")));
 			b10.setItemMeta(bm10);
@@ -301,7 +301,7 @@ public class EcoItems{
         if (m.contains("GLASS")) {
         	ItemStack b10 = new ItemStack(Material.GLASS, 1);
 			ItemMeta bm10 = b10.getItemMeta();
-			double amount8 = m.getDouble("GLASS.Buy-Price");
+			double amount8 = m.getDouble("Items." + "GLASS.Buy-Price");
 			bm10.setDisplayName(Strings.color("&7&oGlass"));
 			bm10.setLore(Arrays.asList(Strings.color("Buy for this item for"), Strings.color(amount8 + "&6&lGOLD")));
 			b10.setItemMeta(bm10);
@@ -311,7 +311,7 @@ public class EcoItems{
         if (m.contains("GLOWSTONE")) {
         	ItemStack b10 = new ItemStack(Material.GLOWSTONE, 1);
 			ItemMeta bm10 = b10.getItemMeta();
-			double amount8 = m.getDouble("GLOWSTONE.Buy-Price");
+			double amount8 = m.getDouble("Items." + "GLOWSTONE.Buy-Price");
 			bm10.setDisplayName(Strings.color("&7&oGlowstone"));
 			bm10.setLore(Arrays.asList(Strings.color("Buy for this item for"), Strings.color(amount8 + "&6&lGOLD")));
 			b10.setItemMeta(bm10);
@@ -321,7 +321,7 @@ public class EcoItems{
         if (m.contains("TORCH")) {
         	ItemStack b10 = new ItemStack(Material.TORCH, 1);
 			ItemMeta bm10 = b10.getItemMeta();
-			double amount8 = m.getDouble("TORCH.Buy-Price");
+			double amount8 = m.getDouble("Items." + "TORCH.Buy-Price");
 			bm10.setDisplayName(Strings.color("&7&oTorch"));
 			bm10.setLore(Arrays.asList(Strings.color("Buy for this item for"), Strings.color(amount8 + "&6&lGOLD")));
 			b10.setItemMeta(bm10);
@@ -331,7 +331,7 @@ public class EcoItems{
         if (m.contains("BOOKSHELF")) {
         	ItemStack b10 = new ItemStack(Material.BOOKSHELF, 1);
 			ItemMeta bm10 = b10.getItemMeta();
-			double amount8 = m.getDouble("BOOKSHELF.Buy-Price");
+			double amount8 = m.getDouble("Items." + "BOOKSHELF.Buy-Price");
 			bm10.setDisplayName(Strings.color("&7&oBookshelf"));
 			bm10.setLore(Arrays.asList(Strings.color("Buy for this item for"), Strings.color(amount8 + "&6&lGOLD")));
 			b10.setItemMeta(bm10);
@@ -341,7 +341,7 @@ public class EcoItems{
         if (m.contains("ENCHANTING_TABLE")) {
         	ItemStack b10 = new ItemStack(Material.ENCHANTING_TABLE, 1);
 			ItemMeta bm10 = b10.getItemMeta();
-			double amount8 = m.getDouble("ENCHANTING_TABLE.Buy-Price");
+			double amount8 = m.getDouble("Items." + "ENCHANTING_TABLE.Buy-Price");
 			bm10.setDisplayName(Strings.color("&7&oEnchanting_table"));
 			bm10.setLore(Arrays.asList(Strings.color("Buy for this item for"), Strings.color(amount8 + "&6&lGOLD")));
 			b10.setItemMeta(bm10);
@@ -354,7 +354,7 @@ public class EcoItems{
 		if (m.contains("IRON_BARS")) {
 		ItemStack b2 = new ItemStack(Material.IRON_BARS, 1);
 		ItemMeta bm2 = b2.getItemMeta();
-		double amount = m.getDouble("IRON_BARS.Buy-Price");
+		double amount = m.getDouble("Items." + "IRON_BARS.Buy-Price");
 		bm2.setDisplayName(Strings.color("&7&oIron_bars"));
 		bm2.setLore(Arrays.asList(Strings.color("Buy for this item for"), Strings.color(amount + "&6&lGOLD")));
 		b2.setItemMeta(bm2);
@@ -364,7 +364,7 @@ public class EcoItems{
 		if (m.contains("WHITE_STAINED_GLASS")) {
 		ItemStack b1 = new ItemStack(Material.WHITE_STAINED_GLASS, 1);
 		ItemMeta bm1 = b1.getItemMeta();
-		double amount2 = m.getDouble("WHITE_STAINED_GLASS.Buy-Price");
+		double amount2 = m.getDouble("Items." + "WHITE_STAINED_GLASS.Buy-Price");
 		bm1.setDisplayName(Strings.color("&7&oWhite_stained_glass"));
 		bm1.setLore(Arrays.asList(Strings.color("Buy for this item for"), Strings.color(amount2 + "&6&lGOLD")));
 		b1.setItemMeta(bm1);
@@ -374,7 +374,7 @@ public class EcoItems{
 		if (m.contains("ORANGE_STAINED_GLASS")) {
 		ItemStack b0 = new ItemStack(Material.ORANGE_STAINED_GLASS, 1);
 		ItemMeta bm0 = b0.getItemMeta();
-		double amount3 = m.getDouble("ORANGE_STAINED_GLASS.Buy-Price");
+		double amount3 = m.getDouble("Items." + "ORANGE_STAINED_GLASS.Buy-Price");
 		bm0.setDisplayName(Strings.color("&7&oOrange_stained_glass"));
 		bm0.setLore(Arrays.asList(Strings.color("Buy for this item for"), Strings.color(amount3 + "&6&lGOLD")));
 		b0.setItemMeta(bm0);
@@ -384,7 +384,7 @@ public class EcoItems{
 		if (m.contains("MAGENTA_STAINED_GLASS")) {
 		ItemStack b = new ItemStack(Material.MAGENTA_STAINED_GLASS, 1);
 		ItemMeta bm = b.getItemMeta();
-		double amount4 = m.getDouble("MAGENTA_STAINED_GLASS.Buy-Price");
+		double amount4 = m.getDouble("Items." + "MAGENTA_STAINED_GLASS.Buy-Price");
 		bm.setDisplayName(Strings.color("&7&oMagenta_stained_glass"));
 		bm.setLore(Arrays.asList(Strings.color("Buy for this item for"), Strings.color(amount4 + "&6&lGOLD")));
 		b.setItemMeta(bm);
@@ -394,7 +394,7 @@ public class EcoItems{
 		if (m.contains("LIGHT_BLUE_STAINED_GLASS")) {
 		ItemStack b6 = new ItemStack(Material.LIGHT_BLUE_STAINED_GLASS, 1);
 		ItemMeta bm6 = b6.getItemMeta();
-		double amount0 = m.getDouble("LIGHT_BLUE_STAINED_GLASS.Buy-Price");
+		double amount0 = m.getDouble("Items." + "LIGHT_BLUE_STAINED_GLASS.Buy-Price");
 		bm6.setDisplayName(Strings.color("&7&oLight_blue_stained_glass"));
 		bm6.setLore(Arrays.asList(Strings.color("Buy for this item for"), Strings.color(amount0 + "&6&lGOLD")));
 		b6.setItemMeta(bm6);
@@ -404,7 +404,7 @@ public class EcoItems{
 		if (m.contains("YELLOW_STAINED_GLASS")) {
 			ItemStack b7 = new ItemStack(Material.YELLOW_STAINED_GLASS, 1);
 			ItemMeta bm7 = b7.getItemMeta();
-			double amount5 = m.getDouble("YELLOW_STAINED_GLASS.Buy-Price");
+			double amount5 = m.getDouble("Items." + "YELLOW_STAINED_GLASS.Buy-Price");
 			bm7.setDisplayName(Strings.color("&7&oYellow_stained_glass"));
 			bm7.setLore(Arrays.asList(Strings.color("Buy for this item for"), Strings.color(amount5 + "&6&lGOLD")));
 			b7.setItemMeta(bm7);
@@ -414,7 +414,7 @@ public class EcoItems{
 		if (m.contains("LIME_STAINED_GLASS")) {
 			ItemStack b8 = new ItemStack(Material.LIME_STAINED_GLASS, 1);
 			ItemMeta bm8 = b8.getItemMeta();
-			double amount6 = m.getDouble("LIME_STAINED_GLASS.Buy-Price");
+			double amount6 = m.getDouble("Items." + "LIME_STAINED_GLASS.Buy-Price");
 			bm8.setDisplayName(Strings.color("&7&oLime_stained_glass"));
 			bm8.setLore(Arrays.asList(Strings.color("Buy for this item for"), Strings.color(amount6 + "&6&lGOLD")));
 			b8.setItemMeta(bm8);
@@ -424,7 +424,7 @@ public class EcoItems{
 		if (m.contains("PINK_STAINED_GLASS")) {
 			ItemStack b9 = new ItemStack(Material.PINK_STAINED_GLASS, 1);
 			ItemMeta bm9 = b9.getItemMeta();
-			double amount7 = m.getDouble("PINK_STAINED_GLASS.Buy-Price");
+			double amount7 = m.getDouble("Items." + "PINK_STAINED_GLASS.Buy-Price");
 			bm9.setDisplayName(Strings.color("&7&oPink_stained_glass"));
 			bm9.setLore(Arrays.asList(Strings.color("Buy for this item for"), Strings.color(amount7 + "&6&lGOLD")));
 			b9.setItemMeta(bm9);
@@ -434,7 +434,7 @@ public class EcoItems{
 		if (m.contains("GRAY_STAINED_GLASS")) {
 			ItemStack b10 = new ItemStack(Material.GRAY_STAINED_GLASS, 1);
 			ItemMeta bm10 = b10.getItemMeta();
-			double amount8 = m.getDouble("GRAY_STAINED_GLASS.Buy-Price");
+			double amount8 = m.getDouble("Items." + "GRAY_STAINED_GLASS.Buy-Price");
 			bm10.setDisplayName(Strings.color("&7&oGray_stained_glass"));
 			bm10.setLore(Arrays.asList(Strings.color("Buy for this item for"), Strings.color(amount8 + "&6&lGOLD")));
 			b10.setItemMeta(bm10);
@@ -444,7 +444,7 @@ public class EcoItems{
 		if (m.contains("LIGHT_GRAY_STAINED_GLASS")) {
 			ItemStack b10 = new ItemStack(Material.LIGHT_GRAY_STAINED_GLASS, 1);
 			ItemMeta bm10 = b10.getItemMeta();
-			double amount8 = m.getDouble("LIGHT_GRAY_STAINED_GLASS.Buy-Price");
+			double amount8 = m.getDouble("Items." + "LIGHT_GRAY_STAINED_GLASS.Buy-Price");
 			bm10.setDisplayName(Strings.color("&7&oLight_gray_stained_glass"));
 			bm10.setLore(Arrays.asList(Strings.color("Buy for this item for"), Strings.color(amount8 + "&6&lGOLD")));
 			b10.setItemMeta(bm10);
@@ -454,7 +454,7 @@ public class EcoItems{
 		if (m.contains("CYAN_STAINED_GLASS")) {
 			ItemStack b10 = new ItemStack(Material.CYAN_STAINED_GLASS, 1);
 			ItemMeta bm10 = b10.getItemMeta();
-			double amount8 = m.getDouble("CYAN_STAINED_GLASS.Buy-Price");
+			double amount8 = m.getDouble("Items." + "CYAN_STAINED_GLASS.Buy-Price");
 			bm10.setDisplayName(Strings.color("&7&oCyan_stained_glass"));
 			bm10.setLore(Arrays.asList(Strings.color("Buy for this item for"), Strings.color(amount8 + "&6&lGOLD")));
 			b10.setItemMeta(bm10);
@@ -464,7 +464,7 @@ public class EcoItems{
 		if (m.contains("PURPLE_STAINED_GLASS")) {
 			ItemStack b10 = new ItemStack(Material.PURPLE_STAINED_GLASS, 1);
 			ItemMeta bm10 = b10.getItemMeta();
-			double amount8 = m.getDouble("PURPLE_STAINED_GLASS.Buy-Price");
+			double amount8 = m.getDouble("Items." + "PURPLE_STAINED_GLASS.Buy-Price");
 			bm10.setDisplayName(Strings.color("&7&oPurple_stained_glass"));
 			bm10.setLore(Arrays.asList(Strings.color("Buy for this item for"), Strings.color(amount8 + "&6&lGOLD")));
 			b10.setItemMeta(bm10);
@@ -474,7 +474,7 @@ public class EcoItems{
 		if (m.contains("BLUE_STAINED_GLASS")) {
 			ItemStack b10 = new ItemStack(Material.BLUE_STAINED_GLASS, 1);
 			ItemMeta bm10 = b10.getItemMeta();
-			double amount8 = m.getDouble("BLUE_STAINED_GLASS.Buy-Price");
+			double amount8 = m.getDouble("Items." + "BLUE_STAINED_GLASS.Buy-Price");
 			bm10.setDisplayName(Strings.color("&7&oBlue_stained_glass"));
 			bm10.setLore(Arrays.asList(Strings.color("Buy for this item for"), Strings.color(amount8 + "&6&lGOLD")));
 			b10.setItemMeta(bm10);
@@ -484,7 +484,7 @@ public class EcoItems{
 		if (m.contains("BROWN_STAINED_GLASS")) {
 			ItemStack b10 = new ItemStack(Material.BROWN_STAINED_GLASS, 1);
 			ItemMeta bm10 = b10.getItemMeta();
-			double amount8 = m.getDouble("BROWN_STAINED_GLASS.Buy-Price");
+			double amount8 = m.getDouble("Items." + "BROWN_STAINED_GLASS.Buy-Price");
 			bm10.setDisplayName(Strings.color("&7&oBrown_stained_glass"));
 			bm10.setLore(Arrays.asList(Strings.color("Buy for this item for"), Strings.color(amount8 + "&6&lGOLD")));
 			b10.setItemMeta(bm10);
@@ -494,7 +494,7 @@ public class EcoItems{
 		if (m.contains("GREEN_STAINED_GLASS")) {
 			ItemStack b10 = new ItemStack(Material.GREEN_STAINED_GLASS, 1);
 			ItemMeta bm10 = b10.getItemMeta();
-			double amount8 = m.getDouble("GREEN_STAINED_GLASS.Buy-Price");
+			double amount8 = m.getDouble("Items." + "GREEN_STAINED_GLASS.Buy-Price");
 			bm10.setDisplayName(Strings.color("&7&oGreen_stained_glass"));
 			bm10.setLore(Arrays.asList(Strings.color("Buy for this item for"), Strings.color(amount8 + "&6&lGOLD")));
 			b10.setItemMeta(bm10);
@@ -504,7 +504,7 @@ public class EcoItems{
         if (m.contains("RED_STAINED_GLASS")) {
         	ItemStack b10 = new ItemStack(Material.RED_STAINED_GLASS, 1);
 			ItemMeta bm10 = b10.getItemMeta();
-			double amount8 = m.getDouble("RED_STAINED_GLASS.Buy-Price");
+			double amount8 = m.getDouble("Items." + "RED_STAINED_GLASS.Buy-Price");
 			bm10.setDisplayName(Strings.color("&7&oRed_stained_glass"));
 			bm10.setLore(Arrays.asList(Strings.color("Buy for this item for"), Strings.color(amount8 + "&6&lGOLD")));
 			b10.setItemMeta(bm10);
@@ -514,7 +514,7 @@ public class EcoItems{
         if (m.contains("BLACK_STAINED_GLASS")) {
         	ItemStack b10 = new ItemStack(Material.BLACK_STAINED_GLASS, 1);
 			ItemMeta bm10 = b10.getItemMeta();
-			double amount8 = m.getDouble("BLACK_STAINED_GLASS.Buy-Price");
+			double amount8 = m.getDouble("Items." + "BLACK_STAINED_GLASS.Buy-Price");
 			bm10.setDisplayName(Strings.color("&7&oBlack_stained_glass"));
 			bm10.setLore(Arrays.asList(Strings.color("Buy for this item for"), Strings.color(amount8 + "&6&lGOLD")));
 			b10.setItemMeta(bm10);
@@ -524,7 +524,7 @@ public class EcoItems{
         if (m.contains("STICKY_PISTON")) {
         	ItemStack b10 = new ItemStack(Material.STICKY_PISTON, 1);
 			ItemMeta bm10 = b10.getItemMeta();
-			double amount8 = m.getDouble("STICKY_PISTON.Buy-Price");
+			double amount8 = m.getDouble("Items." + "STICKY_PISTON.Buy-Price");
 			bm10.setDisplayName(Strings.color("&7&oSticky_piston"));
 			bm10.setLore(Arrays.asList(Strings.color("Buy for this item for"), Strings.color(amount8 + "&6&lGOLD")));
 			b10.setItemMeta(bm10);
@@ -534,7 +534,7 @@ public class EcoItems{
         if (m.contains("PISTON")) {
         	ItemStack b10 = new ItemStack(Material.PISTON, 1);
 			ItemMeta bm10 = b10.getItemMeta();
-			double amount8 = m.getDouble("PISTON.Buy-Price");
+			double amount8 = m.getDouble("Items." + "PISTON.Buy-Price");
 			bm10.setDisplayName(Strings.color("&7&oPiston"));
 			bm10.setLore(Arrays.asList(Strings.color("Buy for this item for"), Strings.color(amount8 + "&6&lGOLD")));
 			b10.setItemMeta(bm10);
@@ -544,7 +544,7 @@ public class EcoItems{
         if (m.contains("REDSTONE_TORCH")) {
         	ItemStack b10 = new ItemStack(Material.REDSTONE_TORCH, 1);
 			ItemMeta bm10 = b10.getItemMeta();
-			double amount8 = m.getDouble("REDSTONE_TORCH.Buy-Price");
+			double amount8 = m.getDouble("Items." + "REDSTONE_TORCH.Buy-Price");
 			bm10.setDisplayName(Strings.color("&7&oRedstone_torch"));
 			bm10.setLore(Arrays.asList(Strings.color("Buy for this item for"), Strings.color(amount8 + "&6&lGOLD")));
 			b10.setItemMeta(bm10);
@@ -554,7 +554,7 @@ public class EcoItems{
         if (m.contains("REDSTONE_LAMP")) {
         	ItemStack b10 = new ItemStack(Material.REDSTONE_LAMP, 1);
 			ItemMeta bm10 = b10.getItemMeta();
-			double amount8 = m.getDouble("REDSTONE_LAMP.Buy-Price");
+			double amount8 = m.getDouble("Items." + "REDSTONE_LAMP.Buy-Price");
 			bm10.setDisplayName(Strings.color("&7&oRedstone_lamp"));
 			bm10.setLore(Arrays.asList(Strings.color("Buy for this item for"), Strings.color(amount8 + "&6&lGOLD")));
 			b10.setItemMeta(bm10);

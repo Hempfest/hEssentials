@@ -1,10 +1,8 @@
 package org.spigotmc.hessentials.commands.staff;
 
 import java.util.Arrays;
-import java.util.List;
 
 import org.bukkit.Bukkit;
-import org.bukkit.GameMode;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.defaults.BukkitCommand;
 import org.bukkit.entity.Player;
@@ -17,7 +15,7 @@ public class CommandSuffix extends BukkitCommand {
 		super("suffix");
 		setDescription("Primary staff command for hEssentials.");
 		setAliases(Arrays.asList("hsuffix"));
-		setPermission("hessentials.chat.suffix");
+		setPermission("hessentials.staff.chat.suffix");
 	}
 	
 	
@@ -49,13 +47,38 @@ public class CommandSuffix extends BukkitCommand {
 		
 		if (length == 1) {
 			Player target = Bukkit.getPlayer(args[0]);
+			if (target == null) {
+				String suffix = args[0];
+				PlayerData pd = new PlayerData(p.getUniqueId());
+				pd.getConfig().set("SUFFIX", suffix);
+				pd.saveConfig();
+				sendMessage(p, Strings.getPrefix() + "Your suffix was changed to: " + suffix);
+				return true;
+			}
 			sendMessage(p, Strings.getPrefix() + "Not enough arguements.");
 			sendMessage(p, Strings.getPrefix() + Strings.getInvalidUsage() + commandLabel + " " + target.getName() + " <suffix>");
 			return true;
 		}
 		
 		if (length == 2) {
+			if (!p.hasPermission(this.getPermission() + ".others")) {
+				Strings.sendNoPermission(p, this.getPermission() + ".others");
+				return true;
+			}
 			Player target = Bukkit.getPlayer(args[0]);
+			if (target == null) {
+				Player offlineT = Bukkit.getPlayer(args[0]); 
+				if (offlineT == null) {
+					sendMessage(p, Strings.getPrefix() + "The player was not found!");
+					return true;
+				}
+				String suffix = args[1];
+				PlayerData pd = new PlayerData(offlineT.getUniqueId());
+				pd.getConfig().set("SUFFIX", suffix);
+				pd.saveConfig();
+				sendMessage(p, Strings.getPrefix() + offlineT.getName() + " suffix changed to: " + suffix);
+				return true;
+			}
 			String suffix = args[1];
 			PlayerData pd = new PlayerData(target.getUniqueId());
 			pd.getConfig().set("SUFFIX", suffix);

@@ -1,27 +1,37 @@
 package org.spigotmc.hessentials.commands.economy;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.UUID;
+import java.util.Map;
+import java.util.Random;
+import java.util.TreeMap;
 import java.util.logging.Logger;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Flying;
+import org.bukkit.entity.Mob;
+import org.bukkit.entity.Monster;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.spigotmc.hessentials.HempfestEssentials;
 import org.spigotmc.hessentials.configuration.Config;
+import org.spigotmc.hessentials.util.Utils;
+import org.spigotmc.hessentials.util.ValueComparator;
 import org.spigotmc.hessentials.util.variables.Checks;
+import org.spigotmc.hessentials.util.variables.Component;
 import org.spigotmc.hessentials.util.variables.Strings;
+
+import net.md_5.bungee.api.chat.BaseComponent;
+import net.md_5.bungee.api.chat.TextComponent;
 
 public class Economy implements Listener	 {
 
@@ -142,6 +152,12 @@ public class Economy implements Listener	 {
     	    p.updateInventory();
 	}
 	
+	public static void dropAmount(Location loc, int amount) {
+    	ItemStack i = new ItemStack(Material.GOLD_NUGGET, amount);
+    	    pl.saveConfig();
+    	    loc.getWorld().dropItem(loc, i);
+	}
+	
 	public static Double getBalance(Player p) {
 		EconomyData eco = new EconomyData(p.getUniqueId());
 		FileConfiguration d = eco.getConfig();
@@ -228,56 +244,198 @@ public class Economy implements Listener	 {
 		return;
 	}
 
-	public static void getLeaderboard(Player p) {
-		if (Checks.economyEnabled()) {
-			// Do stuff
-			YamlConfiguration config = new YamlConfiguration();
+	public static void updatePublicListing(Player p) {
+		Config bal_top = new Config("bal_top");
+		String bal = bal_top.getConfig().getString("Balances");
+		if (!bal_top.getConfig().contains(bal + "." + p.getName())) {
+		bal_top.getConfig().set("Balances." + p.getName(), getBalance(p));
+		bal_top.saveConfig();
+	}
+	}
+	
+	public static void sendComponent(Player player, TextComponent text) {
+		player.spigot().sendMessage((BaseComponent) text);
+	}
+	
+	public static void paginateItemList(Player p, int page) {
+		Config config2 = new Config("hEconomy");
+		FileConfiguration cl = config2.getConfig();
+		if (cl != null) {
+			int o = 10;
 
-			File[] files =new File(HempfestEssentials.getInstance().getDataFolder() + "/economy/players").listFiles();
-			for (File file : files) {
-				try {
-					config.load(file);
+			HashMap<String, Double> players = new HashMap<String, Double>();
 
-					HashMap<String, Double> players = new HashMap<String, Double>();
+			// Filling the hashMap
+			for (String playerName : cl.getConfigurationSection("Items").getKeys(false)) {
+				players.put(playerName, cl.getDouble("Items." + playerName + ".Buy-Price"));
+			}
 
-					// Filling the hashMap
-					for (String playerName : config.getKeys(false)) {
-						
-						players.put(playerName, config.getDouble("BALANCE"));
-					}
-					p.sendMessage(Strings.color("&7&m------------&7&l[&6&oTop&7&l]&7&m------------"));
+			Utils.sendMessage(p, Strings.color("&7&m------------&7&l[&6&oPage &l" + page + " &7: &6&oBuy list&7&l]&7&m------------"));
+			int totalPageCount = 1;
+			if ((players.size() % o) == 0) {
+				if (players.size() > 0) {
+					totalPageCount = players.size() / o;
+				}
+			} else {
+				totalPageCount = (players.size() / o) + 1;
+			}
+			String nextTop = "";
+			Double nextTopBal = 0.0;
 
-					String nextTop = "";
-					Double nextTopBal = 0.0;
-
-					for (int i = 1; i < 11; i++) {
-						for (String playerName : players.keySet()) {
-							if (players.get(playerName) > nextTopBal) {
-								nextTop = playerName;
-								nextTopBal = players.get(playerName);
-							}
+			
+				
+			
+			if (page <= totalPageCount) {
+				// beginline
+				if (players.isEmpty()) {
+					p.sendMessage(ChatColor.WHITE + "The list is empty!");
+				} else {
+					int i1 = 0, k = 0;
+					page--;
+					ValueComparator comp =  new ValueComparator(players);
+			        TreeMap<String,Double> sorted_map =new TreeMap<String,Double>(comp);
+			        
+			 
+			        sorted_map.putAll(players);
+			 
+			      
+					for (Map.Entry<String, Double> clanName : sorted_map.entrySet()) {
+						 
+						if (clanName.getValue() > nextTopBal) {
+							nextTop = clanName.getKey();
+							nextTopBal = clanName.getValue();
+							
+							
+							
 						}
-						EconomyData data = new EconomyData(UUID.fromString(config.toString()));
-						FileConfiguration player = data.getConfig();
-						p.sendMessage(Strings.color(" &7# &6&l" + i + " &e&o" + player.getDouble("BALANCE")
-								+ " &7: &6&l" + format(nextTopBal)));
+					
+						String next = nextTop.replaceAll("_", "");
+						
+						k++;
+						if ((((page * o) + i1 + 1) == k) && (k != ((page * o) + o + 1))) {
+							i1++;
+							sendComponent(p, Component.textRunnable(p, "",
+									" &7# &3&l" + i1 + " &b&o" + next.toLowerCase() + " &7: &f&o" + nextTop + " &7: &6&l" + format(nextTopBal),
+									"&a&oClick to buy &f&n" + nextTop, "buy 1 " + nextTop));
+							
+						}
 						players.remove(nextTop);
 						nextTop = "";
 						nextTopBal = 0.0;
+						
 					}
-					p.sendMessage(Strings.color("&7&m------------&7&l[&6&oTop&7&l]&7&m------------"));
-
-				} catch (FileNotFoundException e) {
-					log.info(Strings.getPrefix() + " Tried accessing a file that doesnt exist.");
-				} catch (IOException e) {
-					e.printStackTrace();
-				} catch (InvalidConfigurationException e) {
-					log.info(Strings.getPrefix() + " Configuration is null; maybe it's missing?");
+					
+					int point; point = page + 1; if (page >= 1) {
+		            	 int last; last = point - 1; point = point + 1;
+		            	 sendComponent(p, Component.textRunnable(p, "&b&oNavigate &7[", "&3&lCLICK", "&7] : &7[", "&c&lCLICK&7]", "&b&oClick this to goto the &5&onext page.", "&b&oClick this to go &d&oback a page.", "heco buylist " + point, "heco buylist " + last));
+		            	 } if (page == 0) { 
+		            		 point = page + 1 + 1;
+		            		 sendComponent(p, Component.textRunnable(p, "&b&oNavigate &7[", "&3&lCLICK", "&7]", "&b&oClick this to goto the &5&onext page.", "heco buylist " + point));
+		            	 }
+					
+					
 				}
+				// endline
+			} else
+		       {
+		         p.sendMessage(ChatColor.DARK_AQUA + "There are only " + ChatColor.GRAY + totalPageCount + ChatColor.DARK_AQUA + " pages!");
+		         
+		       }
+		
+			
 
+		}
+		return;
+	}
+	
+	public static void getLeaderboard(Player p, int page) {
+		Config config2 = new Config("bal_top");
+		FileConfiguration cl = config2.getConfig();
+		if (cl != null) {
+			int o = 10;
+
+			HashMap<String, Double> players = new HashMap<String, Double>();
+
+			// Filling the hashMap
+			for (String playerName : cl.getConfigurationSection("Balances").getKeys(false)) {
+				players.put(playerName, cl.getDouble("Balances." + playerName));
 			}
-		} else
-			log.info(Strings.getPrefix() + "Economy not enabled!~");
+
+			Utils.sendMessage(p, Strings.color("&7&m------------&7&l[&6&oPage &l" + page + " &7: &6&oRichest Players&7&l]&7&m------------"));
+			int totalPageCount = 1;
+			if ((players.size() % o) == 0) {
+				if (players.size() > 0) {
+					totalPageCount = players.size() / o;
+				}
+			} else {
+				totalPageCount = (players.size() / o) + 1;
+			}
+			String nextTop = "";
+			Double nextTopBal = 0.0;
+
+			
+				
+			
+			if (page <= totalPageCount) {
+				// beginline
+				if (players.isEmpty()) {
+					p.sendMessage(ChatColor.WHITE + "The list is empty!");
+				} else {
+					int i1 = 0, k = 0;
+					page--;
+					ValueComparator comp =  new ValueComparator(players);
+			        TreeMap<String,Double> sorted_map =new TreeMap<String,Double>(comp);
+			     
+			 
+			        sorted_map.putAll(players);
+			 
+			     
+					for (Map.Entry<String, Double> clanName : sorted_map.entrySet()) {
+						 
+						if (clanName.getValue() > nextTopBal) {
+							nextTop = clanName.getKey();
+							nextTopBal = clanName.getValue();
+						
+							
+							
+						}
+					
+						int pagee = page + 1;
+						
+						k++;
+						if ((((page * o) + i1 + 1) == k) && (k != ((page * o) + o + 1))) {
+							i1++;
+							sendComponent(p, Component.textRunnable(p, "",
+									" &7# &3&l" + i1 + " &b&o" + nextTop + " &7: &6&l" + format(nextTopBal),
+									"&6" + nextTop + " &a&oplaces &7#&6" + i1 + "&a&o on page " + pagee + ".", "c info " + nextTop));
+							
+						}
+						players.remove(nextTop);
+						nextTop = "";
+						nextTopBal = 0.0;
+						
+					}
+					
+					int point; point = page + 1; if (page >= 1) {
+		            	 int last; last = point - 1; point = point + 1;
+		            	 sendComponent(p, Component.textRunnable(p, "&b&oNavigate &7[", "&3&lCLICK", "&7] : &7[", "&c&lCLICK&7]", "&b&oClick this to goto the &5&onext page.", "&b&oClick this to go &d&oback a page.", "heco toplist " + point, "heco toplist " + last));
+		            	 } if (page == 0) { 
+		            		 point = page + 1 + 1;
+		            		 sendComponent(p, Component.textRunnable(p, "&b&oNavigate &7[", "&3&lCLICK", "&7]", "&b&oClick this to goto the &5&onext page.", "heco toplist " + point));
+		            	 }
+					
+					
+				}
+				// endline
+			} else
+		       {
+		         p.sendMessage(ChatColor.DARK_AQUA + "There are only " + ChatColor.GRAY + totalPageCount + ChatColor.DARK_AQUA + " pages!");
+		         
+		       }
+		
+			
+
+		}
 		return;
 	}
 
@@ -306,9 +464,9 @@ public class Economy implements Listener	 {
 			// Do stuff
 			me = new Config("hEconomy");
 			FileConfiguration m = me.getConfig();
-			double itemPrice = m.getDouble(item.getType().name() + ".Buy-Price");
+			double itemPrice = m.getDouble("Items." + item.getType().name() + ".Buy-Price");
 			double itPrice = itemPrice * amount;
-			if (m.getDouble(item.getType().name() + ".Buy-Price") == 0) {
+			if (m.getDouble("Items." + item.getType().name() + ".Buy-Price") == 0) {
 				p.sendMessage(Strings.color(Strings.getPrefix() + "Item not found."));
 				if (p.hasPermission("hessentials.staff")) {
 				p.sendMessage(Strings.color(Strings.getPrefix() + "Configure item: " + item.getType().name().toString()));
@@ -356,9 +514,9 @@ public class Economy implements Listener	 {
 			// Do stuff
 			me = new Config("hEconomy");
 			FileConfiguration m = me.getConfig();
-			double itemPrice = m.getDouble(item.getType().name() + ".Sell-Price");
+			double itemPrice = m.getDouble("Items." + item.getType().name() + ".Sell-Price");
 			
-			if (m.getDouble(item.getType().name() + ".Sell-Price") == 0) {
+			if (m.getDouble("Items." + item.getType().name() + ".Sell-Price") == 0) {
 				p.sendMessage(Strings.color(Strings.getPrefix() + "Item not found."));
 				if (p.hasPermission("hessentials.staff")) {
 				p.sendMessage(Strings.color(Strings.getPrefix() + "Configure item: " + item.getType().name().toString()));
@@ -421,7 +579,7 @@ public class Economy implements Listener	 {
 		if (m.contains("STONE")) {
 		ItemStack b2 = new ItemStack(Material.STONE, 1);
 		ItemMeta bm2 = b2.getItemMeta();
-		double amount = m.getDouble("STONE.Sell-Price");
+		double amount = m.getDouble("Items." + "STONE.Sell-Price");
 		bm2.setDisplayName(Strings.color("&7&oStone"));
 		bm2.setLore(Arrays.asList(Strings.color("Sell for this item for"), Strings.color(amount + "&6&lGOLD")));
 		b2.setItemMeta(bm2);
@@ -431,7 +589,7 @@ public class Economy implements Listener	 {
 		if (m.contains("COBBLESTONE")) {
 		ItemStack b1 = new ItemStack(Material.COBBLESTONE, 1);
 		ItemMeta bm1 = b1.getItemMeta();
-		double amount2 = m.getDouble("COBBLESTONE.Sell-Price");
+		double amount2 = m.getDouble("Items." + "COBBLESTONE.Sell-Price");
 		bm1.setDisplayName(Strings.color("&7&oCobblestone"));
 		bm1.setLore(Arrays.asList(Strings.color("Sell for this item for"), Strings.color(amount2 + "&6&lGOLD")));
 		b1.setItemMeta(bm1);
@@ -441,7 +599,7 @@ public class Economy implements Listener	 {
 		if (m.contains("DIRT")) {
 		ItemStack b0 = new ItemStack(Material.DIRT, 1);
 		ItemMeta bm0 = b0.getItemMeta();
-		double amount3 = m.getDouble("DIRT.Sell-Price");
+		double amount3 = m.getDouble("Items." + "DIRT.Sell-Price");
 		bm0.setDisplayName(Strings.color("&7&oDirt"));
 		bm0.setLore(Arrays.asList(Strings.color("Sell for this item for"), Strings.color(amount3 + "&6&lGOLD")));
 		b0.setItemMeta(bm0);
@@ -451,7 +609,7 @@ public class Economy implements Listener	 {
 		if (m.contains("GRASS_BLOCK")) {
 		ItemStack b = new ItemStack(Material.GRASS_BLOCK, 1);
 		ItemMeta bm = b.getItemMeta();
-		double amount4 = m.getDouble("GRASS_BLOCK.Sell-Price");
+		double amount4 = m.getDouble("Items." + "GRASS_BLOCK.Sell-Price");
 		bm.setDisplayName(Strings.color("&7&oGrass_block"));
 		bm.setLore(Arrays.asList(Strings.color("Sell for this item for"), Strings.color(amount4 + "&6&lGOLD")));
 		b.setItemMeta(bm);
@@ -461,7 +619,7 @@ public class Economy implements Listener	 {
 		if (m.contains("OAK_LOG")) {
 		ItemStack b6 = new ItemStack(Material.OAK_LOG, 1);
 		ItemMeta bm6 = b6.getItemMeta();
-		double amount0 = m.getDouble("OAK_LOG.Sell-Price");
+		double amount0 = m.getDouble("Items." + "OAK_LOG.Sell-Price");
 		bm6.setDisplayName(Strings.color("&7&oOak_log"));
 		bm6.setLore(Arrays.asList(Strings.color("Sell for this item for"), Strings.color(amount0 + "&6&lGOLD")));
 		b6.setItemMeta(bm6);
@@ -471,7 +629,7 @@ public class Economy implements Listener	 {
 		if (m.contains("SPRUCE_LOG")) {
 			ItemStack b7 = new ItemStack(Material.SPRUCE_LOG, 1);
 			ItemMeta bm7 = b7.getItemMeta();
-			double amount5 = m.getDouble("SPRUCE_LOG.Sell-Price");
+			double amount5 = m.getDouble("Items." + "SPRUCE_LOG.Sell-Price");
 			bm7.setDisplayName(Strings.color("&7&oSpruce_log"));
 			bm7.setLore(Arrays.asList(Strings.color("Sell for this item for"), Strings.color(amount5 + "&6&lGOLD")));
 			b7.setItemMeta(bm7);
@@ -481,7 +639,7 @@ public class Economy implements Listener	 {
 		if (m.contains("BIRCH_LOG")) {
 			ItemStack b8 = new ItemStack(Material.BIRCH_LOG, 1);
 			ItemMeta bm8 = b8.getItemMeta();
-			double amount6 = m.getDouble("BIRCH_LOG.Sell-Price");
+			double amount6 = m.getDouble("Items." + "BIRCH_LOG.Sell-Price");
 			bm8.setDisplayName(Strings.color("&7&oBirch_log"));
 			bm8.setLore(Arrays.asList(Strings.color("Sell for this item for"), Strings.color(amount6 + "&6&lGOLD")));
 			b8.setItemMeta(bm8);
@@ -491,7 +649,7 @@ public class Economy implements Listener	 {
 		if (m.contains("SPRUCE_LOG")) {
 			ItemStack b9 = new ItemStack(Material.SPRUCE_LOG, 1);
 			ItemMeta bm9 = b9.getItemMeta();
-			double amount7 = m.getDouble("SPRUCE_LOG.Sell-Price");
+			double amount7 = m.getDouble("Items." + "SPRUCE_LOG.Sell-Price");
 			bm9.setDisplayName(Strings.color("&7&oSpruce_log"));
 			bm9.setLore(Arrays.asList(Strings.color("Sell for this item for"), Strings.color(amount7 + "&6&lGOLD")));
 			b9.setItemMeta(bm9);
@@ -501,7 +659,7 @@ public class Economy implements Listener	 {
 		if (m.contains("JUNGLE_LOG")) {
 			ItemStack b10 = new ItemStack(Material.JUNGLE_LOG, 1);
 			ItemMeta bm10 = b10.getItemMeta();
-			double amount8 = m.getDouble("JUNGLE_LOG.Sell-Price");
+			double amount8 = m.getDouble("Items." + "JUNGLE_LOG.Sell-Price");
 			bm10.setDisplayName(Strings.color("&7&oJungle_log"));
 			bm10.setLore(Arrays.asList(Strings.color("Sell for this item for"), Strings.color(amount8 + "&6&lGOLD")));
 			b10.setItemMeta(bm10);
@@ -511,7 +669,7 @@ public class Economy implements Listener	 {
 		if (m.contains("ACACIA_LOG")) {
 			ItemStack b10 = new ItemStack(Material.ACACIA_LOG, 1);
 			ItemMeta bm10 = b10.getItemMeta();
-			double amount8 = m.getDouble("ACACIA_LOG.Sell-Price");
+			double amount8 = m.getDouble("Items." + "ACACIA_LOG.Sell-Price");
 			bm10.setDisplayName(Strings.color("&7&oAcacia_log"));
 			bm10.setLore(Arrays.asList(Strings.color("Sell for this item for"), Strings.color(amount8 + "&6&lGOLD")));
 			b10.setItemMeta(bm10);
@@ -521,7 +679,7 @@ public class Economy implements Listener	 {
 		if (m.contains("DARK_OAK_LOG")) {
 			ItemStack b10 = new ItemStack(Material.DARK_OAK_LOG, 1);
 			ItemMeta bm10 = b10.getItemMeta();
-			double amount8 = m.getDouble("DARK_OAK_LOG.Sell-Price");
+			double amount8 = m.getDouble("Items." + "DARK_OAK_LOG.Sell-Price");
 			bm10.setDisplayName(Strings.color("&7&oDark_oak_log"));
 			bm10.setLore(Arrays.asList(Strings.color("Sell for this item for"), Strings.color(amount8 + "&6&lGOLD")));
 			b10.setItemMeta(bm10);
@@ -531,7 +689,7 @@ public class Economy implements Listener	 {
 		if (m.contains("GRANITE")) {
 			ItemStack b10 = new ItemStack(Material.GRANITE, 1);
 			ItemMeta bm10 = b10.getItemMeta();
-			double amount8 = m.getDouble("GRANITE.Sell-Price");
+			double amount8 = m.getDouble("Items." + "GRANITE.Sell-Price");
 			bm10.setDisplayName(Strings.color("&7&oGranite"));
 			bm10.setLore(Arrays.asList(Strings.color("Sell for this item for"), Strings.color(amount8 + "&6&lGOLD")));
 			b10.setItemMeta(bm10);
@@ -541,7 +699,7 @@ public class Economy implements Listener	 {
 		if (m.contains("POLISHED_GRANITE")) {
 			ItemStack b10 = new ItemStack(Material.POLISHED_GRANITE, 1);
 			ItemMeta bm10 = b10.getItemMeta();
-			double amount8 = m.getDouble("POLISHED_GRANITE.Sell-Price");
+			double amount8 = m.getDouble("Items." + "POLISHED_GRANITE.Sell-Price");
 			bm10.setDisplayName(Strings.color("&7&oPolished_granite"));
 			bm10.setLore(Arrays.asList(Strings.color("Sell for this item for"), Strings.color(amount8 + "&6&lGOLD")));
 			b10.setItemMeta(bm10);
@@ -551,7 +709,7 @@ public class Economy implements Listener	 {
 		if (m.contains("STONE_BRICKS")) {
 			ItemStack b10 = new ItemStack(Material.STONE_BRICKS, 1);
 			ItemMeta bm10 = b10.getItemMeta();
-			double amount8 = m.getDouble("STONE_BRICKS.Sell-Price");
+			double amount8 = m.getDouble("Items." + "STONE_BRICKS.Sell-Price");
 			bm10.setDisplayName(Strings.color("&7&oStone_bricks"));
 			bm10.setLore(Arrays.asList(Strings.color("Sell for this item for"), Strings.color(amount8 + "&6&lGOLD")));
 			b10.setItemMeta(bm10);
@@ -561,7 +719,7 @@ public class Economy implements Listener	 {
 		if (m.contains("CHISELED_STONE_BRICKS")) {
 			ItemStack b10 = new ItemStack(Material.CHISELED_STONE_BRICKS, 1);
 			ItemMeta bm10 = b10.getItemMeta();
-			double amount8 = m.getDouble("CHISELED_STONE_BRICKS.Sell-Price");
+			double amount8 = m.getDouble("Items." + "CHISELED_STONE_BRICKS.Sell-Price");
 			bm10.setDisplayName(Strings.color("&7&oChiseled_stone_bricks"));
 			bm10.setLore(Arrays.asList(Strings.color("Sell for this item for"), Strings.color(amount8 + "&6&lGOLD")));
 			b10.setItemMeta(bm10);
@@ -571,7 +729,7 @@ public class Economy implements Listener	 {
         if (m.contains("CRACKED_STONE_BRICKS")) {
         	ItemStack b10 = new ItemStack(Material.CRACKED_STONE_BRICKS, 1);
 			ItemMeta bm10 = b10.getItemMeta();
-			double amount8 = m.getDouble("CRACKED_STONE_BRICKS.Sell-Price");
+			double amount8 = m.getDouble("Items." + "CRACKED_STONE_BRICKS.Sell-Price");
 			bm10.setDisplayName(Strings.color("&7&oCracked_stone_bricks"));
 			bm10.setLore(Arrays.asList(Strings.color("Sell for this item for"), Strings.color(amount8 + "&6&lGOLD")));
 			b10.setItemMeta(bm10);
@@ -581,7 +739,7 @@ public class Economy implements Listener	 {
         if (m.contains("GLASS")) {
         	ItemStack b10 = new ItemStack(Material.GLASS, 1);
 			ItemMeta bm10 = b10.getItemMeta();
-			double amount8 = m.getDouble("GLASS.Sell-Price");
+			double amount8 = m.getDouble("Items." + "GLASS.Sell-Price");
 			bm10.setDisplayName(Strings.color("&7&oGlass"));
 			bm10.setLore(Arrays.asList(Strings.color("Sell for this item for"), Strings.color(amount8 + "&6&lGOLD")));
 			b10.setItemMeta(bm10);
@@ -591,7 +749,7 @@ public class Economy implements Listener	 {
         if (m.contains("GLOWSTONE")) {
         	ItemStack b10 = new ItemStack(Material.GLOWSTONE, 1);
 			ItemMeta bm10 = b10.getItemMeta();
-			double amount8 = m.getDouble("GLOWSTONE.Sell-Price");
+			double amount8 = m.getDouble("Items." + "GLOWSTONE.Sell-Price");
 			bm10.setDisplayName(Strings.color("&7&oGlowstone"));
 			bm10.setLore(Arrays.asList(Strings.color("Sell for this item for"), Strings.color(amount8 + "&6&lGOLD")));
 			b10.setItemMeta(bm10);
@@ -601,7 +759,7 @@ public class Economy implements Listener	 {
         if (m.contains("TORCH")) {
         	ItemStack b10 = new ItemStack(Material.TORCH, 1);
 			ItemMeta bm10 = b10.getItemMeta();
-			double amount8 = m.getDouble("TORCH.Sell-Price");
+			double amount8 = m.getDouble("Items." + "TORCH.Sell-Price");
 			bm10.setDisplayName(Strings.color("&7&oTorch"));
 			bm10.setLore(Arrays.asList(Strings.color("Sell for this item for"), Strings.color(amount8 + "&6&lGOLD")));
 			b10.setItemMeta(bm10);
@@ -611,7 +769,7 @@ public class Economy implements Listener	 {
         if (m.contains("BOOKSHELF")) {
         	ItemStack b10 = new ItemStack(Material.BOOKSHELF, 1);
 			ItemMeta bm10 = b10.getItemMeta();
-			double amount8 = m.getDouble("BOOKSHELF.Sell-Price");
+			double amount8 = m.getDouble("Items." + "BOOKSHELF.Sell-Price");
 			bm10.setDisplayName(Strings.color("&7&oBookshelf"));
 			bm10.setLore(Arrays.asList(Strings.color("Sell for this item for"), Strings.color(amount8 + "&6&lGOLD")));
 			b10.setItemMeta(bm10);
@@ -621,7 +779,7 @@ public class Economy implements Listener	 {
         if (m.contains("ENCHANTING_TABLE")) {
         	ItemStack b10 = new ItemStack(Material.ENCHANTING_TABLE, 1);
 			ItemMeta bm10 = b10.getItemMeta();
-			double amount8 = m.getDouble("ENCHANTING_TABLE.Sell-Price");
+			double amount8 = m.getDouble("Items." + "ENCHANTING_TABLE.Sell-Price");
 			bm10.setDisplayName(Strings.color("&7&oEnchanting_table"));
 			bm10.setLore(Arrays.asList(Strings.color("Sell for this item for"), Strings.color(amount8 + "&6&lGOLD")));
 			b10.setItemMeta(bm10);
@@ -668,6 +826,39 @@ public class Economy implements Listener	 {
 		Inventory page2 = Bukkit.createInventory(null, 54, Strings.color("&6&lEconomy &7Sell: &a&oPage 2"));
 		return page2;
 
+	}
+	
+	@EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
+	public void onMobDeath(EntityDeathEvent e) {
+		if (e.getEntity() instanceof Monster && e.getEntity().getKiller() instanceof Player) {
+			Player p = e.getEntity().getKiller();
+			Random r = new Random();
+			
+			int ran = r.nextInt(27) + 1;
+			dropAmount(e.getEntity().getLocation(), ran);
+			p.sendMessage(Strings.color(Strings.getPrefix() + "You killed a &c" + e.getEntityType().name() + " &fand found &l" + ran + "&6g"));
+			return;
+		}
+		
+		if (e.getEntity() instanceof Mob && e.getEntity().getKiller() instanceof Player) {
+			Player p = e.getEntity().getKiller();
+			Random r = new Random();
+			
+			int ran = r.nextInt(27) + 1;
+			dropAmount(e.getEntity().getLocation(), ran);
+			p.sendMessage(Strings.color(Strings.getPrefix() + "You killed a &c" + e.getEntityType().name() + " &fand found &l" + ran + "&6g"));
+			return;
+		}
+		
+		if (e.getEntity() instanceof Flying && e.getEntity().getKiller() instanceof Player) {
+			Player p = e.getEntity().getKiller();
+			Random r = new Random();
+			
+			int ran = r.nextInt(27) + 1;
+			dropAmount(e.getEntity().getLocation(), ran);
+			p.sendMessage(Strings.color(Strings.getPrefix() + "You killed a &c" + e.getEntityType().name() + " &fand found &l" + ran + "&6g"));
+			return;
+		}
 	}
 	
 }

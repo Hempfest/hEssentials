@@ -2,8 +2,10 @@ package org.spigotmc.hessentials.util;
 
 import org.bukkit.entity.Player;
 import org.spigotmc.hessentials.HempfestEssentials;
+import org.spigotmc.hessentials.commands.economy.Economy;
 import org.spigotmc.hessentials.util.variables.Strings;
 
+import addon.chat.hessentials.GroupAPI;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 
 public class Placeholders extends  PlaceholderExpansion {
@@ -98,6 +100,20 @@ public class Placeholders extends  PlaceholderExpansion {
         // %someplugin_placeholder1%
         if(identifier.equals("get_area")){
             return Strings.getAREA(player, player.getLocation());
+        }
+        
+        if (identifier.equals("get_prefix")) {
+        	GroupAPI api = new GroupAPI();
+        	return api.getPrefix(player);
+        }
+        
+        if (identifier.equals("get_suffix")) {
+        	GroupAPI api = new GroupAPI();
+        	return api.getSuffix(player);
+        }
+        
+        if (identifier.equals("get_balance")) {
+        	return Economy.format(Economy.getBalance(player));
         }
  
         // We return null if an invalid placeholder (f.e. %someplugin_placeholder3%) 

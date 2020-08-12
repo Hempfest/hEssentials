@@ -13,6 +13,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerTeleportEvent;
 import org.spigotmc.hessentials.configuration.PlayerData;
+import org.spigotmc.hessentials.util.Utils;
 import org.spigotmc.hessentials.util.variables.Strings;
 
 import net.md_5.bungee.api.chat.ClickEvent;
@@ -37,8 +38,8 @@ public class Homes {
 		return warps.size();
 	}
 
-	public static int countWarps(OfflinePlayer p) {
-		PlayerData homes = new PlayerData(p.getUniqueId());
+	public static int countWarps(String playername) {
+		PlayerData homes = new PlayerData(Utils.usernameToUUID(playername));
 		FileConfiguration config = homes.getConfig();
 		ConfigurationSection list = config.getConfigurationSection("Private-Homes");
 		if (list == null)
@@ -223,23 +224,20 @@ public class Homes {
 	}
 
 	@SuppressWarnings("deprecation")
-	public static void listwarps(Player p, Player online, String args) {
-
-		if (online == null) {
-			OfflinePlayer offline = Bukkit.getOfflinePlayer(args);
-			PlayerData homes = new PlayerData(offline.getUniqueId());
+	public static void listwarps(Player p, String targetName) {
+			PlayerData homes = new PlayerData(Utils.usernameToUUID(targetName));
 			FileConfiguration config = homes.getConfig();
-			String playername = offline.getName();
+			String playername = targetName;
 			ConfigurationSection list = config.getConfigurationSection("Private-Homes");
-			if (countWarps(offline) == 0) {
-				sendMessage(p, Strings.getPrefix() + playername + "'s Home List §f[§3" + countWarps(offline) + "§f/§3"
+			if (countWarps(targetName) == 0) {
+				sendMessage(p, Strings.getPrefix() + playername + "'s Home List §f[§3" + countWarps(targetName) + "§f/§3"
 						+ "?§f]");
 				sendMessage(p, ChatColor.GRAY + "[&cThis player has no home set.&7]");
 				return;
 			}
 
 			sendMessage(p,
-					Strings.getPrefix() + playername + "'s Home List §f[§3" + countWarps(offline) + "§f/§3" + "?§f]");
+					Strings.getPrefix() + playername + "'s Home List §f[§3" + countWarps(targetName) + "§f/§3" + "?§f]");
 			for (String warp : list.getKeys(false)) {
 				TextComponent symbol = new TextComponent(Strings.color("&7- "));
 
@@ -256,37 +254,6 @@ public class Homes {
 
 				p.spigot().sendMessage(symbol);
 			}
-		} else {
-			PlayerData homes = new PlayerData(online.getUniqueId());
-			FileConfiguration config = homes.getConfig();
-			ConfigurationSection list = config.getConfigurationSection("Private-Homes");
-			String playername = online.getName();
-			if (countWarps(online) == 0) {
-				sendMessage(p, Strings.getPrefix() + playername + "'s Home List §f[§3" + countWarps(online) + "§f/§3"
-						+ String.valueOf(maxWarps(online)).replaceAll("999", Strings.infinity()) + "§f]");
-				sendMessage(p, ChatColor.GRAY + "[&cThis player has no home set.&7]");
-				return;
-			}
-
-			sendMessage(p, Strings.getPrefix() + playername + "'s Home List §f[§3" + countWarps(online) + "§f/§3"
-					+ String.valueOf(maxWarps(online)).replaceAll("999", Strings.infinity()) + "§f]");
-			for (String warp : list.getKeys(false)) {
-				TextComponent symbol = new TextComponent(Strings.color("&7- "));
-
-				TextComponent warpname = new TextComponent(Strings.color("&a" + warp));
-
-				warpname.setClickEvent(
-						new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/playerhome " + playername + " " + warp));
-				warpname.setHoverEvent(
-						new HoverEvent(HoverEvent.Action.SHOW_TEXT,
-								(new ComponentBuilder(
-										"Click to teleport to '" + ChatColor.BOLD + warp + ChatColor.RESET + "'."))
-												.create()));
-				symbol.addExtra(warpname);
-
-				p.spigot().sendMessage(symbol);
-			}
-		}
 		return;
 	}
 

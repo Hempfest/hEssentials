@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
@@ -21,6 +22,11 @@ public class PlayerData
     private static List<PlayerData> configs;
     
     private PlayerData(final Player p) {
+        this.u = p.getUniqueId();
+        PlayerData.configs.add(this);
+    }
+    
+    public PlayerData(final OfflinePlayer p) {
         this.u = p.getUniqueId();
         PlayerData.configs.add(this);
     }

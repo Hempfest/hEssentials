@@ -25,6 +25,7 @@ org\spigotmc\hessentials\commands\staff\CommandUnban.class
 org\spigotmc\hessentials\commands\staff\CommandWhois.class
 org\spigotmc\hessentials\commands\claim\ClaimUtil$2.class
 org\spigotmc\hessentials\commands\staff\CommandItem.class
+org\spigotmc\hessentials\util\MaterialUtils.class
 org\spigotmc\hessentials\commands\staff\CommandMuteChat.class
 org\spigotmc\hessentials\commands\tprequest\CommandTpRequest.class
 org\spigotmc\hessentials\commands\staff\CommandHomelist.class
@@ -36,7 +37,9 @@ org\spigotmc\hessentials\commands\tprequest\TpRequest$1.class
 org\spigotmc\hessentials\util\Utils.class
 org\spigotmc\hessentials\commands\CommandHud.class
 org\spigotmc\hessentials\commands\homes\CommandDelhome.class
+org\spigotmc\hessentials\commands\CommandBalance.class
 org\spigotmc\hessentials\commands\CommandMessage.class
+org\spigotmc\hessentials\gui\homes\HomeList.class
 org\spigotmc\hessentials\commands\staff\CommandCFUpdate.class
 org\spigotmc\hessentials\commands\claim\ClaimUtil.class
 org\spigotmc\hessentials\commands\claim\ClaimUtil$1.class
@@ -48,6 +51,7 @@ org\spigotmc\hessentials\events\PlayerListener.class
 org\spigotmc\hessentials\gui\Menu.class
 org\spigotmc\hessentials\commands\staff\CommandKickAll.class
 org\spigotmc\hessentials\commands\homes\CommandHome.class
+org\spigotmc\hessentials\util\ConfigUpdater.class
 org\spigotmc\hessentials\util\variables\Component.class
 org\spigotmc\hessentials\commands\staff\CommandGMS.class
 org\spigotmc\hessentials\commands\staff\CommandSuffix.class
@@ -61,9 +65,12 @@ org\spigotmc\hessentials\commands\economy\EcoItems.class
 org\spigotmc\hessentials\commands\staff\CommandTeleport.class
 org\spigotmc\hessentials\configuration\Config.class
 org\spigotmc\hessentials\commands\staff\CommandGive.class
+org\spigotmc\hessentials\gui\homes\HomeListOther.class
+org\spigotmc\hessentials\gui\PaginatedMenu.class
 org\spigotmc\hessentials\commands\staff\CommandInvsee.class
 org\spigotmc\hessentials\util\variables\Checks.class
 org\spigotmc\hessentials\gui\economy\EcoBUY.class
+org\spigotmc\hessentials\util\ValueComparator.class
 org\spigotmc\hessentials\commands\CommandTrack.class
 org\spigotmc\hessentials\commands\claim\CommandClaim.class
 org\spigotmc\hessentials\commands\CommandHelp.class

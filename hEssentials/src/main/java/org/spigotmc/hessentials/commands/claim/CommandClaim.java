@@ -50,8 +50,8 @@ public class CommandClaim extends BukkitCommand {
 						return true;
 					}
 					if (args[0].equalsIgnoreCase("set") || args[0].equalsIgnoreCase("s")) {
-						if (!p.hasPermission(this.getPermission() + ".create")) {
-							Strings.sendNoPermission(p, this.getPermission() + ".create");
+						if (!p.hasPermission(this.getPermission() + ".set")) {
+							Strings.sendNoPermission(p, this.getPermission() + ".set");
 							return true;
 						}
 						sendMessage(p, "&7You need to specify a name.");
@@ -117,8 +117,12 @@ public class CommandClaim extends BukkitCommand {
 						return true;
 					}
 					if (args[0].equalsIgnoreCase("set") || args[0].equalsIgnoreCase("s")) {
-						if (!p.hasPermission(this.getPermission() + ".create")) {
-							Strings.sendNoPermission(p, this.getPermission() + ".create");
+						if (!p.hasPermission(this.getPermission() + ".set")) {
+							Strings.sendNoPermission(p, this.getPermission() + ".set");
+							return true;
+						}
+						if (ClaimUtil.claimList().contains(args[1])) {
+							Strings.sendNoPermission(p, "Land by the name of " + '"' + args[1] + '"' + " already created.");
 							return true;
 						}
 						ClaimUtil.saveChunk(p, args[1]);

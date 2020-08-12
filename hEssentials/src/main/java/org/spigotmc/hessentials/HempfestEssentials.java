@@ -3,6 +3,7 @@ package org.spigotmc.hessentials;
 import java.util.logging.Logger;
 
 import org.bukkit.plugin.java.JavaPlugin;
+import org.spigotmc.hessentials.commands.CommandBalance;
 import org.spigotmc.hessentials.commands.CommandBuy;
 import org.spigotmc.hessentials.commands.CommandDeposit;
 import org.spigotmc.hessentials.commands.CommandHelp;
@@ -45,6 +46,7 @@ import org.spigotmc.hessentials.commands.staff.CommandUnban;
 import org.spigotmc.hessentials.commands.staff.CommandWhois;
 import org.spigotmc.hessentials.commands.tprequest.CommandTpRequest;
 import org.spigotmc.hessentials.events.PlayerListener;
+import org.spigotmc.hessentials.util.ConfigUpdater;
 import org.spigotmc.hessentials.util.Placeholders;
 import org.spigotmc.hessentials.util.Region;
 import org.spigotmc.hessentials.util.Utils;
@@ -97,6 +99,8 @@ public class HempfestEssentials extends JavaPlugin {
 	
 	public void runTimers() {
 		 Region Refresh = new Region();
+		 ConfigUpdater Refresh2 = new ConfigUpdater();
+		 Refresh2.runTaskTimerAsynchronously(this, 20L, 20L);
 		 Refresh.runTaskTimerAsynchronously(this, 20L, 20L);
 	}
 
@@ -110,6 +114,7 @@ public class HempfestEssentials extends JavaPlugin {
 		Utils.registerCommand(new CommandDelhome());
 		Utils.registerCommand(new CommandHelp());
 		Utils.registerCommand(new CommandBuy());
+		Utils.registerCommand(new CommandBalance());
 		Utils.registerCommand(new CommandSell());
 		Utils.registerCommand(new CommandWithdraw());
 		Utils.registerCommand(new CommandDeposit());
