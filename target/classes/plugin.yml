@@ -1,7 +1,7 @@
 name: hEssentials
 version: 1.0.2
 api-version: 1.13
-author: Hempfest
+author: Hempfest♠
 depend: [ HempCore ]
 soft-depend: [ Vault, PlaceholderAPI , hEssentialsChat ]
 description: A lightweight alternative to EssentialsX

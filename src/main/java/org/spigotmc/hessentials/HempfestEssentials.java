@@ -60,6 +60,7 @@ public class HempfestEssentials extends JavaPlugin {
 	}
 
 	public void registerCommands() {
+		u.registerCommand(new CommandPowerTool());
 		u.registerCommand(new CommandBroadcast());
 		u.registerCommand(new CommandHome());
 		u.registerCommand(new CommandHomes());

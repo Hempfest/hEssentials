@@ -21,6 +21,7 @@ import org.bukkit.entity.TNTPrimed;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
@@ -35,6 +36,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.server.ServerListPingEvent;
 import org.bukkit.inventory.InventoryHolder;
+import org.bukkit.inventory.ItemStack;
 import org.spigotmc.hessentials.configuration.Config;
 import org.spigotmc.hessentials.configuration.DataManager;
 import org.spigotmc.hessentials.listener.Claim;
@@ -218,6 +220,27 @@ public class Events implements Listener {
 				String claimName = api.pc.getClaimName(blocks);
 				String claimOwner = api.pc.getClaimOwner(blocks);
 				api.pc.sendMessage(p, api.lib.getPrefix() + api.lib.getCannotPlace(p, claimName, claimOwner));
+			}
+		}
+	}
+	@EventHandler
+	public void onPlayerLeftClick(PlayerInteractEvent e){
+		//Event listener for power tool command
+		if(e.getAction().equals(Action.LEFT_CLICK_AIR) || e.getAction().equals(Action.LEFT_CLICK_BLOCK)){
+			if(e.getPlayer().hasPermission("hEssentials.staff.powertool")){
+				if(e.getItem() != null){
+					Player p = e.getPlayer();
+					ItemStack holding = p.getInventory().getItemInMainHand();
+					if(holding.getItemMeta().getLore()!=null) {
+						if (holding.getItemMeta().getLore().get(0).contains(ChatColor.LIGHT_PURPLE + "Current Command: ")) {
+							String command = holding.getItemMeta().getLore().get(0).replace(ChatColor.LIGHT_PURPLE + "Current Command: /", "");
+							Bukkit.dispatchCommand(p, command);
+							e.setCancelled(true);
+						}
+					}else{
+						p.sendMessage(api.lib.getPrefix() + ChatColor.RED + "You must specify a command to assign to this item!");
+					}
+				}
 			}
 		}
 	}

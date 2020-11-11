@@ -36,4 +36,5 @@ org\spigotmc\hessentials\commands\staff\CommandGive.class
 org\spigotmc\hessentials\commands\staff\CommandInvsee.class
 org\spigotmc\hessentials\commands\CommandTrack.class
 org\spigotmc\hessentials\commands\CommandHelp.class
+org\spigotmc\hessentials\commands\staff\CommandPowerTool.class
 org\spigotmc\hessentials\util\Utils$1.class
