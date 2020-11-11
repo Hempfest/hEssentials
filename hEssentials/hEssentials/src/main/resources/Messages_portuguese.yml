@@ -1,0 +1,137 @@
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+# O]===============================================[O #
+# |                Hempfest Essentials              | #
+# O]===============================================[O #
+# O]===============================================[O #
+# |                      v1.0.0                     | #
+# O]===============================================[O #
+# 
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~# 
+Messages:  
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#  
+# Alterar o prefixo usado para o plugin.  
+  Prefix: '&2hEssentials &a:&r'
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#  
+# Alterar mensagens de resposta do jogador.  
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+# Variables: 
+#   *  %players% = Jogadores online pelo nome
+#   *  %player% = Nome do jogador falante 
+#   *  %online% = Quantidade atual de jogadores online
+#   *  %max% = Contagem máxima de jogadores do seu servidor
+#   *  %prefix% = Prefixo actual do plugin 
+#   *  %next% = Vá para a próxima linha
+#   *  %target% = Jogador alvo recebendo mensagens
+#   *  %land% = Devolve o nome da terra reclamada
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+#   *  %permnode% = Obtém a permissão que o jogador não tem acesso a.
+#   **/\ (Funciona apenas para "No-permissão" seção.) /\**
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+  Player-Responses:
+    Online-List: '%prefix%%next%&7Jogadores En Linha &8[&7&l%online%&8/&7&l%max%&8]&7: &f%players%'
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+#   * MENSAGEM SEM PERMISSÃO - Alterar a mensagem exibida 
+#          Quando o jogador não tem permissão.
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+    No-Permission: 'Você não tem permissão ''%permnode%'''
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+#   * MENSAGENS PRIVADAS - Aqui você pode editar o formato para
+#                  Mensagens privadas.
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+    Player-Message-Spy: '&2&o%player% &a&o&m--&a> &2&o%target% &2&l|&f '
+    Player-Message-Send: '&b%player%(&fme&b) &7&m--&7> &b%target% &3&l|&f ' #Idk here if 'me' is a %% or a string to translate
+    Player-Message-Revieve: '&b%player% &7&m--&7> &b%target%(&fme&b) &3&l|&f '
+    Player-Reply-Send: '&b%player%(&fme&b) &7&m--&7> &b%target% &3&l|&f '  # same here
+    Player-Reply-Recieve: '&b%player% &7&m--&7> &b%target%(&fme&b) &3&l|&f '
+    Social-Spy-Activated: '%prefix% &6&oA Espionagem social está ativada!'
+    Social-Spy-Deactivated: '%prefix% &c&oA Espionagem social é desativada!'
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+#   * Entrada/Saida - Alterar as mensagens apresentadas no servidor
+#                  Entrada/Saida.
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+    First-Player-Join: '&d&l%player% &aEstá entrando pela primeira vez.'
+    Player-Join: '&f%player% &2entrou ao jogo.'
+    Player-Leave: '&f%player% &cSaiu do jogo.'
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+#   * CHAT Silenciado - Edite as mensagens enviadas no
+#             evento mudo de chat.  
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+    Chat-Muted: '&fO chat é silenciado global.'
+    Chat-UnMuted: '&fO chat é ativado globalmente.'
+    Cannot-Speak: '&c&oO chat é mudo e você não tem permissão para falar.'
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+#   * MENSAGENS DE RECLAMAÇÃO - Aqui você pode editar os títulos
+#      enviado para o jogador enquanto eles mudam de local.
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+    Inside-Claim: 'You are in the territory: %land%'
+    Inside-Claim-Denied-Use: 'You cannot use this in %owner%''s land &c&o%land%'
+    Inside-Claim-Denied-Break: 'You cannot break stuff in %owner%''s land &c&o%land%'
+    Inside-Claim-Denied-Place: 'You cannot build stuff in %owner%''s land &c&o%land%'
+    Inside-Claim-Denied-PlaceTNT: 'You cannot blow stuff up in %owner%''s land &c&o%land%'
+    Inside-Wilderness: 'You are now in the &4&nWilderness'
+
+    #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+#   * CASAS DOS JOGADORES MENSAGENS - Aqui você pode editar as mensagens
+# enviado para o jogador enquanto eles mudam de local.
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~# 
+    Player-Home-Create: 'Você Acabou de criar a casa ''&a%home%&r''.'
+    Player-Home-Delete: 'Você Acabou de suprimir a casa ''&a%home%&r''.'
+    Player-Home-Update: 'Você Acabou de actualizar a casa ''&a%home%&r''.'
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+# O]===============================================[O #
+# |                Mensagem do dia :0               | #
+# O]===============================================[O #
+# O]===============================================[O #
+#  |       A Programação de Yandere Dev é lixo      | #
+# O]===============================================[O #
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+# Variables: 
+#   *  %player% = Nome dos jogadores
+#   *  %online% = Quantidade de jogadores online  | yo u put playres
+#   *  %max% = Contagem máxima de jogadores do seu servidor
+#   *  %prefix% = Prefixo actual do plugin actual
+#   *  %next% = Vá para a próxima linha
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~# 
+Message-of-the-day: '%prefix% Eu preciso ser configurado. Isto é o que os jogadores vêem quando van al login.'
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#  
+MOTD-First-Join: '%prefix% Esta é a primeira mensagem MOTD que os jogadores vêem na sua primeira entrada.'
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+MOTD-Server-List: '%prefix% &4&oEu preciso ser configurado.'
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+# Set the max player count in the server list. (Its fake)
+Server-Max-Players: 1 #fake street 123
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~# 
+# O]===============================================[O #
+# |                 hEssentials CHAT                | #
+# O]===============================================[O #
+# O]===============================================[O #
+#  |               In game formatting               | #
+# O]===============================================[O #
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+# Variables:
+#   *  %player% = players name
+hEssentialsChat:
+  #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+  Format: '&f&o%player%'
+  #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+  Divider: '&8&l»&r'
+  #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+  Suffix: '&r[&7Default&r]'
+  #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
+# i like trains 
+# Translation by : [ctOS]
+#___________   _______________________________________^__
+# ___   ___ |||  ___   ___   ___    ___ ___  |   __  ,----\
+#|   | |   |||| |   | |   | |   |  |   |   | |  |  | |_____\
+#|___| |___|||| |___| |___| |___|  | O | O | |  |  |        \
+#           |||                    |___|___| |  |__|         )
+#___________|||______________________________|______________/
+#           |||                                        /--------
+#-----------'''---------------------------------------'
+
+
+        #                            \O_
+        #                          /\/   distracted
+        #                           / 

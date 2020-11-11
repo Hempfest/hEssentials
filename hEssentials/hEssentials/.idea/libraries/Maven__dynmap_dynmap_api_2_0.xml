@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Maven: dynmap:dynmap-api:2.0">
+    <CLASSES />
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/dynmap/dynmap-api/2.0/dynmap-api-2.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/dynmap/dynmap-api/2.0/dynmap-api-2.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,0 +1,125 @@
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+# O]===============================================[O #
+# |                Hempfest Essentials              | #
+# O]===============================================[O #
+# O]===============================================[O #
+# |                      v1.0.0                     | #
+# O]===============================================[O #
+#  
+Version: 1.0.0
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#  
+Config:
+  # Configs {this[English], es[Espanola], pt[Portugues]}
+  Use: this
+Messages:  
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#  
+# Change the prefix used for the plugin.  
+  Prefix: '&2hEssentials &a:&r'
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#  
+# Change player response messages.   
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+# Variables: 
+#   *  %players% = online players by name
+#   *  %player% = name of the talking player 
+#   *  %online% = current amount of online players
+#   *  %max% = max playercount of your server
+#   *  %prefix% = current plugin prefix
+#   *  %next% = goto the next line
+#   *  %target% = target player being messaged
+#   *  %land% = returns the name of the claimed land
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+#   *  %permnode% = gets the permission the player doesn't have access to.
+#   **/\ (Works only for "No-Permission" section.) /\**
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+  Player-Responses:
+    Online-List: '%prefix%%next%&7Online Players &8[&7&l%online%&8/&7&l%max%&8]&7: &f%players%'
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+#   * NO PERMISSION MESSAGE - Change the message displayed 
+# when the player doesnt have permission.
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+    No-Permission: 'You don''t have permission ''%permnode%'''
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+#   * PRIVATE MESSAGES - Here you can edit the format for
+# private messaging.
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+    Player-Message-Spy: '&2&o%player% &a&o&m--&a> &2&o%target% &2&l|&f '
+    Player-Message-Send: '&b%player%(&fme&b) &7&m--&7> &b%target% &3&l|&f '
+    Player-Message-Revieve: '&b%player% &7&m--&7> &b%target%(&fme&b) &3&l|&f '
+    Player-Reply-Send: '&b%player%(&fme&b) &7&m--&7> &b%target% &3&l|&f '
+    Player-Reply-Recieve: '&b%player% &7&m--&7> &b%target%(&fme&b) &3&l|&f '
+    Social-Spy-Activated: '%prefix% &6&oSocial spying is enabled!'
+    Social-Spy-Deactivated: '%prefix% &c&oSocial spying is disabled!'
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+#   * Join/Leave - Change the messages displayed on server
+# join/leave.
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+    First-Player-Join: '&d&l%player% &ais joining for the first time.'
+    Player-Join: '&f%player% &2has joined the game.'
+    Player-Leave: '&f%player% &chas left the game.'
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+    #   * CHAT MUTED - Edit the messages sent on the global
+    # chat mute event.
+    #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+    Chat-Muted: '&fChat is muted globally.'
+    Chat-UnMuted: '&fChat is unmuted globally.'
+    Cannot-Speak: '&c&oChat is muted and you''re not permitted to speak.'
+    #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+    #   * CLAIM MESSAGES - Here you can edit the titles
+    # sent to the player while they change locations. (Temporarily disabled : Alt use placeholders)
+    #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+    Inside-Claim: 'You are in the territory: %land%'
+    Inside-Claim-Denied-Use: 'You cannot use this in %owner%''s land &c&o%land%'
+    Inside-Claim-Denied-Break: 'You cannot break stuff in %owner%''s land &c&o%land%'
+    Inside-Claim-Denied-Place: 'You cannot build stuff in %owner%''s land &c&o%land%'
+    Inside-Claim-Denied-PlaceTNT: 'You cannot blow stuff up in %owner%''s land &c&o%land%'
+    Inside-Wilderness: 'You are now in the &4&nWilderness'
+
+    #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+    #   * PLAYERHOMES MESSAGES - Here you can edit the messages
+    # sent to the player while they change locations.
+    #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+    Player-Home-Create: 'You just created the home ''&a%home%&r''.'
+    Player-Home-Delete: 'You just deleted the home ''&a%home%&r''.'
+    Player-Home-Update: 'You just updated the home ''&a%home%&r''.'
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+# O]===============================================[O #
+# |                MESSAGE OF THE DAY               | #
+# O]===============================================[O #
+# O]===============================================[O #
+#  |                     Hello :)                  | #
+# O]===============================================[O #
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+# Variables: 
+#   *  %player% = players name
+#   *  %online% = amount of playres online
+#   *  %max% = max playercount of your server
+#   *  %prefix% = current plugin prefix
+#   *  %next% = goto the next line
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~# 
+Message-of-the-day: '%prefix% I need configured. This is what players see on login.'
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#  
+MOTD-First-Join: '%prefix% this is the first MOTD message players see on their first join.'
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+MOTD-Server-List: '%prefix% &4&oI need configured.'
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+# Set the max player count in the server list. (Its fake)
+Server-Max-Players: 1
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~# 
+# O]===============================================[O #
+# |                 hEssentials CHAT                | #
+# O]===============================================[O #
+# O]===============================================[O #
+#  |               In game formatting               | #
+# O]===============================================[O #
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+# Variables: 
+#   *  %player% = players name
+hEssentialsChat:
+  #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+  Format: '&f&o%player%'
+  #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+  Divider: '&8&l»&r'
+  #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+  Suffix: '&r[&7Default&r]'
+  #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
