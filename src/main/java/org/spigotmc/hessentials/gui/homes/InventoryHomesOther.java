@@ -17,7 +17,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 import org.spigotmc.hessentials.configuration.Config;
 import org.spigotmc.hessentials.configuration.DataManager;
-import org.spigotmc.hessentials.gui.staff.InventoryStaff;
+import org.spigotmc.hessentials.gui.staff.InventoryConfiguration;
 import org.spigotmc.hessentials.util.Utils;
 import org.spigotmc.hessentials.util.heHook;
 
@@ -72,7 +72,7 @@ public class InventoryHomesOther extends Pagination {
                 }
                 break;
             case TOTEM_OF_UNDYING:
-                new InventoryStaff(guiLibrary).open();
+                new InventoryConfiguration(guiLibrary).open();
                 break;
             case MOJANG_BANNER_PATTERN:
                 guiLibrary.setData(name);

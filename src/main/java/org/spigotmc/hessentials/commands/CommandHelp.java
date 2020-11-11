@@ -2,6 +2,7 @@ package org.spigotmc.hessentials.commands;
 
 import java.util.Arrays;
 import java.util.List;
+import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.defaults.BukkitCommand;
 import org.bukkit.entity.Player;
@@ -52,7 +53,11 @@ public class CommandHelp extends BukkitCommand {
 		List<String> staffhelp = mess.getConfig().getStringList("Staff-Help-Menu");
 		int pgAmnt = mess.getConfig().getInt("Amount-per-page");
 		if (length == 0) {
-			u.paginateHelp(p, help, 1, pgAmnt);
+			if (api.u.checkforPH()) {
+				u.paginateHelp(p, PlaceholderAPI.setPlaceholders(p, help), 1, pgAmnt);
+			} else {
+				u.paginateHelp(p, help, 1, pgAmnt);
+			}
 			return true;
 		}
 
@@ -60,7 +65,12 @@ public class CommandHelp extends BukkitCommand {
 			try {
 				if (args[0].equalsIgnoreCase("staff")) {
 				if (p.hasPermission("hessentials.staff")) {
-				u.paginateStaffHelp(p, staffhelp, 1, pgAmnt);
+					if (api.u.checkforPH()) {
+						u.paginateStaffHelp(p, PlaceholderAPI.setPlaceholders(p, staffhelp), 1, pgAmnt);
+					} else {
+						u.paginateStaffHelp(p, staffhelp, 1, pgAmnt);
+					}
+
 				return true;
 				} else {
 					sendMessage(p, api.lib.getPrefix() + "Invalid page number.");
@@ -72,7 +82,12 @@ public class CommandHelp extends BukkitCommand {
 				sendMessage(p, api.lib.getPrefix() + "Invalid page number.");
 				return true;
 			}
-			u.paginateHelp(p, help, amnt, pgAmnt);
+			if (api.u.checkforPH()) {
+				u.paginateHelp(p, PlaceholderAPI.setPlaceholders(p, help), amnt, pgAmnt);
+			} else {
+				u.paginateHelp(p, help, amnt, pgAmnt);
+			}
+
 			return true;
 			} catch (NumberFormatException ex) {
 				sendMessage(p, api.lib.getPrefix() + "Invalid page number.");

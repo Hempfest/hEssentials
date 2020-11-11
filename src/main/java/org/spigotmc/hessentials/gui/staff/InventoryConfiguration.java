@@ -11,11 +11,11 @@ import org.bukkit.inventory.ItemStack;
 import org.spigotmc.hessentials.gui.claim.InventoryClaims;
 import org.spigotmc.hessentials.util.heHook;
 
-public class InventoryStaff extends Menu {
+public class InventoryConfiguration extends Menu {
 
     heHook api = heHook.getHook();
 
-    public InventoryStaff(GuiLibrary gui) {
+    public InventoryConfiguration(GuiLibrary gui) {
         super(gui);
     }
 

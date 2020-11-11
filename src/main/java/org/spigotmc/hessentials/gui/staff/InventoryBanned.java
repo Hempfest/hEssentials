@@ -44,7 +44,7 @@ public class InventoryBanned extends Pagination {
         GuiLibrary gui = HempCore.guiManager(p);
         switch (mat) {
             case TOTEM_OF_UNDYING:
-                new InventoryStaff(gui).open();
+                new InventoryConfiguration(gui).open();
                 break;
             case IRON_BARS:
                 guiLibrary.setData2(api.u.usernameToUUID(player).toString());

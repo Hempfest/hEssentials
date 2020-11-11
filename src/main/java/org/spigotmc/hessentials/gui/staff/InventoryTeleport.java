@@ -5,20 +5,22 @@ import com.youtube.hempfest.hempcore.gui.GuiLibrary;
 import com.youtube.hempfest.hempcore.gui.Pagination;
 import java.util.ArrayList;
 import java.util.UUID;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
 import org.spigotmc.hessentials.util.heHook;
 
-public class InventoryPlayers extends Pagination {
+public class InventoryTeleport extends Pagination {
 
     heHook api = heHook.getHook();
 
-    public InventoryPlayers(GuiLibrary gui) {
+    public InventoryTeleport(GuiLibrary gui) {
         super(gui);
     }
 
@@ -28,7 +30,7 @@ public class InventoryPlayers extends Pagination {
 
     @Override
     public String getMenuName() {
-        return color(api.lib.getPrefix() + "&3&l&oPlayer configuration");
+        return color(api.lib.getPrefix() + "&6&l&oPlayer Selection");
     }
 
     @Override
@@ -39,17 +41,15 @@ public class InventoryPlayers extends Pagination {
     @Override
     public void handleMenu(InventoryClickEvent e) {
         Player p = (Player) e.getWhoClicked();
-        ArrayList<String> players = new ArrayList<String>(api.u.getAllUserIDs());
+        ArrayList<String> players = new ArrayList<>(api.u.getAllUserIDs());
         String player = e.getCurrentItem().getItemMeta().getPersistentDataContainer().get(new NamespacedKey(HempCore.getInstance(), "player"), PersistentDataType.STRING);
         Material mat = e.getCurrentItem().getType();
         GuiLibrary gui = HempCore.guiManager(p);
         switch (mat) {
-            case TOTEM_OF_UNDYING:
-                new InventoryConfiguration(gui).open();
-                break;
             case PLAYER_HEAD:
-                gui.setData2(player);
-                new InventoryPlayer(gui).open();
+                OfflinePlayer target = Bukkit.getOfflinePlayer(UUID.fromString(player));
+                Bukkit.dispatchCommand(p, "tp " + target.getName());
+                p.closeInventory();
                 break;
             case BARRIER:
                 p.closeInventory();
@@ -78,21 +78,19 @@ public class InventoryPlayers extends Pagination {
     @Override
     public void setMenuItems() {
         addMenuBorder();
-        ArrayList<String> players = new ArrayList<String>(api.u.getAllUserIDs());
+        ArrayList<String> players = new ArrayList<>(api.u.getAllUserIDs());
         if (players != null && !players.isEmpty()) {
             for (int i = 0; i < getMaxItemsPerPage(); i++) {
                 index = getMaxItemsPerPage() * page + i;
                 if (index >= players.size())
                     break;
                 if (players.get(index) != null) {
-                    ItemStack player = makePersistentItem(Material.PLAYER_HEAD, "&b&o" + api.u.usernameFromUUID(UUID.fromString(players.get(index))), "player", players.get(index), "", "Click to edit.");
+                    ItemStack player = makePersistentItem(Material.PLAYER_HEAD, "&e&l&o" + api.u.usernameFromUUID(UUID.fromString(players.get(index))), "player", players.get(index), "", "Click to teleport.");
                     inventory.addItem(player);
 
                 }
             }
         }
-        ItemStack back = makeItem(Material.TOTEM_OF_UNDYING, "&a&oGo back.", "");
-        inventory.setItem(45, back);
         setFillerGlassLight();
     }
 }

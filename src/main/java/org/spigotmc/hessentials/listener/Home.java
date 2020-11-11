@@ -14,6 +14,7 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerTeleportEvent;
+import org.spigotmc.hessentials.HempfestEssentials;
 import org.spigotmc.hessentials.configuration.Config;
 import org.spigotmc.hessentials.configuration.DataManager;
 import org.spigotmc.hessentials.util.heHook;
@@ -106,7 +107,18 @@ public class Home implements Formatter {
             return;
         }
         Location loc = homes.getConfig().getLocation("Private-Homes." + name);
-        p.teleport(loc, PlayerTeleportEvent.TeleportCause.PLUGIN);
+        if (api.u.canWarp(p)) {
+            api.u.sendMessage(p, api.u.getPrefix() + "&e&oWelcome home");
+            p.teleport(loc, PlayerTeleportEvent.TeleportCause.PLUGIN);
+        } else {
+            api.u.sendMessage(p, api.u.getPrefix() + "&c&oSomeone is near by! Warping in 10 seconds..");
+            Bukkit.getScheduler().scheduleSyncDelayedTask(HempfestEssentials.getInstance(), () -> {
+                api.u.sendMessage(p, api.u.getPrefix() + "&e&oWelcome home");
+                p.teleport(loc, PlayerTeleportEvent.TeleportCause.PLUGIN);
+            },200L);
+        }
+
+
 
     }
 

@@ -1,15 +1,22 @@
 package org.spigotmc.hessentials.listener.events;
 
+import com.youtube.hempfest.hempcore.HempCore;
 import com.youtube.hempfest.hempcore.formatting.component.Text;
+import com.youtube.hempfest.hempcore.gui.GuiLibrary;
 import com.youtube.hempfest.hempcore.gui.Menu;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
+import java.util.Random;
 import java.util.UUID;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Effect;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -31,14 +38,22 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerBedEnterEvent;
 import org.bukkit.event.player.PlayerBucketEmptyEvent;
+import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.server.ServerListPingEvent;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.persistence.PersistentDataType;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
+import org.spigotmc.hessentials.HempfestEssentials;
 import org.spigotmc.hessentials.configuration.Config;
 import org.spigotmc.hessentials.configuration.DataManager;
+import org.spigotmc.hessentials.gui.staff.InventoryTeleport;
 import org.spigotmc.hessentials.listener.Claim;
 import org.spigotmc.hessentials.util.Utils;
 import org.spigotmc.hessentials.util.heHook;
@@ -49,6 +64,12 @@ public class Events implements Listener {
 	Utils u = new Utils();
 
 	public List<UUID> sleeping = new ArrayList<>();
+
+	public List<UUID> frozenDudes = new ArrayList<>();
+
+	public static HashMap<UUID, Boolean> staffGui = new HashMap<>();
+
+	public static HashMap<UUID, Boolean> vanishPlayer = new HashMap<>();
 
 	@EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
 	public void onPlayerJoin(PlayerJoinEvent e) {
@@ -64,6 +85,7 @@ public class Events implements Listener {
 			api.pc.createPlayerData();
 			return;
 		}
+
 		if (!pd.exists()) {
 			u.createPlayerConfig(p);
 		}
@@ -73,6 +95,13 @@ public class Events implements Listener {
 		api.pc.updateClaimUser();
 		e.setJoinMessage(api.lib.getJoinMSG(p));
 		u.MOTD(p);
+	}
+
+	@EventHandler(priority = EventPriority.HIGH)
+	public void dropStaffItem(PlayerDropItemEvent e) {
+		if (Events.staffGui.containsKey(e.getPlayer().getUniqueId())) {
+			e.setCancelled(Events.staffGui.get(e.getPlayer().getUniqueId()));
+		}
 	}
 
 	// GUI interact event
@@ -95,9 +124,13 @@ public class Events implements Listener {
 			// Call the handleMenu object which takes the event and processes it
 			menu.handleMenu(e);
 		}
+		Player whoClicked = (Player) e.getWhoClicked();
+		if (Events.staffGui.containsKey(whoClicked.getUniqueId())) {
+				e.setCancelled(Events.staffGui.get(whoClicked.getUniqueId()));
+		}
 
 		String menu = e.getView().getTitle();
-		Player whoClicked = (Player) e.getWhoClicked();
+
 		for (Player p : Bukkit.getOnlinePlayers()) {
 			if (menu.equals(p.getName() + " : click to update")) {
 				String name = menu.replaceAll(" : click to update", "");
@@ -130,6 +163,8 @@ public class Events implements Listener {
 		}
 	}
 
+	private static boolean isInventoryFull(Player p) { return (p.getInventory().firstEmpty() == -1); }
+
 	@EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
 	public void onPlayerLeave(PlayerQuitEvent e) {
 		Player p = e.getPlayer();
@@ -141,6 +176,21 @@ public class Events implements Listener {
 		// UUID uuid = p.getUniqueId();
 		// PlayerData pd = new PlayerData(uuid);
 		e.setQuitMessage(api.lib.getLeaveMSG(p));
+		if (staffGui.containsKey(p.getUniqueId())) {
+			if (staffGui.get(p.getUniqueId())) {
+				staffGui.put(p.getUniqueId(), false);
+				p.getInventory().clear();
+				ItemStack[] contents = Utils.invStorage.get(p.getUniqueId());
+				for (ItemStack item : contents) {
+					if (item != null) {
+						if (isInventoryFull(p)) {
+							p.getWorld().dropItemNaturally(p.getLocation(), item);
+						} else
+							p.getInventory().addItem(item);
+					}
+				}
+			}
+		}
 	}
 
 	@EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
@@ -237,8 +287,125 @@ public class Events implements Listener {
 							Bukkit.dispatchCommand(p, command);
 							e.setCancelled(true);
 						}
-					}else{
-						p.sendMessage(api.lib.getPrefix() + ChatColor.RED + "You must specify a command to assign to this item!");
+					}
+				}
+			}
+		}
+	}
+
+	@EventHandler
+	public void onFrozenMove(PlayerMoveEvent e) {
+		if (frozenDudes.contains(e.getPlayer().getUniqueId())) {
+			e.setTo(e.getFrom());
+			api.u.sendMessage(e.getPlayer(), api.u.getPrefix() + "&c&oYou are frozen and unable to move!");
+		}
+	}
+
+	@EventHandler
+	public void onUtilUse(PlayerInteractEvent e) {
+		List<Action> allActions = new ArrayList<>(Arrays.asList(Action.LEFT_CLICK_AIR, Action.LEFT_CLICK_BLOCK, Action.RIGHT_CLICK_AIR, Action.RIGHT_CLICK_BLOCK));
+		if (allActions.contains(e.getAction())) {
+			ItemStack item = e.getPlayer().getInventory().getItemInMainHand();
+			if (item.hasItemMeta()) {
+				if (item.getItemMeta().hasDisplayName()) {
+					String itemDisplay = item.getItemMeta().getDisplayName();
+					if (itemDisplay.equals(api.u.color("&7[&3&lVANISH&7]"))) {
+						if (vanishPlayer.containsKey(e.getPlayer().getUniqueId())) {
+							if (vanishPlayer.get(e.getPlayer().getUniqueId())) {
+								// disable it
+								vanishPlayer.put(e.getPlayer().getUniqueId(), false);
+								for (Player a : Bukkit.getOnlinePlayers()) {
+									a.showPlayer(HempfestEssentials.getInstance(), e.getPlayer());
+								}
+								api.u.sendMessage(e.getPlayer(), api.u.getPrefix() + "&a&oYou are now visible!");
+								ItemMeta meta = item.getItemMeta();
+								meta.setLore(Arrays.asList(" ", api.lib.color("&oStatus: &c&nOff")));
+								item.setType(Material.PURPLE_DYE);
+								item.setItemMeta(meta);
+							} else {
+								//enable it
+								vanishPlayer.put(e.getPlayer().getUniqueId(), true);
+								for (Player a : Bukkit.getOnlinePlayers()) {
+									a.hidePlayer(HempfestEssentials.getInstance(), e.getPlayer());
+								}
+								api.u.sendMessage(e.getPlayer(), api.u.getPrefix() + "&3&oYou are now invisible!");
+								ItemMeta meta = item.getItemMeta();
+								meta.setLore(Arrays.asList(" ", api.lib.color("&oStatus: &a&nOn")));
+								item.setType(Material.LIME_DYE);
+								item.setItemMeta(meta);
+								return;
+							}
+						} else {
+							// enable it
+							vanishPlayer.put(e.getPlayer().getUniqueId(), true);
+							for (Player a : Bukkit.getOnlinePlayers()) {
+								a.hidePlayer(HempfestEssentials.getInstance(), e.getPlayer());
+							}
+							api.u.sendMessage(e.getPlayer(), api.u.getPrefix() + "&3&oYou are now invisible!");
+							ItemMeta meta = item.getItemMeta();
+							meta.setLore(Arrays.asList(" ", api.lib.color("&oStatus: &a&nOn")));
+							item.setType(Material.LIME_DYE);
+							item.setItemMeta(meta);
+						}
+					}
+					if (itemDisplay.equals(api.u.color("&7[&c&lTELEPORT LIST&7]"))) {
+						GuiLibrary gui = HempCore.guiManager(e.getPlayer());
+						new InventoryTeleport(gui).open();
+						e.setCancelled(true);
+					}
+					if (itemDisplay.equals(api.u.color("&7[&b&lFREEZE TARGET&7]"))) {
+						Entity ent = api.u.getNearestEntityInSight(e.getPlayer(), 20);
+						if (ent instanceof Player) {
+							Player target = (Player) ent;
+							if (!frozenDudes.contains(target.getUniqueId())) {
+								frozenDudes.add(target.getUniqueId());
+								api.u.sendMessage(target, api.u.getPrefix() + "&c&oYou are now frozen!");
+								api.u.sendMessage(e.getPlayer(), api.u.getPrefix() + "&a&o" + target.getName() + " now frozen!");
+							} else {
+								frozenDudes.remove(target.getUniqueId());
+								api.u.sendMessage(target, api.u.getPrefix() + "&b&oYou are now un-frozen!");
+								api.u.sendMessage(e.getPlayer(), api.u.getPrefix() + "&b&o" + target.getName() + " now un-frozen!");
+							}
+						}
+					}
+					if (itemDisplay.equals(api.u.color("&7[&5&oOPEN INV&7]"))) {
+						Entity ent = api.u.getNearestEntityInSight(e.getPlayer(), 20);
+						if (ent instanceof Player) {
+							Player target = (Player) ent;
+							api.u.openPlayerInventory(e.getPlayer(), target);
+						}
+					}
+
+					if (itemDisplay.equals(api.u.color("&7[&a&lTELEPORT VISIBLE&7]"))) {
+						Location loc = null;
+						try {
+							loc = e.getPlayer().getTargetBlockExact(100).getLocation();
+						} catch (NullPointerException ex) {
+							api.u.sendMessage(e.getPlayer(), api.u.getPrefix() + "&c&oThat distance is too great! Unable to travel");
+							e.setCancelled(true);
+							return;
+						}
+						Location newLoc = new Location(e.getPlayer().getWorld(), loc.getX(), loc.getY(), loc.getZ(), e.getPlayer().getLocation().getYaw(), e.getPlayer().getLocation().getPitch());
+						e.getPlayer().teleport(newLoc);
+						api.u.sendMessage(e.getPlayer(), api.u.getPrefix() + "&a&oTeleporting to position in line of sight");
+						e.setCancelled(true);
+					}
+					if (itemDisplay.equals(api.u.color("&7[&4&lRANDOM TP&7]"))) {
+						List<UUID> tempID = new ArrayList<>();
+						for (Player a : Bukkit.getOnlinePlayers()) {
+							if (!a.getName().equals(e.getPlayer().getName()))
+							tempID.add(a.getUniqueId());
+						}
+						if (tempID.size() > 0) {
+							int random = new Random().nextInt(tempID.size());
+							UUID idtoGet = tempID.get(random);
+							Player p = Bukkit.getPlayer(idtoGet);
+							api.u.sendMessage(e.getPlayer(), api.u.getPrefix() + "&a&oTeleporting to player &f&o" + p.getName());
+							e.getPlayer().teleport(p);
+						} else {
+							api.u.sendMessage(e.getPlayer(), api.u.getPrefix() + "&c&oThere is no one to teleport to.");
+						}
+						e.setCancelled(true);
 					}
 				}
 			}
@@ -247,7 +414,9 @@ public class Events implements Listener {
 
 	@EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
 	public void onChestUse(PlayerInteractEvent e) {
+
 		try {
+
 			Block block = e.getClickedBlock();
 			assert block != null;
 			Location blocks = block.getLocation();
@@ -263,7 +432,7 @@ public class Events implements Listener {
 					}
 				}
 			}
-		} catch (NullPointerException ignored) {
+		} catch (Exception ignored) {
 		}
 	}
 

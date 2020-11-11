@@ -38,6 +38,12 @@ public class HempfestEssentials extends JavaPlugin {
 		registerEvents();
 	}
 
+	public void onDisable() {
+		Events.vanishPlayer.clear();
+		Events.staffGui.clear();
+		Utils.invStorage.clear();
+	}
+
 	public static HempfestEssentials getInstance() {
 		return instance;
 	}

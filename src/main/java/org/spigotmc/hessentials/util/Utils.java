@@ -1,27 +1,36 @@
 package org.spigotmc.hessentials.util;
 
+import com.youtube.hempfest.hempcore.HempCore;
 import com.youtube.hempfest.hempcore.formatting.component.Text;
 import com.youtube.hempfest.hempcore.formatting.component.Text_R2;
+import com.youtube.hempfest.hempcore.formatting.string.ColoredString;
 import java.io.File;
 import java.io.InputStream;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Random;
+import java.util.Set;
 import java.util.UUID;
+import me.clip.placeholderapi.PlaceholderAPI;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Chunk;
 import org.bukkit.GameMode;
+import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.Server;
 import org.bukkit.World;
+import org.bukkit.block.Block;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandMap;
 import org.bukkit.command.CommandSender;
@@ -33,10 +42,13 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.persistence.PersistentDataType;
 import org.spigotmc.hessentials.HempfestEssentials;
 import org.spigotmc.hessentials.configuration.Config;
 import org.spigotmc.hessentials.configuration.DataManager;
+import org.spigotmc.hessentials.listener.events.Events;
 import org.spigotmc.hessentials.util.timers.Region;
 import org.spigotmc.hessentials.util.variables.StringLibrary;
 
@@ -381,6 +393,99 @@ public class Utils extends StringLibrary {
 		return fc.getString("Users." + player + ".reason");
 	}
 
+	public static HashMap<UUID, ItemStack[]> invStorage = new HashMap<>();
+
+	private void storeItems(UUID id, PlayerInventory inv) {
+		ItemStack[] contents = inv.getContents();
+		List<ItemStack> temp = new ArrayList<>();
+		Collections.addAll(temp, contents);
+		contents = temp.toArray(new ItemStack[temp.size()]);
+		int amount = contents.length;
+		ItemStack[] clonedContents = new ItemStack[amount];
+		for (int i = 0; i < amount; ++i) {
+			ItemStack item = contents[i];
+			if (item != null) {
+				clonedContents[i] = item.clone();
+			}
+		}
+		invStorage.put(id, clonedContents);
+	}
+
+	public Entity getNearestEntityInSight(Player player, int range) {
+		ArrayList<Entity> entities = (ArrayList<Entity>) player.getNearbyEntities(range, range, range);
+		ArrayList<Block> sightBlock = (ArrayList<Block>) player.getLineOfSight(null, range);
+		ArrayList<Location> sight = new ArrayList<>();
+		for (int i = 0;i<sightBlock.size();i++)
+			sight.add(sightBlock.get(i).getLocation());
+		for (int i = 0;i<sight.size();i++) {
+			for (int k = 0;k<entities.size();k++) {
+				if (Math.abs(entities.get(k).getLocation().getX()-sight.get(i).getX())<1.3) {
+					if (Math.abs(entities.get(k).getLocation().getY()-sight.get(i).getY())<1.5) {
+						if (Math.abs(entities.get(k).getLocation().getZ()-sight.get(i).getZ())<1.3) {
+							return entities.get(k);
+						}
+					}
+				}
+			}
+		}
+		return null;
+	}
+
+	public void sendStaffMenu(Player p) {
+		storeItems(p.getUniqueId(), p.getInventory());
+		p.getInventory().clear();
+		ItemStack randomTp = makeItem(Material.COMPASS, "&7[&4&lRANDOM TP&7]", "", "&b&oClick to teleport");
+		ItemStack skullTp = makeItem(Material.SKELETON_SKULL, "&7[&c&lTELEPORT LIST&7]", "", "&b&oClick to open teleport GUI");
+		ItemStack jumpTp = makeItem(Material.STICK, "&7[&a&lTELEPORT VISIBLE&7]", "", "&b&oClick to teleport to the location you're looking.");
+		ItemStack invSee = makeItem(Material.ENDER_EYE, "&7[&5&oOPEN INV&7]", "", "&b&oOpen the inventory of the player you look at.");
+		ItemStack freezePlayer = makeItem(Material.PACKED_ICE, "&7[&b&lFREEZE TARGET&7]", "", "&b&oClick to freeze the player you look at.");
+		ItemStack vanishP = makeItem(Material.PURPLE_DYE, "&7[&3&lVANISH&7]", "", "&oStatus: &c&nOff");
+		if (Events.vanishPlayer.containsKey(p.getUniqueId()) && Events.vanishPlayer.get(p.getUniqueId())) {
+			vanishP = makeItem(Material.LIME_DYE, "&7[&3&lVANISH&7]", "", "&oStatus: &a&nOn");
+		}
+		p.getInventory().setItem(0, randomTp);
+		p.getInventory().setItem(1, skullTp);
+		p.getInventory().setItem(4, jumpTp);
+		p.getInventory().setItem(6, invSee);
+		p.getInventory().setItem(7, freezePlayer);
+		p.getInventory().setItem(8, vanishP);
+
+	}
+
+	protected List<String> color(String... text) {
+		ArrayList<String> convert = new ArrayList<>();
+		for (String t : text) {
+			convert.add(new ColoredString(t, ColoredString.ColorType.MC).toString());
+		}
+		return convert;
+	}
+
+	public ItemStack makeItem(Material material, String displayName, String... lore) {
+
+		ItemStack item = new ItemStack(material);
+		ItemMeta itemMeta = item.getItemMeta();
+		assert itemMeta != null;
+		itemMeta.setDisplayName(new ColoredString(displayName, ColoredString.ColorType.MC).toString());
+
+		itemMeta.setLore(color(lore));
+		item.setItemMeta(itemMeta);
+
+		return item;
+	}
+
+	public ItemStack makePersistentItem(Material material, String displayName, String key, String data, String... lore) {
+
+		ItemStack item = new ItemStack(material);
+		ItemMeta itemMeta = item.getItemMeta();
+		assert itemMeta != null;
+		itemMeta.setDisplayName(new ColoredString(displayName, ColoredString.ColorType.MC).toString());
+		itemMeta.getPersistentDataContainer().set(new NamespacedKey(HempfestEssentials.getInstance(), key), PersistentDataType.STRING, data);
+		itemMeta.setLore(color(lore));
+		item.setItemMeta(itemMeta);
+
+		return item;
+	}
+
 	public void openPlayerInventory(Player p, Player target) {
 		Inventory inv = Bukkit.createInventory(target, 54, api.lib.color(target.getName() + " : click to update"));
 		Inventory targets = target.getInventory();
@@ -433,7 +538,12 @@ public class Utils extends StringLibrary {
 		Config motd = dm.getMisc(api.lib.getMessagesUsed());
 		InputStream in3 = HempfestEssentials.instance.getResource("Messages.yml");
 		if (motd.exists()) {
-			sendMessage(player, api.lib.getMOTD(player));
+			if (checkforPH()) {
+				sendMessage(player, PlaceholderAPI.setPlaceholders(player, api.lib.getMOTD(player)));
+			} else {
+				sendMessage(player, api.lib.getMOTD(player));
+			}
+
 		} else {
 			Config.copy(in3, motd.getFile());
 			sendMessage(player, api.lib.getPrefix() + "The plugin hasn't yet gotten a chance to create " + '"'

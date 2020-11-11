@@ -13,7 +13,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
-import org.spigotmc.hessentials.gui.staff.InventoryStaff;
+import org.spigotmc.hessentials.gui.staff.InventoryConfiguration;
 import org.spigotmc.hessentials.util.Utils;
 import org.spigotmc.hessentials.util.heHook;
 
@@ -67,7 +67,7 @@ public class InventoryClaims extends Pagination {
                 }
                 break;
             case TOTEM_OF_UNDYING:
-                new InventoryStaff(gui).open();
+                new InventoryConfiguration(gui).open();
                 break;
             case MAP:
                 Bukkit.dispatchCommand(p, "claim goto " + name);

@@ -6,7 +6,10 @@ import java.util.Arrays;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.defaults.BukkitCommand;
 import org.bukkit.entity.Player;
-import org.spigotmc.hessentials.gui.staff.InventoryStaff;
+import org.bukkit.inventory.ItemStack;
+import org.spigotmc.hessentials.gui.staff.InventoryConfiguration;
+import org.spigotmc.hessentials.listener.events.Events;
+import org.spigotmc.hessentials.util.Utils;
 import org.spigotmc.hessentials.util.heHook;
 
 public class CommandStaff extends BukkitCommand {
@@ -25,6 +28,8 @@ public class CommandStaff extends BukkitCommand {
 		return;
 	}
 
+	private static boolean isInventoryFull(Player p) { return (p.getInventory().firstEmpty() == -1); }
+
 	@Override
 	public boolean execute(CommandSender sender, String commandLabel, String[] args) {
 		if (!(sender instanceof Player)) {
@@ -39,8 +44,33 @@ public class CommandStaff extends BukkitCommand {
 		}
 		int length = args.length;
 		if (length == 0) {
-			GuiLibrary gui = HempCore.guiManager(p);
-			new InventoryStaff(gui).open();
+			//GuiLibrary gui = HempCore.guiManager(p);
+			//new InventoryConfiguration(gui).open();
+			if (Events.staffGui.containsKey(p.getUniqueId())) {
+				// give their stuff back
+				if (Events.staffGui.get(p.getUniqueId())) {
+					Events.staffGui.put(p.getUniqueId(), false);
+					p.getInventory().clear();
+					ItemStack[] contents = Utils.invStorage.get(p.getUniqueId());
+					for (ItemStack item : contents) {
+						if (item != null) {
+							if (isInventoryFull(p)) {
+								p.getWorld().dropItemNaturally(p.getLocation(), item);
+							} else
+								p.getInventory().addItem(item);
+						}
+					}
+					sendMessage(p, api.lib.getPrefix() + "&c&oDisabling staff mode, here's your stuff back.");
+				} else {
+					Events.staffGui.put(p.getUniqueId(), true);
+					api.u.sendStaffMenu(p);
+					sendMessage(p, api.lib.getPrefix() + "&a&oEnabling staff mode.");
+				}
+			} else {
+				Events.staffGui.put(p.getUniqueId(), true);
+				api.u.sendStaffMenu(p);
+				sendMessage(p, api.lib.getPrefix() + "&a&oEnabling staff mode.");
+			}
 			return true;
 		}
 
