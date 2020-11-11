@@ -3,7 +3,10 @@ package org.spigotmc.hessentials.listener;
 import com.youtube.hempfest.hempcore.HempCore;
 import com.youtube.hempfest.hempcore.gui.GuiLibrary;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
@@ -29,6 +32,10 @@ public class Claim implements Formatter {
     Player target;
     heHook api = heHook.getHook();
     String claimName;
+
+    public static HashMap<String[], int[]> claimMap = new HashMap<>();
+
+    public static HashMap<UUID, List<String>> playerClaimMap = new HashMap<>();
 
     public Claim() {
     }
@@ -234,7 +241,7 @@ public class Claim implements Formatter {
         sendMessage(p, api.lib.getPrefix() + "" + getClaimList(target).toString());
     }
 
-    public boolean isInClaim(Location loc) {
+    public static void loadClaims() {
         DataManager dm = new DataManager();
         Config data = dm.requestData("Claims");
         FileConfiguration d = data.getConfig();
@@ -242,11 +249,24 @@ public class Claim implements Formatter {
             int x = d.getInt("Location." + s + ".X");
             int z = d.getInt("Location." + s + ".Z");
             String w = d.getString("Location." + s + ".World");
+            String[] ID = {s, w};
+            int[] pos = {x, z};
+            claimMap.put(ID, pos);
+        }
+    }
+
+    public boolean isInClaim(Location loc) {
+        for (Map.Entry<String[], int[]> entry : claimMap.entrySet()) {
+            String[] data = entry.getKey();
+            int[] pos = entry.getValue();
+            String name = data[0];
+            String world = data[1];
+            int x = pos[0];
+            int z = pos[1];
             if ((loc.getChunk().getX() <= x) && (loc.getChunk().getZ() <= z) && (loc.getChunk().getX() >= x)
-                    && (loc.getChunk().getZ() >= z) && loc.getWorld().getName().equals(w)) {
+                    && (loc.getChunk().getZ() >= z) && loc.getWorld().getName().equals(world)) {
                 return true;
             }
-
         }
 
         return false;
@@ -281,22 +301,24 @@ public class Claim implements Formatter {
         return Claim;
     }
 
-    // Return the players claim list
-    public List<String> getClaimList(Player p) {
+    public static void loadPlayerClaims(Player p) {
         DataManager dm = new DataManager();
         Config pd = dm.getClaimData(p);
         List<String> Claims = pd.getConfig().getStringList("claim_data");
-        return Claims;
+        playerClaimMap.put(p.getUniqueId(), Claims);
+    }
 
+    // Return the players claim list
+    public List<String> getClaimList(Player p) {
+        return playerClaimMap.get(p.getUniqueId());
     }
 
     public List<String> claimList() {
-        DataManager dm = new DataManager();
-        Config data = dm.requestData("Claims");
-        FileConfiguration d = data.getConfig();
         List<String> Claims = new ArrayList<>();
-        for (String claim : d.getConfigurationSection("Location").getKeys(false)) {
-            Claims.add(claim);
+        for (Map.Entry<String[], int[]> entry : claimMap.entrySet()) {
+            String[] data = entry.getKey();
+            String name = data[0];
+            Claims.add(name);
         }
         return Claims;
 
@@ -540,19 +562,6 @@ public class Claim implements Formatter {
         sendMessage(p, api.lib.getPrefix() + "&a[AUTO] &rYou just claimed land: " + ID);
         return;
 
-    }
-
-    public void setClaimName(Player p, String cN) {
-        DataManager dm = new DataManager();
-        Config data = dm.getClaimData(p);
-        data.getConfig().set("AUTO-CLAIM", cN);
-        data.saveConfig();
-    }
-
-    public String claimName(Player p) {
-        DataManager dm = new DataManager();
-        Config data = dm.getClaimData(p);
-        return data.getConfig().getString("AUTO-CLAIM");
     }
 
 }

@@ -13,10 +13,8 @@ import java.util.Random;
 import java.util.UUID;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.Effect;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.NamespacedKey;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -35,6 +33,8 @@ import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.entity.ExplosionPrimeEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryCloseEvent;
+import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerBedEnterEvent;
 import org.bukkit.event.player.PlayerBucketEmptyEvent;
@@ -47,12 +47,10 @@ import org.bukkit.event.server.ServerListPingEvent;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.persistence.PersistentDataType;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
 import org.spigotmc.hessentials.HempfestEssentials;
 import org.spigotmc.hessentials.configuration.Config;
 import org.spigotmc.hessentials.configuration.DataManager;
+import org.spigotmc.hessentials.gui.staff.InventoryConfiguration;
 import org.spigotmc.hessentials.gui.staff.InventoryTeleport;
 import org.spigotmc.hessentials.listener.Claim;
 import org.spigotmc.hessentials.util.Utils;
@@ -71,6 +69,8 @@ public class Events implements Listener {
 
 	public static HashMap<UUID, Boolean> vanishPlayer = new HashMap<>();
 
+	public static HashMap<UUID, Boolean> inventoryOpen = new HashMap<>();
+
 	@EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
 	public void onPlayerJoin(PlayerJoinEvent e) {
 		Player p = e.getPlayer();
@@ -82,10 +82,18 @@ public class Events implements Listener {
 			e.setJoinMessage(api.lib.getFirstJoinMSG(p));
 			u.createPlayerConfig(p);
 			api.pc.updateClaimUser();
+			u.createHomeSection(p);
 			api.pc.createPlayerData();
 			return;
 		}
-
+		if (vanishPlayer.containsKey(p.getUniqueId())) {
+			if (vanishPlayer.get(p.getUniqueId())) {
+				for (Player a : Bukkit.getOnlinePlayers()) {
+					a.hidePlayer(HempfestEssentials.getInstance(), p);
+				}
+				api.u.sendMessage(e.getPlayer(), api.u.getPrefix() + "&3&oYou are now invisible!");
+			}
+		}
 		if (!pd.exists()) {
 			u.createPlayerConfig(p);
 		}
@@ -95,6 +103,9 @@ public class Events implements Listener {
 		api.pc.updateClaimUser();
 		e.setJoinMessage(api.lib.getJoinMSG(p));
 		u.MOTD(p);
+		api.u.resetItems(p);
+		inventoryOpen.put(e.getPlayer().getUniqueId(), false);
+		Claim.loadPlayerClaims(p);
 	}
 
 	@EventHandler(priority = EventPriority.HIGH)
@@ -102,6 +113,16 @@ public class Events implements Listener {
 		if (Events.staffGui.containsKey(e.getPlayer().getUniqueId())) {
 			e.setCancelled(Events.staffGui.get(e.getPlayer().getUniqueId()));
 		}
+	}
+
+	@EventHandler(priority = EventPriority.HIGH)
+	public void onInvOpen(InventoryOpenEvent e) {
+		inventoryOpen.put(e.getPlayer().getUniqueId(), true);
+	}
+
+	@EventHandler(priority = EventPriority.HIGH)
+	public void onInvClose(InventoryCloseEvent e) {
+		inventoryOpen.put(e.getPlayer().getUniqueId(), false);
 	}
 
 	// GUI interact event
@@ -123,10 +144,11 @@ public class Events implements Listener {
 			Menu menu = (Menu) holder;
 			// Call the handleMenu object which takes the event and processes it
 			menu.handleMenu(e);
+			return;
 		}
 		Player whoClicked = (Player) e.getWhoClicked();
 		if (Events.staffGui.containsKey(whoClicked.getUniqueId())) {
-				e.setCancelled(Events.staffGui.get(whoClicked.getUniqueId()));
+			e.setCancelled(Events.staffGui.get(whoClicked.getUniqueId()));
 		}
 
 		String menu = e.getView().getTitle();
@@ -176,6 +198,8 @@ public class Events implements Listener {
 		// UUID uuid = p.getUniqueId();
 		// PlayerData pd = new PlayerData(uuid);
 		e.setQuitMessage(api.lib.getLeaveMSG(p));
+		inventoryOpen.remove(e.getPlayer().getUniqueId());
+		Claim.playerClaimMap.remove(p.getUniqueId());
 		if (staffGui.containsKey(p.getUniqueId())) {
 			if (staffGui.get(p.getUniqueId())) {
 				staffGui.put(p.getUniqueId(), false);
@@ -273,19 +297,22 @@ public class Events implements Listener {
 			}
 		}
 	}
+
 	@EventHandler
-	public void onPlayerLeftClick(PlayerInteractEvent e){
+	public void onPowerTool(PlayerInteractEvent e) {
 		//Event listener for power tool command
-		if(e.getAction().equals(Action.LEFT_CLICK_AIR) || e.getAction().equals(Action.LEFT_CLICK_BLOCK)){
-			if(e.getPlayer().hasPermission("hEssentials.staff.powertool")){
-				if(e.getItem() != null){
-					Player p = e.getPlayer();
-					ItemStack holding = p.getInventory().getItemInMainHand();
-					if(holding.getItemMeta().getLore()!=null) {
-						if (holding.getItemMeta().getLore().get(0).contains(ChatColor.LIGHT_PURPLE + "Current Command: ")) {
-							String command = holding.getItemMeta().getLore().get(0).replace(ChatColor.LIGHT_PURPLE + "Current Command: /", "");
-							Bukkit.dispatchCommand(p, command);
-							e.setCancelled(true);
+		if (!e.isCancelled()) {
+			if (e.getAction().equals(Action.LEFT_CLICK_AIR) || e.getAction().equals(Action.LEFT_CLICK_BLOCK)) {
+				if (e.getPlayer().hasPermission("hEssentials.staff.powertool")) {
+					if (e.getItem() != null) {
+						Player p = e.getPlayer();
+						ItemStack holding = p.getInventory().getItemInMainHand();
+						if (holding.getItemMeta().getLore() != null) {
+							if (holding.getItemMeta().getLore().get(0).contains(ChatColor.LIGHT_PURPLE + "Current Command: ")) {
+								String command = holding.getItemMeta().getLore().get(0).replace(ChatColor.LIGHT_PURPLE + "Current Command: /", "");
+								Bukkit.dispatchCommand(p, command);
+								e.setCancelled(true);
+							}
 						}
 					}
 				}
@@ -303,109 +330,119 @@ public class Events implements Listener {
 
 	@EventHandler
 	public void onUtilUse(PlayerInteractEvent e) {
-		List<Action> allActions = new ArrayList<>(Arrays.asList(Action.LEFT_CLICK_AIR, Action.LEFT_CLICK_BLOCK, Action.RIGHT_CLICK_AIR, Action.RIGHT_CLICK_BLOCK));
-		if (allActions.contains(e.getAction())) {
-			ItemStack item = e.getPlayer().getInventory().getItemInMainHand();
-			if (item.hasItemMeta()) {
-				if (item.getItemMeta().hasDisplayName()) {
-					String itemDisplay = item.getItemMeta().getDisplayName();
-					if (itemDisplay.equals(api.u.color("&7[&3&lVANISH&7]"))) {
-						if (vanishPlayer.containsKey(e.getPlayer().getUniqueId())) {
-							if (vanishPlayer.get(e.getPlayer().getUniqueId())) {
-								// disable it
-								vanishPlayer.put(e.getPlayer().getUniqueId(), false);
-								for (Player a : Bukkit.getOnlinePlayers()) {
-									a.showPlayer(HempfestEssentials.getInstance(), e.getPlayer());
-								}
-								api.u.sendMessage(e.getPlayer(), api.u.getPrefix() + "&a&oYou are now visible!");
-								ItemMeta meta = item.getItemMeta();
-								meta.setLore(Arrays.asList(" ", api.lib.color("&oStatus: &c&nOff")));
-								item.setType(Material.PURPLE_DYE);
-								item.setItemMeta(meta);
-							} else {
-								//enable it
-								vanishPlayer.put(e.getPlayer().getUniqueId(), true);
-								for (Player a : Bukkit.getOnlinePlayers()) {
-									a.hidePlayer(HempfestEssentials.getInstance(), e.getPlayer());
-								}
-								api.u.sendMessage(e.getPlayer(), api.u.getPrefix() + "&3&oYou are now invisible!");
-								ItemMeta meta = item.getItemMeta();
-								meta.setLore(Arrays.asList(" ", api.lib.color("&oStatus: &a&nOn")));
-								item.setType(Material.LIME_DYE);
-								item.setItemMeta(meta);
-								return;
-							}
-						} else {
-							// enable it
-							vanishPlayer.put(e.getPlayer().getUniqueId(), true);
-							for (Player a : Bukkit.getOnlinePlayers()) {
-								a.hidePlayer(HempfestEssentials.getInstance(), e.getPlayer());
-							}
-							api.u.sendMessage(e.getPlayer(), api.u.getPrefix() + "&3&oYou are now invisible!");
-							ItemMeta meta = item.getItemMeta();
-							meta.setLore(Arrays.asList(" ", api.lib.color("&oStatus: &a&nOn")));
-							item.setType(Material.LIME_DYE);
-							item.setItemMeta(meta);
-						}
-					}
-					if (itemDisplay.equals(api.u.color("&7[&c&lTELEPORT LIST&7]"))) {
-						GuiLibrary gui = HempCore.guiManager(e.getPlayer());
-						new InventoryTeleport(gui).open();
-						e.setCancelled(true);
-					}
-					if (itemDisplay.equals(api.u.color("&7[&b&lFREEZE TARGET&7]"))) {
-						Entity ent = api.u.getNearestEntityInSight(e.getPlayer(), 20);
-						if (ent instanceof Player) {
-							Player target = (Player) ent;
-							if (!frozenDudes.contains(target.getUniqueId())) {
-								frozenDudes.add(target.getUniqueId());
-								api.u.sendMessage(target, api.u.getPrefix() + "&c&oYou are now frozen!");
-								api.u.sendMessage(e.getPlayer(), api.u.getPrefix() + "&a&o" + target.getName() + " now frozen!");
-							} else {
-								frozenDudes.remove(target.getUniqueId());
-								api.u.sendMessage(target, api.u.getPrefix() + "&b&oYou are now un-frozen!");
-								api.u.sendMessage(e.getPlayer(), api.u.getPrefix() + "&b&o" + target.getName() + " now un-frozen!");
-							}
-						}
-					}
-					if (itemDisplay.equals(api.u.color("&7[&5&oOPEN INV&7]"))) {
-						Entity ent = api.u.getNearestEntityInSight(e.getPlayer(), 20);
-						if (ent instanceof Player) {
-							Player target = (Player) ent;
-							api.u.openPlayerInventory(e.getPlayer(), target);
-						}
-					}
+		if (!e.isCancelled()) {
+			List<Action> allActions = new ArrayList<>(Arrays.asList(Action.LEFT_CLICK_AIR, Action.LEFT_CLICK_BLOCK, Action.RIGHT_CLICK_AIR));
+			if (!inventoryOpen.get(e.getPlayer().getUniqueId())) {
+				if (allActions.contains(e.getAction())) {
 
-					if (itemDisplay.equals(api.u.color("&7[&a&lTELEPORT VISIBLE&7]"))) {
-						Location loc = null;
-						try {
-							loc = e.getPlayer().getTargetBlockExact(100).getLocation();
-						} catch (NullPointerException ex) {
-							api.u.sendMessage(e.getPlayer(), api.u.getPrefix() + "&c&oThat distance is too great! Unable to travel");
-							e.setCancelled(true);
-							return;
+					ItemStack item = e.getPlayer().getInventory().getItemInMainHand();
+					if (item.hasItemMeta()) {
+						if (item.getItemMeta().hasDisplayName()) {
+							String itemDisplay = item.getItemMeta().getDisplayName();
+							if (itemDisplay.equals(api.u.color("&7[&3&lVANISH&7]"))) {
+								if (vanishPlayer.containsKey(e.getPlayer().getUniqueId())) {
+									if (vanishPlayer.get(e.getPlayer().getUniqueId())) {
+										// disable it
+										vanishPlayer.put(e.getPlayer().getUniqueId(), false);
+										for (Player a : Bukkit.getOnlinePlayers()) {
+											a.showPlayer(HempfestEssentials.getInstance(), e.getPlayer());
+										}
+										api.u.sendMessage(e.getPlayer(), api.u.getPrefix() + "&a&oYou are now visible!");
+										ItemMeta meta = item.getItemMeta();
+										meta.setLore(Arrays.asList(" ", api.lib.color("&oStatus: &c&nOff")));
+										item.setType(Material.PURPLE_DYE);
+										item.setItemMeta(meta);
+									} else {
+										//enable it
+										vanishPlayer.put(e.getPlayer().getUniqueId(), true);
+										for (Player a : Bukkit.getOnlinePlayers()) {
+											a.hidePlayer(HempfestEssentials.getInstance(), e.getPlayer());
+										}
+										api.u.sendMessage(e.getPlayer(), api.u.getPrefix() + "&3&oYou are now invisible!");
+										ItemMeta meta = item.getItemMeta();
+										meta.setLore(Arrays.asList(" ", api.lib.color("&oStatus: &a&nOn")));
+										item.setType(Material.LIME_DYE);
+										item.setItemMeta(meta);
+										return;
+									}
+								} else {
+									// enable it
+									vanishPlayer.put(e.getPlayer().getUniqueId(), true);
+									for (Player a : Bukkit.getOnlinePlayers()) {
+										a.hidePlayer(HempfestEssentials.getInstance(), e.getPlayer());
+									}
+									api.u.sendMessage(e.getPlayer(), api.u.getPrefix() + "&3&oYou are now invisible!");
+									ItemMeta meta = item.getItemMeta();
+									meta.setLore(Arrays.asList(" ", api.lib.color("&oStatus: &a&nOn")));
+									item.setType(Material.LIME_DYE);
+									item.setItemMeta(meta);
+								}
+							}
+							if (itemDisplay.equals(api.u.color("&7[&c&lTELEPORT LIST&7]"))) {
+								GuiLibrary gui = HempCore.guiManager(e.getPlayer());
+								new InventoryTeleport(gui).open();
+								e.setCancelled(true);
+							}
+							if (itemDisplay.equals(api.u.color("&7[&b&lFREEZE TARGET&7]"))) {
+								Entity ent = api.u.getNearestEntityInSight(e.getPlayer(), 20);
+								if (ent instanceof Player) {
+									Player target = (Player) ent;
+									if (!frozenDudes.contains(target.getUniqueId())) {
+										frozenDudes.add(target.getUniqueId());
+										api.u.sendMessage(target, api.u.getPrefix() + "&c&oYou are now frozen!");
+										api.u.sendMessage(e.getPlayer(), api.u.getPrefix() + "&a&o" + target.getName() + " now frozen!");
+									} else {
+										frozenDudes.remove(target.getUniqueId());
+										api.u.sendMessage(target, api.u.getPrefix() + "&b&oYou are now un-frozen!");
+										api.u.sendMessage(e.getPlayer(), api.u.getPrefix() + "&b&o" + target.getName() + " now un-frozen!");
+									}
+								}
+							}
+
+							if (itemDisplay.equals(api.u.color("&7[&6&lCONFIG&7]"))) {
+								new InventoryConfiguration(HempCore.guiManager(e.getPlayer())).open();
+								e.setCancelled(true);
+							}
+							if (itemDisplay.equals(api.u.color("&7[&5&oOPEN INV&7]"))) {
+								Entity ent = api.u.getNearestEntityInSight(e.getPlayer(), 20);
+								if (ent instanceof Player) {
+									Player target = (Player) ent;
+									api.u.openPlayerInventory(e.getPlayer(), target);
+								}
+							}
+
+							if (itemDisplay.equals(api.u.color("&7[&a&lTELEPORT VISIBLE&7]"))) {
+								Location loc = null;
+								try {
+									loc = e.getPlayer().getTargetBlockExact(100).getLocation();
+								} catch (NullPointerException ex) {
+									api.u.sendMessage(e.getPlayer(), api.u.getPrefix() + "&c&oThat distance is too great! Unable to travel");
+									e.setCancelled(true);
+									return;
+								}
+								Location newLoc = new Location(e.getPlayer().getWorld(), loc.getX(), loc.getY(), loc.getZ(), e.getPlayer().getLocation().getYaw(), e.getPlayer().getLocation().getPitch());
+								e.getPlayer().teleport(newLoc);
+								api.u.sendMessage(e.getPlayer(), api.u.getPrefix() + "&a&oTeleporting to position in line of sight");
+								e.setCancelled(true);
+							}
+							if (itemDisplay.equals(api.u.color("&7[&4&lRANDOM TP&7]"))) {
+								List<UUID> tempID = new ArrayList<>();
+								for (Player a : Bukkit.getOnlinePlayers()) {
+									if (!a.getName().equals(e.getPlayer().getName()))
+										tempID.add(a.getUniqueId());
+								}
+								if (tempID.size() > 0) {
+									int random = new Random().nextInt(tempID.size());
+									UUID idtoGet = tempID.get(random);
+									Player p = Bukkit.getPlayer(idtoGet);
+									api.u.sendMessage(e.getPlayer(), api.u.getPrefix() + "&a&oTeleporting to player &f&o" + p.getName());
+									e.getPlayer().teleport(p);
+								} else {
+									api.u.sendMessage(e.getPlayer(), api.u.getPrefix() + "&c&oThere is no one to teleport to.");
+								}
+								e.setCancelled(true);
+							}
 						}
-						Location newLoc = new Location(e.getPlayer().getWorld(), loc.getX(), loc.getY(), loc.getZ(), e.getPlayer().getLocation().getYaw(), e.getPlayer().getLocation().getPitch());
-						e.getPlayer().teleport(newLoc);
-						api.u.sendMessage(e.getPlayer(), api.u.getPrefix() + "&a&oTeleporting to position in line of sight");
-						e.setCancelled(true);
-					}
-					if (itemDisplay.equals(api.u.color("&7[&4&lRANDOM TP&7]"))) {
-						List<UUID> tempID = new ArrayList<>();
-						for (Player a : Bukkit.getOnlinePlayers()) {
-							if (!a.getName().equals(e.getPlayer().getName()))
-							tempID.add(a.getUniqueId());
-						}
-						if (tempID.size() > 0) {
-							int random = new Random().nextInt(tempID.size());
-							UUID idtoGet = tempID.get(random);
-							Player p = Bukkit.getPlayer(idtoGet);
-							api.u.sendMessage(e.getPlayer(), api.u.getPrefix() + "&a&oTeleporting to player &f&o" + p.getName());
-							e.getPlayer().teleport(p);
-						} else {
-							api.u.sendMessage(e.getPlayer(), api.u.getPrefix() + "&c&oThere is no one to teleport to.");
-						}
-						e.setCancelled(true);
 					}
 				}
 			}
@@ -416,19 +453,20 @@ public class Events implements Listener {
 	public void onChestUse(PlayerInteractEvent e) {
 
 		try {
-
-			Block block = e.getClickedBlock();
-			assert block != null;
-			Location blocks = block.getLocation();
-			Player p = e.getPlayer();
-			api = heHook.getPlayerHook(p);
-			if (api.pc.isInClaim(blocks)) {
-				if (block.getType().isInteractable()) {
-					if (!api.pc.getClaimList(p).contains(api.pc.getClaimName(blocks))) {
-						e.setCancelled(true);
-						String claimName = api.pc.getClaimName(blocks);
-						String claimOwner = api.pc.getClaimOwner(blocks);
-						api.pc.sendMessage(p, api.lib.getPrefix() + api.lib.getCannotUse(p, claimName, claimOwner));
+			if (!e.isCancelled()) {
+				Block block = e.getClickedBlock();
+				assert block != null;
+				Location blocks = block.getLocation();
+				Player p = e.getPlayer();
+				api = heHook.getPlayerHook(p);
+				if (api.pc.isInClaim(blocks)) {
+					if (block.getType().isInteractable()) {
+						if (!api.pc.getClaimList(p).contains(api.pc.getClaimName(blocks))) {
+							e.setCancelled(true);
+							String claimName = api.pc.getClaimName(blocks);
+							String claimOwner = api.pc.getClaimOwner(blocks);
+							api.pc.sendMessage(p, api.lib.getPrefix() + api.lib.getCannotUse(p, claimName, claimOwner));
+						}
 					}
 				}
 			}
@@ -464,23 +502,22 @@ public class Events implements Listener {
 				String claimOwner = api.pc.getClaimOwner(bloc);
 				api.pc.sendMessage(p, api.lib.getPrefix() + api.lib.getCannotPlace(p, claimName, claimOwner));
 			}
-			return;
 		}
-		if (block.getType().equals(Material.TNT)) {
-			for (Block bl : getBlocks(block, 4)) {
-				Location blocks = bl.getLocation();
-				api = heHook.getPlayerHook(p);
-				if (api.pc.isInClaim(blocks)) {
-					if (!api.pc.getClaimList(p).contains(api.pc.getClaimName(blocks))) {
-						e.setCancelled(true);
-						String claimName = api.pc.getClaimName(blocks);
-						String claimOwner = api.pc.getClaimOwner(blocks);
-						api.pc.sendMessage(p, api.lib.getPrefix() + api.lib.getCannotPlaceTNT(p, claimName, claimOwner));
-					}
-					return;
-				}
-			}
-		}
+		//if (block.getType().equals(Material.TNT)) {
+		//for (Block bl : getBlocks(block, 4)) {
+		//Location blocks = bl.getLocation();
+		//api = heHook.getPlayerHook(p);
+		//if (api.pc.isInClaim(blocks)) {
+		//if (!api.pc.getClaimList(p).contains(api.pc.getClaimName(blocks))) {
+		//	e.setCancelled(true);
+		//	String claimName = api.pc.getClaimName(blocks);
+		//	String claimOwner = api.pc.getClaimOwner(blocks);
+		//	api.pc.sendMessage(p, api.lib.getPrefix() + api.lib.getCannotPlaceTNT(p, claimName, claimOwner));
+		//}
+		//return;
+		//}
+		//}
+		//}
 	}
 
 	@EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)

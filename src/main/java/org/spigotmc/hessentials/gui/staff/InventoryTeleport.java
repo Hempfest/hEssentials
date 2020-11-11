@@ -2,21 +2,15 @@ package org.spigotmc.hessentials.gui.staff;
 
 import com.youtube.hempfest.hempcore.HempCore;
 import com.youtube.hempfest.hempcore.gui.GuiLibrary;
-import com.youtube.hempfest.hempcore.gui.Pagination;
-import java.util.ArrayList;
-import java.util.UUID;
-import org.bukkit.Bukkit;
+import com.youtube.hempfest.hempcore.gui.Menu;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
-import org.bukkit.NamespacedKey;
-import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.persistence.PersistentDataType;
 import org.spigotmc.hessentials.util.heHook;
 
-public class InventoryTeleport extends Pagination {
+public class InventoryTeleport extends Menu {
 
     heHook api = heHook.getHook();
 
@@ -30,67 +24,40 @@ public class InventoryTeleport extends Pagination {
 
     @Override
     public String getMenuName() {
-        return color(api.lib.getPrefix() + "&6&l&oPlayer Selection");
+        return color(api.lib.getPrefix() + " &3&oSelect a player type.");
     }
 
     @Override
     public int getSlots() {
-        return 54;
+        return 9;
     }
 
     @Override
     public void handleMenu(InventoryClickEvent e) {
         Player p = (Player) e.getWhoClicked();
-        ArrayList<String> players = new ArrayList<>(api.u.getAllUserIDs());
-        String player = e.getCurrentItem().getItemMeta().getPersistentDataContainer().get(new NamespacedKey(HempCore.getInstance(), "player"), PersistentDataType.STRING);
         Material mat = e.getCurrentItem().getType();
         GuiLibrary gui = HempCore.guiManager(p);
         switch (mat) {
             case PLAYER_HEAD:
-                OfflinePlayer target = Bukkit.getOfflinePlayer(UUID.fromString(player));
-                Bukkit.dispatchCommand(p, "tp " + target.getName());
-                p.closeInventory();
+                new InventoryTeleportOnline(gui).open();
+                break;
+            case SKELETON_SKULL:
+                new InventoryTeleportOffline(gui).open();
                 break;
             case BARRIER:
                 p.closeInventory();
-                break;
-            case DARK_OAK_BUTTON:
-                if (ChatColor.stripColor(e.getCurrentItem().getItemMeta().getDisplayName()).equalsIgnoreCase("Left")) {
-                    if (page == 0) {
-                        p.sendMessage(ChatColor.GRAY + "You are already on the first page.");
-                    } else {
-                        page = page - 1;
-                        super.open();
-                    }
-                } else if (ChatColor.stripColor(e.getCurrentItem().getItemMeta().getDisplayName())
-                        .equalsIgnoreCase("Right")) {
-                    if (!((index + 1) >= players.size())) {
-                        page = page + 1;
-                        super.open();
-                    } else {
-                        p.sendMessage(ChatColor.GRAY + "You are on the last page.");
-                    }
-                }
                 break;
         }
     }
 
     @Override
     public void setMenuItems() {
-        addMenuBorder();
-        ArrayList<String> players = new ArrayList<>(api.u.getAllUserIDs());
-        if (players != null && !players.isEmpty()) {
-            for (int i = 0; i < getMaxItemsPerPage(); i++) {
-                index = getMaxItemsPerPage() * page + i;
-                if (index >= players.size())
-                    break;
-                if (players.get(index) != null) {
-                    ItemStack player = makePersistentItem(Material.PLAYER_HEAD, "&e&l&o" + api.u.usernameFromUUID(UUID.fromString(players.get(index))), "player", players.get(index), "", "Click to teleport.");
-                    inventory.addItem(player);
-
-                }
-            }
-        }
-        setFillerGlassLight();
+        ItemStack online = makeItem(Material.PLAYER_HEAD, "&7[&b&oOnline&7]", "", "Click to view a list of online players");
+        ItemStack offline = makeItem(Material.SKELETON_SKULL, "&7[&c&oOffline&7]", "", "Click to view a list of offline players");
+        ItemStack exit = makeItem(Material.BARRIER, "&7[&4&oExit&7]", "");
+        inventory.setItem(3, online);
+        inventory.setItem(5, offline);
+        inventory.setItem(8, exit);
+        setFillerGlass();
     }
 }

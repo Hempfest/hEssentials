@@ -1,6 +1,5 @@
 package org.spigotmc.hessentials.util;
 
-import com.youtube.hempfest.hempcore.HempCore;
 import com.youtube.hempfest.hempcore.formatting.component.Text;
 import com.youtube.hempfest.hempcore.formatting.component.Text_R2;
 import com.youtube.hempfest.hempcore.formatting.string.ColoredString;
@@ -15,8 +14,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Random;
-import java.util.Set;
 import java.util.UUID;
 import me.clip.placeholderapi.PlaceholderAPI;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -421,7 +418,7 @@ public class Utils extends StringLibrary {
 			for (int k = 0;k<entities.size();k++) {
 				if (Math.abs(entities.get(k).getLocation().getX()-sight.get(i).getX())<1.3) {
 					if (Math.abs(entities.get(k).getLocation().getY()-sight.get(i).getY())<1.5) {
-						if (Math.abs(entities.get(k).getLocation().getZ()-sight.get(i).getZ())<1.3) {
+						if (Math.abs(entities.get(k).getLocation().getZ() - sight.get(i).getZ()) < 1.3) {
 							return entities.get(k);
 						}
 					}
@@ -429,6 +426,36 @@ public class Utils extends StringLibrary {
 			}
 		}
 		return null;
+	}
+
+	public void resetItems(Player p) {
+		if (!Events.staffGui.containsKey(p.getUniqueId())) {
+			List<String> names = new ArrayList<>(Arrays.asList(color("&7[&4&lRANDOM TP&7]"), color("&7[&c&lTELEPORT LIST&7]"), color("&7[&a&lTELEPORT VISIBLE&7]"), color("&7[&5&oOPEN INV&7]"), color("&7[&b&lFREEZE TARGET&7]"), color("&7[&3&lVANISH&7]")));
+			for (ItemStack item : p.getInventory().getContents()) {
+				if (item != null) {
+					if (item.hasItemMeta()) {
+						if (item.getItemMeta().hasDisplayName()) {
+							if (names.contains(item.getItemMeta().getDisplayName())) {
+								p.getInventory().clear();
+								sendMessage(p, getPrefix() + "It looks like you left before we could load your inventory..");
+								return;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	public List<ItemStack> getStaffItems() {
+		ItemStack randomTp = makeItem(Material.COMPASS, "&7[&4&lRANDOM TP&7]", "", "&b&oClick to teleport");
+		ItemStack skullTp = makeItem(Material.SKELETON_SKULL, "&7[&c&lTELEPORT LIST&7]", "", "&b&oClick to open teleport GUI");
+		ItemStack jumpTp = makeItem(Material.STICK, "&7[&a&lTELEPORT VISIBLE&7]", "", "&b&oClick to teleport to the location you're looking.");
+		ItemStack invSee = makeItem(Material.ENDER_EYE, "&7[&5&oOPEN INV&7]", "", "&b&oOpen the inventory of the player you look at.");
+		ItemStack freezePlayer = makeItem(Material.PACKED_ICE, "&7[&b&lFREEZE TARGET&7]", "", "&b&oClick to freeze the player you look at.");
+		ItemStack vanishP = makeItem(Material.PURPLE_DYE, "&7[&3&lVANISH&7]", "", "&oStatus: &c&nOff");
+		ItemStack config = makeItem(Material.PAPER, "&7[&6&lCONFIG&7]", "", "&b&oClick to view player information.");
+		return new ArrayList<>(Arrays.asList(randomTp, skullTp, jumpTp, invSee, freezePlayer, vanishP, config));
 	}
 
 	public void sendStaffMenu(Player p) {
@@ -440,11 +467,15 @@ public class Utils extends StringLibrary {
 		ItemStack invSee = makeItem(Material.ENDER_EYE, "&7[&5&oOPEN INV&7]", "", "&b&oOpen the inventory of the player you look at.");
 		ItemStack freezePlayer = makeItem(Material.PACKED_ICE, "&7[&b&lFREEZE TARGET&7]", "", "&b&oClick to freeze the player you look at.");
 		ItemStack vanishP = makeItem(Material.PURPLE_DYE, "&7[&3&lVANISH&7]", "", "&oStatus: &c&nOff");
+		ItemStack config = makeItem(Material.PAPER, "&7[&6&lCONFIG&7]", "", "&b&oClick to view player information.");
 		if (Events.vanishPlayer.containsKey(p.getUniqueId()) && Events.vanishPlayer.get(p.getUniqueId())) {
 			vanishP = makeItem(Material.LIME_DYE, "&7[&3&lVANISH&7]", "", "&oStatus: &a&nOn");
 		}
 		p.getInventory().setItem(0, randomTp);
 		p.getInventory().setItem(1, skullTp);
+		if (p.hasPermission("hessentials.staff.extra")) {
+			p.getInventory().setItem(2, config);
+		}
 		p.getInventory().setItem(4, jumpTp);
 		p.getInventory().setItem(6, invSee);
 		p.getInventory().setItem(7, freezePlayer);

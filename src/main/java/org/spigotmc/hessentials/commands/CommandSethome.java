@@ -56,7 +56,11 @@ public class CommandSethome extends BukkitCommand {
 				api.lib.sendNoPermission(p, this.getPermission());
 				return true;
 			}
-			home.set();
+			try {
+				home.set();
+			} catch (Exception e) {
+				u.createHomeSection(p);
+			}
 			return true;
 		}
 
