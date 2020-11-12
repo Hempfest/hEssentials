@@ -13,6 +13,8 @@ C:\Users\Michael\Desktop\Spigot Plugins\hEssentials\src\main\java\org\spigotmc\h
 C:\Users\Michael\Desktop\Spigot Plugins\hEssentials\src\main\java\org\spigotmc\hessentials\listener\Claim.java
 C:\Users\Michael\Desktop\Spigot Plugins\hEssentials\src\main\java\org\spigotmc\hessentials\commands\staff\CommandTeleport.java
 C:\Users\Michael\Desktop\Spigot Plugins\hEssentials\src\main\java\org\spigotmc\hessentials\commands\CommandHome.java
+C:\Users\Michael\Desktop\Spigot Plugins\hEssentials\src\main\java\org\spigotmc\hessentials\commands\staff\CommandSpawnMob.java
+C:\Users\Michael\Desktop\Spigot Plugins\hEssentials\src\main\java\org\spigotmc\hessentials\gui\staff\InventoryConfiguration.java
 C:\Users\Michael\Desktop\Spigot Plugins\hEssentials\src\main\java\org\spigotmc\hessentials\util\variables\Formatter.java
 C:\Users\Michael\Desktop\Spigot Plugins\hEssentials\src\main\java\org\spigotmc\hessentials\gui\staff\InventoryPlayers.java
 C:\Users\Michael\Desktop\Spigot Plugins\hEssentials\src\main\java\org\spigotmc\hessentials\commands\staff\CommandDay.java
@@ -26,6 +28,8 @@ C:\Users\Michael\Desktop\Spigot Plugins\hEssentials\src\main\java\org\spigotmc\h
 C:\Users\Michael\Desktop\Spigot Plugins\hEssentials\src\main\java\org\spigotmc\hessentials\commands\CommandDelhome.java
 C:\Users\Michael\Desktop\Spigot Plugins\hEssentials\src\main\java\org\spigotmc\hessentials\gui\staff\InventoryPlayer.java
 C:\Users\Michael\Desktop\Spigot Plugins\hEssentials\src\main\java\org\spigotmc\hessentials\commands\CommandReply.java
+C:\Users\Michael\Desktop\Spigot Plugins\hEssentials\src\main\java\org\spigotmc\hessentials\gui\staff\InventoryTeleportOffline.java
+C:\Users\Michael\Desktop\Spigot Plugins\hEssentials\src\main\java\org\spigotmc\hessentials\gui\staff\InventoryTeleportOnline.java
 C:\Users\Michael\Desktop\Spigot Plugins\hEssentials\src\main\java\org\spigotmc\hessentials\commands\staff\CommandReload.java
 C:\Users\Michael\Desktop\Spigot Plugins\hEssentials\src\main\java\org\spigotmc\hessentials\commands\CommandMessage.java
 C:\Users\Michael\Desktop\Spigot Plugins\hEssentials\src\main\java\org\spigotmc\hessentials\util\variables\StringLibrary.java
@@ -44,6 +48,7 @@ C:\Users\Michael\Desktop\Spigot Plugins\hEssentials\src\main\java\org\spigotmc\h
 C:\Users\Michael\Desktop\Spigot Plugins\hEssentials\src\main\java\org\spigotmc\hessentials\commands\staff\CommandFly.java
 C:\Users\Michael\Desktop\Spigot Plugins\hEssentials\src\main\java\org\spigotmc\hessentials\commands\staff\CommandHomelist.java
 C:\Users\Michael\Desktop\Spigot Plugins\hEssentials\src\main\java\org\spigotmc\hessentials\commands\staff\CommandPowerTool.java
+C:\Users\Michael\Desktop\Spigot Plugins\hEssentials\src\main\java\org\spigotmc\hessentials\util\timers\Wild.java
 C:\Users\Michael\Desktop\Spigot Plugins\hEssentials\src\main\java\org\spigotmc\hessentials\commands\CommandHomes.java
 C:\Users\Michael\Desktop\Spigot Plugins\hEssentials\src\main\java\org\spigotmc\hessentials\commands\CommandOnlineList.java
 C:\Users\Michael\Desktop\Spigot Plugins\hEssentials\src\main\java\org\spigotmc\hessentials\util\heHook.java
@@ -51,10 +56,10 @@ C:\Users\Michael\Desktop\Spigot Plugins\hEssentials\src\main\java\org\spigotmc\h
 C:\Users\Michael\Desktop\Spigot Plugins\hEssentials\src\main\java\org\spigotmc\hessentials\gui\claim\InventoryClaimMenu.java
 C:\Users\Michael\Desktop\Spigot Plugins\hEssentials\src\main\java\org\spigotmc\hessentials\commands\staff\CommandNight.java
 C:\Users\Michael\Desktop\Spigot Plugins\hEssentials\src\main\java\org\spigotmc\hessentials\commands\staff\CommandMuteChat.java
-C:\Users\Michael\Desktop\Spigot Plugins\hEssentials\src\main\java\org\spigotmc\hessentials\gui\staff\InventoryStaff.java
 C:\Users\Michael\Desktop\Spigot Plugins\hEssentials\src\main\java\org\spigotmc\hessentials\commands\staff\CommandKickAll.java
 C:\Users\Michael\Desktop\Spigot Plugins\hEssentials\src\main\java\org\spigotmc\hessentials\commands\staff\CommandWhois.java
 C:\Users\Michael\Desktop\Spigot Plugins\hEssentials\src\main\java\org\spigotmc\hessentials\listener\events\ClaimUpdateEvent.java
+C:\Users\Michael\Desktop\Spigot Plugins\hEssentials\src\main\java\org\spigotmc\hessentials\gui\staff\InventoryTeleport.java
 C:\Users\Michael\Desktop\Spigot Plugins\hEssentials\src\main\java\org\spigotmc\hessentials\commands\staff\CommandItem.java
 C:\Users\Michael\Desktop\Spigot Plugins\hEssentials\src\main\java\org\spigotmc\hessentials\commands\staff\CommandBan.java
 C:\Users\Michael\Desktop\Spigot Plugins\hEssentials\src\main\java\org\spigotmc\hessentials\commands\staff\CommandGMC.java

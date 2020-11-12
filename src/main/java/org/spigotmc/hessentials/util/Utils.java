@@ -15,6 +15,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.UUID;
+
+import com.youtube.hempfest.hempcore.library.Entities;
 import me.clip.placeholderapi.PlaceholderAPI;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
@@ -95,6 +97,78 @@ public class Utils extends StringLibrary {
 		} catch (final Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	public Location getLocationFromCommandArguments(Player p, String[] args, int argsLocStart){ //getLocationFromCommandArguments(player, args, 0);
+		Location loc = null;
+		double x = 0;
+		double y = 0;
+		double z = 0;
+		String xStr = args[argsLocStart];
+		String yStr = args[argsLocStart + 1];
+		String zStr = args[argsLocStart + 2];
+		if (xStr.contains("~")) {
+			xStr = xStr.replace("~", "");
+			if(!xStr.isEmpty()) {
+				x = p.getLocation().getX() + Double.parseDouble(xStr);
+			}else{
+				x = p .getLocation().getX();
+			}
+		}else{
+			x = Double.parseDouble(xStr);
+		}
+		if (yStr.contains("~")) {
+			yStr = yStr.replace("~", "");
+			if(!yStr.isEmpty()) {
+				y = p.getLocation().getY() + Double.parseDouble(yStr);
+			}else{
+				y = p .getLocation().getY();
+			}
+		}else{
+			y = Double.parseDouble(yStr);
+		}
+		if (zStr.contains("~")) {
+			zStr = zStr.replace("~", "");
+			if(!zStr.isEmpty()) {
+				z = p.getLocation().getZ() + Double.parseDouble(zStr);
+			}else{
+				z = p .getLocation().getZ();
+			}
+		}else{
+			z = Double.parseDouble(zStr);
+		}
+		loc = new Location(p.getWorld(), x, y, z);
+		return loc;
+	}
+
+
+	public boolean spawnMobs(Player p, ArrayList<String> mobs, Location spawnLocation){
+		ArrayList<Entity> entities = new ArrayList<>();
+		for (String mob : mobs) {
+			if (Entities.getMaterial(mob) != null) {
+				entities.add(spawnLocation.getWorld().spawnEntity(spawnLocation, Entities.getMaterial(mob)));
+			} else {
+				p.sendMessage(api.lib.color(api.lib.getPrefix() + ChatColor.RED + "The mob " + mob + " does not exist!"));
+				entities.forEach(Entity::remove);
+				return false;
+			}
+		}
+		for (int i = 1; i < entities.size(); i++) {
+			entities.get(i -1).addPassenger(entities.get(i));
+		}
+		return true;
+	}
+	public boolean spawnMobs(ArrayList<String> mobs, Location spawnLocation) {
+		ArrayList<Entity> entities = new ArrayList<>();
+
+		for (String mob : mobs) {
+			if (Entities.getMaterial(mob) != null) {
+				entities.add(spawnLocation.getWorld().spawnEntity(spawnLocation, Entities.getMaterial(mob)));
+			} else {
+				break;
+			}
+		}
+		return true;
 	}
 
 	public void registerCommand(BukkitCommand command) {
