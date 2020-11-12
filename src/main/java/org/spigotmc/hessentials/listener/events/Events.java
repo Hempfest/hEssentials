@@ -1,5 +1,6 @@
 package org.spigotmc.hessentials.listener.events;
 
+import com.youtube.hempfest.centerspawn.CenterSpawn;
 import com.youtube.hempfest.hempcore.HempCore;
 import com.youtube.hempfest.hempcore.formatting.component.Text;
 import com.youtube.hempfest.hempcore.gui.GuiLibrary;
@@ -19,6 +20,7 @@ import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Creeper;
+import org.bukkit.entity.EnderCrystal;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Fireball;
 import org.bukkit.entity.Player;
@@ -29,6 +31,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.entity.ExplosionPrimeEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
@@ -246,6 +249,21 @@ public class Events implements Listener {
 					p.sendMessage(api.lib.color(api.lib.getPrefix() + api.lib.getCannotUse(p, api.pc.getClaimName(e.getEntity().getLocation()), api.pc.getClaimOwner(e.getEntity().getLocation()))));
 				}
 			}
+		}
+	}
+
+	@EventHandler
+	public void onEntityDamage(EntityDamageByEntityEvent e) {
+		if ((e.getDamager() instanceof Player) && (e.getEntity() instanceof EnderCrystal)) {
+			Player p = (Player) e.getDamager();
+			EnderCrystal ec = (EnderCrystal) e.getEntity();
+
+			if (CenterSpawn.isInSpawn(ec.getLocation())) {
+				ec.setInvulnerable(true);
+				api.u.sendMessage(p, api.u.getPrefix() + "&c&oYou wish to destroy everyones way out? How dare you...");
+				e.setCancelled(true);
+			}
+
 		}
 	}
 

@@ -55,5 +55,12 @@
 			<scope>system</scope>
 			<systemPath>${project.basedir}/src/main/resources/HempCore.jar</systemPath>
 		</dependency>
+		<dependency>
+			<groupId>CenterSpawn</groupId>
+			<artifactId>CenterSpawn</artifactId>
+			<version>1.0.0</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/src/main/resources/CenterSpawn.jar</systemPath>
+		</dependency>
 	</dependencies>
 </project>

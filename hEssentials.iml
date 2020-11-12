@@ -44,5 +44,14 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="module-library">
+      <library name="Maven: CenterSpawn:CenterSpawn:1.0.0">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/src/main/resources/CenterSpawn.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>

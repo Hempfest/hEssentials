@@ -42,6 +42,7 @@ import org.spigotmc.hessentials.listener.Claim;
 import org.spigotmc.hessentials.listener.events.Events;
 import org.spigotmc.hessentials.util.Utils;
 import org.spigotmc.hessentials.util.timers.Region;
+import org.spigotmc.hessentials.util.timers.Wild;
 import org.spigotmc.hessentials.util.variables.Placeholders;
 
 
@@ -81,7 +82,9 @@ public class HempfestEssentials extends JavaPlugin {
 
 	public void registerEvents() {
 		Region timer = new Region();
-		timer.runTaskTimerAsynchronously(this, 2, 10);
+		Wild wild = new Wild();
+		timer.runTaskTimerAsynchronously(this, 20, 20);
+		wild.runTaskTimer(this, 10, 10);
 		getServer().getPluginManager().registerEvents(new Events(), getInstance());
 		if (u.checkforPH()) {
 			new Placeholders(this).register();
