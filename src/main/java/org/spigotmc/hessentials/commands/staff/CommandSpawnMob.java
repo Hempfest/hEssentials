@@ -30,8 +30,16 @@ public class CommandSpawnMob extends BukkitCommand {
     }
     @Override
     public List<String> tabComplete(CommandSender sender, String alias, String[] args) throws IllegalArgumentException {
-
-        return null;
+        List<String> completes = new ArrayList<>();
+        List<EntityType> entities = Arrays.asList(EntityType.values());
+        if(args.length == 1){
+             for (int i = 0; i < entities.size(); i++) {
+                     if (entities.get(i).toString().toLowerCase().startsWith(args[0].toLowerCase())) {
+                         completes.add(entities.get(i).toString().toLowerCase());
+                 }
+            }
+        }
+        return completes;
     }
 
     @Override
