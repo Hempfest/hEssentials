@@ -13,31 +13,7 @@ import org.spigotmc.hessentials.commands.CommandOnlineList;
 import org.spigotmc.hessentials.commands.CommandReply;
 import org.spigotmc.hessentials.commands.CommandSethome;
 import org.spigotmc.hessentials.commands.CommandTrack;
-import org.spigotmc.hessentials.commands.staff.CommandBan;
-import org.spigotmc.hessentials.commands.staff.CommandBroadcast;
-import org.spigotmc.hessentials.commands.staff.CommandDay;
-import org.spigotmc.hessentials.commands.staff.CommandFly;
-import org.spigotmc.hessentials.commands.staff.CommandGMC;
-import org.spigotmc.hessentials.commands.staff.CommandGMS;
-import org.spigotmc.hessentials.commands.staff.CommandGamemode;
-import org.spigotmc.hessentials.commands.staff.CommandGive;
-import org.spigotmc.hessentials.commands.staff.CommandHomelist;
-import org.spigotmc.hessentials.commands.staff.CommandInvsee;
-import org.spigotmc.hessentials.commands.staff.CommandItem;
-import org.spigotmc.hessentials.commands.staff.CommandKick;
-import org.spigotmc.hessentials.commands.staff.CommandKickAll;
-import org.spigotmc.hessentials.commands.staff.CommandMuteChat;
-import org.spigotmc.hessentials.commands.staff.CommandNight;
-import org.spigotmc.hessentials.commands.staff.CommandPlayerhome;
-import org.spigotmc.hessentials.commands.staff.CommandPowerTool;
-import org.spigotmc.hessentials.commands.staff.CommandReload;
-import org.spigotmc.hessentials.commands.staff.CommandSocialSpy;
-import org.spigotmc.hessentials.commands.staff.CommandStaff;
-import org.spigotmc.hessentials.commands.staff.CommandSuffix;
-import org.spigotmc.hessentials.commands.staff.CommandTeleport;
-import org.spigotmc.hessentials.commands.staff.CommandUnban;
-import org.spigotmc.hessentials.commands.staff.CommandUpdate;
-import org.spigotmc.hessentials.commands.staff.CommandWhois;
+import org.spigotmc.hessentials.commands.staff.*;
 import org.spigotmc.hessentials.listener.Claim;
 import org.spigotmc.hessentials.listener.events.Events;
 import org.spigotmc.hessentials.util.Utils;
@@ -95,6 +71,7 @@ public class HempfestEssentials extends JavaPlugin {
 	}
 
 	public void registerCommands() {
+		u.registerCommand(new CommandSpawnMob());
 		u.registerCommand(new CommandPowerTool());
 		u.registerCommand(new CommandBroadcast());
 		u.registerCommand(new CommandHome());
