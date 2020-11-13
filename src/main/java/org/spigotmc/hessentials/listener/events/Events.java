@@ -34,6 +34,7 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.entity.ExplosionPrimeEvent;
+import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
@@ -174,9 +175,14 @@ public class Events implements Listener {
 		Player p = e.getPlayer();
 		int half = Math.round(Bukkit.getOnlinePlayers().size() / 2);
 		if (!u.day(p)) {
+			if (Bukkit.getOnlinePlayers().size() == 2) {
+				sleeping.clear();
+				Bukkit.broadcastMessage(api.lib.getPrefix() + "Half population voted. Making it day.");
+				Objects.requireNonNull(Bukkit.getWorld(Objects.requireNonNull(p.getLocation().getWorld()).getName())).setTime(0L);
+			}
 			if (sleeping.size() == half) {
 				sleeping.clear();
-				Bukkit.broadcastMessage(api.lib.getPrefix() + "half population voted. Making it day.");
+				Bukkit.broadcastMessage(api.lib.getPrefix() + "Half population voted. Making it day.");
 				Objects.requireNonNull(Bukkit.getWorld(Objects.requireNonNull(p.getLocation().getWorld()).getName())).setTime(0L);
 				return;
 			}
@@ -188,7 +194,19 @@ public class Events implements Listener {
 		}
 	}
 
-	private static boolean isInventoryFull(Player p) { return (p.getInventory().firstEmpty() == -1); }
+	@EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
+	public void onDeathEvent(PlayerDeathEvent e) {
+		Player p = e.getEntity().getPlayer();
+		if (staffGui.containsKey(p.getUniqueId())) {
+			e.setKeepInventory(true);
+			e.getDrops().clear();
+		}
+
+	}
+
+	private static boolean isInventoryFull(Player p) {
+		return (p.getInventory().firstEmpty() == -1);
+	}
 
 	@EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
 	public void onPlayerLeave(PlayerQuitEvent e) {
@@ -259,9 +277,11 @@ public class Events implements Listener {
 			EnderCrystal ec = (EnderCrystal) e.getEntity();
 
 			if (CenterSpawn.isInSpawn(ec.getLocation())) {
-				ec.setInvulnerable(true);
-				api.u.sendMessage(p, api.u.getPrefix() + "&c&oYou wish to destroy everyones way out? How dare you...");
-				e.setCancelled(true);
+				if (!p.hasPermission("hessentials.gate.break")) {
+					ec.setInvulnerable(true);
+					api.u.sendMessage(p, api.u.getPrefix() + "&c&oYou wish to destroy everyones way out? How dare you...");
+					e.setCancelled(true);
+				}
 			}
 
 		}
@@ -316,21 +336,19 @@ public class Events implements Listener {
 		}
 	}
 
-	@EventHandler
+	@EventHandler(priority = EventPriority.HIGH)
 	public void onPowerTool(PlayerInteractEvent e) {
 		//Event listener for power tool command
-		if (!e.isCancelled()) {
-			if (e.getAction().equals(Action.LEFT_CLICK_AIR) || e.getAction().equals(Action.LEFT_CLICK_BLOCK)) {
-				if (e.getPlayer().hasPermission("hEssentials.staff.powertool")) {
-					if (e.getItem() != null) {
-						Player p = e.getPlayer();
-						ItemStack holding = p.getInventory().getItemInMainHand();
-						if (holding.getItemMeta().getLore() != null) {
-							if (holding.getItemMeta().getLore().get(0).contains(ChatColor.LIGHT_PURPLE + "Current Command: ")) {
-								String command = holding.getItemMeta().getLore().get(0).replace(ChatColor.LIGHT_PURPLE + "Current Command: /", "");
-								Bukkit.dispatchCommand(p, command);
-								e.setCancelled(true);
-							}
+		if (e.getAction().equals(Action.LEFT_CLICK_AIR) || e.getAction().equals(Action.LEFT_CLICK_BLOCK)) {
+			if (e.getPlayer().hasPermission("hEssentials.staff.powertool")) {
+				if (e.getItem() != null) {
+					Player p = e.getPlayer();
+					ItemStack holding = p.getInventory().getItemInMainHand();
+					if (holding.getItemMeta().getLore() != null) {
+						if (holding.getItemMeta().getLore().get(0).contains(ChatColor.LIGHT_PURPLE + "Current Command: ")) {
+							String command = holding.getItemMeta().getLore().get(0).replace(ChatColor.LIGHT_PURPLE + "Current Command: /", "");
+							Bukkit.dispatchCommand(p, command);
+							e.setCancelled(true);
 						}
 					}
 				}
@@ -338,7 +356,7 @@ public class Events implements Listener {
 		}
 	}
 
-	@EventHandler
+	@EventHandler(priority = EventPriority.HIGH)
 	public void onFrozenMove(PlayerMoveEvent e) {
 		if (frozenDudes.contains(e.getPlayer().getUniqueId())) {
 			e.setTo(e.getFrom());
@@ -348,8 +366,7 @@ public class Events implements Listener {
 
 	@EventHandler
 	public void onUtilUse(PlayerInteractEvent e) {
-		if (!e.isCancelled()) {
-			List<Action> allActions = new ArrayList<>(Arrays.asList(Action.LEFT_CLICK_AIR, Action.LEFT_CLICK_BLOCK, Action.RIGHT_CLICK_AIR));
+		List<Action> allActions = new ArrayList<>(Arrays.asList(Action.LEFT_CLICK_AIR, Action.LEFT_CLICK_BLOCK, Action.RIGHT_CLICK_AIR));
 			if (!inventoryOpen.get(e.getPlayer().getUniqueId())) {
 				if (allActions.contains(e.getAction())) {
 
@@ -464,21 +481,19 @@ public class Events implements Listener {
 					}
 				}
 			}
-		}
 	}
 
-	@EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
+	@EventHandler(priority = EventPriority.HIGH)
 	public void onChestUse(PlayerInteractEvent e) {
 
 		try {
-			if (!e.isCancelled()) {
-				Block block = e.getClickedBlock();
-				assert block != null;
-				Location blocks = block.getLocation();
-				Player p = e.getPlayer();
-				api = heHook.getPlayerHook(p);
-				if (api.pc.isInClaim(blocks)) {
-					if (block.getType().isInteractable()) {
+			Block block = e.getClickedBlock();
+			assert block != null;
+			Location blocks = block.getLocation();
+			Player p = e.getPlayer();
+			api = heHook.getPlayerHook(p);
+			if (api.pc.isInClaim(blocks)) {
+				if (block.getType().isInteractable()) {
 						if (!api.pc.getClaimList(p).contains(api.pc.getClaimName(blocks))) {
 							e.setCancelled(true);
 							String claimName = api.pc.getClaimName(blocks);
@@ -487,7 +502,6 @@ public class Events implements Listener {
 						}
 					}
 				}
-			}
 		} catch (Exception ignored) {
 		}
 	}
