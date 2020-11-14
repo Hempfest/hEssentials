@@ -60,9 +60,17 @@ public class CommandFeed extends BukkitCommand {
             return true;
         }
 
-        if (length > 0) {
-            boolean status;
+        boolean status;
+        if (length == 0){
+            status = FeedPlayer(args[0],Boolean.parseBoolean(p.getDisplayName()));
 
+            if (status){
+                sendMessage(p, api.lib.getPrefix() + "&a&o You Have Been Feed!");
+            }else {
+                sendMessage(p, api.lib.getPrefix() + "&a&o There Was An Error!");
+            }
+        }
+        else if (length > 0) {
             if (length == 2){
                 status = FeedPlayer(args[0],Boolean.parseBoolean(args[1]));
             }else {
