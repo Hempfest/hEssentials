@@ -23,9 +23,13 @@
 			<url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
 		</repository>
 		<repository>
-            <id>placeholderapi</id>
-            <url>https://repo.extendedclip.com/content/repositories/placeholderapi/</url>
-        </repository>
+			<id>placeholderapi</id>
+			<url>https://repo.extendedclip.com/content/repositories/placeholderapi/</url>
+		</repository>
+		<repository>
+			<id>jitpack.io</id>
+			<url>https://jitpack.io/</url>
+		</repository>
 	</repositories>
 
 	<dependencies>
@@ -52,8 +56,6 @@
 			<groupId>com.youtube.hempfest.hempcore</groupId>
 			<artifactId>hempCore</artifactId>
 			<version>1.0.0</version>
-			<scope>system</scope>
-			<systemPath>${project.basedir}/src/main/resources/HempCore.jar</systemPath>
 		</dependency>
 		<dependency>
 			<groupId>CenterSpawn</groupId>
