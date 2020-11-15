@@ -1,6 +1,9 @@
 package org.spigotmc.hessentials;
 
 import java.util.logging.Logger;
+
+import org.bukkit.Server;
+import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.spigotmc.hessentials.commands.CommandClaim;
 import org.spigotmc.hessentials.commands.CommandDelhome;
@@ -14,6 +17,7 @@ import org.spigotmc.hessentials.commands.CommandReply;
 import org.spigotmc.hessentials.commands.CommandSethome;
 import org.spigotmc.hessentials.commands.staff.*;
 import org.spigotmc.hessentials.listener.Claim;
+import org.spigotmc.hessentials.listener.events.EntityDamagedEvent;
 import org.spigotmc.hessentials.listener.events.Events;
 import org.spigotmc.hessentials.util.Utils;
 import org.spigotmc.hessentials.util.timers.Region;
@@ -60,13 +64,17 @@ public class HempfestEssentials extends JavaPlugin {
 		Wild wild = new Wild();
 		timer.runTaskTimerAsynchronously(this, 20, 20);
 		wild.runTaskTimer(this, 10, 80);
-		getServer().getPluginManager().registerEvents(new Events(), getInstance());
 		if (u.checkforPH()) {
 			new Placeholders(this).register();
 			log.info(String.format("[%s] - PlaceholderAPI FOUND!", getDescription().getName()));
 		} else {
 			log.info(String.format("[%s] - PlaceholderAPI not detected!", getDescription().getName()));
 		}
+
+		PluginManager PM = getServer().getPluginManager();
+
+		PM.registerEvents(new Events(), this);
+		PM.registerEvents(new EntityDamagedEvent(), this);
 	}
 
 	public void registerCommands() {
@@ -83,6 +91,7 @@ public class HempfestEssentials extends JavaPlugin {
 		u.registerCommand(new CommandHelp());
 		u.registerCommand(new CommandDay());
 		u.registerCommand(new CommandFeed());
+		u.registerCommand(new CommandGod());
 		u.registerCommand(new CommandNight());
 		//u.registerCommand(new CommandTrack());
 		u.registerCommand(new CommandGive());
