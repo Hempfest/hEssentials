@@ -22,15 +22,12 @@ public class CommandFeed extends BukkitCommand {
         return;
     }
 
-    public boolean FeedPlayer(String PlayerName,boolean HideNotifiyer){
+    public boolean FeedPlayer(String PlayerName){
         Player p = Bukkit.getPlayer(PlayerName);
         if (p != null){
             p.setHealth(20.0);
-            p.setFoodLevel(15);
+            p.setFoodLevel(20);
             p.setSaturation(5);
-            if (!HideNotifiyer){
-                sendMessage(p, api.lib.getPrefix() + "&a&oYou Have Been Feed!.");
-            }
             return true;
         }
         return false;
@@ -42,12 +39,7 @@ public class CommandFeed extends BukkitCommand {
 
         if (!(sender instanceof Player)) { //Sender Is Console
             if (length > 0) {
-                if (length == 2){
-                    FeedPlayer(args[0],Boolean.parseBoolean(args[1]));
-                }else {
-                    FeedPlayer(args[0],true);
-                }
-
+                FeedPlayer(args[0]);
                 sendMessage(sender, api.lib.getPrefix() + "&a&o" + args[0] + " Has Been Feed!");
                 return true;
             }
@@ -62,20 +54,16 @@ public class CommandFeed extends BukkitCommand {
 
         boolean status;
         if (length == 0){
-            status = FeedPlayer(args[0],Boolean.parseBoolean(p.getDisplayName()));
+            status = FeedPlayer(p.getDisplayName());
 
             if (status){
                 sendMessage(p, api.lib.getPrefix() + "&a&o You Have Been Feed!");
             }else {
                 sendMessage(p, api.lib.getPrefix() + "&a&o There Was An Error!");
             }
-        }
-        else if (length > 0) {
-            if (length == 2){
-                status = FeedPlayer(args[0],Boolean.parseBoolean(args[1]));
-            }else {
-                status = FeedPlayer(args[0],false);
-            }
+            return true;
+        } else if (length > 0) {
+            status = FeedPlayer(args[0]);
 
             if (status){
                 sendMessage(p, api.lib.getPrefix() + "&a&o" + args[0] + " Has Been Feed!");
