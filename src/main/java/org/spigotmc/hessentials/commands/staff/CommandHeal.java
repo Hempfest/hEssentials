@@ -7,14 +7,14 @@ import org.bukkit.entity.Player;
 import org.spigotmc.hessentials.util.heHook;
 import java.util.Arrays;
 
-public class CommandFeed extends BukkitCommand {
+public class CommandHeal extends BukkitCommand {
     heHook api = heHook.getHook();
 
-    public CommandFeed() {
-        super("Feed");
+    public CommandHeal() {
+        super("Heal");
         setDescription("Primary command for hEssentials.");
-        setAliases(Arrays.asList("hfeed", "feed"));
-        setPermission("hessentials.staff.feed");
+        setAliases(Arrays.asList("hheal", "heal"));
+        setPermission("hessentials.staff.heal");
     }
 
     public void sendMessage(CommandSender player, String message) {
@@ -22,9 +22,10 @@ public class CommandFeed extends BukkitCommand {
         return;
     }
 
-    public boolean FeedPlayer(String PlayerName){
+    public boolean HealPlayer(String PlayerName){
         Player p = Bukkit.getPlayer(PlayerName);
         if (p != null){
+            p.setHealth(20.0);
             p.setFoodLevel(20);
             p.setSaturation(5);
             return true;
@@ -38,8 +39,8 @@ public class CommandFeed extends BukkitCommand {
 
         if (!(sender instanceof Player)) { //Sender Is Console
             if (length > 0) {
-                FeedPlayer(args[0]);
-                sendMessage(sender, api.lib.getPrefix() + "&a&o" + args[0] + " Has Been Fed!");
+                HealPlayer(args[0]);
+                sendMessage(sender, api.lib.getPrefix() + "&a&o" + args[0] + " Has Been Healed!");
                 return true;
             }
             return true;
@@ -53,19 +54,19 @@ public class CommandFeed extends BukkitCommand {
 
         boolean status;
         if (length == 0){
-            status = FeedPlayer(p.getDisplayName());
+            status = HealPlayer(p.getDisplayName());
 
             if (status){
-                sendMessage(p, api.lib.getPrefix() + "&a&o You Have Been Fed!");
+                sendMessage(p, api.lib.getPrefix() + "&a&oYou Have Been Healed!");
             }else {
-                sendMessage(p, api.lib.getPrefix() + "&a&o There Was An Error!");
+                sendMessage(p, api.lib.getPrefix() + "&a&oThere Was An Error!");
             }
             return true;
         } else {
-            status = FeedPlayer(args[0]);
+            status = HealPlayer(args[0]);
 
             if (status){
-                sendMessage(p, api.lib.getPrefix() + "&a&o" + args[0] + " Has Been Feed!");
+                sendMessage(p, api.lib.getPrefix() + "&a&o" + args[0] + " Has Been Healed!");
             }else {
                 sendMessage(p, api.lib.getPrefix() + "&a&o" + args[0] + " Has Not Been Found!");
             }

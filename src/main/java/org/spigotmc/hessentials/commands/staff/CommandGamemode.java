@@ -48,24 +48,29 @@ public class CommandGamemode extends BukkitCommand {
 				Player target = Bukkit.getPlayer(args[1]);
 
 				if (target != null) {
-					if (args[0].equalsIgnoreCase("creative")) {
+					if (args[0].equalsIgnoreCase("creative") || args[0].equalsIgnoreCase("c") || args[0].equalsIgnoreCase("1")) {
 						target.setGameMode(GameMode.CREATIVE);
 						sendMessage(target, api.lib.getPrefix() + "Now in game-mode creative.");
 						sendMessage(sender, api.lib.getPrefix() + target.getName() + "'s now in game-mode creative.");
 						return true;
-					} else if (args[0].equalsIgnoreCase("survival")) {
+					} else if (args[0].equalsIgnoreCase("survival") || args[0].equalsIgnoreCase("s") || args[0].equalsIgnoreCase("0")) {
 						target.setGameMode(GameMode.SURVIVAL);
 						sendMessage(target, api.lib.getPrefix() + "Now in game-mode survival.");
 						sendMessage(sender, api.lib.getPrefix() + target.getName() + "'s now in game-mode survival.");
 						return true;
-					} else if (args[0].equalsIgnoreCase("adventure")) {
+					} else if (args[0].equalsIgnoreCase("adventure")  || args[0].equalsIgnoreCase("a") || args[0].equalsIgnoreCase("2")) {
 						target.setGameMode(GameMode.ADVENTURE);
 						sendMessage(target, api.lib.getPrefix() + "Now in game-mode adventure.");
 						sendMessage(sender, api.lib.getPrefix() + target.getName() + "'s now in game-mode adventure.");
 						return true;
+					} else if (args[0].equalsIgnoreCase("spectator")  || args[0].equalsIgnoreCase("sp") || args[0].equalsIgnoreCase("3")) {
+						target.setGameMode(GameMode.SPECTATOR);
+						sendMessage(target, api.lib.getPrefix() + "Now in game-mode spectator.");
+						sendMessage(sender, api.lib.getPrefix() + target.getName() + "'s now in game-mode spectator.");
+						return true;
 					}
 					sendMessage(sender, api.lib.getPrefix() + "&4Unknown gamemode type " + '"' + args[0] + '"' + ".");
-					sendMessage(sender, api.lib.getPrefix() + "Gamemodes: &7Survival, Creative, Adventure");
+					sendMessage(sender, api.lib.getPrefix() + "Gamemodes: &7Survival, Creative, Adventure, Spectator");
 				} else {
 					sendMessage(sender, api.lib.getPrefix() + "&4Player " + '"' + args[1] + '"' + " not found.");
 					return true;
@@ -91,19 +96,24 @@ public class CommandGamemode extends BukkitCommand {
 		}
 
 		if (length == 1) {
-			if (args[0].equalsIgnoreCase("creative")) {
+			if (args[0].equalsIgnoreCase("creative") || args[0].equalsIgnoreCase("c") || args[0].equalsIgnoreCase("1")) {
 				p.setGameMode(GameMode.CREATIVE);
 				sendMessage(p, api.lib.getPrefix() + "Now in game-mode creative.");
 				return true;
 			}
-			if (args[0].equalsIgnoreCase("survival")) {
+			if (args[0].equalsIgnoreCase("survival") || args[0].equalsIgnoreCase("s") || args[0].equalsIgnoreCase("0")) {
 				p.setGameMode(GameMode.SURVIVAL);
 				sendMessage(p, api.lib.getPrefix() + "Now in game-mode survival.");
 				return true;
 			}
-			if (args[0].equalsIgnoreCase("adventure")) {
-				p.setGameMode(GameMode.CREATIVE);
-				sendMessage(p, api.lib.getPrefix() + "Now in game-mode creative.");
+			if (args[0].equalsIgnoreCase("adventure") || args[0].equalsIgnoreCase("a") || args[0].equalsIgnoreCase("2")) {
+				p.setGameMode(GameMode.ADVENTURE);
+				sendMessage(p, api.lib.getPrefix() + "Now in game-mode adventure.");
+				return true;
+			}
+			if (args[0].equalsIgnoreCase("spectator") || args[0].equalsIgnoreCase("sp") || args[0].equalsIgnoreCase("3")) {
+				p.setGameMode(GameMode.SPECTATOR);
+				sendMessage(p, api.lib.getPrefix() + "Now in game-mode spectator.");
 				return true;
 			}
 			sendMessage(p, api.lib.getPrefix() + "&4Unknown gamemode type " + '"' + args[0] + '"' + ".");
@@ -115,20 +125,25 @@ public class CommandGamemode extends BukkitCommand {
 			Player target = Bukkit.getPlayer(args[1]);
 
 			if (target != null) {
-				if (args[0].equalsIgnoreCase("creative") && p.hasPermission(this.getPermission() + ".other")) {
+				if (args[0].equalsIgnoreCase("creative") || args[0].equalsIgnoreCase("c") || args[0].equalsIgnoreCase("1") && p.hasPermission(this.getPermission() + ".other")) {
 					target.setGameMode(GameMode.CREATIVE);
 					sendMessage(target, api.lib.getPrefix() + "Now in game-mode creative.");
 					sendMessage(p, api.lib.getPrefix() + target.getName() + "'s now in game-mode creative.");
 					return true;
-				} else if (args[0].equalsIgnoreCase("survival") && p.hasPermission(this.getPermission() + ".other")) {
+				} else if (args[0].equalsIgnoreCase("survival")  || args[0].equalsIgnoreCase("s") || args[0].equalsIgnoreCase("0") && p.hasPermission(this.getPermission() + ".other")) {
 					target.setGameMode(GameMode.SURVIVAL);
 					sendMessage(target, api.lib.getPrefix() + "Now in game-mode survival.");
 					sendMessage(p, api.lib.getPrefix() + target.getName() + "'s now in game-mode survival.");
 					return true;
-				} else if (args[0].equalsIgnoreCase("adventure") && p.hasPermission(this.getPermission() + ".other")) {
+				} else if (args[0].equalsIgnoreCase("adventure")  || args[0].equalsIgnoreCase("a") || args[0].equalsIgnoreCase("2") && p.hasPermission(this.getPermission() + ".other")) {
 					target.setGameMode(GameMode.ADVENTURE);
 					sendMessage(target, api.lib.getPrefix() + "Now in game-mode adventure.");
 					sendMessage(p, api.lib.getPrefix() + target.getName() + "'s now in game-mode adventure.");
+					return true;
+				} else if (args[0].equalsIgnoreCase("spectator")  || args[0].equalsIgnoreCase("sp") || args[0].equalsIgnoreCase("3") && p.hasPermission(this.getPermission() + ".other")) {
+					target.setGameMode(GameMode.SPECTATOR);
+					sendMessage(target, api.lib.getPrefix() + "Now in game-mode spectator.");
+					sendMessage(p, api.lib.getPrefix() + target.getName() + "'s now in game-mode spectator.");
 					return true;
 				} else if (!p.hasPermission(this.getPermission() + ".other")) {
 					api.lib.sendNoPermission(p, this.getPermission() + ".other");
@@ -154,6 +169,7 @@ public class CommandGamemode extends BukkitCommand {
 			arguments.add("creative");
 			arguments.add("adventure");
 			arguments.add("survival");
+			arguments.add("spectator");
 		}
 
 		List<String> result = new ArrayList<String>();

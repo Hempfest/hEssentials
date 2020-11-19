@@ -1,8 +1,14 @@
 package org.spigotmc.hessentials;
 
+import java.io.IOException;
+import java.lang.reflect.Field;
+import java.util.Objects;
 import java.util.logging.Logger;
 
+import com.google.common.reflect.ClassPath;
 import org.bukkit.Server;
+import org.bukkit.command.Command;
+import org.bukkit.command.SimpleCommandMap;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.spigotmc.hessentials.commands.CommandClaim;
@@ -19,6 +25,7 @@ import org.spigotmc.hessentials.commands.staff.*;
 import org.spigotmc.hessentials.listener.Claim;
 import org.spigotmc.hessentials.listener.events.EntityDamagedEvent;
 import org.spigotmc.hessentials.listener.events.Events;
+import org.spigotmc.hessentials.util.CommandsRegistrar;
 import org.spigotmc.hessentials.util.Utils;
 import org.spigotmc.hessentials.util.timers.Region;
 import org.spigotmc.hessentials.util.timers.Wild;
@@ -39,7 +46,8 @@ public class HempfestEssentials extends JavaPlugin {
 		u.createCV();
 		u.updateInvsee();
 		//u.runClaimEvent();
-		registerCommands();
+		CommandsRegistrar.registerCommands("org.spigotmc.hessentials.commands", this);
+		//registerCommands();
 		registerEvents();
 		Claim.loadClaims();
 	}
@@ -77,6 +85,7 @@ public class HempfestEssentials extends JavaPlugin {
 		PM.registerEvents(new EntityDamagedEvent(), this);
 	}
 
+	/*
 	public void registerCommands() {
 		u.registerCommand(new CommandSpawnMob());
 		u.registerCommand(new CommandPowerTool());
@@ -90,6 +99,7 @@ public class HempfestEssentials extends JavaPlugin {
 		u.registerCommand(new CommandSuffix());
 		u.registerCommand(new CommandHelp());
 		u.registerCommand(new CommandDay());
+		u.registerCommand(new CommandHeal());
 		u.registerCommand(new CommandFeed());
 		u.registerCommand(new CommandGod());
 		u.registerCommand(new CommandNight());
@@ -100,6 +110,8 @@ public class HempfestEssentials extends JavaPlugin {
 		u.registerCommand(new CommandTeleport());
 		u.registerCommand(new CommandGMS());
 		u.registerCommand(new CommandGMC());
+		u.registerCommand(new CommandGMA());
+		u.registerCommand(new CommandGMSP());
 		u.registerCommand(new CommandOnlineList());
 		u.registerCommand(new CommandMessage());
 		u.registerCommand(new CommandReply());
@@ -118,5 +130,5 @@ public class HempfestEssentials extends JavaPlugin {
 		u.registerCommand(new CommandJump());
 		u.registerCommand(new CommandGamemode());
 	}
-
+*/
 }

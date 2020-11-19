@@ -39,14 +39,7 @@ import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
-import org.bukkit.event.player.AsyncPlayerChatEvent;
-import org.bukkit.event.player.PlayerBedEnterEvent;
-import org.bukkit.event.player.PlayerBucketEmptyEvent;
-import org.bukkit.event.player.PlayerDropItemEvent;
-import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerMoveEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.player.*;
 import org.bukkit.event.server.ServerListPingEvent;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
@@ -562,6 +555,24 @@ public class Events implements Listener {
 		e.setMaxPlayers(m.getInt("Server-Max-Players"));
 	}
 
+	@EventHandler(priority = EventPriority.HIGH)
+	public void onSpawnItem(PlayerSwapHandItemsEvent e){
+		if(staffGui.containsKey(e.getPlayer().getUniqueId())){
+			if(staffGui.get(e.getPlayer().getUniqueId())){
+				e.setCancelled(true);
+			}
+		}
+	}
+
+	@EventHandler(priority = EventPriority.HIGH)
+	public void onItemPickup(PlayerPickupItemEvent e){
+		if(staffGui.containsKey(e.getPlayer().getUniqueId())){
+			if(staffGui.get(e.getPlayer().getUniqueId())){
+				e.setCancelled(true);
+			}
+		}
+	}
+
 	public ArrayList<Block> getBlocks(Block start, int radius) {
 		ArrayList<Block> blocks = new ArrayList<Block>();
 		for (double x = start.getLocation().getX() - radius; x <= start.getLocation().getX() + radius; x++) {
@@ -582,6 +593,5 @@ public class Events implements Listener {
 		Block adjacentBlock = lastTwoTargetBlocks.get(0);
 		return targetBlock.getFace(adjacentBlock);
 	}
-
 
 }

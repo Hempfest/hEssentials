@@ -171,20 +171,6 @@ public class Utils extends StringLibrary {
 		return true;
 	}
 
-	public void registerCommand(BukkitCommand command) {
-		try {
-
-			final Field commandMapField = Bukkit.getServer().getClass().getDeclaredField("commandMap");
-			commandMapField.setAccessible(true);
-
-			final CommandMap commandMap = (CommandMap) commandMapField.get(Bukkit.getServer());
-			commandMap.register(command.getLabel(), command);
-
-		} catch (final Exception e) {
-			e.printStackTrace();
-		}
-	}
-
 	public boolean isMuted() {
 		return Chat_MUTED;
 	}

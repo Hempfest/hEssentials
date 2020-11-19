@@ -41,7 +41,7 @@ public class CommandItem extends BukkitCommand {
 						api.lib.sendNoPermission(p, this.getPermission());
 						return true;
 					}
-					sendMessage(p, api.lib.getPrefix() + api.lib.getInvalidUsage() + commandLabel + " <itemAmount> <itemName>");
+					sendMessage(p, api.lib.getPrefix() + api.lib.getInvalidUsage() + commandLabel + " <itemName> <itemAmount>");
 					return true;
 				}
 				if (length == 1) {
@@ -49,11 +49,14 @@ public class CommandItem extends BukkitCommand {
 						api.lib.sendNoPermission(p, this.getPermission());
 						return true;
 					}
-					if (!api.u.isInt(args[0])) { //check whether the player is online
-						sendMessage(p, api.lib.getPrefix() + args[0] + " is not a number.");
+					Material itemType = Items.getMaterial(args[0]);
+					if (itemType == null) { //check whether the material exists
+						sendMessage(p, api.lib.getPrefix() + "Item not found: " + args[0] + ".");
 						return true;
 					}
-					sendMessage(p, api.lib.getPrefix() + api.lib.getInvalidUsage() + commandLabel + " <itemAmount> <itemName>");
+					ItemStack itemStack = new ItemStack(itemType, 64);
+					p.getInventory().addItem(itemStack);
+					sendMessage(p, api.lib.getPrefix() + "Here you go!");
 					return true;
 				}
 				if (length == 2) {
@@ -61,26 +64,22 @@ public class CommandItem extends BukkitCommand {
 						api.lib.sendNoPermission(p, this.getPermission());
 						return true;
 					}
-					Material itemType = Items.getMaterial(args[1]);
+					Material itemType = Items.getMaterial(args[0]);
 					if (itemType == null) { //check whether the material exists
-						sendMessage(p, api.lib.getPrefix() + "Item not found: " + args[1] + ".");
+						sendMessage(p, api.lib.getPrefix() + "Item not found: " + args[0] + ".");
 						return true;
 					}
-					if (!api.u.isInt(args[0])) { //check whether the player is online
-						sendMessage(p, api.lib.getPrefix() + args[0] + " is not a number.");
+					if (!api.u.isInt(args[1])) { //check weather the 2nd argument is a number or not
+						sendMessage(p, api.lib.getPrefix() + args[1] + " is not a number.");
 						return true;
 					}
-					int amnt = Integer.valueOf(args[0]);
-					for (int i = 0; i < amnt; i++) {
-						ItemStack itemStack = new ItemStack(itemType);
+					int amnt = Integer.parseInt(args[1]);
+						ItemStack itemStack = new ItemStack(itemType, amnt);
 						p.getInventory().addItem(itemStack);
-					}
 					sendMessage(p, api.lib.getPrefix() + "Here you go!");
 
 					return true;
 				}
-
-
 		sendMessage(p, api.lib.getPrefix() + api.lib.color("Try " + '"' + "/hhelp" + '"' + " for help - Unknown sub-command."));
 		return true;
 	}

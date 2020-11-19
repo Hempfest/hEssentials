@@ -54,11 +54,10 @@ public class CommandFly extends BukkitCommand {
 					p.sendMessage(api.lib.getPrefix() + "You are in creative, simply double-tap your jump key-bind.");
 					return true;
 				}
-				Vector vec = new Vector(0, 2, 0);
-				p.setVelocity(vec);
-
 				p.setAllowFlight(true);
 				p.setFlying(true);
+				Vector vec = new Vector(0, 2, 0);
+				p.setVelocity(vec);
 
 				p.sendMessage(api.lib.getPrefix() + "Now in flight mode.");
 				return true;
