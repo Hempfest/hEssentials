@@ -1,22 +1,16 @@
 package org.spigotmc.hessentials.commands.staff;
 
-import com.youtube.hempfest.hempcore.HempCore;
-import com.youtube.hempfest.hempcore.library.Entities;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.defaults.BukkitCommand;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Mob;
 import org.bukkit.entity.Player;
 import org.spigotmc.hessentials.util.heHook;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 
 public class CommandSpawnMob extends BukkitCommand {
     heHook api = heHook.getHook();
@@ -28,6 +22,7 @@ public class CommandSpawnMob extends BukkitCommand {
         setPermission("hessentials.staff.spawnmob");
         setUsage("/spawnmob {mob} {location/player}");
     }
+
     @Override
     public List<String> tabComplete(CommandSender sender, String alias, String[] args) throws IllegalArgumentException {
         List<String> completes = new ArrayList<>();

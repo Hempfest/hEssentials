@@ -3,6 +3,7 @@ package org.spigotmc.hessentials.util;
 import com.youtube.hempfest.hempcore.formatting.component.Text;
 import com.youtube.hempfest.hempcore.formatting.component.Text_R2;
 import com.youtube.hempfest.hempcore.formatting.string.ColoredString;
+import com.youtube.hempfest.hempcore.library.Entities;
 import java.io.File;
 import java.io.InputStream;
 import java.lang.reflect.Field;
@@ -15,8 +16,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.UUID;
-
-import com.youtube.hempfest.hempcore.library.Entities;
 import me.clip.placeholderapi.PlaceholderAPI;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
@@ -30,10 +29,8 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.Server;
 import org.bukkit.World;
 import org.bukkit.block.Block;
-import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandMap;
 import org.bukkit.command.CommandSender;
-import org.bukkit.command.TabCompleter;
 import org.bukkit.command.defaults.BukkitCommand;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Entity;
@@ -47,7 +44,7 @@ import org.bukkit.persistence.PersistentDataType;
 import org.spigotmc.hessentials.HempfestEssentials;
 import org.spigotmc.hessentials.configuration.Config;
 import org.spigotmc.hessentials.configuration.DataManager;
-import org.spigotmc.hessentials.listener.events.Events;
+import org.spigotmc.hessentials.listener.Events;
 import org.spigotmc.hessentials.util.timers.Region;
 import org.spigotmc.hessentials.util.variables.StringLibrary;
 
@@ -90,10 +87,15 @@ public class Utils extends StringLibrary {
 		return true;
 	}
 
-	public void registerTabCommand(String cmdName, TabCompleter completer, CommandExecutor executor) {
+	public void registerCommand(BukkitCommand command) {
 		try {
-			HempfestEssentials.instance.getCommand(cmdName).setExecutor(executor);
-			HempfestEssentials.instance.getCommand(cmdName).setTabCompleter(completer);
+
+			final Field commandMapField = Bukkit.getServer().getClass().getDeclaredField("commandMap");
+			commandMapField.setAccessible(true);
+
+			final CommandMap commandMap = (CommandMap) commandMapField.get(Bukkit.getServer());
+			commandMap.register(command.getLabel(), command);
+
 		} catch (final Exception e) {
 			e.printStackTrace();
 		}

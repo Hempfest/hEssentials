@@ -1,4 +1,4 @@
-package org.spigotmc.hessentials.listener.events;
+package org.spigotmc.hessentials.listener.events.hempfest;
 
 import com.youtube.hempfest.centerspawn.CenterSpawn;
 import java.util.HashMap;

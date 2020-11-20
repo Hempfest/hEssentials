@@ -1,4 +1,4 @@
-package org.spigotmc.hessentials.listener.events;
+package org.spigotmc.hessentials.listener;
 
 import com.youtube.hempfest.centerspawn.CenterSpawn;
 import com.youtube.hempfest.hempcore.HempCore;
@@ -33,13 +33,23 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
+import org.bukkit.event.entity.EntityPickupItemEvent;
 import org.bukkit.event.entity.ExplosionPrimeEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
+import org.bukkit.event.entity.ProjectileLaunchEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
-import org.bukkit.event.player.*;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
+import org.bukkit.event.player.PlayerBedEnterEvent;
+import org.bukkit.event.player.PlayerBucketEmptyEvent;
+import org.bukkit.event.player.PlayerDropItemEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.player.PlayerSwapHandItemsEvent;
 import org.bukkit.event.server.ServerListPingEvent;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
@@ -49,7 +59,6 @@ import org.spigotmc.hessentials.configuration.Config;
 import org.spigotmc.hessentials.configuration.DataManager;
 import org.spigotmc.hessentials.gui.staff.InventoryConfiguration;
 import org.spigotmc.hessentials.gui.staff.InventoryTeleport;
-import org.spigotmc.hessentials.listener.Claim;
 import org.spigotmc.hessentials.util.Utils;
 import org.spigotmc.hessentials.util.heHook;
 
@@ -91,6 +100,15 @@ public class Events implements Listener {
 				api.u.sendMessage(e.getPlayer(), api.u.getPrefix() + "&3&oYou are now invisible!");
 			}
 		}
+		for (Player cVis : Bukkit.getOnlinePlayers()) {
+			if (vanishPlayer.containsKey(cVis.getUniqueId())) {
+				if (vanishPlayer.get(cVis.getUniqueId())) {
+					if (!cVis.getName().equals(p.getName())) {
+						p.hidePlayer(HempfestEssentials.getInstance(), cVis);
+					}
+				}
+			}
+		}
 		if (!pd.exists()) {
 			u.createPlayerConfig(p);
 		}
@@ -103,6 +121,7 @@ public class Events implements Listener {
 		api.u.resetItems(p);
 		inventoryOpen.put(e.getPlayer().getUniqueId(), false);
 		Claim.loadPlayerClaims(p);
+		api.u.sendComponent(p, new Text().textRunnable("&e&oDynmap player visibility?", " &f[&a&lYES&f]", " &r: ", "&f[&c&lNO&f]", "Click to show yourself on the map.", "Click to hide yourself on the map.", "dynmap show", "dynmap hide"));
 	}
 
 	@EventHandler(priority = EventPriority.HIGH)
@@ -247,6 +266,18 @@ public class Events implements Listener {
 				e.getPlayer().sendMessage(api.lib.color(m.getString("Messages.Player-Responses.Cannot-Speak")));
 			}
 			e.setCancelled(true);
+		}
+	}
+
+	@EventHandler(priority = EventPriority.HIGH)
+	public void onProjectileLaunch(ProjectileLaunchEvent e) {
+		if (e.getEntity().getShooter() instanceof Player) {
+			Player p = (Player) e.getEntity().getShooter();
+			if (staffGui.containsKey(p.getUniqueId())) {
+				p.sendMessage("Its working");
+				e.setCancelled(true);
+				e.getEntity().remove();
+			}
 		}
 	}
 
@@ -430,6 +461,8 @@ public class Events implements Listener {
 							if (itemDisplay.equals(api.u.color("&7[&6&lCONFIG&7]"))) {
 								new InventoryConfiguration(HempCore.guiManager(e.getPlayer())).open();
 								e.setCancelled(true);
+								e.setCancelled(true);
+								return;
 							}
 							if (itemDisplay.equals(api.u.color("&7[&5&oOPEN INV&7]"))) {
 								Entity ent = api.u.getNearestEntityInSight(e.getPlayer(), 20);
@@ -437,6 +470,8 @@ public class Events implements Listener {
 									Player target = (Player) ent;
 									api.u.openPlayerInventory(e.getPlayer(), target);
 								}
+								e.setCancelled(true);
+								return;
 							}
 
 							if (itemDisplay.equals(api.u.color("&7[&a&lTELEPORT VISIBLE&7]"))) {
@@ -565,10 +600,13 @@ public class Events implements Listener {
 	}
 
 	@EventHandler(priority = EventPriority.HIGH)
-	public void onItemPickup(PlayerPickupItemEvent e){
-		if(staffGui.containsKey(e.getPlayer().getUniqueId())){
-			if(staffGui.get(e.getPlayer().getUniqueId())){
-				e.setCancelled(true);
+	public void onItemPickup(EntityPickupItemEvent e) {
+		if (e.getEntity() instanceof Player) {
+			Player p = (Player) e.getEntity();
+			if (staffGui.containsKey(p.getUniqueId())) {
+				if (staffGui.get(p.getUniqueId())) {
+					e.setCancelled(true);
+				}
 			}
 		}
 	}

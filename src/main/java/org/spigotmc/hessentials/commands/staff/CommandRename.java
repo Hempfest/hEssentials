@@ -1,19 +1,13 @@
 package org.spigotmc.hessentials.commands.staff;
 
+import java.util.Arrays;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Material;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.defaults.BukkitCommand;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.spigotmc.hessentials.listener.events.Events;
+import org.spigotmc.hessentials.listener.Events;
 import org.spigotmc.hessentials.util.heHook;
-
-import java.util.Arrays;
 
 public class CommandRename extends BukkitCommand {
     heHook api = heHook.getHook();

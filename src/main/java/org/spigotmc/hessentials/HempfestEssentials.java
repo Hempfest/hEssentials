@@ -1,14 +1,7 @@
 package org.spigotmc.hessentials;
 
-import java.io.IOException;
-import java.lang.reflect.Field;
-import java.util.Objects;
 import java.util.logging.Logger;
-
-import com.google.common.reflect.ClassPath;
-import org.bukkit.Server;
-import org.bukkit.command.Command;
-import org.bukkit.command.SimpleCommandMap;
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.spigotmc.hessentials.commands.CommandClaim;
@@ -21,11 +14,40 @@ import org.spigotmc.hessentials.commands.CommandMessage;
 import org.spigotmc.hessentials.commands.CommandOnlineList;
 import org.spigotmc.hessentials.commands.CommandReply;
 import org.spigotmc.hessentials.commands.CommandSethome;
-import org.spigotmc.hessentials.commands.staff.*;
+import org.spigotmc.hessentials.commands.staff.CommandBan;
+import org.spigotmc.hessentials.commands.staff.CommandBroadcast;
+import org.spigotmc.hessentials.commands.staff.CommandDay;
+import org.spigotmc.hessentials.commands.staff.CommandFeed;
+import org.spigotmc.hessentials.commands.staff.CommandFly;
+import org.spigotmc.hessentials.commands.staff.CommandGMA;
+import org.spigotmc.hessentials.commands.staff.CommandGMC;
+import org.spigotmc.hessentials.commands.staff.CommandGMS;
+import org.spigotmc.hessentials.commands.staff.CommandGMSP;
+import org.spigotmc.hessentials.commands.staff.CommandGamemode;
+import org.spigotmc.hessentials.commands.staff.CommandGive;
+import org.spigotmc.hessentials.commands.staff.CommandGod;
+import org.spigotmc.hessentials.commands.staff.CommandHeal;
+import org.spigotmc.hessentials.commands.staff.CommandHomelist;
+import org.spigotmc.hessentials.commands.staff.CommandInvsee;
+import org.spigotmc.hessentials.commands.staff.CommandItem;
+import org.spigotmc.hessentials.commands.staff.CommandKick;
+import org.spigotmc.hessentials.commands.staff.CommandKickAll;
+import org.spigotmc.hessentials.commands.staff.CommandMuteChat;
+import org.spigotmc.hessentials.commands.staff.CommandNight;
+import org.spigotmc.hessentials.commands.staff.CommandPlayerhome;
+import org.spigotmc.hessentials.commands.staff.CommandPowerTool;
+import org.spigotmc.hessentials.commands.staff.CommandReload;
+import org.spigotmc.hessentials.commands.staff.CommandSocialSpy;
+import org.spigotmc.hessentials.commands.staff.CommandSpawnMob;
+import org.spigotmc.hessentials.commands.staff.CommandStaff;
+import org.spigotmc.hessentials.commands.staff.CommandSuffix;
+import org.spigotmc.hessentials.commands.staff.CommandTeleport;
+import org.spigotmc.hessentials.commands.staff.CommandUnban;
+import org.spigotmc.hessentials.commands.staff.CommandUpdate;
+import org.spigotmc.hessentials.commands.staff.CommandWhois;
 import org.spigotmc.hessentials.listener.Claim;
-import org.spigotmc.hessentials.listener.events.EntityDamagedEvent;
-import org.spigotmc.hessentials.listener.events.Events;
-import org.spigotmc.hessentials.util.CommandsRegistrar;
+import org.spigotmc.hessentials.listener.Events;
+import org.spigotmc.hessentials.listener.events.allstreamer.EntityDamagedEvent;
 import org.spigotmc.hessentials.util.Utils;
 import org.spigotmc.hessentials.util.timers.Region;
 import org.spigotmc.hessentials.util.timers.Wild;
@@ -34,20 +56,19 @@ import org.spigotmc.hessentials.util.variables.Placeholders;
 
 public class HempfestEssentials extends JavaPlugin {
 
-	//Instance
+	// Instance
 	public static HempfestEssentials instance;
 	private static final Logger log = Logger.getLogger("Minecraft");
 	private final Utils u = new Utils();
 
-	//Start server
+	// Start server
 	public void onEnable() {
 		setInstance(this);
 		u.createConfiguration();
 		u.createCV();
 		u.updateInvsee();
-		//u.runClaimEvent();
-		CommandsRegistrar.registerCommands("org.spigotmc.hessentials.commands", this);
-		//registerCommands();
+		//CommandsRegistrar.registerCommands("org.spigotmc.hessentials.commands", this);
+		registerCommands();
 		registerEvents();
 		Claim.loadClaims();
 	}
@@ -56,6 +77,8 @@ public class HempfestEssentials extends JavaPlugin {
 		Events.vanishPlayer.clear();
 		Events.staffGui.clear();
 		Utils.invStorage.clear();
+		Wild.saved.clear();
+		Region.saved.clear();
 	}
 
 	public static HempfestEssentials getInstance() {
@@ -79,13 +102,12 @@ public class HempfestEssentials extends JavaPlugin {
 			log.info(String.format("[%s] - PlaceholderAPI not detected!", getDescription().getName()));
 		}
 
-		PluginManager PM = getServer().getPluginManager();
-
-		PM.registerEvents(new Events(), this);
-		PM.registerEvents(new EntityDamagedEvent(), this);
+		PluginManager pm = Bukkit.getPluginManager();
+		pm.registerEvents(new Events(), this);
+		pm.registerEvents(new EntityDamagedEvent(), this);
 	}
 
-	/*
+
 	public void registerCommands() {
 		u.registerCommand(new CommandSpawnMob());
 		u.registerCommand(new CommandPowerTool());
@@ -130,5 +152,5 @@ public class HempfestEssentials extends JavaPlugin {
 		u.registerCommand(new CommandJump());
 		u.registerCommand(new CommandGamemode());
 	}
-*/
+
 }

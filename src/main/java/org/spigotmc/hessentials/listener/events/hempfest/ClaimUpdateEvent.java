@@ -1,4 +1,4 @@
-package org.spigotmc.hessentials.listener.events;
+package org.spigotmc.hessentials.listener.events.hempfest;
 
 import org.bukkit.Bukkit;
 import org.bukkit.EntityEffect;

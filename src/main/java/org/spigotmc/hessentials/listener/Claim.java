@@ -24,9 +24,8 @@ import org.spigotmc.hessentials.configuration.Config;
 import org.spigotmc.hessentials.configuration.DataManager;
 import org.spigotmc.hessentials.gui.claim.InventoryClaimMenu;
 import org.spigotmc.hessentials.util.heHook;
-import org.spigotmc.hessentials.util.variables.Formatter;
 
-public class Claim implements Formatter {
+public class Claim {
     Player p;
     String targetName;
     Player target;
@@ -64,7 +63,6 @@ public class Claim implements Formatter {
         return s != null && s.matches("^[a-zA-Z0-9]*$");
     }
 
-    @Override
     public void set() {
         Location location = p.getLocation();
         DataManager dm = new DataManager();
@@ -113,7 +111,6 @@ public class Claim implements Formatter {
         return;
     }
 
-    @Override
     public void delete() {
         Location location = p.getLocation();
         DataManager dm = new DataManager();
@@ -140,7 +137,6 @@ public class Claim implements Formatter {
         return;
     }
 
-    @Override
     public void add() {
         DataManager dm = new DataManager();
         Config data = dm.requestData("Claims");
@@ -183,7 +179,6 @@ public class Claim implements Formatter {
         }
     }
 
-    @Override
     public void take() {
         DataManager dm = new DataManager();
         Config da = dm.getClaimData(p);
@@ -226,17 +221,14 @@ public class Claim implements Formatter {
         }
     }
 
-    @Override
     public void teleport() {
         teleportChunk();
     }
 
-    @Override
     public void list() {
         sendMessage(p, api.lib.getPrefix() + "" + getClaimList(p).toString());
     }
 
-    @Override
     public void listOther() {
         sendMessage(p, api.lib.getPrefix() + "" + getClaimList(target).toString());
     }

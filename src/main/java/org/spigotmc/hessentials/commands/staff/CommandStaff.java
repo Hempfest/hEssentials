@@ -1,14 +1,11 @@
 package org.spigotmc.hessentials.commands.staff;
 
-import com.youtube.hempfest.hempcore.HempCore;
-import com.youtube.hempfest.hempcore.gui.GuiLibrary;
 import java.util.Arrays;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.defaults.BukkitCommand;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import org.spigotmc.hessentials.gui.staff.InventoryConfiguration;
-import org.spigotmc.hessentials.listener.events.Events;
+import org.spigotmc.hessentials.listener.Events;
 import org.spigotmc.hessentials.util.Utils;
 import org.spigotmc.hessentials.util.heHook;
 

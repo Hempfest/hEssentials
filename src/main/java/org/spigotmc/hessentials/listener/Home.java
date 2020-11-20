@@ -18,9 +18,8 @@ import org.spigotmc.hessentials.HempfestEssentials;
 import org.spigotmc.hessentials.configuration.Config;
 import org.spigotmc.hessentials.configuration.DataManager;
 import org.spigotmc.hessentials.util.heHook;
-import org.spigotmc.hessentials.util.variables.Formatter;
 
-public class Home implements Formatter {
+public class Home {
 
     heHook api = heHook.getHook();
     Player p;
@@ -38,7 +37,6 @@ public class Home implements Formatter {
         this.p = p;
     }
 
-    @Override
     public void set() {
         DataManager dm = new DataManager();
         Config homes = dm.getHomeData(p);
@@ -68,7 +66,6 @@ public class Home implements Formatter {
         sendMessage(p, api.lib.getPrefix() + api.lib.getHomeCreated(p, name));
     }
 
-    @Override
     public void delete() {
         DataManager dm = new DataManager();
         Config homes = dm.getHomeData(p);
@@ -83,17 +80,14 @@ public class Home implements Formatter {
         sendMessage(p, api.lib.getPrefix() + api.lib.getHomeDeleted(p, name));
     }
 
-    @Override
     public void add() {
 
     }
 
-    @Override
     public void take() {
 
     }
 
-    @Override
     public void teleport() {
         DataManager dm = new DataManager();
         Config homes = dm.getHomeData(p);
@@ -140,7 +134,6 @@ public class Home implements Formatter {
         sendMessage(p, api.lib.getPrefix() + "You have teleported to " + offline.getName() + "'s home: " + name);
     }
 
-    @Override
     public void list() {
         DataManager dm = new DataManager();
         Config homes = dm.getHomeData(p);
@@ -173,7 +166,6 @@ public class Home implements Formatter {
         return;
     }
 
-    @Override
     public void listOther() {
         if (api.u.usernameToUUID(target) == null) {
             return;
