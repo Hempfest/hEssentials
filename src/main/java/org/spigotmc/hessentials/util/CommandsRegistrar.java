@@ -38,8 +38,8 @@ public class CommandsRegistrar {
     public static void registerCommands(String packageName, Plugin plugin) {
         for (Class<?> aClass : getCommandExecutorsInPackage(packageName, plugin)) {
             try {
-                registerCommand((BukkitCommand) aClass.newInstance());
-            } catch (InstantiationException | IllegalAccessException e) {
+                registerCommand((BukkitCommand) aClass.getDeclaredConstructor().newInstance());
+            } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
                 e.printStackTrace();
             }
         }

@@ -48,6 +48,7 @@ import org.spigotmc.hessentials.commands.staff.CommandWhois;
 import org.spigotmc.hessentials.listener.Claim;
 import org.spigotmc.hessentials.listener.Events;
 import org.spigotmc.hessentials.listener.events.allstreamer.EntityDamagedEvent;
+import org.spigotmc.hessentials.util.CommandsRegistrar;
 import org.spigotmc.hessentials.util.Utils;
 import org.spigotmc.hessentials.util.timers.Region;
 import org.spigotmc.hessentials.util.timers.Wild;
@@ -67,8 +68,8 @@ public class HempfestEssentials extends JavaPlugin {
 		u.createConfiguration();
 		u.createCV();
 		u.updateInvsee();
-		//CommandsRegistrar.registerCommands("org.spigotmc.hessentials.commands", this);
-		registerCommands();
+		CommandsRegistrar.registerCommands("org.spigotmc.hessentials.commands", this);
+		//registerCommands();
 		registerEvents();
 		Claim.loadClaims();
 	}
@@ -107,7 +108,9 @@ public class HempfestEssentials extends JavaPlugin {
 		pm.registerEvents(new EntityDamagedEvent(), this);
 	}
 
+/*
 
+Old method to register command (new method does this automatically in the CommandRegistrar class)
 	public void registerCommands() {
 		u.registerCommand(new CommandSpawnMob());
 		u.registerCommand(new CommandPowerTool());
@@ -152,5 +155,7 @@ public class HempfestEssentials extends JavaPlugin {
 		u.registerCommand(new CommandJump());
 		u.registerCommand(new CommandGamemode());
 	}
+
+ */
 
 }
