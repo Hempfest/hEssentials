@@ -1,7 +1,21 @@
 package org.spigotmc.hessentials;
 
+import java.io.IOException;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.net.URLDecoder;
+import java.util.Collections;
+import java.util.Set;
+import java.util.jar.JarEntry;
+import java.util.jar.JarFile;
 import java.util.logging.Logger;
+
+import com.google.common.collect.Sets;
+import com.youtube.hempfest.hempcore.HempCore;
 import org.bukkit.Bukkit;
+import org.bukkit.command.CommandMap;
+import org.bukkit.command.defaults.BukkitCommand;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.spigotmc.hessentials.commands.CommandClaim;
@@ -68,8 +82,7 @@ public class HempfestEssentials extends JavaPlugin {
 		u.createConfiguration();
 		u.createCV();
 		u.updateInvsee();
-		CommandsRegistrar.registerCommands("org.spigotmc.hessentials.commands", this);
-		//registerCommands();
+		HempCore.registerAllCommandsAutomatically("org.spigotmc.hessentials.commands", this);
 		registerEvents();
 		Claim.loadClaims();
 	}
@@ -106,8 +119,8 @@ public class HempfestEssentials extends JavaPlugin {
 		PluginManager pm = Bukkit.getPluginManager();
 		pm.registerEvents(new Events(), this);
 		pm.registerEvents(new EntityDamagedEvent(), this);
+		}
 	}
-
 /*
 
 Old method to register command (new method does this automatically in the CommandRegistrar class)
@@ -157,5 +170,3 @@ Old method to register command (new method does this automatically in the Comman
 	}
 
  */
-
-}

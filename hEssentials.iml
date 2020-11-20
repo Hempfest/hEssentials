@@ -35,7 +35,7 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" scope="PROVIDED" name="Maven: com.github.Hempfest:HempCore:96915fddcf" level="project" />
+    <orderEntry type="library" name="Maven: com.github.Hempfest:HempCore:1.0.0" level="project" />
     <orderEntry type="module-library">
       <library name="Maven: CenterSpawn:CenterSpawn:1.0.0">
         <CLASSES>
