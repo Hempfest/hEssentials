@@ -1,68 +1,11 @@
 package org.spigotmc.hessentials;
 
-import java.io.IOException;
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.net.URLDecoder;
-import java.util.Collections;
-import java.util.Set;
-import java.util.jar.JarEntry;
-import java.util.jar.JarFile;
+import com.youtube.hempfest.hempcore.command.CommandBuilder;
+import com.youtube.hempfest.hempcore.event.EventBuilder;
 import java.util.logging.Logger;
-
-import com.google.common.collect.Sets;
-import com.youtube.hempfest.hempcore.HempCore;
-import org.bukkit.Bukkit;
-import org.bukkit.command.CommandMap;
-import org.bukkit.command.defaults.BukkitCommand;
-import org.bukkit.plugin.Plugin;
-import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.spigotmc.hessentials.commands.CommandClaim;
-import org.spigotmc.hessentials.commands.CommandDelhome;
-import org.spigotmc.hessentials.commands.CommandHelp;
-import org.spigotmc.hessentials.commands.CommandHome;
-import org.spigotmc.hessentials.commands.CommandHomes;
-import org.spigotmc.hessentials.commands.CommandJump;
-import org.spigotmc.hessentials.commands.CommandMessage;
-import org.spigotmc.hessentials.commands.CommandOnlineList;
-import org.spigotmc.hessentials.commands.CommandReply;
-import org.spigotmc.hessentials.commands.CommandSethome;
-import org.spigotmc.hessentials.commands.staff.CommandBan;
-import org.spigotmc.hessentials.commands.staff.CommandBroadcast;
-import org.spigotmc.hessentials.commands.staff.CommandDay;
-import org.spigotmc.hessentials.commands.staff.CommandFeed;
-import org.spigotmc.hessentials.commands.staff.CommandFly;
-import org.spigotmc.hessentials.commands.staff.CommandGMA;
-import org.spigotmc.hessentials.commands.staff.CommandGMC;
-import org.spigotmc.hessentials.commands.staff.CommandGMS;
-import org.spigotmc.hessentials.commands.staff.CommandGMSP;
-import org.spigotmc.hessentials.commands.staff.CommandGamemode;
-import org.spigotmc.hessentials.commands.staff.CommandGive;
-import org.spigotmc.hessentials.commands.staff.CommandGod;
-import org.spigotmc.hessentials.commands.staff.CommandHeal;
-import org.spigotmc.hessentials.commands.staff.CommandHomelist;
-import org.spigotmc.hessentials.commands.staff.CommandInvsee;
-import org.spigotmc.hessentials.commands.staff.CommandItem;
-import org.spigotmc.hessentials.commands.staff.CommandKick;
-import org.spigotmc.hessentials.commands.staff.CommandKickAll;
-import org.spigotmc.hessentials.commands.staff.CommandMuteChat;
-import org.spigotmc.hessentials.commands.staff.CommandNight;
-import org.spigotmc.hessentials.commands.staff.CommandPlayerhome;
-import org.spigotmc.hessentials.commands.staff.CommandPowerTool;
-import org.spigotmc.hessentials.commands.staff.CommandReload;
-import org.spigotmc.hessentials.commands.staff.CommandSocialSpy;
-import org.spigotmc.hessentials.commands.staff.CommandSpawnMob;
-import org.spigotmc.hessentials.commands.staff.CommandStaff;
-import org.spigotmc.hessentials.commands.staff.CommandSuffix;
-import org.spigotmc.hessentials.commands.staff.CommandTeleport;
-import org.spigotmc.hessentials.commands.staff.CommandUnban;
-import org.spigotmc.hessentials.commands.staff.CommandUpdate;
-import org.spigotmc.hessentials.commands.staff.CommandWhois;
 import org.spigotmc.hessentials.listener.Claim;
 import org.spigotmc.hessentials.listener.Events;
-import org.spigotmc.hessentials.listener.events.allstreamer.EntityDamagedEvent;
-import org.spigotmc.hessentials.util.CommandsRegistrar;
 import org.spigotmc.hessentials.util.Utils;
 import org.spigotmc.hessentials.util.timers.Region;
 import org.spigotmc.hessentials.util.timers.Wild;
@@ -82,8 +25,11 @@ public class HempfestEssentials extends JavaPlugin {
 		u.createConfiguration();
 		u.createCV();
 		u.updateInvsee();
-		HempCore.registerAllCommandsAutomatically("org.spigotmc.hessentials.commands", this);
-		registerEvents();
+		CommandBuilder builder = new CommandBuilder(this);
+		EventBuilder ebuilder = new EventBuilder(this);
+		builder.compileFields("org.spigotmc.hessentials.commands");
+		ebuilder.compileFields("org.spigotmc.hessentials.listener");
+		registerTimers();
 		Claim.loadClaims();
 	}
 
@@ -102,9 +48,9 @@ public class HempfestEssentials extends JavaPlugin {
 	public static void setInstance(HempfestEssentials instance) {
 		HempfestEssentials.instance = instance;
 	}
-	
 
-	public void registerEvents() {
+
+	public void registerTimers() {
 		Region timer = new Region();
 		Wild wild = new Wild();
 		timer.runTaskTimerAsynchronously(this, 20, 20);
@@ -115,10 +61,6 @@ public class HempfestEssentials extends JavaPlugin {
 		} else {
 			log.info(String.format("[%s] - PlaceholderAPI not detected!", getDescription().getName()));
 		}
-
-		PluginManager pm = Bukkit.getPluginManager();
-		pm.registerEvents(new Events(), this);
-		pm.registerEvents(new EntityDamagedEvent(), this);
 		}
 	}
 /*

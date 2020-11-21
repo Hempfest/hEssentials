@@ -54,6 +54,7 @@ import org.bukkit.event.server.ServerListPingEvent;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.plugin.AuthorNagException;
 import org.spigotmc.hessentials.HempfestEssentials;
 import org.spigotmc.hessentials.configuration.Config;
 import org.spigotmc.hessentials.configuration.DataManager;
@@ -150,17 +151,20 @@ public class Events implements Listener {
 		// is an instance of Menu, then gg. The reason that
 		// an InventoryHolder can be a Menu is because our Menu
 		// class implements InventoryHolder!!
-		if (holder instanceof Menu) {
-			e.setCancelled(true); // prevent them from fucking with the inventory
-			if (e.getCurrentItem() == null) { // deal with null exceptions
+		try {
+			if (holder instanceof Menu) {
+				e.setCancelled(true); // prevent them from fucking with the inventory
+				if (e.getCurrentItem() == null) { // deal with null exceptions
+					return;
+				}
+				// Since we know our inventory holder is a menu, get the Menu Object representing
+				// the menu we clicked on
+				Menu menu = (Menu) holder;
+				// Call the handleMenu object which takes the event and processes it
+				menu.handleMenu(e);
 				return;
 			}
-			// Since we know our inventory holder is a menu, get the Menu Object representing
-			// the menu we clicked on
-			Menu menu = (Menu) holder;
-			// Call the handleMenu object which takes the event and processes it
-			menu.handleMenu(e);
-			return;
+		} catch (AuthorNagException ignored) {
 		}
 		Player whoClicked = (Player) e.getWhoClicked();
 		if (Events.staffGui.containsKey(whoClicked.getUniqueId())) {
@@ -460,7 +464,6 @@ public class Events implements Listener {
 
 							if (itemDisplay.equals(api.u.color("&7[&6&lCONFIG&7]"))) {
 								new InventoryConfiguration(HempCore.guiManager(e.getPlayer())).open();
-								e.setCancelled(true);
 								e.setCancelled(true);
 								return;
 							}

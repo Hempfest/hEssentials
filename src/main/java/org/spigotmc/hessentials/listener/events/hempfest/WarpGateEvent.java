@@ -12,14 +12,15 @@ import org.bukkit.block.BlockFace;
 import org.bukkit.entity.EnderCrystal;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
+import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.player.PlayerTeleportEvent;
 import org.spigotmc.hessentials.util.heHook;
 
-public class WarpGateEvent extends Event {
+public class WarpGateEvent extends Event implements Cancellable {
 
-	private final HandlerList handlers = new HandlerList();
+	private static final HandlerList handlers = new HandlerList();
 
 	private final Player p;
 
@@ -28,6 +29,8 @@ public class WarpGateEvent extends Event {
 	private final heHook api = heHook.getHook();
 
 	private Location location;
+
+	private boolean cancelled;
 
 	private String message;
 
@@ -44,7 +47,7 @@ public class WarpGateEvent extends Event {
 		return handlers;
 	}
 
-	public HandlerList getHandlerList() {
+	public static HandlerList getHandlerList() {
 		return handlers;
 	}
 
@@ -135,4 +138,13 @@ public class WarpGateEvent extends Event {
 	}
 
 
+	@Override
+	public boolean isCancelled() {
+		return cancelled;
+	}
+
+	@Override
+	public void setCancelled(boolean b) {
+		this.cancelled = b;
+	}
 }
