@@ -3,6 +3,7 @@ package org.spigotmc.hessentials;
 import com.youtube.hempfest.hempcore.command.CommandBuilder;
 import com.youtube.hempfest.hempcore.event.EventBuilder;
 import java.util.logging.Logger;
+import org.bukkit.WorldCreator;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.spigotmc.hessentials.listener.Claim;
 import org.spigotmc.hessentials.listener.Events;
@@ -31,6 +32,7 @@ public class HempfestEssentials extends JavaPlugin {
 		ebuilder.compileFields("org.spigotmc.hessentials.listener");
 		registerTimers();
 		Claim.loadClaims();
+		new WorldCreator("world_build").createWorld();
 	}
 
 	public void onDisable() {

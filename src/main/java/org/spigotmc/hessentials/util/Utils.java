@@ -147,8 +147,8 @@ public class Utils extends StringLibrary {
 	public boolean spawnMobs(Player p, ArrayList<String> mobs, Location spawnLocation){
 		ArrayList<Entity> entities = new ArrayList<>();
 		for (String mob : mobs) {
-			if (Entities.getMaterial(mob) != null) {
-				entities.add(spawnLocation.getWorld().spawnEntity(spawnLocation, Entities.getMaterial(mob)));
+			if (Entities.getEntity(mob) != null) {
+				entities.add(spawnLocation.getWorld().spawnEntity(spawnLocation, Entities.getEntity(mob)));
 			} else {
 				p.sendMessage(api.lib.color(api.lib.getPrefix() + ChatColor.RED + "The mob " + mob + " does not exist!"));
 				entities.forEach(Entity::remove);
@@ -164,8 +164,8 @@ public class Utils extends StringLibrary {
 		ArrayList<Entity> entities = new ArrayList<>();
 
 		for (String mob : mobs) {
-			if (Entities.getMaterial(mob) != null) {
-				entities.add(spawnLocation.getWorld().spawnEntity(spawnLocation, Entities.getMaterial(mob)));
+			if (Entities.getEntity(mob) != null) {
+				entities.add(spawnLocation.getWorld().spawnEntity(spawnLocation, Entities.getEntity(mob)));
 			} else {
 				break;
 			}
