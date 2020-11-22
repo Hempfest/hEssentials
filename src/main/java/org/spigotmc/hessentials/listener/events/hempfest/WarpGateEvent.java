@@ -86,6 +86,9 @@ public class WarpGateEvent extends Event implements Cancellable {
 		return (EnderCrystal) entity;
 	}
 
+	public Player getPlayer() {
+		return p;
+	}
 
 	public void runEvent() {
 		if (CenterSpawn.isInSpawn(p.getLocation())) {

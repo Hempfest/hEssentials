@@ -5,6 +5,7 @@ import com.youtube.hempfest.hempcore.event.EventBuilder;
 import java.util.logging.Logger;
 import org.bukkit.WorldCreator;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.spigotmc.hessentials.commands.staff.CommandGod;
 import org.spigotmc.hessentials.listener.Claim;
 import org.spigotmc.hessentials.listener.Events;
 import org.spigotmc.hessentials.util.Utils;
@@ -41,6 +42,7 @@ public class HempfestEssentials extends JavaPlugin {
 		Utils.invStorage.clear();
 		Wild.saved.clear();
 		Region.saved.clear();
+		CommandGod.GodPlayers.clear();
 	}
 
 	public static HempfestEssentials getInstance() {

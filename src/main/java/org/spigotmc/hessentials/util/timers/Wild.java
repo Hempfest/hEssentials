@@ -29,7 +29,9 @@ public class Wild extends BukkitRunnable {
 			for (Player p : Bukkit.getOnlinePlayers()) {
 				WarpGateEvent e = gateManager(p);
 				Bukkit.getPluginManager().callEvent(e);
-				e.runEvent();
+				if (!e.isCancelled()) {
+					e.runEvent();
+				}
 			}
 		}
 	}
