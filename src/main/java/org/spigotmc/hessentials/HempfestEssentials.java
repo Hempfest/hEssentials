@@ -33,7 +33,7 @@ public class HempfestEssentials extends JavaPlugin {
 		ebuilder.compileFields("org.spigotmc.hessentials.listener");
 		registerTimers();
 		Claim.loadClaims();
-		new WorldCreator("world_build").createWorld();
+		new WorldCreator("Build").createWorld();
 	}
 
 	public void onDisable() {

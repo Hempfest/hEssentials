@@ -1,5 +1,7 @@
 package org.spigotmc.hessentials.listener;
 
+import java.util.ArrayList;
+import java.util.List;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -9,9 +11,6 @@ import org.spigotmc.hessentials.HempfestEssentials;
 import org.spigotmc.hessentials.configuration.Config;
 import org.spigotmc.hessentials.util.Utils;
 import org.spigotmc.hessentials.util.heHook;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class Request {
 
@@ -81,7 +80,7 @@ public class Request {
 				sendMessage(p, ChatColor.RED + "Seems the player whom sent the request has logged off.");
 			u.recieved.put(p.getName(), Boolean.valueOf(false));
 			List<String> reqs = new ArrayList<>();
-			reqs.remove(getToGet().getName());
+			reqs.remove(getToGet());
 			data.getConfig().set("Request-List." + p.getName(), reqs);
 			data.saveConfig();
 			return;
@@ -134,7 +133,7 @@ public class Request {
 				api.lib.goRequest("/tpa accept", "/tpa deny", p, other);
 			sendMessage(other, "Request expires in:" + ChatColor.GRAY + " 1m 30s.");
 			other.sendMessage(" ");
-			setToGet(p);
+			setToGet(p.getName());
 			Bukkit.getScheduler().scheduleSyncDelayedTask(HempfestEssentials.getInstance(), () -> {
 				if (data.getConfig().getStringList("Request-List." + other.getName()).contains(requests.get(0))) {
 					sendMessage(other, ChatColor.GRAY + "Teleport request has expired.");
@@ -150,13 +149,13 @@ public class Request {
 		return;
 	}
 
-	Player toGet;
+	private String toGet;
 
-	public void setToGet(Player p) {
-		this.toGet = toGet;
+	public void setToGet(String p) {
+		this.toGet = p;
 	}
 
-	public Player getToGet() {
+	public String getToGet() {
 		return this.toGet;
 	}
 

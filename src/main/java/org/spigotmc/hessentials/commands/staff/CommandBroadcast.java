@@ -1,15 +1,10 @@
 package org.spigotmc.hessentials.commands.staff;
 
+import java.util.Arrays;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.defaults.BukkitCommand;
-import org.bukkit.entity.Player;
 import org.spigotmc.hessentials.util.heHook;
-import org.spigotmc.hessentials.util.variables.StringLibrary;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class CommandBroadcast extends BukkitCommand {
     heHook api = heHook.getHook();

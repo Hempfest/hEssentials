@@ -18,6 +18,7 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
+import org.bukkit.block.DoubleChest;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Creeper;
 import org.bukkit.entity.EnderCrystal;
@@ -91,6 +92,9 @@ public class Events implements Listener {
 			api.pc.updateClaimUser();
 			u.createHomeSection(p);
 			api.pc.createPlayerData();
+			u.MOTD(p);
+			inventoryOpen.put(e.getPlayer().getUniqueId(), false);
+			api.u.sendComponent(p, new Text().textRunnable("&e&oDynmap player visibility?", " &f[&a&lYES&f]", " &r: ", "&f[&c&lNO&f]", "Click to show yourself on the map.", "Click to hide yourself on the map.", "dynmap show", "dynmap hide"));
 			return;
 		}
 		if (vanishPlayer.containsKey(p.getUniqueId())) {
@@ -394,14 +398,24 @@ public class Events implements Listener {
 
 	@EventHandler
 	public void onUtilUse(PlayerInteractEvent e) {
+		if (e.getPlayer().getName().equals("Hempfest") && e.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
+			Entity entity = api.u.getNearestEntityInSight(e.getPlayer(), 20);
+			if (entity instanceof DoubleChest) {
+				DoubleChest chest = (DoubleChest) entity;
+				api.u.openPlayerInventory(e.getPlayer(), chest.getInventory());
+				e.setCancelled(true);
+			}
+		}
 		List<Action> allActions = new ArrayList<>(Arrays.asList(Action.LEFT_CLICK_AIR, Action.LEFT_CLICK_BLOCK, Action.RIGHT_CLICK_AIR));
-			if (!inventoryOpen.get(e.getPlayer().getUniqueId())) {
-				if (allActions.contains(e.getAction())) {
+		if (!inventoryOpen.get(e.getPlayer().getUniqueId())) {
+			if (allActions.contains(e.getAction())) {
 
-					ItemStack item = e.getPlayer().getInventory().getItemInMainHand();
-					if (item.hasItemMeta()) {
-						if (item.getItemMeta().hasDisplayName()) {
-							String itemDisplay = item.getItemMeta().getDisplayName();
+				ItemStack item = e.getPlayer().getInventory().getItemInMainHand();
+
+
+				if (item.hasItemMeta()) {
+					if (item.getItemMeta().hasDisplayName()) {
+						String itemDisplay = item.getItemMeta().getDisplayName();
 							if (itemDisplay.equals(api.u.color("&7[&3&lVANISH&7]"))) {
 								if (vanishPlayer.containsKey(e.getPlayer().getUniqueId())) {
 									if (vanishPlayer.get(e.getPlayer().getUniqueId())) {

@@ -46,16 +46,19 @@
          <scope>provided</scope>
         </dependency>
 		<dependency>
-			<groupId>hEssentialsChat</groupId>
-			<artifactId>hEssentialsGroups</artifactId>
-			<version>1.0.0</version>
-			<scope>system</scope>
-			<systemPath>${project.basedir}/src/main/resources/hEssentialsChat.jar</systemPath>
+			<groupId>com.github.Hempfest</groupId>
+			<artifactId>hEssentialsChat</artifactId>
+			<version>1.0.3</version>
 		</dependency>
 		<dependency>
 			<groupId>com.github.Hempfest</groupId>
 			<artifactId>HempCore</artifactId>
 			<version>1.0.3</version>
+		</dependency>
+		<dependency>
+			<groupId>com.github.Hempfest</groupId>
+			<artifactId>hEssentialsSRV</artifactId>
+			<version>1.0.0</version>
 		</dependency>
 		<dependency>
 			<groupId>CenterSpawn</groupId>

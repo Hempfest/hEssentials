@@ -579,6 +579,12 @@ public class Utils extends StringLibrary {
 		return item;
 	}
 
+	public void openPlayerInventory(Player p, Inventory invC) {
+		Inventory inv = Bukkit.createInventory(null, 54, api.lib.color("Double chest" + " : click to update"));
+		inv.setContents(invC.getContents());
+		p.openInventory(inv);
+	}
+
 	public void openPlayerInventory(Player p, Player target) {
 		Inventory inv = Bukkit.createInventory(target, 54, api.lib.color(target.getName() + " : click to update"));
 		Inventory targets = target.getInventory();
