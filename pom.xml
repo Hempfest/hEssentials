@@ -51,10 +51,10 @@
 			<version>1.0.3</version>
 		</dependency>
 		<dependency>
-			<groupId>com.github.Hempfest</groupId>
-			<artifactId>HempCore</artifactId>
-			<version>1.0.3</version>
-		</dependency>
+            <groupId>com.github.Hempfest</groupId>
+            <artifactId>HempCore</artifactId>
+            <version>1.0.6</version>
+        </dependency>
 		<dependency>
 			<groupId>com.github.Hempfest</groupId>
 			<artifactId>hEssentialsSRV</artifactId>

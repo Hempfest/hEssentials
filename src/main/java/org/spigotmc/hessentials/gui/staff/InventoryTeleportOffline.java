@@ -44,7 +44,6 @@ public class InventoryTeleportOffline extends Pagination {
         ArrayList<String> players = new ArrayList<>(api.u.getAllUserIDs());
         String player = e.getCurrentItem().getItemMeta().getPersistentDataContainer().get(new NamespacedKey(HempCore.getInstance(), "player"), PersistentDataType.STRING);
         Material mat = e.getCurrentItem().getType();
-        GuiLibrary gui = HempCore.guiManager(p);
         switch (mat) {
             case PLAYER_HEAD:
                 OfflinePlayer target = Bukkit.getOfflinePlayer(UUID.fromString(player));

@@ -30,7 +30,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
-import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
@@ -51,6 +50,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerSwapHandItemsEvent;
+import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.event.server.ServerListPingEvent;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
@@ -125,7 +125,6 @@ public class Events implements Listener {
 		u.MOTD(p);
 		api.u.resetItems(p);
 		inventoryOpen.put(e.getPlayer().getUniqueId(), false);
-		Claim.loadPlayerClaims(p);
 		api.u.sendComponent(p, new Text().textRunnable("&e&oDynmap player visibility?", " &f[&a&lYES&f]", " &r: ", "&f[&c&lNO&f]", "Click to show yourself on the map.", "Click to hide yourself on the map.", "dynmap show", "dynmap hide"));
 	}
 
@@ -214,9 +213,26 @@ public class Events implements Listener {
 		}
 	}
 
+	@EventHandler
+	public void onTeleportEvent(PlayerTeleportEvent event) {
+		Player p = event.getPlayer();
+		if (p.hasPermission("hessentials.staff")) {
+			DataManager dm = new DataManager();
+			Config user = dm.getUser(p.getUniqueId());
+			user.getConfig().set("Past-Location", event.getFrom());
+			user.saveConfig();
+		}
+	}
+
 	@EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
 	public void onDeathEvent(PlayerDeathEvent e) {
 		Player p = e.getEntity().getPlayer();
+		if (p.hasPermission("hessentials.staff")) {
+			DataManager dm = new DataManager();
+			Config user = dm.getUser(p.getUniqueId());
+			user.getConfig().set("Past-Location", p.getLocation());
+			user.saveConfig();
+		}
 		if (staffGui.containsKey(p.getUniqueId())) {
 			e.setKeepInventory(true);
 			e.getDrops().clear();
@@ -240,7 +256,6 @@ public class Events implements Listener {
 		// PlayerData pd = new PlayerData(uuid);
 		e.setQuitMessage(api.lib.getLeaveMSG(p));
 		inventoryOpen.remove(e.getPlayer().getUniqueId());
-		Claim.playerClaimMap.remove(p.getUniqueId());
 		if (staffGui.containsKey(p.getUniqueId())) {
 			if (staffGui.get(p.getUniqueId())) {
 				staffGui.put(p.getUniqueId(), false);
@@ -359,7 +374,10 @@ public class Events implements Listener {
 		Location blocks = block.getLocation();
 		api = heHook.getPlayerHook(p);
 		if (api.pc.isInClaim(blocks)) {
-			if (!api.pc.getClaimList(p).contains(api.pc.getClaimName(blocks))) {
+			DataManager dm = new DataManager();
+			Config pd = dm.getClaimData(p);
+			List<String> Claims = pd.getConfig().getStringList("claim_data");
+			if (!Claims.contains(api.pc.getClaimName(blocks))) {
 				e.setCancelled(true);
 				String claimName = api.pc.getClaimName(blocks);
 				String claimOwner = api.pc.getClaimOwner(blocks);
@@ -406,16 +424,16 @@ public class Events implements Listener {
 				e.setCancelled(true);
 			}
 		}
-		List<Action> allActions = new ArrayList<>(Arrays.asList(Action.LEFT_CLICK_AIR, Action.LEFT_CLICK_BLOCK, Action.RIGHT_CLICK_AIR));
+		List<Action> allActions = new ArrayList<>(Arrays.asList(Action.LEFT_CLICK_AIR, Action.LEFT_CLICK_BLOCK, Action.RIGHT_CLICK_AIR, Action.RIGHT_CLICK_BLOCK));
 		if (!inventoryOpen.get(e.getPlayer().getUniqueId())) {
-			if (allActions.contains(e.getAction())) {
+			for (Action action : allActions) {
+				if (e.getAction().equals(action)) {
 
-				ItemStack item = e.getPlayer().getInventory().getItemInMainHand();
+					ItemStack item = e.getPlayer().getInventory().getItemInMainHand();
 
-
-				if (item.hasItemMeta()) {
-					if (item.getItemMeta().hasDisplayName()) {
-						String itemDisplay = item.getItemMeta().getDisplayName();
+					if (item.hasItemMeta()) {
+						if (item.getItemMeta().hasDisplayName()) {
+							String itemDisplay = item.getItemMeta().getDisplayName();
 							if (itemDisplay.equals(api.u.color("&7[&3&lVANISH&7]"))) {
 								if (vanishPlayer.containsKey(e.getPlayer().getUniqueId())) {
 									if (vanishPlayer.get(e.getPlayer().getUniqueId())) {
@@ -461,7 +479,7 @@ public class Events implements Listener {
 								e.setCancelled(true);
 							}
 							if (itemDisplay.equals(api.u.color("&7[&b&lFREEZE TARGET&7]"))) {
-								Entity ent = api.u.getNearestEntityInSight(e.getPlayer(), 20);
+								Entity ent = api.u.getNearestEntityInSight(e.getPlayer(), 40);
 								if (ent instanceof Player) {
 									Player target = (Player) ent;
 									if (!frozenDudes.contains(target.getUniqueId())) {
@@ -482,7 +500,7 @@ public class Events implements Listener {
 								return;
 							}
 							if (itemDisplay.equals(api.u.color("&7[&5&oOPEN INV&7]"))) {
-								Entity ent = api.u.getNearestEntityInSight(e.getPlayer(), 20);
+								Entity ent = api.u.getNearestEntityInSight(e.getPlayer(), 40);
 								if (ent instanceof Player) {
 									Player target = (Player) ent;
 									api.u.openPlayerInventory(e.getPlayer(), target);
@@ -524,8 +542,11 @@ public class Events implements Listener {
 							}
 						}
 					}
+					return;
 				}
+
 			}
+		}
 	}
 
 	@EventHandler(priority = EventPriority.HIGH)
@@ -539,26 +560,33 @@ public class Events implements Listener {
 			api = heHook.getPlayerHook(p);
 			if (api.pc.isInClaim(blocks)) {
 				if (block.getType().isInteractable()) {
-						if (!api.pc.getClaimList(p).contains(api.pc.getClaimName(blocks))) {
-							e.setCancelled(true);
-							String claimName = api.pc.getClaimName(blocks);
-							String claimOwner = api.pc.getClaimOwner(blocks);
-							api.pc.sendMessage(p, api.lib.getPrefix() + api.lib.getCannotUse(p, claimName, claimOwner));
-						}
+					DataManager dm = new DataManager();
+					Config pd = dm.getClaimData(p);
+					List<String> Claims = pd.getConfig().getStringList("claim_data");
+					if (!Claims.contains(api.pc.getClaimName(blocks))) {
+						e.setCancelled(true);
+						String claimName = api.pc.getClaimName(blocks);
+						String claimOwner = api.pc.getClaimOwner(blocks);
+						api.pc.sendMessage(p, api.lib.getPrefix() + api.lib.getCannotUse(p, claimName, claimOwner));
 					}
 				}
+			}
 		} catch (Exception ignored) {
 		}
 	}
 
-	@EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
+	/*
+	@EventHandler(priority = EventPriority.HIGH)
 	public void onBreak(BlockBreakEvent e) {
 		Player p = e.getPlayer();
 		Block block = e.getBlock();
 		Location blocks = block.getLocation();
 		api = heHook.getPlayerHook(p);
 		if (api.pc.isInClaim(blocks)) {
-			if (!api.pc.getClaimList(p).contains(api.pc.getClaimName(blocks))) {
+			DataManager dm = new DataManager();
+			Config pd = dm.getClaimData(p);
+			List<String> Claims = pd.getConfig().getStringList("claim_data");
+			if (!Claims.contains(api.pc.getClaimName(blocks))) {
 				e.setCancelled(true);
 				String claimName = api.pc.getClaimName(blocks);
 				String claimOwner = api.pc.getClaimOwner(blocks);
@@ -567,13 +595,18 @@ public class Events implements Listener {
 		}
 	}
 
-	@EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
+	 */
+
+	@EventHandler(priority = EventPriority.HIGH)
 	public void onPlace(BlockPlaceEvent e) {
 		Player p = e.getPlayer();
 		Block block = e.getBlock();
 		Location bloc = block.getLocation();
 		if (api.pc.isInClaim(bloc)) {
-			if (!api.pc.getClaimList(p).contains(api.pc.getClaimName(bloc))) {
+			DataManager dm = new DataManager();
+			Config pd = dm.getClaimData(p);
+			List<String> Claims = pd.getConfig().getStringList("claim_data");
+			if (!Claims.contains(api.pc.getClaimName(bloc))) {
 				e.setCancelled(true);
 				String claimName = api.pc.getClaimName(bloc);
 				String claimOwner = api.pc.getClaimOwner(bloc);

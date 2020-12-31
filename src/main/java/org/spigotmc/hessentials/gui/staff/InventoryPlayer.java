@@ -68,9 +68,9 @@ public class InventoryPlayer extends Menu {
 
     @Override
     public void setMenuItems() {
-        ItemStack homes = makeItem(Material.MOJANG_BANNER_PATTERN, "&7[&b&oHomes&7]", "", "Click to view a list of " + api.u.usernameFromUUID(UUID.fromString(guiLibrary.getData2())) + "'s homes");
-        ItemStack claims = makeItem(Material.GLOBE_BANNER_PATTERN, "&7[&b&oClaims&7]", "", "Click to view a list of " + api.u.usernameFromUUID(UUID.fromString(guiLibrary.getData2())) + "'s private-claims");
-        ItemStack info = makeItem(Material.NETHER_STAR, "&7[&b&oInfo&7]", "", "Click to view " + api.u.usernameFromUUID(UUID.fromString(guiLibrary.getData2())) + "'s player information.");
+        ItemStack homes = makeItem(Material.MOJANG_BANNER_PATTERN, "&7[&b&oHomes&7]", "", "Click to view a list of \n" + api.u.usernameFromUUID(UUID.fromString(guiLibrary.getData2())) + "'s homes");
+        ItemStack claims = makeItem(Material.GLOBE_BANNER_PATTERN, "&7[&b&oClaims&7]", "", "Click to view a list of \n" + api.u.usernameFromUUID(UUID.fromString(guiLibrary.getData2())) + "'s private-claims");
+        ItemStack info = makeItem(Material.NETHER_STAR, "&7[&b&oInfo&7]", "", "Click to view \n" + api.u.usernameFromUUID(UUID.fromString(guiLibrary.getData2())) + "'s player information.");
         ItemStack unban = makeItem(Material.WATER_BUCKET, "&7[&c&oUnban&7]", "", "Click to unban player " + api.u.usernameFromUUID(UUID.fromString(guiLibrary.getData2())) + ".");
         ItemStack ban = makeItem(Material.LAVA_BUCKET, "&7[&4&oBan&7]", "", "Click to ban player " + api.u.usernameFromUUID(UUID.fromString(guiLibrary.getData2())) + ".");
         if (api.u.getBannedUsers().contains(api.u.usernameFromUUID(UUID.fromString(guiLibrary.getData2())))) {

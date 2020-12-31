@@ -11,6 +11,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.defaults.BukkitCommand;
 import org.bukkit.entity.Player;
+import org.spigotmc.hessentials.configuration.Config;
+import org.spigotmc.hessentials.configuration.DataManager;
 import org.spigotmc.hessentials.gui.claim.InventoryClaimMenu;
 import org.spigotmc.hessentials.listener.Claim;
 import org.spigotmc.hessentials.util.heHook;
@@ -190,7 +192,10 @@ public class CommandClaim extends BukkitCommand {
 							sendMessage(p, api.lib.getPrefix() + "&7&oClaim not found.");
 							return true;
 						}
-						if (!heHook.getPlayerHook(p).pc.getClaimList(p).contains(args[1])) {
+						DataManager dm = new DataManager();
+						Config pd = dm.getClaimData(p);
+						List<String> Claims = pd.getConfig().getStringList("claim_data");
+						if (!Claims.contains(args[1])) {
 							sendMessage(p, api.lib.getPrefix() + "&7&oClaim not found.");
 							return true;
 						}

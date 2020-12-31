@@ -53,15 +53,13 @@ public class Request {
 					destination.sendMessage(ChatColor.GRAY + "         You are being targeted by a " + ChatColor.RED + "Player");
 					destination.sendMessage(ChatColor.GRAY + "                   Warp delayed " + ChatColor.RED + "10s" + ChatColor.GRAY + "            ");
 					destination.sendMessage(" ");
-					Bukkit.getScheduler().scheduleSyncDelayedTask(HempfestEssentials.getInstance(), new Runnable() {
-						public void run() {
+					Bukkit.getScheduler().scheduleSyncDelayedTask(HempfestEssentials.getInstance(), () -> {
 
-							destination.teleport(loc);
-							requests.remove(requests.get(0));
-							data.getConfig().set("Request-List." + p.getName(), requests);
-							data.saveConfig();
+						destination.teleport(loc);
+						requests.remove(requests.get(0));
+						data.getConfig().set("Request-List." + p.getName(), requests);
+						data.saveConfig();
 
-						}
 					}, 200L);
 					return;
 				}

@@ -44,7 +44,6 @@ public class InventoryTeleportOnline extends Pagination {
         ArrayList<String> players = new ArrayList<>(api.u.getAllUserIDs());
         String player = e.getCurrentItem().getItemMeta().getPersistentDataContainer().get(new NamespacedKey(HempCore.getInstance(), "player"), PersistentDataType.STRING);
         Material mat = e.getCurrentItem().getType();
-        GuiLibrary gui = HempCore.guiManager(p);
         switch (mat) {
             case PLAYER_HEAD:
                 OfflinePlayer target = Bukkit.getOfflinePlayer(UUID.fromString(player));
@@ -78,7 +77,10 @@ public class InventoryTeleportOnline extends Pagination {
     @Override
     public void setMenuItems() {
         addMenuBorder();
-        ArrayList<String> players = new ArrayList<>(api.u.getAllUserIDs());
+        ArrayList<String> players = new ArrayList<>();
+        for (Player p : Bukkit.getOnlinePlayers()) {
+            players.add(p.getUniqueId().toString());
+        }
         if (players != null && !players.isEmpty()) {
             for (int i = 0; i < getMaxItemsPerPage(); i++) {
                 index = getMaxItemsPerPage() * page + i;
@@ -86,9 +88,7 @@ public class InventoryTeleportOnline extends Pagination {
                     break;
                 if (players.get(index) != null) {
                     ItemStack player = makePersistentItem(Material.PLAYER_HEAD, "&e&l&o" + api.u.usernameFromUUID(UUID.fromString(players.get(index))), "player", players.get(index), "", "Click to teleport.");
-                    if (Bukkit.getOfflinePlayer(UUID.fromString(players.get(index))).isOnline()) {
-                        inventory.addItem(player);
-                    }
+                    inventory.addItem(player);
 
                 }
             }

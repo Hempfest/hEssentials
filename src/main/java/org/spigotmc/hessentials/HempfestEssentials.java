@@ -2,6 +2,7 @@ package org.spigotmc.hessentials;
 
 import com.youtube.hempfest.hempcore.command.CommandBuilder;
 import com.youtube.hempfest.hempcore.event.EventBuilder;
+import java.util.HashMap;
 import java.util.logging.Logger;
 import org.bukkit.WorldCreator;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -20,6 +21,7 @@ public class HempfestEssentials extends JavaPlugin {
 	public static HempfestEssentials instance;
 	private static final Logger log = Logger.getLogger("Minecraft");
 	private final Utils u = new Utils();
+	public HashMap<String[], int[]> claimMap = new HashMap<>();
 
 	// Start server
 	public void onEnable() {
@@ -32,7 +34,7 @@ public class HempfestEssentials extends JavaPlugin {
 		builder.compileFields("org.spigotmc.hessentials.commands");
 		ebuilder.compileFields("org.spigotmc.hessentials.listener");
 		registerTimers();
-		Claim.loadClaims();
+		new Claim().loadClaims();
 		new WorldCreator("Build").createWorld();
 	}
 

@@ -3,10 +3,8 @@ package org.spigotmc.hessentials.listener;
 import com.youtube.hempfest.hempcore.HempCore;
 import com.youtube.hempfest.hempcore.gui.GuiLibrary;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
@@ -31,10 +29,6 @@ public class Claim {
     Player target;
     heHook api = heHook.getHook();
     String claimName;
-
-    public static HashMap<String[], int[]> claimMap = new HashMap<>();
-
-    public static HashMap<UUID, List<String>> playerClaimMap = new HashMap<>();
 
     public Claim() {
     }
@@ -82,7 +76,8 @@ public class Claim {
             sendMessage(p, api.lib.getPrefix() + "You already own this land.\nClaim: " + getClaimName(location));
             return;
         }
-        if (getClaimList(p).size() >= maxWarps(p.getName())) {
+        List<String> Claims = pd.getConfig().getStringList("claim_data");
+        if (Claims.size() >= maxWarps(p.getName())) {
             sendMessage(p, api.lib.getPrefix() + "You already have set your max amount of claims: " + maxWarps(p.getName()));
             return;
         }
@@ -106,6 +101,7 @@ public class Claim {
         data.getConfig().createSection("Location." + ID + ".User");
         data.saveConfig();
         sendMessage(p, api.lib.getPrefix() + "You just claimed land: " + claimName);
+        loadClaims();
         GuiLibrary gui = HempCore.guiManager(p);
         new InventoryClaimMenu(gui).open();
         return;
@@ -131,6 +127,7 @@ public class Claim {
             data.getConfig().set("Location." + ID, null);
             data.saveConfig();
             sendMessage(p, api.lib.getPrefix() + "You just un-claimed land: " + claimName);
+            loadClaims();
             return;
         }
         sendMessage(p, api.lib.getPrefix() + "You do not own this land.\nOwner: " + "&oUn-claimed");
@@ -226,14 +223,20 @@ public class Claim {
     }
 
     public void list() {
-        sendMessage(p, api.lib.getPrefix() + "" + getClaimList(p).toString());
+        DataManager dm = new DataManager();
+        Config pd = dm.getClaimData(p);
+        List<String> Claims = pd.getConfig().getStringList("claim_data");
+        sendMessage(p, api.lib.getPrefix() + "" + Claims.toString());
     }
 
     public void listOther() {
-        sendMessage(p, api.lib.getPrefix() + "" + getClaimList(target).toString());
+        DataManager dm = new DataManager();
+        Config pd = dm.getClaimData(target);
+        List<String> Claims = pd.getConfig().getStringList("claim_data");
+        sendMessage(p, api.lib.getPrefix() + "" + Claims.toString());
     }
 
-    public static void loadClaims() {
+    public void loadClaims() {
         DataManager dm = new DataManager();
         Config data = dm.requestData("Claims");
         FileConfiguration d = data.getConfig();
@@ -243,12 +246,12 @@ public class Claim {
             String w = d.getString("Location." + s + ".World");
             String[] ID = {s, w};
             int[] pos = {x, z};
-            claimMap.put(ID, pos);
+            HempfestEssentials.getInstance().claimMap.put(ID, pos);
         }
     }
 
     public boolean isInClaim(Location loc) {
-        for (Map.Entry<String[], int[]> entry : claimMap.entrySet()) {
+        for (Map.Entry<String[], int[]> entry : HempfestEssentials.getInstance().claimMap.entrySet()) {
             String[] data = entry.getKey();
             int[] pos = entry.getValue();
             String name = data[0];
@@ -293,21 +296,9 @@ public class Claim {
         return Claim;
     }
 
-    public static void loadPlayerClaims(Player p) {
-        DataManager dm = new DataManager();
-        Config pd = dm.getClaimData(p);
-        List<String> Claims = pd.getConfig().getStringList("claim_data");
-        playerClaimMap.put(p.getUniqueId(), Claims);
-    }
-
-    // Return the players claim list
-    public List<String> getClaimList(Player p) {
-        return playerClaimMap.get(p.getUniqueId());
-    }
-
     public List<String> claimList() {
         List<String> Claims = new ArrayList<>();
-        for (Map.Entry<String[], int[]> entry : claimMap.entrySet()) {
+        for (Map.Entry<String[], int[]> entry : HempfestEssentials.getInstance().claimMap.entrySet()) {
             String[] data = entry.getKey();
             String name = data[0];
             Claims.add(name);
@@ -527,7 +518,8 @@ public class Claim {
         if (isInClaim(location) && isClaimOwner()) {
             return;
         }
-        if (getClaimList(p).size() >= maxWarps(p.getName())) {
+        List<String> Claims = pd.getConfig().getStringList("claim_data");
+        if (Claims.size() >= maxWarps(p.getName())) {
             Bukkit.dispatchCommand(p, "claim autoclaim");
             sendMessage(p, api.lib.getPrefix() + "You already have set your max amount of claims: " + maxWarps(p.getName()));
             return;
