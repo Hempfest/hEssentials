@@ -1,4 +1,4 @@
-package org.spigotmc.hessentials.listener;
+package org.spigotmc.hessentials.util;
 
 import com.youtube.hempfest.hempcore.HempCore;
 import com.youtube.hempfest.hempcore.gui.GuiLibrary;
@@ -21,7 +21,6 @@ import org.spigotmc.hessentials.HempfestEssentials;
 import org.spigotmc.hessentials.configuration.Config;
 import org.spigotmc.hessentials.configuration.DataManager;
 import org.spigotmc.hessentials.gui.claim.InventoryClaimMenu;
-import org.spigotmc.hessentials.util.heHook;
 
 public class Claim {
     Player p;
@@ -357,7 +356,7 @@ public class Claim {
                 }
             }
         }
-        return "Wild";
+        return "SyncWarpGate";
     }
 
     // Get the claim owner of the specified location

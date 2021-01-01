@@ -5,7 +5,7 @@
 
 	<groupId>org.spigotmc.hessentials</groupId>
 	<artifactId>hEssentials</artifactId>
-	<version>2.0.1</version>
+	<version>2.1.2</version>
 	<packaging>jar</packaging>
 
 	<name>HempfestEssentials</name>
@@ -51,14 +51,9 @@
 			<version>1.0.3</version>
 		</dependency>
 		<dependency>
-            <groupId>com.github.Hempfest</groupId>
-            <artifactId>HempCore</artifactId>
-            <version>1.0.6</version>
-        </dependency>
-		<dependency>
 			<groupId>com.github.Hempfest</groupId>
-			<artifactId>hEssentialsSRV</artifactId>
-			<version>1.0.0</version>
+			<artifactId>HempCore</artifactId>
+			<version>1.0.8</version>
 		</dependency>
 		<dependency>
 			<groupId>CenterSpawn</groupId>

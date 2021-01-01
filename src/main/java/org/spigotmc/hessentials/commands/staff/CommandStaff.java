@@ -5,7 +5,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.defaults.BukkitCommand;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import org.spigotmc.hessentials.listener.Events;
+import org.spigotmc.hessentials.listener.EventListener;
 import org.spigotmc.hessentials.util.Utils;
 import org.spigotmc.hessentials.util.heHook;
 
@@ -43,10 +43,10 @@ public class CommandStaff extends BukkitCommand {
 		if (length == 0) {
 			//GuiLibrary gui = HempCore.guiManager(p);
 			//new InventoryConfiguration(gui).open();
-			if (Events.staffGui.containsKey(p.getUniqueId())) {
+			if (EventListener.staffGui.containsKey(p.getUniqueId())) {
 				// give their stuff back
-				if (Events.staffGui.get(p.getUniqueId())) {
-					Events.staffGui.put(p.getUniqueId(), false);
+				if (EventListener.staffGui.get(p.getUniqueId())) {
+					EventListener.staffGui.put(p.getUniqueId(), false);
 					p.getInventory().clear();
 					ItemStack[] contents = Utils.invStorage.get(p.getUniqueId());
 					for (ItemStack item : contents) {
@@ -59,12 +59,12 @@ public class CommandStaff extends BukkitCommand {
 					}
 					sendMessage(p, api.lib.getPrefix() + "&c&oDisabling staff mode, here's your stuff back.");
 				} else {
-					Events.staffGui.put(p.getUniqueId(), true);
+					EventListener.staffGui.put(p.getUniqueId(), true);
 					api.u.sendStaffMenu(p);
 					sendMessage(p, api.lib.getPrefix() + "&a&oEnabling staff mode.");
 				}
 			} else {
-				Events.staffGui.put(p.getUniqueId(), true);
+				EventListener.staffGui.put(p.getUniqueId(), true);
 				api.u.sendStaffMenu(p);
 				sendMessage(p, api.lib.getPrefix() + "&a&oEnabling staff mode.");
 			}

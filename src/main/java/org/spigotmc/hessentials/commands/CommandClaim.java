@@ -14,7 +14,7 @@ import org.bukkit.entity.Player;
 import org.spigotmc.hessentials.configuration.Config;
 import org.spigotmc.hessentials.configuration.DataManager;
 import org.spigotmc.hessentials.gui.claim.InventoryClaimMenu;
-import org.spigotmc.hessentials.listener.Claim;
+import org.spigotmc.hessentials.util.Claim;
 import org.spigotmc.hessentials.util.heHook;
 
 public class CommandClaim extends BukkitCommand {

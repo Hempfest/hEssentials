@@ -17,7 +17,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 import org.spigotmc.hessentials.configuration.Config;
 import org.spigotmc.hessentials.configuration.DataManager;
-import org.spigotmc.hessentials.listener.Home;
+import org.spigotmc.hessentials.util.Home;
 import org.spigotmc.hessentials.util.Utils;
 import org.spigotmc.hessentials.util.heHook;
 

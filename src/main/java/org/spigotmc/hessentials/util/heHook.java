@@ -1,7 +1,6 @@
 package org.spigotmc.hessentials.util;
 
 import org.bukkit.entity.Player;
-import org.spigotmc.hessentials.listener.Claim;
 import org.spigotmc.hessentials.util.variables.StringLibrary;
 
 public class heHook {

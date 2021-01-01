@@ -8,7 +8,7 @@ import org.bukkit.command.defaults.BukkitCommand;
 import org.bukkit.entity.Player;
 import org.spigotmc.hessentials.configuration.Config;
 import org.spigotmc.hessentials.configuration.DataManager;
-import org.spigotmc.hessentials.listener.Events;
+import org.spigotmc.hessentials.listener.EventListener;
 import org.spigotmc.hessentials.util.Utils;
 import org.spigotmc.hessentials.util.heHook;
 
@@ -49,7 +49,7 @@ public class CommandWhois extends BukkitCommand {
 		}
 		if (length == 1) {
 			Player target = Bukkit.getPlayer(args[0]);
-			if (target == null || Events.vanishPlayer.containsKey(p.getUniqueId()) && Events.vanishPlayer.get(p.getUniqueId())) {
+			if (target == null || EventListener.vanishPlayer.containsKey(p.getUniqueId()) && EventListener.vanishPlayer.get(p.getUniqueId())) {
 				OfflinePlayer otarget = Bukkit.getOfflinePlayer(args[0]);
 				DataManager dm = new DataManager();
 				Config data2 = dm.getUser(otarget.getUniqueId());

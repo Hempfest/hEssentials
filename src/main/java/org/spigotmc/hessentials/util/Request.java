@@ -1,4 +1,4 @@
-package org.spigotmc.hessentials.listener;
+package org.spigotmc.hessentials.util;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,8 +9,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.spigotmc.hessentials.HempfestEssentials;
 import org.spigotmc.hessentials.configuration.Config;
-import org.spigotmc.hessentials.util.Utils;
-import org.spigotmc.hessentials.util.heHook;
 
 public class Request {
 

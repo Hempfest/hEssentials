@@ -29,6 +29,7 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.Server;
 import org.bukkit.World;
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
 import org.bukkit.command.CommandMap;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.defaults.BukkitCommand;
@@ -44,8 +45,8 @@ import org.bukkit.persistence.PersistentDataType;
 import org.spigotmc.hessentials.HempfestEssentials;
 import org.spigotmc.hessentials.configuration.Config;
 import org.spigotmc.hessentials.configuration.DataManager;
-import org.spigotmc.hessentials.listener.Events;
-import org.spigotmc.hessentials.util.timers.Region;
+import org.spigotmc.hessentials.listener.EventListener;
+import org.spigotmc.hessentials.util.timers.SyncRegionArea;
 import org.spigotmc.hessentials.util.variables.StringLibrary;
 
 
@@ -400,9 +401,9 @@ public class Utils extends StringLibrary {
 	}
 
 	public void runClaimEvent() {
-		// Region Refresh = new Region();
-		final Region region = new Region();
-		region.runTaskTimerAsynchronously(HempfestEssentials.getInstance(), 20L, 30L);
+		// SyncRegionArea Refresh = new SyncRegionArea();
+		final SyncRegionArea syncRegionArea = new SyncRegionArea();
+		syncRegionArea.runTaskTimerAsynchronously(HempfestEssentials.getInstance(), 20L, 30L);
 	}
 
 	public UUID usernameToUUID(String username) {
@@ -491,7 +492,7 @@ public class Utils extends StringLibrary {
 	}
 
 	public void resetItems(Player p) {
-		if (!Events.staffGui.containsKey(p.getUniqueId())) {
+		if (!EventListener.staffGui.containsKey(p.getUniqueId())) {
 			List<String> names = new ArrayList<>(Arrays.asList(color("&7[&4&lRANDOM TP&7]"), color("&7[&c&lTELEPORT LIST&7]"), color("&7[&a&lTELEPORT VISIBLE&7]"), color("&7[&5&oOPEN INV&7]"), color("&7[&b&lFREEZE TARGET&7]"), color("&7[&3&lVANISH&7]")));
 			for (ItemStack item : p.getInventory().getContents()) {
 				if (item != null) {
@@ -530,7 +531,7 @@ public class Utils extends StringLibrary {
 		ItemStack freezePlayer = makeItem(Material.PACKED_ICE, "&7[&b&lFREEZE TARGET&7]", "", "&b&oClick to freeze the player you look at.");
 		ItemStack vanishP = makeItem(Material.PURPLE_DYE, "&7[&3&lVANISH&7]", "", "&oStatus: &c&nOff");
 		ItemStack config = makeItem(Material.PAPER, "&7[&6&lCONFIG&7]", "", "&b&oClick to view player information.");
-		if (Events.vanishPlayer.containsKey(p.getUniqueId()) && Events.vanishPlayer.get(p.getUniqueId())) {
+		if (EventListener.vanishPlayer.containsKey(p.getUniqueId()) && EventListener.vanishPlayer.get(p.getUniqueId())) {
 			vanishP = makeItem(Material.LIME_DYE, "&7[&3&lVANISH&7]", "", "&oStatus: &a&nOn");
 		}
 		p.getInventory().setItem(0, randomTp);
@@ -695,6 +696,27 @@ public class Utils extends StringLibrary {
 		return chunksAroundPlayer;
 	}
 
+	public ArrayList<Block> getBlocks(Block start, int radius) {
+		ArrayList<Block> blocks = new ArrayList<Block>();
+		for (double x = start.getLocation().getX() - radius; x <= start.getLocation().getX() + radius; x++) {
+			for (double y = start.getLocation().getY() - radius; y <= start.getLocation().getY() + radius; y++) {
+				for (double z = start.getLocation().getZ() - radius; z <= start.getLocation().getZ() + radius; z++) {
+					Location loc = new Location(start.getWorld(), x, y, z);
+					blocks.add(loc.getBlock());
+				}
+			}
+		}
+		return blocks;
+	}
+
+	public BlockFace getBlockFace(Player player) {
+		List<Block> lastTwoTargetBlocks = player.getLastTwoTargetBlocks(null, 100);
+		if (lastTwoTargetBlocks.size() != 2 || !lastTwoTargetBlocks.get(1).getType().isOccluding()) return null;
+		Block targetBlock = lastTwoTargetBlocks.get(1);
+		Block adjacentBlock = lastTwoTargetBlocks.get(0);
+		return targetBlock.getFace(adjacentBlock);
+	}
+
 	public void updateConfiguration() {
 		DataManager dm = new DataManager();
 		Config me = dm.getMisc("Messages");
@@ -806,6 +828,10 @@ public class Utils extends StringLibrary {
 		DataManager dm = new DataManager();
 		Config messages = dm.getMisc(api.lib.getMessagesUsed());
 		Config help = dm.getMisc("Help");
+		Config groups = dm.getMisc("Group");
+		Config suffix = dm.getMisc("Suffix");
+		groups.reload();
+		suffix.reload();
 		help.reload();
 		messages.reload();
 	}

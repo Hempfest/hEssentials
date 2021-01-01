@@ -8,7 +8,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
-import org.spigotmc.hessentials.listener.Claim;
+import org.spigotmc.hessentials.util.Claim;
 import org.spigotmc.hessentials.util.heHook;
 
 public class ClaimUpdateEvent extends Event implements Cancellable {

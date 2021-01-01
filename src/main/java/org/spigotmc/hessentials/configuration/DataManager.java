@@ -12,35 +12,35 @@ public class DataManager {
     }
 
     public Config getUser(Player p) {
-        return new Config(p.getUniqueId().toString(), "Players/user_data");
+        return Config.get(p.getUniqueId().toString(), "Players/user_data");
     }
 
     public Config getUser(UUID u) {
-        return new Config(u.toString(), "Players/user_data");
+        return Config.get(u.toString(), "Players/user_data");
     }
 
     public Config getClaimData(Player p) {
-        return new Config(p.getUniqueId().toString(), "Players/claim_data");
+        return Config.get(p.getUniqueId().toString(), "Players/claim_data");
     }
 
     public Config getClaimData(UUID u) {
-        return new Config(u.toString(), "Players/claim_data");
+        return Config.get(u.toString(), "Players/claim_data");
     }
 
     public Config getHomeData(Player p) {
-        return new Config(p.getUniqueId().toString(), "Players/home_data");
+        return Config.get(p.getUniqueId().toString(), "Players/home_data");
     }
 
     public Config getHomeData(UUID u) {
-        return new Config(u.toString(), "Players/home_data");
+        return Config.get(u.toString(), "Players/home_data");
     }
 
     public Config getMisc(String name) {
-        return new Config(name, null);
+        return Config.get(name, null);
     }
 
     public Config requestData(String data) {
-        return new Config(data, "Configuration/request_data");
+        return Config.get(data, "Configuration/request_data");
     }
 
 

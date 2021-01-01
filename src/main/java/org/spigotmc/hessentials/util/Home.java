@@ -1,4 +1,4 @@
-package org.spigotmc.hessentials.listener;
+package org.spigotmc.hessentials.util;
 
 import java.util.Set;
 import net.md_5.bungee.api.chat.ClickEvent;
@@ -17,7 +17,6 @@ import org.bukkit.event.player.PlayerTeleportEvent;
 import org.spigotmc.hessentials.HempfestEssentials;
 import org.spigotmc.hessentials.configuration.Config;
 import org.spigotmc.hessentials.configuration.DataManager;
-import org.spigotmc.hessentials.util.heHook;
 
 public class Home {
 

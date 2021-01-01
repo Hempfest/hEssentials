@@ -7,11 +7,11 @@ import java.util.logging.Logger;
 import org.bukkit.WorldCreator;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.spigotmc.hessentials.commands.staff.CommandGod;
-import org.spigotmc.hessentials.listener.Claim;
-import org.spigotmc.hessentials.listener.Events;
+import org.spigotmc.hessentials.listener.EventListener;
+import org.spigotmc.hessentials.util.Claim;
 import org.spigotmc.hessentials.util.Utils;
-import org.spigotmc.hessentials.util.timers.Region;
-import org.spigotmc.hessentials.util.timers.Wild;
+import org.spigotmc.hessentials.util.timers.SyncRegionArea;
+import org.spigotmc.hessentials.util.timers.SyncWarpGate;
 import org.spigotmc.hessentials.util.variables.Placeholders;
 
 
@@ -39,11 +39,9 @@ public class HempfestEssentials extends JavaPlugin {
 	}
 
 	public void onDisable() {
-		Events.vanishPlayer.clear();
-		Events.staffGui.clear();
+		EventListener.vanishPlayer.clear();
+		EventListener.staffGui.clear();
 		Utils.invStorage.clear();
-		Wild.saved.clear();
-		Region.saved.clear();
 		CommandGod.GodPlayers.clear();
 	}
 
@@ -57,17 +55,17 @@ public class HempfestEssentials extends JavaPlugin {
 
 
 	public void registerTimers() {
-		Region timer = new Region();
-		Wild wild = new Wild();
+		SyncRegionArea timer = new SyncRegionArea();
+		SyncWarpGate syncWarpGate = new SyncWarpGate();
 		timer.runTaskTimerAsynchronously(this, 20, 20);
-		wild.runTaskTimer(this, 10, 80);
+		syncWarpGate.runTaskTimer(this, 10, 80);
 		if (u.checkforPH()) {
 			new Placeholders(this).register();
 			log.info(String.format("[%s] - PlaceholderAPI FOUND!", getDescription().getName()));
 		} else {
 			log.info(String.format("[%s] - PlaceholderAPI not detected!", getDescription().getName()));
 		}
-		}
+	}
 	}
 /*
 

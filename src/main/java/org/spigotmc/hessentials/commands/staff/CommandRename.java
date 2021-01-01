@@ -6,7 +6,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.defaults.BukkitCommand;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.spigotmc.hessentials.listener.Events;
+import org.spigotmc.hessentials.listener.EventListener;
 import org.spigotmc.hessentials.util.heHook;
 
 public class CommandRename extends BukkitCommand {
@@ -25,15 +25,15 @@ public class CommandRename extends BukkitCommand {
             if(args.length==2){
                 if(Bukkit.getPlayer(args[0]) != null){//If specified player exists
                     Player p = Bukkit.getPlayer(args[0]);
-                    if(!Events.vanishPlayer.containsKey(p.getUniqueId()) || Events.vanishPlayer.containsKey(p.getUniqueId()) && !Events.vanishPlayer.get(p.getUniqueId())) {
-                            if (!renameHoldingItem(p, args[1])) {
-                                api.u.sendMessage(commandSender, api.lib.getPrefix() + args[0] + " is not holding an item!");
-                                return true;
-                        }else{//If rename was successfull
-                                api.u.sendMessage(commandSender, api.lib.getPrefix() + args[0] + "'s " + p.getInventory().getItemInMainHand().getType().name().toLowerCase() + " to " + args[1] + "!");
-                                api.u.sendMessage(p, api.lib.getPrefix() + "An admin renamed your " + p.getInventory().getItemInMainHand().getType().name().toLowerCase() + " to " + args[1] + ".");
-                                return true;
-                            }
+                    if (!EventListener.vanishPlayer.containsKey(p.getUniqueId()) || EventListener.vanishPlayer.containsKey(p.getUniqueId()) && !EventListener.vanishPlayer.get(p.getUniqueId())) {
+                        if (!renameHoldingItem(p, args[1])) {
+                            api.u.sendMessage(commandSender, api.lib.getPrefix() + args[0] + " is not holding an item!");
+                            return true;
+                        } else {//If rename was successfull
+                            api.u.sendMessage(commandSender, api.lib.getPrefix() + args[0] + "'s " + p.getInventory().getItemInMainHand().getType().name().toLowerCase() + " to " + args[1] + "!");
+                            api.u.sendMessage(p, api.lib.getPrefix() + "An admin renamed your " + p.getInventory().getItemInMainHand().getType().name().toLowerCase() + " to " + args[1] + ".");
+                            return true;
+                        }
                     }
                 }
                 api.u.sendMessage(commandSender, api.lib.getPrefix() + "Player: " + args[0] + " is not online!");
@@ -54,15 +54,15 @@ public class CommandRename extends BukkitCommand {
                 }else if(args.length == 2) { //IF THEY ARE RENAMING SOMEONE ELSE'S ITEM
                     if(Bukkit.getPlayer(args[0]) != null){//If specified player exists
                         Player p = Bukkit.getPlayer(args[0]);
-                        if(!Events.vanishPlayer.containsKey(p.getUniqueId()) || Events.vanishPlayer.containsKey(p.getUniqueId()) && !Events.vanishPlayer.get(p.getUniqueId())) {
+                        if (!EventListener.vanishPlayer.containsKey(p.getUniqueId()) || EventListener.vanishPlayer.containsKey(p.getUniqueId()) && !EventListener.vanishPlayer.get(p.getUniqueId())) {
                             if (!renameHoldingItem(p, args[1])) {
                                 api.u.sendMessage(commandSender, api.lib.getPrefix() + args[0] + " is not holding an item!");
                                 return true;
-                            }else{//If rename was successfull
-                                if(commandSender != p) { //specified player IS NOT command sender
+                            } else {//If rename was successfull
+                                if (commandSender != p) { //specified player IS NOT command sender
                                     api.u.sendMessage(commandSender, api.lib.getPrefix() + args[0] + "'s " + p.getInventory().getItemInMainHand().getType().name().toLowerCase() + " to " + args[1] + "!");
                                     api.u.sendMessage(p, api.lib.getPrefix() + "An admin renamed your " + p.getInventory().getItemInMainHand().getType().name().toLowerCase() + " to '" + args[1] + "&f'.");
-                                }else{ //specified player IS command sender
+                                } else { //specified player IS command sender
                                     api.u.sendMessage(p, api.lib.getPrefix() + "You renamed your " + p.getInventory().getItemInMainHand().getType().name().toLowerCase() + " to '" + args[1] + "&f'.");
                                 }
                             }

@@ -7,7 +7,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.defaults.BukkitCommand;
 import org.bukkit.entity.Player;
 import org.spigotmc.hessentials.gui.homes.InventoryHomes;
-import org.spigotmc.hessentials.listener.Home;
+import org.spigotmc.hessentials.util.Home;
 import org.spigotmc.hessentials.util.Utils;
 import org.spigotmc.hessentials.util.heHook;
 

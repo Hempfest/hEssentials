@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.plugin.java.JavaPlugin;
 import org.spigotmc.hessentials.HempfestEssentials;
 
 public class Config {
@@ -17,18 +16,12 @@ public class Config {
     private final String d;
     private FileConfiguration fc;
     private File file;
-    private final JavaPlugin plugin;
-    private static List<Config> configs;
-
-    static {
-        Config.configs = new ArrayList<Config>();
-    }
+    private static final List<Config> configs = new ArrayList<>();
 
     public Config(final String n, final String d) {
-        this.plugin = HempfestEssentials.getInstance();
         this.n = n;
         this.d = d;
-        Config.configs.add(this);
+        configs.add(this);
     }
 
     public static void copy(InputStream in, File file) {
@@ -47,41 +40,24 @@ public class Config {
     }
 
     public String getName() {
-        if (this.n == null) {
-            try {
-                throw new Exception();
-            } catch (final Exception e) {
-                e.printStackTrace();
-            }
-        }
-        return this.n;
-    }
-
-    public JavaPlugin getInstance() {
-        if (this.plugin == null) {
-            try {
-                throw new Exception();
-            } catch (final Exception e) {
-                e.printStackTrace();
-            }
-        }
-        return this.plugin;
+        return (n == null) ? "" : n;
     }
 
 
-    public static Config getConfig(final String n, final String d) {
+    public static Config get(final String n, final String d) {
         for (final Config c : Config.configs) {
             if (c.getName().equals(n)) {
                 return c;
             }
         }
-        if (d != null) {
+        if (!n.isEmpty()) {
             return new Config(n, d);
-        } else
-            return new Config(n, null);
+        }
+        return null;
     }
 
     public boolean delete() {
+        Config.configs.removeIf(config -> config.getName().equals(getName()));
         return this.getFile().delete();
     }
 
@@ -119,11 +95,11 @@ public class Config {
 
     public File getDataFolder() {
         final File dir = new File(Config.class.getProtectionDomain().getCodeSource().getLocation().getPath().replaceAll("%20", " "));
-        File d = null;
+        File d;
         if (this.d != null) {
-            d = new File(dir.getParentFile().getPath(), this.getInstance().getName() + "/" + this.d + "/");
+            d = new File(dir.getParentFile().getPath(), HempfestEssentials.getInstance().getName() + "/" + this.d + "/");
         } else {
-            d = new File(dir.getParentFile().getPath(), this.getInstance().getName() + "/Configuration/");
+            d = new File(dir.getParentFile().getPath(), HempfestEssentials.getInstance().getName());
         }
         if (!d.exists()) {
             d.mkdirs();
@@ -132,23 +108,18 @@ public class Config {
     }
 
     public void reload() {
-        if (this.file == null) {
-            this.file = new File(this.getDataFolder(), this.getName() + ".yml");
-            if (!this.file.exists()) {
-                try {
-                    this.file.createNewFile();
-                } catch (final IOException e) {
-                    e.printStackTrace();
-                }
+        this.file = new File(getDataFolder(), getName() + ".yml");
+        if (!this.file.exists())
+            try {
+                this.file.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-
-            this.fc = YamlConfiguration.loadConfiguration(this.file);
-            final File defConfigStream = new File(this.plugin.getDataFolder(), this.getName() + ".yml");
-            if (defConfigStream != null) {
-                final YamlConfiguration defConfig = YamlConfiguration.loadConfiguration(defConfigStream);
-                this.fc.setDefaults(defConfig);
-            }
-        }
+        this.fc = YamlConfiguration.loadConfiguration(this.file);
+        File defConfigStream = new File(getDataFolder(), getName() + ".yml");
+        YamlConfiguration defConfig = YamlConfiguration.loadConfiguration(defConfigStream);
+        this.fc.setDefaults(defConfig);
+        configs.removeIf(c -> c.getName().equals(n));
     }
 
     public void saveConfig() {
@@ -159,6 +130,6 @@ public class Config {
         }
     }
 
-
 }
+
 
