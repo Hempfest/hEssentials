@@ -1,10 +1,7 @@
 name: hEssentials
 version: 2.0.3
 api-version: 1.13
-authors:
-  - Hempfest
-  - Modify
-  - Coolmike35
+authors: [ Hempfest, Modify, Coolmike, Allstreamer ]
 depend: [ HempCore ]
 soft-depend: [ Vault, PlaceholderAPI , hEssentialsChat ]
 description: A lightweight alternative to EssentialsX

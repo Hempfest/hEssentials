@@ -235,7 +235,7 @@ public class Claim {
         sendMessage(p, api.lib.getPrefix() + "" + Claims.toString());
     }
 
-    public void loadClaims() {
+    public static void loadClaims() {
         DataManager dm = new DataManager();
         Config data = dm.requestData("Claims");
         FileConfiguration d = data.getConfig();
@@ -542,6 +542,9 @@ public class Claim {
         data.getConfig().set("Location." + ID + ".Owner", p.getName());
         data.getConfig().createSection("Location." + ID + ".User");
         data.saveConfig();
+        String[] id = {ID, w.getName()};
+        int[] pos = {x, z};
+        HempfestEssentials.getInstance().claimMap.put(id, pos);
         sendMessage(p, api.lib.getPrefix() + "&a[AUTO] &rYou just claimed land: " + ID);
         return;
 

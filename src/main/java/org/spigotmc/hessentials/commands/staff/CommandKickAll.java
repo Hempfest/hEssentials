@@ -1,12 +1,11 @@
 package org.spigotmc.hessentials.commands.staff;
 
+import java.util.Arrays;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.defaults.BukkitCommand;
 import org.bukkit.entity.Player;
 import org.spigotmc.hessentials.util.heHook;
-
-import java.util.Arrays;
 
 public class CommandKickAll extends BukkitCommand {
 
@@ -36,14 +35,14 @@ public class CommandKickAll extends BukkitCommand {
 					}
 				}
 			}
-			if (length > 1) {
+			if (length >= 1) {
 				StringBuilder rsn = new StringBuilder();
 				for (int i = 0; i < args.length; i++)
 					rsn.append(args[i] + " ");
 				for (Player target : Bukkit.getOnlinePlayers()) {
 					if (target != sender) {
-						target.kickPlayer(api.lib.color(api.lib.getPrefix() + "\n&c&lYou have been kicked.\n&c&lREASON:\n&f&l" + rsn));
-						Bukkit.broadcastMessage(api.lib.color(api.lib.getPrefix() + "Player '&c" + target.getName() + "&7' kicked for '&c" + rsn + "&7'."));
+						target.kickPlayer(api.lib.color(api.lib.getPrefix() + "\n&c&lYou have been kicked.\n&c&lREASON:\n&f&l" + rsn.substring(0, rsn.length() - 1)));
+						Bukkit.broadcastMessage(api.lib.color(api.lib.getPrefix() + "Player '&c" + target.getName() + "&7' kicked for '&c" + rsn.substring(0, rsn.length() - 1) + "&7'."));
 					}
 				}
 				return true;
@@ -57,25 +56,25 @@ public class CommandKickAll extends BukkitCommand {
 			 api.lib.sendNoPermission(p, this.getPermission());
 			 return true;
 		 }
-   	  if (length == 0) {
-   		for (Player target : Bukkit.getOnlinePlayers()) {
-   			if (!target.getName().equals(p.getName())) {
-				target.kickPlayer(api.lib.color(api.lib.getPrefix() + "\n&c&lYou have been kicked.\n&fREASON:\n&lNONE"));
-				Bukkit.broadcastMessage(api.lib.color(api.lib.getPrefix() + "Player '&c" + target.getName() + "&7' kicked for '&cNO REASON&7'."));
-				return true;
+		if (length == 0) {
+			for (Player target : Bukkit.getOnlinePlayers()) {
+				if (!target.getName().equals(p.getName())) {
+					target.kickPlayer(api.lib.color(api.lib.getPrefix() + "\n&c&lYou have been kicked.\n&fREASON:\n&lNONE"));
+					Bukkit.broadcastMessage(api.lib.color(api.lib.getPrefix() + "Player '&c" + target.getName() + "&7' kicked for '&cNO REASON&7'."));
+					return true;
+				}
 			}
-     		  }
-   	  }
-   	  if (length > 1) {
-   		  StringBuilder rsn = new StringBuilder();
-             for (int i = 0; i < args.length; i++)
-				 rsn.append(args[i] + " ");
-             for (Player target : Bukkit.getOnlinePlayers()) {
-				 if (!target.getName().equals(p.getName())) {
-					 target.kickPlayer(api.lib.color(api.lib.getPrefix() + "\n&c&lYou have been kicked.\n&c&lREASON:\n&f&l" + rsn));
-					 Bukkit.broadcastMessage(api.lib.color(api.lib.getPrefix() + "Player '&c" + target.getName() + "&7' kicked for '&c" + rsn + "&7'."));
+		}
+		if (length >= 1) {
+			StringBuilder rsn = new StringBuilder();
+			for (int i = 0; i < args.length; i++)
+				rsn.append(args[i] + " ");
+			for (Player target : Bukkit.getOnlinePlayers()) {
+				if (!target.getName().equals(p.getName())) {
+					target.kickPlayer(api.lib.color(api.lib.getPrefix() + "\n&c&lYou have been kicked.\n&c&lREASON:\n&f&l" + rsn.substring(0, rsn.length() - 1)));
+					Bukkit.broadcastMessage(api.lib.color(api.lib.getPrefix() + "Player '&c" + target.getName() + "&7' kicked for '&c" + rsn.substring(0, rsn.length() - 1) + "&7'."));
 
-				 }
+				}
 
 			 }
 		  return true;

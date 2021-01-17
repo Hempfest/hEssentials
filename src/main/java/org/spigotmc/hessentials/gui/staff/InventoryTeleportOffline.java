@@ -4,6 +4,7 @@ import com.youtube.hempfest.hempcore.HempCore;
 import com.youtube.hempfest.hempcore.gui.GuiLibrary;
 import com.youtube.hempfest.hempcore.gui.Pagination;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.UUID;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -41,7 +42,7 @@ public class InventoryTeleportOffline extends Pagination {
     @Override
     public void handleMenu(InventoryClickEvent e) {
         Player p = (Player) e.getWhoClicked();
-        ArrayList<String> players = new ArrayList<>(api.u.getAllUserIDs());
+        ArrayList<OfflinePlayer> players = new ArrayList<>(Arrays.asList(Bukkit.getOfflinePlayers()));
         String player = e.getCurrentItem().getItemMeta().getPersistentDataContainer().get(new NamespacedKey(HempCore.getInstance(), "player"), PersistentDataType.STRING);
         Material mat = e.getCurrentItem().getType();
         switch (mat) {
@@ -51,7 +52,8 @@ public class InventoryTeleportOffline extends Pagination {
                 p.closeInventory();
                 break;
             case BARRIER:
-                p.closeInventory();
+                GuiLibrary gui = HempCore.guiManager(p);
+                new InventoryTeleport(gui).open();
                 break;
             case DARK_OAK_BUTTON:
                 if (ChatColor.stripColor(e.getCurrentItem().getItemMeta().getDisplayName()).equalsIgnoreCase("Left")) {
@@ -77,15 +79,15 @@ public class InventoryTeleportOffline extends Pagination {
     @Override
     public void setMenuItems() {
         addMenuBorder();
-        ArrayList<String> players = new ArrayList<>(api.u.getAllUserIDs());
+        ArrayList<OfflinePlayer> players = new ArrayList<>(Arrays.asList(Bukkit.getOfflinePlayers()));
         if (players != null && !players.isEmpty()) {
             for (int i = 0; i < getMaxItemsPerPage(); i++) {
                 index = getMaxItemsPerPage() * page + i;
                 if (index >= players.size())
                     break;
                 if (players.get(index) != null) {
-                    ItemStack player = makePersistentItem(Material.PLAYER_HEAD, "&e&l&o" + api.u.usernameFromUUID(UUID.fromString(players.get(index))), "player", players.get(index), "", "Click to teleport.");
-                    if (!Bukkit.getOfflinePlayer(UUID.fromString(players.get(index))).isOnline()) {
+                    ItemStack player = makePersistentItem(Material.PLAYER_HEAD, "&e&l&o" + players.get(index).getName(), "player", players.get(index).getUniqueId().toString(), "", "Click to teleport.");
+                    if (!players.get(index).isOnline()) {
                         inventory.addItem(player);
                     }
 

@@ -47,20 +47,18 @@
         </dependency>
 		<dependency>
 			<groupId>com.github.Hempfest</groupId>
-			<artifactId>hEssentialsChat</artifactId>
-			<version>1.0.3</version>
-		</dependency>
-		<dependency>
-			<groupId>com.github.Hempfest</groupId>
 			<artifactId>HempCore</artifactId>
 			<version>1.0.8</version>
 		</dependency>
 		<dependency>
-			<groupId>CenterSpawn</groupId>
+			<groupId>com.github.Hempfest</groupId>
+			<artifactId>hEssentialsChat</artifactId>
+			<version>1.0.4</version>
+		</dependency>
+		<dependency>
+			<groupId>com.github.Hempfest</groupId>
 			<artifactId>CenterSpawn</artifactId>
-			<version>1.0.0</version>
-			<scope>system</scope>
-			<systemPath>${project.basedir}/src/main/resources/CenterSpawn.jar</systemPath>
+			<version>2.0.0</version>
 		</dependency>
 	</dependencies>
 </project>

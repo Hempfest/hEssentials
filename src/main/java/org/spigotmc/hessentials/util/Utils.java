@@ -828,10 +828,6 @@ public class Utils extends StringLibrary {
 		DataManager dm = new DataManager();
 		Config messages = dm.getMisc(api.lib.getMessagesUsed());
 		Config help = dm.getMisc("Help");
-		Config groups = dm.getMisc("Group");
-		Config suffix = dm.getMisc("Suffix");
-		groups.reload();
-		suffix.reload();
 		help.reload();
 		messages.reload();
 	}

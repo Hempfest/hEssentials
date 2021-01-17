@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.spigotmc.hessentials.HempfestEssentials;
@@ -130,6 +131,21 @@ public class Config {
         }
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Config)) return false;
+        Config config = (Config) o;
+        return n.equals(config.n) &&
+                d.equals(config.d) &&
+                Objects.equals(fc, config.fc) &&
+                Objects.equals(getFile(), config.getFile());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(n, d);
+    }
 }
 
 

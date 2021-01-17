@@ -69,9 +69,7 @@ public class InventoryClaimAdd extends Pagination {
                 break;
             case PLAYER_HEAD:
                 Bukkit.dispatchCommand(p, "claim adduser " + this.guiLibrary.getData() + " " + name);
-                String claimm = this.guiLibrary.getData();
-                gui.setData(claimm);
-                new InventoryClaimAdd(gui).open();
+                super.open();
                 break;
             case BARRIER:
                 p.closeInventory();

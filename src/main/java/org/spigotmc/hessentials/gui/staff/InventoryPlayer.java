@@ -11,7 +11,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 import org.spigotmc.hessentials.gui.claim.InventoryClaimsOther;
-import org.spigotmc.hessentials.gui.homes.InventoryHomesOther;
 import org.spigotmc.hessentials.util.heHook;
 
 public class InventoryPlayer extends Menu {
@@ -43,10 +42,6 @@ public class InventoryPlayer extends Menu {
         GuiLibrary gui = HempCore.guiManager(p);
         String name = api.u.usernameFromUUID(UUID.fromString(gui.getData2()));
         switch (mat) {
-            case MOJANG_BANNER_PATTERN:
-                gui.setData2(name);
-                new InventoryHomesOther(gui).open();
-                break;
             case GLOBE_BANNER_PATTERN:
                 gui.setData2(name);
                 new InventoryClaimsOther(gui).open();
@@ -68,7 +63,6 @@ public class InventoryPlayer extends Menu {
 
     @Override
     public void setMenuItems() {
-        ItemStack homes = makeItem(Material.MOJANG_BANNER_PATTERN, "&7[&b&oHomes&7]", "", "Click to view a list of \n" + api.u.usernameFromUUID(UUID.fromString(guiLibrary.getData2())) + "'s homes");
         ItemStack claims = makeItem(Material.GLOBE_BANNER_PATTERN, "&7[&b&oClaims&7]", "", "Click to view a list of \n" + api.u.usernameFromUUID(UUID.fromString(guiLibrary.getData2())) + "'s private-claims");
         ItemStack info = makeItem(Material.NETHER_STAR, "&7[&b&oInfo&7]", "", "Click to view \n" + api.u.usernameFromUUID(UUID.fromString(guiLibrary.getData2())) + "'s player information.");
         ItemStack unban = makeItem(Material.WATER_BUCKET, "&7[&c&oUnban&7]", "", "Click to unban player " + api.u.usernameFromUUID(UUID.fromString(guiLibrary.getData2())) + ".");
@@ -79,7 +73,6 @@ public class InventoryPlayer extends Menu {
             inventory.setItem(6, ban);
         }
         inventory.setItem(3, claims);
-        inventory.setItem(2, homes);
         inventory.setItem(4, info);
         setFillerGlass();
     }

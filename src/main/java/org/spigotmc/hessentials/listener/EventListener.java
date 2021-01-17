@@ -30,6 +30,7 @@ import org.bukkit.event.entity.ProjectileLaunchEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
+import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerBedEnterEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
@@ -80,7 +81,6 @@ public class EventListener implements Listener {
 			api.pc.createPlayerData();
 			u.MOTD(p);
 			inventoryOpen.put(e.getPlayer().getUniqueId(), false);
-			api.u.sendComponent(p, new Text().textRunnable("&e&oDynmap player visibility?", " &f[&a&lYES&f]", " &r: ", "&f[&c&lNO&f]", "Click to show yourself on the map.", "Click to hide yourself on the map.", "dynmap show", "dynmap hide"));
 			return;
 		}
 		if (vanishPlayer.containsKey(p.getUniqueId())) {
@@ -111,7 +111,6 @@ public class EventListener implements Listener {
 		u.MOTD(p);
 		api.u.resetItems(p);
 		inventoryOpen.put(e.getPlayer().getUniqueId(), false);
-		api.u.sendComponent(p, new Text().textRunnable("&e&oDynmap player visibility?", " &f[&a&lYES&f]", " &r: ", "&f[&c&lNO&f]", "Click to show yourself on the map.", "Click to hide yourself on the map.", "dynmap show", "dynmap hide"));
 	}
 
 	@EventHandler(priority = EventPriority.NORMAL)
@@ -119,6 +118,16 @@ public class EventListener implements Listener {
 		if (EventListener.staffGui.containsKey(e.getPlayer().getUniqueId())) {
 			e.setCancelled(EventListener.staffGui.get(e.getPlayer().getUniqueId()));
 		}
+	}
+
+	@EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
+	public void onInventoryOpen(InventoryOpenEvent event) {
+		Player player = (Player) event.getPlayer();
+		if (event.getInventory().getType() == InventoryType.MERCHANT)
+			if (!player.hasPermission("hessentials.villager.trading")) {
+				event.setCancelled(true);
+				api.u.sendMessage(player, "&c&oVillager trading is disabled due to performance and exploitation reasons.");
+			}
 	}
 
 	@EventHandler(priority = EventPriority.NORMAL)
@@ -274,11 +283,22 @@ public class EventListener implements Listener {
 			Player p = (Player) e.getDamager();
 			EnderCrystal ec = (EnderCrystal) e.getEntity();
 
-			if (CenterSpawn.isInSpawn(ec.getLocation())) {
-				if (!p.hasPermission("hessentials.gate.break")) {
-					ec.setInvulnerable(true);
-					api.u.sendMessage(p, api.u.getPrefix() + "&c&oYou wish to destroy everyones way out? How dare you...");
-					e.setCancelled(true);
+
+			if (Bukkit.getPluginManager().isPluginEnabled("CenterSpawn")) {
+				if (CenterSpawn.isInSpawn(ec.getLocation())) {
+					if (!p.hasPermission("hessentials.gate.break")) {
+						ec.setInvulnerable(true);
+						api.u.sendMessage(p, api.u.getPrefix() + "&c&oYou wish to destroy everyones way out? How dare you...");
+						e.setCancelled(true);
+					}
+				}
+			} else {
+				if (heHook.getPlayerHook(p).pc.isInClaim(ec.getLocation())) {
+					if (!p.hasPermission("hessentials.gate.break")) {
+						ec.setInvulnerable(true);
+						api.u.sendMessage(p, api.u.getPrefix() + "&c&oYou wish to destroy everyones way out? How dare you...");
+						e.setCancelled(true);
+					}
 				}
 			}
 

@@ -41,7 +41,7 @@ public class InventoryTeleportOnline extends Pagination {
     @Override
     public void handleMenu(InventoryClickEvent e) {
         Player p = (Player) e.getWhoClicked();
-        ArrayList<String> players = new ArrayList<>(api.u.getAllUserIDs());
+        ArrayList<Player> players = new ArrayList<>(Bukkit.getOnlinePlayers());
         String player = e.getCurrentItem().getItemMeta().getPersistentDataContainer().get(new NamespacedKey(HempCore.getInstance(), "player"), PersistentDataType.STRING);
         Material mat = e.getCurrentItem().getType();
         switch (mat) {
@@ -51,7 +51,8 @@ public class InventoryTeleportOnline extends Pagination {
                 p.closeInventory();
                 break;
             case BARRIER:
-                p.closeInventory();
+                GuiLibrary gui = HempCore.guiManager(p);
+                new InventoryTeleport(gui).open();
                 break;
             case DARK_OAK_BUTTON:
                 if (ChatColor.stripColor(e.getCurrentItem().getItemMeta().getDisplayName()).equalsIgnoreCase("Left")) {
@@ -77,17 +78,14 @@ public class InventoryTeleportOnline extends Pagination {
     @Override
     public void setMenuItems() {
         addMenuBorder();
-        ArrayList<String> players = new ArrayList<>();
-        for (Player p : Bukkit.getOnlinePlayers()) {
-            players.add(p.getUniqueId().toString());
-        }
+        ArrayList<Player> players = new ArrayList<>(Bukkit.getOnlinePlayers());
         if (players != null && !players.isEmpty()) {
             for (int i = 0; i < getMaxItemsPerPage(); i++) {
                 index = getMaxItemsPerPage() * page + i;
                 if (index >= players.size())
                     break;
                 if (players.get(index) != null) {
-                    ItemStack player = makePersistentItem(Material.PLAYER_HEAD, "&e&l&o" + api.u.usernameFromUUID(UUID.fromString(players.get(index))), "player", players.get(index), "", "Click to teleport.");
+                    ItemStack player = makePersistentItem(Material.PLAYER_HEAD, "&e&l&o" + players.get(index).getName(), "player", players.get(index).getUniqueId().toString(), "", "Click to teleport.");
                     inventory.addItem(player);
 
                 }

@@ -4,6 +4,9 @@ import com.youtube.hempfest.centerspawn.CenterSpawn;
 import java.util.HashMap;
 import java.util.Random;
 import java.util.UUID;
+import net.md_5.bungee.api.ChatMessageType;
+import net.md_5.bungee.api.chat.TextComponent;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.World;
@@ -59,15 +62,11 @@ public class WarpGateEvent extends Event implements Cancellable {
 	 */
 	public boolean hasSurface(Location location) {
 		Block feet = location.getBlock();
-		if (!feet.getType().isAir() && !feet.getLocation().add(0, 1, 0).getBlock().getType().isAir()) {
-			return false; // not transparent (will suffocate)
-		}
 		Block head = feet.getRelative(BlockFace.UP);
-		if (!head.getType().isAir()) {
+		if (!feet.getType().isAir() && !feet.getLocation().add(0, 1, 0).getBlock().getType().isAir() && !head.getType().isAir()) {
 			return false; // not transparent (will suffocate)
 		}
-		Block ground = feet.getRelative(BlockFace.DOWN);
-		return ground.getType().isSolid(); // not solid
+		return feet.getRelative(BlockFace.DOWN).getType().isSolid(); // not solid
 	}
 
 	public void setGateLocation(Location location) {
@@ -91,7 +90,13 @@ public class WarpGateEvent extends Event implements Cancellable {
 	}
 
 	public void runEvent() {
-		if (CenterSpawn.isInSpawn(p.getLocation())) {
+		boolean environment;
+		if (Bukkit.getPluginManager().isPluginEnabled("CenterSpawn")) {
+			environment = CenterSpawn.isInSpawn(p.getLocation());
+		} else {
+			environment = heHook.getPlayerHook(p).pc.isInClaim(p.getLocation());
+		}
+		if (environment) {
 			for (Entity e : p.getNearbyEntities(1, 1, 1)) {
 				if (e instanceof EnderCrystal) {
 					if (!sent.containsKey(p.getUniqueId())) {
@@ -104,32 +109,36 @@ public class WarpGateEvent extends Event implements Cancellable {
 					}
 					ent.setBeamTarget(p.getLocation());
 					int x = new Random().nextInt(3000);
-					int y = 72;
+					int y = 150;
 					int z = new Random().nextInt(3000);
 					World w = p.getWorld();
 					Location teleportLocation = new Location(w, x, y, z);
-					if (hasSurface(teleportLocation)) {
-						if (!sent.get(p.getUniqueId())) {
-							sent.put(p.getUniqueId(), true);
-							if (this.location != null) {
-								teleportLocation = this.location;
-							}
-							for (Entity et : p.getNearbyEntities(30, 30, 30)) {
-								if (et instanceof Player) {
-									Player t = (Player) et;
-									t.playSound(p.getLocation(), Sound.ENTITY_DRAGON_FIREBALL_EXPLODE, 10, 1);
-								}
-							}
-
-							p.teleport(teleportLocation, PlayerTeleportEvent.TeleportCause.END_GATEWAY);
-							String message = "&aYou've been teleported to somewhere random.";
-							if (this.message != null) {
-								message = this.message;
-							}
-							api.u.sendMessage(p, api.u.getPrefix() + message);
+					y = teleportLocation.getWorld().getHighestBlockYAt(teleportLocation);
+					teleportLocation.setY(y);
+					if (!hasSurface(teleportLocation)) {
+						p.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(api.u.color(api.u.getPrefix() + "Searching for suitable location...")));
+						p.playSound(p.getLocation(), Sound.ENTITY_BLAZE_SHOOT, 10, 1);
+						teleportLocation = new Location(w, x, y, z);
+					}
+					if (!sent.get(p.getUniqueId())) {
+						sent.put(p.getUniqueId(), true);
+						if (this.location != null) {
+							teleportLocation = this.location;
 						}
-					} else {
-						api.u.sendMessage(p, api.u.getPrefix() + "Searching for suitable location...");
+						for (Entity et : p.getNearbyEntities(30, 30, 30)) {
+							if (et instanceof Player) {
+								Player t = (Player) et;
+								t.playSound(p.getLocation(), Sound.ENTITY_DRAGON_FIREBALL_EXPLODE, 10, 1);
+							}
+						}
+
+						p.teleport(teleportLocation, PlayerTeleportEvent.TeleportCause.END_GATEWAY);
+						String message = "&aYou've been teleported to somewhere random.";
+						if (this.message != null) {
+							message = this.message;
+						}
+						api.u.sendMessage(p, api.u.getPrefix() + message);
+						p.playSound(p.getLocation(), Sound.AMBIENT_CAVE, 10, 1);
 					}
 
 					return;

@@ -10,7 +10,6 @@ import org.bukkit.entity.Fireball;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.TNTPrimed;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
@@ -30,7 +29,7 @@ public class ClaimListener implements Listener {
 
 	private final Utils u = new Utils();
 
-	@EventHandler(priority = EventPriority.NORMAL)
+	@EventHandler
 	public void onFireHit(ProjectileHitEvent e) {
 		if (e.getEntity() instanceof Fireball) {
 			if (e.getEntity().getShooter() instanceof Player) {
@@ -43,7 +42,7 @@ public class ClaimListener implements Listener {
 		}
 	}
 
-	@EventHandler(priority = EventPriority.NORMAL)
+	@EventHandler
 	public void onEntityExplode(EntityExplodeEvent event) {
 		Entity ent = event.getEntity();
 		Claim location = new Claim();
@@ -60,7 +59,7 @@ public class ClaimListener implements Listener {
 		}
 	}
 
-	@EventHandler(priority = EventPriority.NORMAL)
+	@EventHandler
 	public void onExplosionPrime(ExplosionPrimeEvent event) {
 
 
@@ -76,7 +75,7 @@ public class ClaimListener implements Listener {
 		}
 	}
 
-	@EventHandler(priority = EventPriority.NORMAL)
+	@EventHandler
 	public void onBucketRelease(PlayerBucketEmptyEvent e) {
 		Player p = e.getPlayer();
 		Block block = e.getBlock();
@@ -95,8 +94,7 @@ public class ClaimListener implements Listener {
 		}
 	}
 
-
-	@EventHandler(priority = EventPriority.NORMAL)
+	@EventHandler
 	public void onBreak(BlockBreakEvent e) {
 		Player p = e.getPlayer();
 		Block block = e.getBlock();
@@ -115,11 +113,12 @@ public class ClaimListener implements Listener {
 		}
 	}
 
-	@EventHandler(priority = EventPriority.HIGH)
+	@EventHandler
 	public void onPlace(BlockPlaceEvent e) {
 		Player p = e.getPlayer();
 		Block block = e.getBlock();
 		Location bloc = block.getLocation();
+		api = heHook.getPlayerHook(p);
 		if (api.pc.isInClaim(bloc)) {
 			DataManager dm = new DataManager();
 			Config pd = dm.getClaimData(p);
