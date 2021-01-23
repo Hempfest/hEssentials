@@ -5,6 +5,8 @@ import com.youtube.hempfest.hempcore.event.EventBuilder;
 import java.util.HashMap;
 import java.util.logging.Logger;
 import org.bukkit.Bukkit;
+import org.bukkit.WorldCreator;
+import org.bukkit.WorldType;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.spigotmc.hessentials.commands.staff.CommandGod;
@@ -41,9 +43,9 @@ public class HempfestEssentials extends JavaPlugin {
 				EventListener.vanishPlayer.put(p.getUniqueId(), false);
 				EventListener.inventoryOpen.put(p.getUniqueId(), false);
 			}
-		}, 20 * 5);
-		//new WorldCreator("Build").type(WorldType.FLAT).createWorld();
-		//new WorldCreator("War").type(WorldType.FLAT).createWorld();
+		}, 20);
+		new WorldCreator("Build").type(WorldType.FLAT).createWorld();
+		new WorldCreator("War").type(WorldType.FLAT).createWorld();
 	}
 
 	public void onDisable() {

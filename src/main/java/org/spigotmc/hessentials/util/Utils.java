@@ -910,6 +910,7 @@ public class Utils extends StringLibrary {
 
 	public void createConfiguration() {
 		DataManager dm = new DataManager();
+		Config main = dm.getMisc("Config");
 		Config messages = dm.getMisc("Messages");
 		Config help = dm.getMisc("Help");
 
@@ -927,6 +928,7 @@ public class Utils extends StringLibrary {
 
 		InputStream in = HempfestEssentials.instance.getResource("Messages.yml");
 		InputStream in2 = HempfestEssentials.instance.getResource("Help.yml");
+		InputStream in3 = HempfestEssentials.instance.getResource("Config.yml");
 
 
 		if (!messages.exists()) {
@@ -935,6 +937,9 @@ public class Utils extends StringLibrary {
 		if (!help.exists()) {
 
 			Config.copy(in2, help.getFile());
+		}
+		if (!main.exists()) {
+			Config.copy(in3, main.getFile());
 		}
 
 	}

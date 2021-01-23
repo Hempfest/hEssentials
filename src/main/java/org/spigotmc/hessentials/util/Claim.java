@@ -209,11 +209,11 @@ public class Claim {
                     }
                 }
                 d.set("Location." + s + ".User", Claims);
-                data.saveConfig();
             }
+            data.saveConfig();
 
             sendMessage(p, api.lib.getPrefix() + "You just removed user (" + targetName + ") from land: " + claimName);
-
+            loadClaims();
         }
     }
 
@@ -239,6 +239,7 @@ public class Claim {
         DataManager dm = new DataManager();
         Config data = dm.requestData("Claims");
         FileConfiguration d = data.getConfig();
+        HempfestEssentials.getInstance().claimMap.clear();
         for (String s : d.getConfigurationSection("Location").getKeys(false)) {
             int x = d.getInt("Location." + s + ".X");
             int z = d.getInt("Location." + s + ".Z");
@@ -356,7 +357,7 @@ public class Claim {
                 }
             }
         }
-        return "SyncWarpGate";
+        return "Server";
     }
 
     // Get the claim owner of the specified location

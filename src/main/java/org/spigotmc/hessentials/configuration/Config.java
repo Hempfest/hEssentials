@@ -129,6 +129,7 @@ public class Config {
         } catch (final IOException e) {
             e.printStackTrace();
         }
+        configs.removeIf(c -> c.equals(this));
     }
 
     @Override

@@ -40,7 +40,7 @@ public class DataManager {
     }
 
     public Config requestData(String data) {
-        return Config.get(data, "Configuration/request_data");
+        return Config.get(data, "Data/request_data");
     }
 
 

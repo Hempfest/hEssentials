@@ -2,7 +2,6 @@ package org.spigotmc.hessentials.listener.events.hempfest;
 
 import com.youtube.hempfest.centerspawn.CenterSpawn;
 import java.util.HashMap;
-import java.util.Random;
 import java.util.UUID;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -19,6 +18,8 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.player.PlayerTeleportEvent;
+import org.spigotmc.hessentials.configuration.Config;
+import org.spigotmc.hessentials.configuration.DataManager;
 import org.spigotmc.hessentials.util.heHook;
 
 public class WarpGateEvent extends Event implements Cancellable {
@@ -81,6 +82,10 @@ public class WarpGateEvent extends Event implements Cancellable {
 		return entity.getLocation().getBlock();
 	}
 
+	public int random(int bounds) {
+		return (int) (Math.random() * bounds * (Math.random() > 0.5 ? 1 : -1));
+	}
+
 	public EnderCrystal getGate() {
 		return (EnderCrystal) entity;
 	}
@@ -108,9 +113,12 @@ public class WarpGateEvent extends Event implements Cancellable {
 						this.entity = ent;
 					}
 					ent.setBeamTarget(p.getLocation());
-					int x = new Random().nextInt(3000);
+					DataManager dm = new DataManager();
+					Config main = dm.getMisc("Config");
+
+					int x = random((int) main.getConfig().getLong("Settings.rtp"));
 					int y = 150;
-					int z = new Random().nextInt(3000);
+					int z = random((int) main.getConfig().getLong("Settings.rtp"));
 					World w = p.getWorld();
 					Location teleportLocation = new Location(w, x, y, z);
 					y = teleportLocation.getWorld().getHighestBlockYAt(teleportLocation);

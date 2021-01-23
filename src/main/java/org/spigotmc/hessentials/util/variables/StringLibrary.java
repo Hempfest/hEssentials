@@ -1,7 +1,6 @@
 package org.spigotmc.hessentials.util.variables;
 
 import com.youtube.hempfest.hempcore.formatting.string.ColoredString;
-import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.ComponentBuilder;
@@ -177,28 +176,6 @@ public class StringLibrary {
 	}
 
 	public String getMessagesUsed() {
-		DataManager dm = new DataManager();
-		Config messages = dm.getMisc("Messages");
-		Config messages_es = dm.getMisc("Messages_espanola");
-		Config messages_pt = dm.getMisc("Messages_portuguese");
-		FileConfiguration config = messages.getConfig();
-		if (!messages.exists()) {
-			return "Messages";
-		}
-		if (config.getString("Config.Use").equals("es")) {
-			InputStream in = HempfestEssentials.instance.getResource("Messages_espanola.yml");
-			if (!messages_es.exists()) {
-				Config.copy(in, messages_es.getFile());
-			}
-			return "Messages_espanola";
-		}
-		if (config.getString("Config.Use").equals("pt")) {
-			InputStream in = HempfestEssentials.instance.getResource("Messages_portuguese.yml");
-			if (!messages_pt.exists()) {
-				Config.copy(in, messages_pt.getFile());
-			}
-			return "Messages_portuguese";
-		}
 		return "Messages";
 	}
 

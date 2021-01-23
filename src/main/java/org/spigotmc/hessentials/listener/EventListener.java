@@ -173,16 +173,15 @@ public class EventListener implements Listener {
 				Bukkit.broadcastMessage(api.lib.getPrefix() + "Half population voted. Making it day.");
 				Objects.requireNonNull(Bukkit.getWorld(Objects.requireNonNull(p.getLocation().getWorld()).getName())).setTime(0L);
 			}
-			if (sleeping.size() == half) {
-				sleeping.clear();
-				Bukkit.broadcastMessage(api.lib.getPrefix() + "Half population voted. Making it day.");
-				Objects.requireNonNull(Bukkit.getWorld(Objects.requireNonNull(p.getLocation().getWorld()).getName())).setTime(0L);
-				return;
-			}
 
 			if (!sleeping.contains(p.getUniqueId())) {
 				sleeping.add(p.getUniqueId());
 				Bukkit.broadcastMessage(api.lib.getPrefix() + "Player " + ChatColor.GREEN + p.getName() + ChatColor.GRAY + " wants to make it day. (Lay down)");
+			}
+			if (sleeping.size() == half) {
+				sleeping.clear();
+				Bukkit.broadcastMessage(api.lib.getPrefix() + "Half population voted. Making it day.");
+				p.getLocation().getWorld().setTime(0L);
 			}
 		}
 	}
@@ -270,7 +269,7 @@ public class EventListener implements Listener {
 	public void onProjectileLaunch(ProjectileLaunchEvent e) {
 		if (e.getEntity().getShooter() instanceof Player) {
 			Player p = (Player) e.getEntity().getShooter();
-			if (staffGui.containsKey(p.getUniqueId())) {
+			if (staffGui.containsKey(p.getUniqueId()) && staffGui.get(p.getUniqueId())) {
 				e.setCancelled(true);
 				e.getEntity().remove();
 			}
@@ -353,6 +352,7 @@ public class EventListener implements Listener {
 										for (Player a : Bukkit.getOnlinePlayers()) {
 											a.showPlayer(HempfestEssentials.getInstance(), e.getPlayer());
 										}
+										Bukkit.broadcastMessage(api.lib.getJoinMSG(e.getPlayer()));
 										api.u.sendMessage(e.getPlayer(), api.u.getPrefix() + "&a&oYou are now visible!");
 										ItemMeta meta = item.getItemMeta();
 										meta.setLore(Arrays.asList(" ", api.lib.color("&oStatus: &c&nOff")));
@@ -364,6 +364,7 @@ public class EventListener implements Listener {
 										for (Player a : Bukkit.getOnlinePlayers()) {
 											a.hidePlayer(HempfestEssentials.getInstance(), e.getPlayer());
 										}
+										Bukkit.broadcastMessage(api.lib.getLeaveMSG(e.getPlayer()));
 										api.u.sendMessage(e.getPlayer(), api.u.getPrefix() + "&3&oYou are now invisible!");
 										ItemMeta meta = item.getItemMeta();
 										meta.setLore(Arrays.asList(" ", api.lib.color("&oStatus: &a&nOn")));
